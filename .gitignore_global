@@ -1,0 +1,16 @@
+# vim cache
+*.swp
+*.swo
+
+# mac cache
+.DS_Store
+
+# node package
+node_modules/
+
+# python cache
+__pycache__/
+*.py[cod]
+
+# Cpp output
+a.out

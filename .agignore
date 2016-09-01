@@ -1,0 +1,10 @@
+*.pdf
+*.mp4
+*.localized
+*.ppt
+*.pptx
+*.doc
+*.docx
+/Music
+/Library/
+/Pictures/
