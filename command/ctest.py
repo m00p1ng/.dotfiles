@@ -19,16 +19,16 @@ def is_pass(file1, file2):
 
 def print_result(result, case, time):
     if result:
-        print(('\033[0;37;40m* case %s \033[1;32;40m[PASSED]\033[0m %.3f seconds') % (case, time))
+        print(('\033[0;37;40m* case %s \033[1;32;40m[PASS]\033[0m %.3f seconds') % (case, time))
     else:
-        print('\033[0;37;40m* case %s \033[1;31;40m[FAILED]\033[0m' % case)
+        print('\033[0;37;40m* case %s \033[1;31;40m[FAIL]\033[0m' % case)
 
 
-def cpp_fileHandle(program,name_in, name_out):
+def cpp_fileHandle(program, name_in, name_out):
     in_file = open(name_in, 'r')
     out_file = open(name_out, 'w')
     start = time.time()
-    subprocess.call('g++ %s.cpp && ./a.out' % program, shell=True, stdin=in_file, stdout=out_file)
+    subprocess.call('./a.out', shell=True, stdin=in_file, stdout=out_file)
     total_time = time.time()-start
     in_file.close()
     out_file.close()
@@ -60,17 +60,28 @@ def test_some_case(program, case):
     test_for_case(program, case)
 
 
+def cpp_compile(program):
+    try:
+        subprocess.check_call(['g++', '%s.cpp' % program])
+    except subprocess.CalledProcessError:
+        print('error')
+
+
 def main():
     program = sys.argv[1]
     if len(sys.argv) == 4:
         command = sys.argv[2]
-        if command == 'case':
-            case = sys.argv[3]
-            test_some_case(program, case)
-        elif command == 'all':
-            total = int(sys.argv[3])
-            test_all_case(program, total)
-        os.remove('a.out')
+        try:
+            subprocess.check_call(['g++', '%s.cpp' % program])
+            if command == 'case':
+                case = sys.argv[3]
+                test_some_case(program, case)
+            elif command == 'all':
+                total = int(sys.argv[3])
+                test_all_case(program, total)
+            os.remove('a.out')
+        except subprocess.CalledProcessError:
+            print('\033[1;31;40m[Compiled error]\033[0m')
 
 
 if __name__ == '__main__':
