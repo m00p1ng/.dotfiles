@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import subprocess
 import sys
-import filecmp
 import os
 import time
+import glob
 
 
 def is_pass(file1, file2):
@@ -35,10 +35,10 @@ def cpp_fileHandle(program, name_in, name_out):
     return total_time
 
 
-def test_for_case(program, case):
-    name_in = ('%s_%s.in') % (program, case)
-    name_out = ('%s_%s.out') % (program, case)
-    name_out_tmp = ('%s_%s.out.tmp') % (program, case)
+def test_case(program, case):
+    name_in = ('testcase/%s_%s.in') % (program, case)
+    name_out = ('testcase/%s_%s.out') % (program, case)
+    name_out_tmp = ('testcase/%s_%s.out.tmp') % (program, case)
 
     if os.path.exists(name_in) and os.path.exists(name_out):
         time = cpp_fileHandle(program, name_in, name_out_tmp)
@@ -50,38 +50,31 @@ def test_for_case(program, case):
 
 
 def test_all_case(program, total):
-    print('\033[0;37;40m===== Program Test: %s =====\n' % program)
+    print('\033[0;37;40m===== Program : %s =====\033[0m' % program)
     for i in range(1, total+1):
-        test_for_case(program, i)
+        test_case(program, i)
 
 
-def test_some_case(program, case):
-    print('\033[0;37;40m===== Program Test: %s =====\n' % program)
-    test_for_case(program, case)
-
-
-def cpp_compile(program):
-    try:
-        subprocess.check_call(['g++', '%s.cpp' % program])
-    except subprocess.CalledProcessError:
-        print('error')
+def totalcase(program):
+    s = glob.glob('testcase/%s*' % program)
+    s.sort(reverse=True)
+    s = os.path.splitext(s[0])
+    total = s[0].replace('testcase/%s_' % program, '')
+    return int(total)
 
 
 def main():
-    program = sys.argv[1]
-    if len(sys.argv) == 4:
-        command = sys.argv[2]
-        try:
-            subprocess.check_call(['g++', '%s.cpp' % program])
-            if command == 'case':
-                case = sys.argv[3]
-                test_some_case(program, case)
-            elif command == 'all':
-                total = int(sys.argv[3])
-                test_all_case(program, total)
+    program = os.path.splitext(sys.argv[1])[0]
+    try:
+        subprocess.check_call(['g++', '%s.cpp' % program])
+        if os.path.exists('testcase'):
+            total = totalcase(program)
+            test_all_case(program, total)
             os.remove('a.out')
-        except subprocess.CalledProcessError:
-            print('\033[1;31;40m[Compiled error]\033[0m')
+        else:
+            print('\033[0;37;40mFolder testcase not found.\033[0m')
+    except subprocess.CalledProcessError:
+        print('\033[1;31;40m[Compiled error]\033[0m')
 
 
 if __name__ == '__main__':
