@@ -24,6 +24,17 @@ def print_result(result, case, time):
         print('\033[0;37;40m* case %s \033[1;31;40m[FAIL]\033[0m' % case)
 
 
+def print_debug(name_in, name_out):
+    in_file = open(name_in, 'r')
+    out_file = open(name_out, 'r')
+    print('=== Input ===')
+    print(in_file.read())
+    print('=== Output ===')
+    print(out_file.read())
+    in_file.close()
+    out_file.close()
+
+
 def cpp_fileHandle(program, name_in, name_out):
     in_file = open(name_in, 'r')
     out_file = open(name_out, 'w')
@@ -35,7 +46,7 @@ def cpp_fileHandle(program, name_in, name_out):
     return total_time
 
 
-def test_case(program, case):
+def test_case(program, case, debug):
     name_in = ('testcase/%s_%s.in') % (program, case)
     name_out = ('testcase/%s_%s.out') % (program, case)
     name_out_tmp = ('testcase/%s_%s.out.tmp') % (program, case)
@@ -44,19 +55,22 @@ def test_case(program, case):
         time = cpp_fileHandle(program, name_in, name_out_tmp)
         result = is_pass(name_out, name_out_tmp)
         print_result(result, case, time)
-        os.remove(name_out_tmp)
+        if debug:
+            print_debug(name_in, name_out_tmp)
+        if not debug:
+            os.remove(name_out_tmp)
     else:
         print('\033[0;37;40m* case %s \033[1;31;40m[SOME FILES ARE MISSING]\033[0m' % case)
 
 
-def test_all_case(program, total):
+def test_all_case(program, total, debug):
     print('\033[0;37;40m===== Program : %s =====\033[0m' % program)
     for i in range(1, total+1):
-        test_case(program, i)
+        test_case(program, i, debug)
 
 
 def totalcase(program):
-    s = glob.glob('testcase/%s*' % program)
+    s = glob.glob('testcase/%s*.in' % program)
     s.sort(reverse=True)
     s = os.path.splitext(s[0])
     total = s[0].replace('testcase/%s_' % program, '')
@@ -64,12 +78,15 @@ def totalcase(program):
 
 
 def main():
+    debug = False
+    if len(sys.argv) == 3:
+        debug = True
     program = os.path.splitext(sys.argv[1])[0]
     try:
         subprocess.check_call(['g++', '%s.cpp' % program])
         if os.path.exists('testcase'):
             total = totalcase(program)
-            test_all_case(program, total)
+            test_all_case(program, total, debug)
             os.remove('a.out')
         else:
             print('\033[0;37;40mFolder testcase not found.\033[0m')
