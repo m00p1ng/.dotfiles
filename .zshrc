@@ -50,7 +50,7 @@ ZSH_THEME="mooping"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting git)
+plugins=(zsh-syntax-highlighting git node npm brew osx z)
 # User configuration
 # export  LSCOLORS="h"
 export CLICOLOR=1
@@ -81,13 +81,6 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e "^p" up-line-or-beginning-search
 bindkey -e "^n" down-line-or-beginning-search
 bindkey -e "^j" vi-cmd-mode
-#bindkey -e "^j" up-line-or-search
-#bindkey -e "^k" down-line-or-search
-#bindkey -e "^h" backward-char
-#bindkey -e "^l" forward-char
-#bindkey -e "^n" vi-cmd-mode
-#bindkey -e "^w" forward-word
-#bindkey -e "^b" backward-word
 
 # zsh_hightlight
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -122,6 +115,15 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Include Z
+. ~/.dotfile/z.sh
+
+# Run some command
+printf "\n"
+printf "\033[0;37;40m===== Vocab of The Day =====\033[0m\n"
+rl ~/.dotfile/dict/3000oxford.txt -c 5 -n
+printf "\n"
 
 export EDITOR=vim
 
