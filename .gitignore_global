@@ -14,3 +14,4 @@ __pycache__/
 
 # Cpp output
 a.out
+*.tmp

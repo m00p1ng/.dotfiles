@@ -55,7 +55,7 @@ def test_case(program, case, debug):
         time = cpp_fileHandle(program, name_in, name_out_tmp)
         result = is_pass(name_out, name_out_tmp)
         print_result(result, case, time)
-        if debug:
+        if debug and not result:
             print_debug(name_in, name_out_tmp)
         if not debug:
             os.remove(name_out_tmp)
@@ -71,10 +71,12 @@ def test_all_case(program, total, debug):
 
 def totalcase(program):
     s = glob.glob('testcase/%s*.in' % program)
-    s.sort(reverse=True)
-    s = os.path.splitext(s[0])
-    total = s[0].replace('testcase/%s_' % program, '')
-    return int(total)
+    if len(s) != 0:
+        s.sort(reverse=True)
+        s = os.path.splitext(s[0])
+        total = s[0].replace('testcase/%s_' % program, '')
+        return int(total)
+    return 0
 
 
 def main():
@@ -83,11 +85,14 @@ def main():
         debug = True
     program = os.path.splitext(sys.argv[1])[0]
     try:
-        subprocess.check_call(['g++', '%s.cpp' % program])
+        subprocess.check_call(['g++', '-std=c++11', '%s.cpp' % program])
         if os.path.exists('testcase'):
             total = totalcase(program)
-            test_all_case(program, total, debug)
-            os.remove('a.out')
+            if total == 0:
+                print("\033[0;31;40mTest case not found\033[0m")
+            else:
+                test_all_case(program, total, debug)
+                os.remove('a.out')
         else:
             print('\033[0;37;40mFolder testcase not found.\033[0m')
     except subprocess.CalledProcessError:

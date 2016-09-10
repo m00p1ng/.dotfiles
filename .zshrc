@@ -122,53 +122,24 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 # Run some command
 printf "\n"
 printf "\033[0;37;40m===== Vocab of The Day =====\033[0m\n"
-rl ~/.dotfile/dict/3000oxford.txt -c 5 -n
+rl ~/.dotfile/dict/3000oxford.txt -c 5
 printf "\n"
 
 export EDITOR=vim
 
 # Custom script
-function wgets {
-	pushd
-	cd ~/Downloads
-	wget $*
-	popd
-}
-
-function youtube {
-	pushd
-	cd ~/Downloads
-	youtube-dl $*
-	popd
-}
-
 function mkcd {
 	mkdir -p $1
 	cd $1
-}
-
-function keygit {
-	ssh-add ~/.ssh/bitbucket
-	ssh-add ~/.ssh/github
-}
-
-function poweroff {
-	osascript -e 'tell app "System Events" to shut down'
-}
-
-function restart {
-	osascript -e 'tell app "System Events" to restart'
 }
 
 # Custom alias
 alias showfile='defaults write com.apple.finder AppleShowAllFiles TRUE ; killall Finder'
 alias hidefile='defaults write com.apple.finder AppleShowAllFiles FALSE ; killall Finder'
 alias haha='open /Volumes/UnnamE/OS_Windows/Game/PS/Recycle\ Bin'
-#alias wget=wgets
 #alias cp='rsync -rvh --progress'
 alias mv='mv -i'
 alias composer='php ~/.composer.phar'
 alias web='cd /Applications/XAMPP/xamppfiles/htdocs/'
 alias ubuntu='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion start ~/Documents/Virtual\ Machines.localized/Ubuntu\ 64-bit\ 16.04.1.vmwarevm/Ubuntu\ 64-bit\ 16.04.1.vmx nogui'
-alias quit='exit'
 alias ctest='~/.dotfile/command/ctest.py'
