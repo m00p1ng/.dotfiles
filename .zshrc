@@ -50,7 +50,7 @@ ZSH_THEME="mooping"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting git node npm brew osx z)
+plugins=(zsh-syntax-highlighting git node npm brew osx) 
 # User configuration
 # export  LSCOLORS="h"
 export CLICOLOR=1
@@ -80,7 +80,6 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -e "^p" up-line-or-beginning-search
 bindkey -e "^n" down-line-or-beginning-search
-bindkey -e "^j" vi-cmd-mode
 
 # zsh_hightlight
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -122,7 +121,7 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 # Run some command
 printf "\n"
 printf "\033[0;37;40m===== Vocab of The Day =====\033[0m\n"
-rl ~/.dotfile/dict/3000oxford.txt -c 5
+rl ~/.dotfile/dict/3000oxford.txt -c 10
 printf "\n"
 
 export EDITOR=vim
@@ -134,10 +133,8 @@ function mkcd {
 }
 
 # Custom alias
-alias showfile='defaults write com.apple.finder AppleShowAllFiles TRUE ; killall Finder'
-alias hidefile='defaults write com.apple.finder AppleShowAllFiles FALSE ; killall Finder'
 alias haha='open /Volumes/UnnamE/OS_Windows/Game/PS/Recycle\ Bin'
-#alias cp='rsync -rvh --progress'
+alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
 alias composer='php ~/.composer.phar'
 alias web='cd /Applications/XAMPP/xamppfiles/htdocs/'

@@ -5,6 +5,7 @@
 *.pptx
 *.doc
 *.docx
+*.class
 /Music
 /Library/
 /Pictures/
