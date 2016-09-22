@@ -1,0 +1,25 @@
+cowsay
+curl
+emacs
+ffmpeg
+figlet
+gcc
+gdb
+git
+httpie
+imagemagick
+macvim --with-override-system-vim
+nmap
+node
+python
+python3
+randomize-lines
+the_silver_search
+tmux
+toilet
+tree
+typespeed
+unrar
+wget
+youtube-dl
+zsh

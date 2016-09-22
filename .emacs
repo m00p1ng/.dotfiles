@@ -1,0 +1,8 @@
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 4)
+(setq linum-format "%4d| ")
+(global-linum-mode t)
+(setq tab-width 4)
+(put 'downcase-region 'disabled nil)
