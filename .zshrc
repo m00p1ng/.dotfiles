@@ -106,21 +106,11 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=250'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=10,bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Include Z
 . ~/.dotfile/z.sh
 
 # Run some command
-printf "\n"
-printf "\033[0;37;40m===== Vocab of The Day =====\033[0m\n"
+echo "\033[1;37;40m===== Vocab of The Day =====\033[0m"
 rl ~/.dotfile/dict/3000oxford.txt -c 10
 printf "\n"
 
@@ -131,6 +121,8 @@ function mkcd {
 	mkdir -p $1
 	cd $1
 }
+
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'
 
 # Custom alias
 alias haha='open /Volumes/UnnamE/OS_Windows/Game/PS/Recycle\ Bin'

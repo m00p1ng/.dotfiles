@@ -6,36 +6,50 @@ import time
 import glob
 
 
-def is_pass(file1, file2):
+def is_pass(name_out, name_out_tmp):
     l1 = l2 = ' '
-    with open(file1, 'r') as f1, open(file2, 'r') as f2:
-        while l1 != '' and l2 != '':
-            l1 = f1.readline()
-            l2 = f2.readline()
-            if l1 != l2:
-                return False
+    out_file = open(name_out, 'r')
+    out_tmp_file = open(name_out_tmp, 'r')
+    while l1 != '' and l2 != '':
+        l1 = out_file.readline()
+        l2 = out_tmp_file.readline()
+        if l1 != l2:
+            return False
     return True
 
 
 def print_result(result, case, time):
+    outdict = {'time': time, 'case': case}
+    outdict.update(color)
     if result:
-        print(('\033[0;37;40m* case %s \033[1;32;40m[PASS]\033[0m %.3f seconds') % (case, time))
+        msg = ('%(white)s* Test %(case)s %(green)s[PASS]%(close)s %(time).4f seconds') % outdict
     else:
-        print('\033[0;37;40m* case %s \033[1;31;40m[FAIL]\033[0m' % case)
+        msg = '%(white)s* Test %(case)s %(red)s[FAIL]%(close)s' % outdict
+
+    print(msg)
 
 
-def print_debug(name_in, name_out):
-    in_file = open(name_in, 'r')
-    out_file = open(name_out, 'r')
-    print('=== Input ===')
-    print(in_file.read())
-    print('=== Output ===')
-    print(out_file.read())
-    in_file.close()
-    out_file.close()
+def print_debug(name_in, name_out, name_out_tmp):
+    if diff:
+        print('=== Output ===')
+        nl = 'nl -s\'.) \' -w4 -ba'
+        suppress = '' if allDiff else '-s'
+        outdict = {'out': name_out, 'out_tmp': name_out_tmp, 'nl': nl, 'sup': suppress}
+        cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        subprocess.call(cmd, shell=True, executable='/bin/bash')
+    else:
+        in_file = open(name_in, 'r')
+        print('=== Input ===')
+        print(in_file.read())
+        in_file.close()
+
+        print('=== Output ===')
+        out_file = open(name_out_tmp, 'r')
+        print(out_file.read())
+        out_file.close()
 
 
-def cpp_fileHandle(program, name_in, name_out):
+def cpp_fileHandle(name_in, name_out):
     in_file = open(name_in, 'r')
     out_file = open(name_out, 'w')
     start = time.time()
@@ -46,58 +60,108 @@ def cpp_fileHandle(program, name_in, name_out):
     return total_time
 
 
-def test_case(program, case, debug):
+def test_case(case):
     name_in = ('testcase/%s_%s.in') % (program, case)
     name_out = ('testcase/%s_%s.out') % (program, case)
     name_out_tmp = ('testcase/%s_%s.out.tmp') % (program, case)
 
     if os.path.exists(name_in) and os.path.exists(name_out):
-        time = cpp_fileHandle(program, name_in, name_out_tmp)
+        time = cpp_fileHandle(name_in, name_out_tmp)
         result = is_pass(name_out, name_out_tmp)
         print_result(result, case, time)
         if debug and not result:
-            print_debug(name_in, name_out_tmp)
+            print_debug(name_in, name_out, name_out_tmp)
         if not debug:
             os.remove(name_out_tmp)
     else:
-        print('\033[0;37;40m* case %s \033[1;31;40m[SOME FILES ARE MISSING]\033[0m' % case)
+        outdict = {'case': case}
+        outdict.update(color);
+        msg = '%(white)s* Test %(case)s %(red)s[SOME FILES ARE MISSING]%(close)s' % outdict
+        print(msg)
 
 
-def test_all_case(program, total, debug):
-    print('\033[0;37;40m===== Program : %s =====\033[0m' % program)
-    for i in range(1, total+1):
-        test_case(program, i, debug)
+def test_all_case(total_case):
+    if total_case == 0:
+        msg = '%(red)sTest case not found%(close)s' % color
+        print(msg)
+        return
+
+    outdict = {'name': program}
+    outdict.update(color)
+    msg = '%(white)s===== Program : %(name)s =====%(close)s' % outdict
+    print(msg)
+
+    for i in range(1, total_case + 1):
+        test_case(i)
+
+    os.remove('a.out')
 
 
-def totalcase(program):
+def test_one_case(caseNum):
+    outdict = {'name': program}
+    outdict.update(color)
+    msg = '%(white)s===== Program : %(name)s =====%(close)s' % outdict
+    print(msg)
+    test_case(caseNum)
+
+
+def totalcase():
     s = glob.glob('testcase/%s*.in' % program)
     if len(s) != 0:
         s.sort(reverse=True)
         s = os.path.splitext(s[0])
-        total = s[0].replace('testcase/%s_' % program, '')
-        return int(total)
+        total_case = s[0].replace('testcase/%s_' % program, '')
+        return int(total_case)
     return 0
 
 
+def option():
+    global debug, diff, allDiff, allTest, caseNum
+
+    if len(sys.argv) >= 2:
+        for i in range(2, len(sys.argv)):
+            if sys.argv[i] == 'debug':
+                debug = True
+            elif sys.argv[i] == 'diff':
+                debug = True
+                diff = True
+            elif sys.argv[i] == 'all':
+                allDiff = True
+            elif sys.argv[i] == 'case':
+                allTest = False
+                i += 1
+                caseNum = sys.argv[i]
+
+
 def main():
-    debug = False
-    if len(sys.argv) == 3:
-        debug = True
-    program = os.path.splitext(sys.argv[1])[0]
+    option()
     try:
         subprocess.check_call(['g++', '-std=c++11', '%s.cpp' % program])
         if os.path.exists('testcase'):
-            total = totalcase(program)
-            if total == 0:
-                print("\033[0;31;40mTest case not found\033[0m")
+            if allTest:
+                test_all_case(totalcase())
             else:
-                test_all_case(program, total, debug)
-                os.remove('a.out')
+                test_one_case(caseNum)
         else:
-            print('\033[0;37;40mFolder testcase not found.\033[0m')
+            msg = '%(white)sFolder testcase not found.%(close)s' % color
+            print(msg)
     except subprocess.CalledProcessError:
-        print('\033[1;31;40m[Compiled error]\033[0m')
+        msg = '%(red)s[Compiled error]%(close)s' % color
+        print(msg)
 
 
 if __name__ == '__main__':
+    color = {
+        'close' : '\033[0m',
+        'red'   : '\033[1;31m',
+        'green' : '\033[1;32m',
+        'yellow': '\033[1;33m',
+        'white' : '\033[1;37m',
+    }
+    program = os.path.splitext(sys.argv[1])[0]
+    debug = False
+    diff = False
+    allDiff = False
+    allTest = True
+    caseNum = 0
     main()
