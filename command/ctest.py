@@ -148,6 +148,9 @@ def main():
     except subprocess.CalledProcessError:
         msg = '%(red)s[Compiled error]%(close)s' % color
         print(msg)
+    except KeyboardInterrupt:
+        msg = '\n%(red)s[Stop test by user]%(close)s' % color
+        print(msg)
 
 
 if __name__ == '__main__':
