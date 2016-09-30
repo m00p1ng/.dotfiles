@@ -26,12 +26,12 @@ ZSH_THEME="mooping"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+ HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(zsh-syntax-highlighting git node npm brew osx) 
+plugins=(zsh-syntax-highlighting git node npm brew osx)
 export CLICOLOR=1
 export PATH="/Users/UnnamE/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/CrossPack-AVR/bin"
 
@@ -81,8 +81,8 @@ export EDITOR=vim
 
 # Custom script
 function mkcd {
-	mkdir -p $1
-	cd $1
+    mkdir -p $1
+    cd $1
 }
 
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'

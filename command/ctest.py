@@ -5,6 +5,19 @@ import os
 import time
 import glob
 
+color = {
+    'close' : '\033[0m',
+    'red'   : '\033[1;31m',
+    'green' : '\033[1;32m',
+    'yellow': '\033[1;33m',
+    'white' : '\033[1;37m',
+}
+program = os.path.splitext(sys.argv[1])[0]
+debug = False
+diff = False
+allDiff = False
+allTest = True
+caseNum = 0
 
 def is_pass(name_out, name_out_tmp):
     l1 = l2 = ' '
@@ -154,17 +167,4 @@ def main():
 
 
 if __name__ == '__main__':
-    color = {
-        'close' : '\033[0m',
-        'red'   : '\033[1;31m',
-        'green' : '\033[1;32m',
-        'yellow': '\033[1;33m',
-        'white' : '\033[1;37m',
-    }
-    program = os.path.splitext(sys.argv[1])[0]
-    debug = False
-    diff = False
-    allDiff = False
-    allTest = True
-    caseNum = 0
     main()
