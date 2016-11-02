@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export NODE_ENV="production"
 export TERM="xterm-256color"
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -95,3 +96,4 @@ alias composer='php ~/.composer.phar'
 alias web='cd /Applications/XAMPP/xamppfiles/htdocs/'
 alias ubuntu='/Applications/VMware\ Fusion.app/Contents/Library/vmrun -T fusion start ~/Documents/Virtual\ Machines.localized/Ubuntu\ 64-bit\ 16.04.1.vmwarevm/Ubuntu\ 64-bit\ 16.04.1.vmx nogui'
 alias ctest='~/.dotfile/command/ctest.py'
+alias yt-l='youtube-dl -o "%(title)s.%(ext)s"'

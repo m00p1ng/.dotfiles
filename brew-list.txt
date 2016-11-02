@@ -8,13 +8,12 @@ gdb
 git
 httpie
 imagemagick
-macvim --with-override-system-vim
 nmap
 node
 python
 python3
 randomize-lines
-the_silver_search
+the_silver_searcher
 tmux
 toilet
 tree
