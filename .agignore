@@ -6,6 +6,10 @@
 *.doc
 *.docx
 *.class
+*.jpg
+*.png
+*.gif
+*.ico
 /Music
 /Library/
 /Pictures/
