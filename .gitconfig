@@ -1,14 +1,18 @@
 [user]
-	name = moopings
-	email = mongkonchai4412@gmail.com
+    name = moopings
+    email = mongkonchai4412@gmail.com
 [core]
-	excludesfile = /Users/UnnamE/.gitignore_global
-	editor = vim
+    excludesfile = /Users/UnnamE/.gitignore_global
+    editor = vim
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [alias]
-	list = log --abbrev-commit --graph --decorate --pretty=oneline
+    list = log --abbrev-commit --graph --decorate --pretty=oneline
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
