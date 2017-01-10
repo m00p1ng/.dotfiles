@@ -51,11 +51,6 @@ def print_debug(name_in, name_out, name_out_tmp):
         cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
         subprocess.call(cmd, shell=True, executable='/bin/bash')
     else:
-        in_file = open(name_in, 'r')
-        print('=== Input ===')
-        print(in_file.read())
-        in_file.close()
-
         print('=== Output ===')
         out_file = open(name_out_tmp, 'r')
         print(out_file.read())
@@ -149,7 +144,10 @@ def option():
 def main():
     option()
     try:
-        subprocess.check_call(['g++', '-std=c++11', '%s.cpp' % program])
+        if debug and not diff:
+            subprocess.check_call(['g++', '-std=c++11', '-DDEBUG', '%s.cpp' % program])
+        else:
+            subprocess.check_call(['g++', '-std=c++11', '%s.cpp' % program])
         if os.path.exists('testcase'):
             if allTest:
                 test_all_case(totalcase())
