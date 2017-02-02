@@ -38,7 +38,7 @@ export PATH="/Users/UnnamE/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/
 source $ZSH/oh-my-zsh.sh
 
 # ssh
- export SSH_KEY_PATH="$HOME/.ssh"
+export SSH_KEY_PATH="$HOME/.ssh"
 
 # bindkey
 bindkey -e "^p" up-line-or-beginning-search
@@ -73,24 +73,21 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 . ~/.dotfile/z.sh
 
 # Run some command
-echo "\033[1;37;40m===== Vocab of The Day =====\033[0m"
-rl ~/.dotfile/dict/3000oxford.txt -c 10
-printf "\n"
+#echo "\033[1;37;40m===== Vocab of The Day =====\033[0m"
+#rl ~/.dotfile/dict/3000oxford.txt -c 10
+#printf "\n"
 
 export EDITOR=vim
 
 # Custom script
 function mkcd {
-    mkdir -p $1
-    cd $1
+    mkdir -p $1 && cd $1
 }
 
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'
 
 # Custom alias
-alias haha='open /Volumes/UnnamE/OS_Windows/Game/PS/Recycle\ Bin'
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
-alias web='cd /Applications/XAMPP/xamppfiles/htdocs/'
 alias ctest='~/.dotfile/command/ctest.py'
 alias yt-l='youtube-dl -o "%(title)s.%(ext)s"'
