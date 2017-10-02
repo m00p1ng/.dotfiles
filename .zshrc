@@ -89,6 +89,4 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'
 # Custom alias
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
-alias ctest='~/.dotfile/command/ctest.py'
-alias moocrypt='~/.dotfile/command/moocrypt.py'
 alias yt-l='youtube-dl -o "%(title)s.%(ext)s"'
