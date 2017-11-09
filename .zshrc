@@ -84,6 +84,10 @@ function mkcd {
     mkdir -p $1 && cd $1
 }
 
+function dict {
+    open dict://$1
+}
+
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'
 
 # Custom alias
