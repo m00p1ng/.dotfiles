@@ -71,6 +71,7 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 
 # Include Z
 . ~/.dotfile/z.sh
+. ~/.dotfile/run.sh
 
 # Run some command
 #echo "\033[1;37;40m===== Vocab of The Day =====\033[0m"
