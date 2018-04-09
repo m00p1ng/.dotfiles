@@ -12,12 +12,19 @@ color = {
     'yellow': '\033[1;33m',
     'white' : '\033[1;37m',
 }
+
+FAIL = "%(red)s[FAIL]%(close)s"
+PASS = "%(green)s[PASS]%(close)s"
+
 program = os.path.splitext(sys.argv[1])[0]
 debug = False
 diff = False
 allDiff = False
 allTest = True
 caseNum = 0
+
+def escape_name(name):
+    return name.replace(' ', '\\ ')
 
 def is_pass(name_out, name_out_tmp):
     l1 = l2 = ' '
@@ -34,10 +41,13 @@ def is_pass(name_out, name_out_tmp):
 def print_result(result, case, time):
     outdict = {'time': time, 'case': case}
     outdict.update(color)
+
     if result:
-        msg = ('%(white)s* Test %(case)s %(green)s[PASS]%(close)s %(time).4f seconds') % outdict
+        outdict['result_text'] = PASS
     else:
-        msg = '%(white)s* Test %(case)s %(red)s[FAIL]%(close)s' % outdict
+        outdict['result_text'] = FAIL
+
+    msg = (('%(white)s* Test %(case)s %(result_text)s %(time).4f seconds') % (outdict) ) % outdict
 
     print(msg)
 
@@ -47,7 +57,7 @@ def print_debug(name_in, name_out, name_out_tmp):
         print('=== Output ===')
         nl = 'nl -s\'.) \' -w4 -ba'
         suppress = '' if allDiff else '-s'
-        outdict = {'out': name_out, 'out_tmp': name_out_tmp, 'nl': nl, 'sup': suppress}
+        outdict = {'out': escape_name(name_out), 'out_tmp': escape_name(name_out_tmp), 'nl': nl, 'sup': suppress}
         cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
         subprocess.call(cmd, shell=True, executable='/bin/bash')
     else:
@@ -145,9 +155,9 @@ def main():
     option()
     try:
         if debug and not diff:
-            subprocess.check_call(['g++', '-std=c++11', '-DDEBUG', '%s.cpp' % program])
+            subprocess.check_call(['g++', '-std=c++11', '-O2', '-DDEBUG', '%s.cpp' % program])
         else:
-            subprocess.check_call(['g++', '-std=c++11', '%s.cpp' % program])
+            subprocess.check_call(['g++', '-std=c++11', '-O2', '%s.cpp' % program])
         if os.path.exists('testcase'):
             if allTest:
                 test_all_case(totalcase())

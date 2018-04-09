@@ -12,6 +12,7 @@ node_modules/
 # python cache
 __pycache__/
 *.py[cod]
+.ipynb_checkpoints
 
 # Cpp output
 a.out
