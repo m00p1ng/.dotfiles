@@ -56,9 +56,14 @@ def print_debug(name_in, name_out, name_out_tmp):
     if diff:
         print('=== Output ===')
         nl = 'nl -s\'.) \' -w4 -ba'
-        suppress = '' if allDiff else '-s'
+        # suppress = '' if allDiff else '-s'
+        suppress = ''
         outdict = {'out': escape_name(name_out), 'out_tmp': escape_name(name_out_tmp), 'nl': nl, 'sup': suppress}
-        cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        if allDiff:
+            # cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+            cmd = 'sdiff <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        else:
+            cmd = 'icdiff --no-header -U 10 %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
         subprocess.call(cmd, shell=True, executable='/bin/bash')
     else:
         print('=== Output ===')
