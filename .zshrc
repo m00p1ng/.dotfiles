@@ -33,7 +33,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 plugins=(zsh-syntax-highlighting osx git)
 export CLICOLOR=1
-export PATH="/Users/UnnamE/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/CrossPack-AVR/bin"
+export PATH="/Users/UnnamE/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 

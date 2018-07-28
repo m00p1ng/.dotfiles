@@ -21,3 +21,6 @@ testcase/
 
 # java
 *.class
+
+# EXE
+*.exe
