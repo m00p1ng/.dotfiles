@@ -31,7 +31,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(zsh-syntax-highlighting osx git)
+plugins=(zsh-syntax-highlighting osx git zsh-autosuggestions)
 export CLICOLOR=1
 export PATH="/Users/UnnamE/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -72,11 +72,6 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=15,bg=6,bold'
 # Include Z
 . ~/.dotfile/z.sh
 . ~/.dotfile/run.sh
-
-# Run some command
-#echo "\033[1;37;40m===== Vocab of The Day =====\033[0m"
-#rl ~/.dotfile/dict/3000oxford.txt -c 10
-#printf "\n"
 
 export EDITOR=vim
 
