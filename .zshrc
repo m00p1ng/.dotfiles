@@ -31,7 +31,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(zsh-syntax-highlighting osx git zsh-autosuggestions)
+plugins=(zsh-syntax-highlighting osx git zsh-autosuggestions zsh-completions)
 export CLICOLOR=1
 export PATH="/Users/UnnamE/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -82,8 +82,8 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # Include Z
-. ~/.dotfile/z.sh
-. ~/.dotfile/run.sh
+. ~/.dotfiles/z.sh
+. ~/.dotfiles/run.sh
 
 export EDITOR=vim
 
