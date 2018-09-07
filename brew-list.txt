@@ -7,12 +7,15 @@ gcc
 gdb
 git
 httpie
+hub
 imagemagick
+macvim
 nmap
 node
 python
 python3
 randomize-lines
+terminal-notifier
 the_silver_searcher
 tmux
 toilet
@@ -22,4 +25,4 @@ unrar
 wget
 youtube-dl
 zsh
-terminal-notifier
+zsh-syntax-highlighting
