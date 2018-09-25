@@ -1,0 +1,12 @@
+flux
+visual-studio-code
+sublime-text
+atom
+sketch
+firefox
+google-chrome
+vlc
+rstudio
+alfred
+insomnia
+spotify
