@@ -33,7 +33,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 plugins=(zsh-syntax-highlighting osx git zsh-autosuggestions zsh-completions)
 export CLICOLOR=1
-export PATH="/Users/UnnamE/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,6 +94,21 @@ function mkcd {
 
 function dict {
     open dict://$1
+}
+
+
+function remove_aout {
+    if [ -f a.out ]
+    then
+        rm a.out
+    fi
+}
+
+trap remove_aout SIGINT
+
+function runcpp {
+    g++ $1 && ./a.out
+    remove_aout
 }
 
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'
