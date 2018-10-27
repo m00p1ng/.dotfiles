@@ -6,11 +6,11 @@ import time
 import glob
 
 color = {
-    'close' : '\033[0m',
-    'red'   : '\033[1;31m',
-    'green' : '\033[1;32m',
+    'close': '\033[0m',
+    'red': '\033[1;31m',
+    'green': '\033[1;32m',
     'yellow': '\033[1;33m',
-    'white' : '\033[1;37m',
+    'white': '\033[1;37m',
 }
 
 FAIL = "%(red)s[FAIL]%(close)s"
@@ -23,8 +23,10 @@ allDiff = False
 allTest = True
 caseNum = 0
 
+
 def escape_name(name):
     return name.replace(' ', '\\ ')
+
 
 def is_pass(name_out, name_out_tmp):
     l1 = l2 = ' '
@@ -47,7 +49,8 @@ def print_result(result, case, time):
     else:
         outdict['result_text'] = FAIL
 
-    msg = (('%(white)s* Test %(case)s %(result_text)s %(time).4f seconds') % (outdict) ) % outdict
+    msg = (('%(white)s* Test %(case)s %(result_text)s %(time).4f seconds') %
+           (outdict)) % outdict
 
     print(msg)
 
@@ -58,12 +61,14 @@ def print_debug(name_in, name_out, name_out_tmp):
         nl = 'nl -s\'.) \' -w4 -ba'
         # suppress = '' if allDiff else '-s'
         suppress = ''
-        outdict = {'out': escape_name(name_out), 'out_tmp': escape_name(name_out_tmp), 'nl': nl, 'sup': suppress}
-        if allDiff:
-            # cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
-            cmd = 'sdiff <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
-        else:
-            cmd = 'icdiff --no-header -U 10 %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        outdict = {'out': escape_name(name_out), 'out_tmp': escape_name(
+            name_out_tmp), 'nl': nl, 'sup': suppress}
+        cmd = 'sdiff <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        # if allDiff:
+        # cmd = 'sdiff %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        # cmd = 'sdiff <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
+        # else:
+        # cmd = 'icdiff --no-header -U 10 %(sup)s <(%(nl)s %(out)s) <(%(nl)s %(out_tmp)s)' % outdict
         subprocess.call(cmd, shell=True, executable='/bin/bash')
     else:
         print('=== Output ===')
@@ -98,7 +103,7 @@ def test_case(case):
             os.remove(name_out_tmp)
     else:
         outdict = {'case': case}
-        outdict.update(color);
+        outdict.update(color)
         msg = '%(white)s* Test %(case)s %(red)s[SOME FILES ARE MISSING]%(close)s' % outdict
         print(msg)
 
@@ -160,9 +165,11 @@ def main():
     option()
     try:
         if debug and not diff:
-            subprocess.check_call(['g++', '-std=c++11', '-O2', '-DDEBUG', '%s.cpp' % program])
+            subprocess.check_call(
+                ['g++', '-std=c++11', '-O2', '-DDEBUG', '%s.cpp' % program])
         else:
-            subprocess.check_call(['g++', '-std=c++11', '-O2', '%s.cpp' % program])
+            subprocess.check_call(
+                ['g++', '-std=c++11', '-O2', '%s.cpp' % program])
         if os.path.exists('testcase'):
             if allTest:
                 test_all_case(totalcase())

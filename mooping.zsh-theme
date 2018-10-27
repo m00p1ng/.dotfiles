@@ -2,7 +2,10 @@
 local ret_status="%(?:%{$BG[073]%}%{$FG[015]%} %n %{$reset_color%}:%{$BG[009]%}%{$FG[015]%} %n %{$reset_color%})"
 local dir="%{$FG[154]%}%c%{$reset_color%}"
 local arrow="%{$FG[009]%}▶%{$reset_color%}%{$FG[011]%}▶%{$reset_color%}%{$FG[010]%}▶%{$reset_color%}"
-PROMPT='${ret_status} : ${dir} %{$FG[011]%}$(git_prompt_info)%{$FG[011]%}%{$reset_color%}${arrow} '
+#local arrow="%{$FG[010]%}▶%{$reset_color%}"
+PROMPT='
+${ret_status} : ${dir} %{$FG[011]%}$(git_prompt_info)%{$FG[011]%}%{$reset_color%}
+${arrow} '
 RPROMPT='%{$FG[007]%}[%*${GREEN_END}]%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
