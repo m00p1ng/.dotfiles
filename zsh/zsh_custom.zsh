@@ -12,6 +12,11 @@ function runcpp {
     g++ $1 -o $file && $file
 }
 
+function runrust {
+    file=/tmp/rust_exec
+    rustc $1 -o $file && $file
+}
+
 # Custom alias
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
