@@ -27,6 +27,7 @@ plugins=(
   osx
   git
   git-prompt
+  z
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
@@ -44,7 +45,6 @@ bindkey -e "^p" up-line-or-beginning-search
 bindkey -e "^n" down-line-or-beginning-search
 
 # Include Z
-. ~/.dotfiles/zsh/z.sh
 . ~/.dotfiles/zsh/run.sh
 . ~/.dotfiles/zsh/zsh_custom.zsh
 . ~/.dotfiles/zsh/zsh_hightlight.zsh
