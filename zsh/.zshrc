@@ -24,6 +24,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 plugins=(
+  battery
   osx
   git
   git-prompt
