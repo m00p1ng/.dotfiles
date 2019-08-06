@@ -28,6 +28,7 @@ plugins=(
   osx
   git
   git-prompt
+  git-auto-fetch
   z
   zsh-autosuggestions
   zsh-completions
