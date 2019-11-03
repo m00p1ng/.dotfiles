@@ -13,6 +13,7 @@
     tool = vimdiff
 [alias]
     list = log --abbrev-commit --graph --decorate --pretty=oneline
+    follow = !git --no-pager log --follow --oneline
 [color "status"]
     added = green bold
     changed = yellow bold
