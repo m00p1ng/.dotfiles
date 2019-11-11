@@ -35,7 +35,7 @@ plugins=(
   zsh-syntax-highlighting
 )
 export CLICOLOR=1
-export PATH="/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
