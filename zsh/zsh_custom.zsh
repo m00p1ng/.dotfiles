@@ -21,4 +21,4 @@ function runrust {
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
 alias yt-l='youtube-dl -o "%(title)s.%(ext)s"'
-alias kattis='~/.dotfiles/command/kattis.py'
+alias kattis='~/.dotfiles/command/kattis-cli/kattis'
