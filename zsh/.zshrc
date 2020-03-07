@@ -47,7 +47,7 @@ bindkey -e "^p" up-line-or-beginning-search
 bindkey -e "^n" down-line-or-beginning-search
 
 # Include Z
-. ~/.dotfiles/zsh/run.sh
+. ~/.dotfiles/zsh/run/run.sh
 . ~/.dotfiles/zsh/zsh_custom.zsh
 . ~/.dotfiles/zsh/zsh_hightlight.zsh
 . ~/.dotfiles/zsh/git_prompt.zsh

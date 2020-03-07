@@ -2,3 +2,6 @@
 	path = command/kattis-cli
 	url = git@github.com:m00p1ng/kattis-cli.git
 	branch = master
+[submodule "zsh/run"]
+	path = zsh/run
+	url = https://github.com/m00p1ng/run
