@@ -1,6 +1,5 @@
 curl
 gcc
-ghc
 git
 httpie
 hub

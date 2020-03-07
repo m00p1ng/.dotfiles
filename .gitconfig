@@ -13,7 +13,10 @@
 [merge]
     tool = vimdiff
 [alias]
-    list = log --abbrev-commit --graph --decorate --pretty=oneline
+    logs = log --abbrev-commit --graph --decorate --pretty=oneline
+    logs-full = log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr) %C(dim white)<%an>%C(reset)'
+    logs-date = log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr)%C(reset)'
+    logs-author = log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)%an%C(reset)'
     follow = !git --no-pager log --follow --oneline
 [color "status"]
     added = green bold
