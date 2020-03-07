@@ -5,7 +5,7 @@
     excludesfile = /Users/UnnamE/.gitignore_global
     editor = vim
     ignorecase = false
-	;pager = less -+X
+    ;pager = less -+X
 [filter "lfs"]
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
@@ -18,9 +18,12 @@
     logs-date = log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr)%C(reset)'
     logs-author = log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)%an%C(reset)'
     follow = !git --no-pager log --follow --oneline
+    count = shortlog -ns
+    find = log --all --full-history --oneline
 [color "status"]
     added = green bold
     changed = yellow bold
     untracked = red bold
 [pager]
-	branch = false
+    branch = false
+    shortlog = false
