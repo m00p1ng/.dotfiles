@@ -20,6 +20,7 @@
     follow = !git --no-pager log --follow --oneline
     count = shortlog -ns
     find = log --all --full-history --oneline
+    parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
 [color "status"]
     added = green bold
     changed = yellow bold
