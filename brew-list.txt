@@ -7,7 +7,7 @@ nmap
 node
 pass
 python3
-the_silver_searcher
+ripgrep
 tmux
 tree
 unrar

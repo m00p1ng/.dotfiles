@@ -20,6 +20,7 @@ ln -sf .agignore ~
 ln -sf .gitconfig ~
 ln -sf .gitignore_global ~
 ln -sf .tmux.conf ~
+ln -sf .ripgreprc ~
 
 echo "source ~/.dotfiles/zsh/.zshrc" > ~/.zshrc
 echo ':set prompt "\ESC[1;34m%s\\n\ESC[0;31mλ> \ESC[m"' > ~/.ghci

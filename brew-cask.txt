@@ -8,4 +8,3 @@ vlc
 alfred
 spotify
 virtualbox
-vagrant

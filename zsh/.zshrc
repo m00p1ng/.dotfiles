@@ -3,6 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 export TERM="xterm-256color"
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
 ZSH_THEME="mooping"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
