@@ -21,6 +21,18 @@ function fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height 40% --reverse | sed 's/ *[0-9]* *//')
 }
 
+function lndir() {
+    if [ $# -ne 2 ]
+    then
+        echo "lndir <source> <destination>"
+        return 1
+    fi
+
+    find $1 -type d -exec mkdir -p $2/{} \;
+    find $1 -type f -exec ln -s {} $2/{} \;
+    mv $2$1 $2
+}
+
 # Custom alias
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
