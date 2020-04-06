@@ -3,7 +3,7 @@ function install_brew () {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
     # Install command line
-    cat brew-list.txt | xargs brew install
+    cat brew.txt | xargs brew install
     cat brew-cask.txt | xargs brew cask install
 }
 
