@@ -41,17 +41,18 @@ export PATH="/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 source $ZSH/oh-my-zsh.sh
 
 # ssh
-export SSH_KEY_PATH="$HOME/.ssh"
+export SSH_KEY_PATH=$HOME/.ssh
 
 # bindkey
 bindkey -e "^p" up-line-or-beginning-search
 bindkey -e "^n" down-line-or-beginning-search
 
-# Include Z
-. ~/.dotfiles/zsh/run/run.sh
-. ~/.dotfiles/zsh/zsh_custom.zsh
-. ~/.dotfiles/zsh/zsh_hightlight.zsh
-. ~/.dotfiles/zsh/git_prompt.zsh
+# include config
+CONFIG_PATH=$HOME/.dotfiles/zsh
+. $CONFIG_PATH/run/run.sh
+. $CONFIG_PATH/zsh_custom.zsh
+. $CONFIG_PATH/zsh_hightlight.zsh
+. $CONFIG_PATH/git_prompt.zsh
 
 export EDITOR=vim
 
