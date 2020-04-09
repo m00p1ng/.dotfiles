@@ -5,7 +5,6 @@
     excludesfile = /Users/UnnamE/.gitignore_global
     editor = vim
     ignorecase = false
-    pager = diff-so-fancy | less --tabs=4 -RF
     ;pager = less -+X
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -29,6 +28,7 @@
 [pager]
     branch = false
     shortlog = false
+    diff = diff-so-fancy | less --tabs=4 -RF --pattern '^(Date|added|deleted|modified):'
 [color]
 	ui = true
 [color "diff-highlight"]
