@@ -37,6 +37,7 @@ plugins=(
 )
 export CLICOLOR=1
 export PATH="/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH=/opt/homebrew/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
@@ -49,7 +50,6 @@ bindkey -e "^n" down-line-or-beginning-search
 
 # include config
 CONFIG_PATH=$HOME/.dotfiles/zsh
-. $CONFIG_PATH/run/run.sh
 . $CONFIG_PATH/zsh_custom.zsh
 . $CONFIG_PATH/zsh_hightlight.zsh
 . $CONFIG_PATH/git_prompt.zsh

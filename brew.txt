@@ -6,8 +6,9 @@ exa
 fzf
 gcc
 git
-httpie
+hey
 htop
+httpie
 hub
 nmap
 node
@@ -17,7 +18,6 @@ ripgrep
 rsync
 tmux
 tree
-unrar
 wget
 yarn
 youtube-dl
