@@ -9,17 +9,13 @@ function install_brew () {
 
 function install_zsh () {
     # Install oh-my-zsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-    # Install zsh plugins
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 function link_config () {
     # Linking Config Files
     ln -sf $PWD/zsh/mooping.zsh-theme $HOME/.oh-my-zsh/themes/
+    ln -sf $PWD/zsh/zsh_plugins.txt $HOME/.zsh_plugins.txt
     ln -sf $PWD/.agignore $HOME
     ln -sf $PWD/.gitconfig $HOME
     ln -sf $PWD/.gitignore_global $HOME

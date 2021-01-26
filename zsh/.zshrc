@@ -40,6 +40,7 @@ export PATH="/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 export PATH=/opt/homebrew/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
+source <(antibody init)
 
 # ssh
 export SSH_KEY_PATH=$HOME/.ssh
@@ -53,6 +54,7 @@ CONFIG_PATH=$HOME/.dotfiles/zsh
 . $CONFIG_PATH/zsh_custom.zsh
 . $CONFIG_PATH/zsh_hightlight.zsh
 . $CONFIG_PATH/git_prompt.zsh
+. $CONFIG_PATH/git_fuzzy.zsh
 
 export EDITOR=vim
 

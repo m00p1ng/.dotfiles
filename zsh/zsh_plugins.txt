@@ -1,0 +1,4 @@
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+bigH/git-fuzzy path:bin kind:path
