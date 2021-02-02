@@ -57,5 +57,6 @@ CONFIG_PATH=$HOME/.dotfiles/zsh
 . $CONFIG_PATH/git_fuzzy.zsh
 
 export EDITOR=vim
+export DELTA_PAGER="less -R"
 
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.class'

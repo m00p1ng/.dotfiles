@@ -7,6 +7,7 @@ exa
 fzf
 gcc
 git
+git-delta
 hey
 htop
 httpie

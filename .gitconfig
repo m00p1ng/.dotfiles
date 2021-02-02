@@ -5,6 +5,7 @@
     excludesfile = /Users/UnnamE/.gitignore_global
     editor = vim
     ignorecase = false
+    pager = delta
     ;pager = less -+X
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -28,7 +29,7 @@
 [pager]
     branch = false
     shortlog = false
-    diff = diff-so-fancy | less --tabs=4 -RF --pattern '^(Date|added|deleted|modified):'
+    ;diff = diff-so-fancy | less --tabs=4 -RF --pattern '^(Date|added|deleted|modified):'
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -43,5 +44,40 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[diff]
+    colorMoved = default
 [diff-so-fancy]
 	stripLeadingSymbols = false
+[init]
+	defaultBranch = main
+[delta]
+    features = line-numbers file-decorators
+    inspect-raw-lines = false
+    line-numbers = true
+    ;side-by-side = true
+    syntax-theme = Monokai Extended Bright
+[delta "diff-color"]
+    ;minus-color = "#340001"
+    ;minus-style                   = normal 52
+    ;minus-non-emph-style          = normal 52
+    ;minus-emph-style              = normal 52
+    ;minus-empty-line-marker-style = normal "#3f0001"
+    ;plus-color = "#012800"
+    ;plus-style                    = syntax 22
+    ;plus-non-emph-style           = syntax 22
+    ;plus-emph-style               = syntax 22
+[delta "line-numbers"]
+    line-numbers-zero-style = 243
+    line-numbers-left-style = 243
+    line-numbers-right-style = 243
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
+[delta "file-decorators"]
+    file-style = bold yellow
+    file-modified-label = modified:
+    file-decoration-style = yellow box ul
+    hunk-header-style = syntax
+    hunk-header-decoration-style = 243 box
+    commit-decoration-style = green box ul
+[interactive]
+    diffFilter = delta --color-only
