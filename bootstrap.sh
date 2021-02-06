@@ -2,9 +2,13 @@ function install_brew () {
     # Install brew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+    # set brew path
+    echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> $HOME/.zshrc
+    eval $(/opt/homebrew/bin/brew shellenv)
+
     # Install command line
     cat brew.txt | xargs brew install
-    cat brew-cask.txt | xargs brew install --cask
+    # cat brew-cask.txt | xargs brew install --cask
 }
 
 function install_zsh () {
@@ -24,8 +28,9 @@ function link_config () {
 }
 
 function other_config () {
-    echo "source ~/.dotfiles/zsh/.zshrc" > ~/.zshrc
-    echo ':set prompt "\ESC[1;34m%s\\n\ESC[0;31mλ> \ESC[m"' > ~/.ghci
+    echo "source ~/.dotfiles/zsh/.zshrc" > $HOME/.zshrc
+    echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> $HOME/.zshrc
+    echo ':set prompt "\ESC[1;34m%s\\n\ESC[0;31mλ> \ESC[m"' > $HOME/.ghci
 }
 
 install_brew

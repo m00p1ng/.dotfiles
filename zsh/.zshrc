@@ -31,9 +31,6 @@ plugins=(
   git-prompt
   git-auto-fetch
   z
-  zsh-autosuggestions
-  zsh-completions
-  zsh-syntax-highlighting
 )
 export CLICOLOR=1
 export PATH="/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

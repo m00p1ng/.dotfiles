@@ -41,3 +41,4 @@ alias kattis='~/.dotfiles/command/kattis-cli/kattis'
 alias icloud='cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs'
 alias gff='git fuzzy'
 alias pw="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias rg="rg --hidden --glob '!.git'"

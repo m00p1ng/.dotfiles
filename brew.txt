@@ -12,14 +12,17 @@ hey
 htop
 httpie
 hub
+less
 nmap
 node
+neovim
 pass
 python3
 ripgrep
 rsync
 tmux
 tree
+vim
 wget
 yarn
 youtube-dl

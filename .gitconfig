@@ -22,6 +22,7 @@
     count = shortlog -ns
     find = log --all --full-history --oneline
     parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
+    diffs = !git -c delta.side-by-side=true diff
 [color "status"]
     added = green bold
     changed = yellow bold
@@ -54,8 +55,8 @@
     features = line-numbers file-decorators
     inspect-raw-lines = false
     line-numbers = true
-    ;side-by-side = true
     syntax-theme = Monokai Extended Bright
+    ;navigate = true
 [delta "diff-color"]
     ;minus-color = "#340001"
     ;minus-style                   = normal 52
