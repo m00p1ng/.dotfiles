@@ -82,3 +82,5 @@
     commit-decoration-style = green box ul
 [interactive]
     diffFilter = delta --color-only
+[pull]
+	rebase = false
