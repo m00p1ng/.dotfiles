@@ -33,6 +33,40 @@ function lndir() {
     mv $2$1 $2
 }
 
+# git log show with fzf
+function git_log_fff() {
+  # param validation
+  if [[ ! `git log -n 1 $@ | head -n 1` ]] ;then
+    return
+  fi
+
+  # filter by file string
+  local filter
+  # param existed, git log for file if existed
+  if [ -n $@ ] && [ -f $@ ]; then
+    filter="-- $@"
+  fi
+
+  # git command
+  local gitlog=(
+    git log
+    --graph --color=always
+    --abbrev=7
+    --format='%C(auto)%h %s %C(bold 081)%an %C(bold 191)%cr'
+    $@
+  )
+
+  # fzf command
+  local fzf=(
+    fzf
+    --ansi --no-sort --reverse --tiebreak=index
+    --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter | delta; }; f {}"
+  )
+
+  # piping them
+  $gitlog | $fzf
+}
+
 # Custom alias
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'

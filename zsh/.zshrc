@@ -52,6 +52,7 @@ CONFIG_PATH=$HOME/.dotfiles/zsh
 . $CONFIG_PATH/zsh_hightlight.zsh
 . $CONFIG_PATH/git_prompt.zsh
 . $CONFIG_PATH/git_fuzzy.zsh
+#. $CONFIG_PATH/fzf.zsh
 
 export EDITOR=vim
 export DELTA_PAGER="less -R"
