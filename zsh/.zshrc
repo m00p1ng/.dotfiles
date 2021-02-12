@@ -38,6 +38,7 @@ export PATH=/opt/homebrew/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 # ssh
 export SSH_KEY_PATH=$HOME/.ssh
@@ -52,7 +53,7 @@ CONFIG_PATH=$HOME/.dotfiles/zsh
 . $CONFIG_PATH/zsh_hightlight.zsh
 . $CONFIG_PATH/git_prompt.zsh
 . $CONFIG_PATH/git_fuzzy.zsh
-#. $CONFIG_PATH/fzf.zsh
+. $CONFIG_PATH/zsh_command_time.zsh
 
 export EDITOR=vim
 export DELTA_PAGER="less -R"
