@@ -33,7 +33,13 @@ function other_config () {
     echo ':set prompt "\ESC[1;34m%s\\n\ESC[0;31mλ> \ESC[m"' > $HOME/.ghci
 }
 
+function link_command () {
+    mkdir -p $PWD/commands
+    git clone git@github.com:m00p1ng/kattis-cli.git $PWD/commands/kattis-cli
+}
+
 install_brew
 install_zsh
 link_config
+link_command
 other_config

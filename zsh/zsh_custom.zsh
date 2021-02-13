@@ -71,7 +71,7 @@ function git_log_fff() {
 alias cpi='rsync -rvh --progress'
 alias mv='mv -i'
 alias yt-l='youtube-dl -o "%(title)s.%(ext)s"'
-alias kattis='~/.dotfiles/command/kattis-cli/kattis'
+alias kattis='~/.dotfiles/commands/kattis-cli/kattis'
 alias icloud='cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs'
 alias gff='git fuzzy'
 alias pw="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"

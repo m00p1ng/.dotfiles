@@ -1,7 +1,0 @@
-[submodule "command/kattis-cli"]
-	path = command/kattis-cli
-	url = https://github.com/m00p1ng/kattis-cli
-	branch = master
-[submodule "zsh/run"]
-	path = zsh/run
-	url = https://github.com/m00p1ng/run
