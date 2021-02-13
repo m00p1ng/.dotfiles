@@ -8,7 +8,6 @@ function install_brew () {
 
     # Install command line
     cat brew.txt | xargs brew install
-    # cat brew-cask.txt | xargs brew install --cask
 }
 
 function install_zsh () {
