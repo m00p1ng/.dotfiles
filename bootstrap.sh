@@ -24,6 +24,7 @@ function link_config () {
     ln -sf $PWD/.gitignore_global $HOME
     ln -sf $PWD/.tmux.conf $HOME
     ln -sf $PWD/.ripgreprc $HOME
+    ln -sf $PWD/.ssh/config $HOME/.ssh
 }
 
 function other_config () {
