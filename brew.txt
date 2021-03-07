@@ -6,6 +6,7 @@ diff-so-fancy
 exa
 fzf
 gcc
+gh
 git
 git-delta
 hey
@@ -13,9 +14,9 @@ htop
 httpie
 hub
 less
+neovim
 nmap
 node
-neovim
 pass
 python3
 ripgrep

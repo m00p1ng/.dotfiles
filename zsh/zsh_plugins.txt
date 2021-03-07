@@ -3,4 +3,4 @@ zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 bigH/git-fuzzy path:bin kind:path
 popstas/zsh-command-time
-
+Aloxaf/fzf-tab
