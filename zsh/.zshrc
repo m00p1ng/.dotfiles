@@ -55,6 +55,11 @@ CONFIG_PATH=$HOME/.dotfiles/zsh
 . $CONFIG_PATH/git_fuzzy.zsh
 . $CONFIG_PATH/zsh_command_time.zsh
 
+if [ `uname` = 'Darwin' ]
+then
+  . $CONFIG_PATH/mac.zsh
+fi
+
 export EDITOR=vim
 export DELTA_PAGER="less -R"
 
