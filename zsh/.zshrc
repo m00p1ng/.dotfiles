@@ -26,7 +26,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 plugins=(
   battery
-  osx
+  macos
   git
   git-prompt
   git-auto-fetch

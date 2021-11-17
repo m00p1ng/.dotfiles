@@ -12,7 +12,6 @@ git-delta
 hey
 htop
 httpie
-hub
 less
 neovim
 nmap
