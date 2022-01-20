@@ -57,16 +57,6 @@
     line-numbers = true
     syntax-theme = Monokai Extended Bright
     ;navigate = true
-[delta "diff-color"]
-    ;minus-color = "#340001"
-    ;minus-style                   = normal 52
-    ;minus-non-emph-style          = normal 52
-    ;minus-emph-style              = normal 52
-    ;minus-empty-line-marker-style = normal "#3f0001"
-    ;plus-color = "#012800"
-    ;plus-style                    = syntax 22
-    ;plus-non-emph-style           = syntax 22
-    ;plus-emph-style               = syntax 22
 [delta "line-numbers"]
     line-numbers-zero-style = 243
     line-numbers-left-style = 243
