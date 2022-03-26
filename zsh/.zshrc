@@ -4,6 +4,7 @@ export TERM="xterm-256color"
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+export BAT_THEME="Visual Studio Dark+"
 ZSH_THEME="mooping"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
