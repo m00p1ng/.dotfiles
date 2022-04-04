@@ -10,5 +10,6 @@
     ./lib/packages.nix
     ./lib/user.nix
     ./lib/git.nix
+    ./lib/bat.nix
   ];
 }

@@ -4,14 +4,12 @@
   home.packages = with pkgs; [
     antibody
     awscli
-    bat
     btop
     curl
     diff-so-fancy
     fzf
     gcc
     gh
-    git
     hey     #load test
     httpie
     less
