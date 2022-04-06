@@ -11,5 +11,7 @@
     ./lib/user.nix
     ./lib/git.nix
     ./lib/bat.nix
+    ./lib/ripgrep.nix
+    ./lib/ssh.nix
   ];
 }

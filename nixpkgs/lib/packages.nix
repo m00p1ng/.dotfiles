@@ -6,7 +6,6 @@
     awscli
     btop
     curl
-    diff-so-fancy
     fd
     fzf
     gcc
@@ -21,7 +20,7 @@
     nmap
     nodejs
     python3
-    ripgrep
+    python39Packages.pip
     rsync
     ruby
     sqlite

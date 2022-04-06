@@ -3,8 +3,6 @@ export ZSH=$HOME/.oh-my-zsh
 # export TERM="xterm-256color"
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export RIPGREP_CONFIG_PATH=~/.ripgreprc
-export BAT_THEME="Visual Studio Dark+"
 ZSH_THEME="mooping"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -34,15 +32,12 @@ plugins=(
   z
 )
 export CLICOLOR=1
-export PATH="/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH=/opt/homebrew/bin:$PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
 
-# ssh
-export SSH_KEY_PATH=$HOME/.ssh
 
 # bindkey
 bindkey -e "^p" up-line-or-beginning-search
