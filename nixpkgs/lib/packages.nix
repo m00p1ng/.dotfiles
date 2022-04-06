@@ -40,6 +40,6 @@ let
 in
 {
   home.packages = with pkgs; packages
-    ++ optionalPackage
+    # ++ optionalPackage
   ;
 }
