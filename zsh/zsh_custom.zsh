@@ -52,5 +52,4 @@ function git_log_fff() {
 # Custom alias
 alias mv='mv -i'
 alias gff='git fuzzy'
-alias rg="rg --hidden --glob '!.git'"
 alias vim="nvim"

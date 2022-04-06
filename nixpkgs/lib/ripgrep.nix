@@ -21,6 +21,9 @@ in {
 
     --colors=path:fg:green
     --colors=path:style:bold
+
+    --glob=!git/*
+    --hidden
   '';
 
 }

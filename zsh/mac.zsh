@@ -1,7 +1,3 @@
-function dict {
-    open dict://$1
-}
-
 # enable Macbook Pro's Touch ID for sudo
 # function sudotouchid () {
 #  if ! /usr/bin/grep -Fq "pam_tid.so" /etc/pam.d/sudo
