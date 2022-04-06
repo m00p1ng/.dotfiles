@@ -1,35 +1,45 @@
 { pkgs, ... }:
 
-{
-  home.packages = with pkgs; [
+let
+  packages = with pkgs; [
     antibody
-    awscli
     btop
+    coreutils
     curl
     fd
     fzf
     gcc
     gh
     gnused
-    go
-    hey     #load test
-    httpie
     jq
     less
     neovim
-    nmap
     nodejs
+    sqlite
+    stow
+    tmux
+    tree
+    tree-sitter
+    yarn
+    zsh
+  ];
+  optionalPackage = with pkgs; [
+    awscli
+    fish
+    go
+    hey     #load test
+    httpie
+    nmap
     python3
     python39Packages.pip
     rsync
     ruby
-    sqlite
-    tmux
-    tree
-    tree-sitter
-    wget
-    yarn
     youtube-dl
-    zsh
+    wget
   ];
+in
+{
+  home.packages = with pkgs; packages
+    ++ optionalPackage
+  ;
 }

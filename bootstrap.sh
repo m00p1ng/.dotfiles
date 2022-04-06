@@ -3,13 +3,8 @@ function link_config () {
     ln -sf $PWD/zsh/mooping.zsh-theme $HOME/.oh-my-zsh/themes/
     ln -sf $PWD/zsh/zsh_plugins.txt $HOME/.zsh_plugins.txt
     ln -sf $PWD/.tmux.conf $HOME
-    ln -sf $PWD/.ripgreprc $HOME
-    ln -sf $PWD/.ssh/config $HOME/.ssh
-}
 
-function other_config () {
     echo "source ~/.dotfiles/zsh/.zshrc" > $HOME/.zshrc
 }
 
 link_config
-other_config
