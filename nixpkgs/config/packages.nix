@@ -25,7 +25,6 @@ let
   ];
   optionalPackage = with pkgs; [
     awscli
-    fish
     go
     hey     #load test
     httpie
@@ -34,8 +33,9 @@ let
     python39Packages.pip
     rsync
     ruby
-    youtube-dl
+    rustup
     wget
+    youtube-dl
   ];
 in
 {

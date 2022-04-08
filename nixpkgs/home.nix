@@ -13,5 +13,6 @@
     ./config/bat.nix
     ./config/ripgrep.nix
     ./config/ssh.nix
+    ./config/fish.nix
   ];
 }
