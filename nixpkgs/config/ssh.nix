@@ -4,11 +4,10 @@
   programs.ssh = {
     enable = true;
 
-    matchBlocks = {
-      "*" = {
-        identityFile = "~/.ssh/id_rsa";
-      };
-    };
+    extraConfig = ''
+      AddKeysToAgent yes
+      IdentityFile ~/.ssh/id_rsa
+    '';
   };
 
   home.packages = with pkgs; [

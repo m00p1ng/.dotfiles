@@ -7,11 +7,11 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./lib/packages.nix
-    ./lib/user.nix
-    ./lib/git.nix
-    ./lib/bat.nix
-    ./lib/ripgrep.nix
-    ./lib/ssh.nix
+    ./config/packages.nix
+    ./config/user.nix
+    ./config/git.nix
+    ./config/bat.nix
+    ./config/ripgrep.nix
+    ./config/ssh.nix
   ];
 }
