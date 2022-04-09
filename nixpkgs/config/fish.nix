@@ -3,6 +3,47 @@
 {
   programs.fish = {
     enable = true;
+    interactiveShellInit = ''
+      set -gx EDITOR nvim
+
+      set fish_color_normal FFFB66
+      set fish_color_param FFFB66
+      set fish_color_command 00D7AF --bold
+      set fish_color_keyword 00D7AF --bold
+      set fish_color_quote FFFFAF
+      set fish_color_redirection 03C5C7 --bold
+      # set fish_color_end
+      set fish_color_error FF9D8F
+      set fish_color_option FF005F --bold
+      set fish_color_comment BFBFBF
+      # set fish_color_selection
+      # set fish_color_operator
+      set fish_color_escape FF6D68
+      # set fish_color_autosuggestion
+
+      ### default prompt
+      # set fish_color_cwd
+      # set fish_color_user
+      # set fish_color_host
+      # set fish_color_host_remote
+      # set fish_color_cancel
+      # set fish_color_search_match
+
+      ### Pager
+      set fish_pager_color_progress FFFB66
+      # set fish_pager_color_background
+      # set fish_pager_color_prefix
+      # set fish_pager_color_completion
+      # set fish_pager_color_description
+      set fish_pager_color_selected_background --background 0087D7
+      set fish_pager_color_selected_prefix FFFFFF
+      set fish_pager_color_selected_completion FFFFFF
+      set fish_pager_color_selected_description FFFFFF
+      # set fish_pager_color_secondary_background
+      # set fish_pager_color_secondary_prefix
+      # set fish_pager_color_secondary_completion
+      # set fish_pager_color_secondary_description
+    '';
     shellAliases = {
       vim = "nvim";
       mv = "mv -i";
