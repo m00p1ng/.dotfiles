@@ -14,5 +14,7 @@
     ./config/ripgrep.nix
     ./config/ssh.nix
     ./config/fish.nix
+    ./config/zoxide.nix
+    ./config/fzf.nix
   ];
 }
