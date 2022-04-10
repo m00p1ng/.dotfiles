@@ -2,12 +2,10 @@
 
 let
   packages = with pkgs; [
-    antibody
     btop
     coreutils
     curl
     fd
-    fzf
     gcc
     gh
     gnused
@@ -21,7 +19,6 @@ let
     tree
     tree-sitter
     yarn
-    zsh
   ];
   optionalPackage = with pkgs; [
     awscli
@@ -30,12 +27,12 @@ let
     httpie
     nmap
     python3
-    python39Packages.pip
     rsync
     ruby
     rustup
     wget
     youtube-dl
+    zsh
   ];
 in
 {

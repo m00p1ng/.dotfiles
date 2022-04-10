@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   configFilePath = "ripgrep/ripgrep-config.txt";
