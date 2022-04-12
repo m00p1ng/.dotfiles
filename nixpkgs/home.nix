@@ -7,6 +7,7 @@
   imports = [
     ./config/packages.nix
     ./config/user.nix
+    ./config/xdg.nix
     ./config/git.nix
     ./config/bat.nix
     ./config/ripgrep.nix

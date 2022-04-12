@@ -2,14 +2,14 @@
 
 let
   configFilePath = "ripgrep/ripgrep-config.txt";
-  user = import ./user.nix;
+  config = import ./xdg.nix;
 in {
   home.packages = with pkgs; [
     ripgrep
   ];
 
   home.sessionVariables = {
-    "RIPGREP_CONFIG_PATH" = "${user.xdg.configHome}/${configFilePath}";
+    "RIPGREP_CONFIG_PATH" = "${config.xdg.configHome}/${configFilePath}";
   };
 
   xdg.configFile."${configFilePath}".text = ''
