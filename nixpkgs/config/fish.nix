@@ -67,6 +67,14 @@
     };
     functions = {
       fish_prompt = ''
+        set -l left (get_left_prompt)
+        set -l right (get_right_prompt)
+        set -l paddding (get_padding (math $COLUMNS - (remove_color "$left$right" | string length)))
+
+        # traffic light arrow
+        printf "\n$left$paddding$right\n%s▶%s▶%s▶ " (set_color FF6D67) (set_color FEFB67) (set_color 56FF5F)
+      '';
+      get_left_prompt = ''
         set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 
         # git set up
@@ -86,7 +94,6 @@
         set -g __fish_git_prompt_char_stateseparator ' '
         set -g __fish_git_prompt_char_upstream_prefix ' '
 
-        echo
         if [ $__fish_last_status -eq 0 ]
           set_color --background 5FAFAF FFFFFF
         else
@@ -105,12 +112,21 @@
             printf "%s WIP!!!" (set_color FF6D67)
           end
         end
-
-        # traffic light arrow
-        printf "\n%s▶%s▶%s▶ " (set_color FF6D67) (set_color FEFB67) (set_color 56FF5F)
       '';
-      fish_right_prompt = ''
+      get_padding = ''
+        set -l space ""
+        for i in (seq 1 $argv[1])
+          set space " "$space
+        end
+        set_color -b black
+        printf $space
+        set_color normal
+      '';
+      get_right_prompt = ''
         printf '%s[%s]' (set_color C7C7C7) (date '+%H:%M:%S')
+      '';
+      remove_color = ''
+        printf $argv | perl -pe 's/\x1b.*?[mGKH]//g'
       '';
     };
   };
