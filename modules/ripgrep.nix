@@ -1,8 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   configFilePath = "ripgrep/ripgrep-config.txt";
-  config = import ./xdg.nix;
 in {
   home.packages = with pkgs; [
     ripgrep
@@ -14,7 +13,7 @@ in {
 
   xdg.configFile."${configFilePath}".text = ''
     --type-add
-    web:*.{html,css,js}*
+    web:*.{html,css,scss,sass,vue,js,jsx,ts,tsx}*
 
     --colors=line:fg:yellow
     --colors=line:style:bold
