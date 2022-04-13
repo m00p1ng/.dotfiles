@@ -42,7 +42,7 @@
 
       # Others
       setw -g window-status-separator      ""                      # Window separator
-      setw -g window-status-current-status "fg=#77DD77,bg=#262626" # Current window status
+      setw -g window-status-current-style  "fg=#77DD77,bg=#262626" # Current window status
 
       set  -g status-justify               left                    # Window status alignment
       set  -g pane-border-style            "fg=#444444,bg=default" # Pane border
