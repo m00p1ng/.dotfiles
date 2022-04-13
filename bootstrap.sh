@@ -1,1 +1,0 @@
-ln -sf $PWD/.tmux.conf $HOME

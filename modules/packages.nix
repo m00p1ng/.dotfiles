@@ -16,7 +16,6 @@ let
     nodejs
     sqlite
     stow
-    tmux
     tree
     tree-sitter
   ];
@@ -46,6 +45,7 @@ in
     ./fish.nix
     ./zoxide.nix
     ./fzf.nix
+    ./tmux.nix
   ];
 
   home.packages = if config.installOptional then
