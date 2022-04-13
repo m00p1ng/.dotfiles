@@ -69,10 +69,16 @@
       fish_prompt = ''
         set -l left (get_left_prompt)
         set -l right (get_right_prompt)
-        set -l paddding (get_padding (math $COLUMNS - (remove_color "$left$right" | string length)))
+        set -l padding_length (math $COLUMNS - (remove_color "$left$right" | string length))
+
+        if [ $TERM = "screen-256color" ]
+          set padding_length (math $padding_length + 3)
+        end
+
+        set -l padding (get_padding $padding_length)
 
         # traffic light arrow
-        printf "\n$left$paddding$right\n%s▶%s▶%s▶ " (set_color FF6D67) (set_color FEFB67) (set_color 56FF5F)
+        printf "\n$left$padding$right\n%s▶%s▶%s▶ " (set_color FF6D67) (set_color FEFB67) (set_color 56FF5F)
       '';
       get_left_prompt = ''
         set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
