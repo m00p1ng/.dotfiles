@@ -107,7 +107,12 @@
         end
         echo -n " $USER "
         set_color --background normal normal; echo -n " : "
-        set_color AFFF00; echo -n (prompt_pwd)
+        set_color AFFF00
+        if [ $PWD = $HOME ]
+          echo -n "~"
+        else
+          echo -n (basename $PWD)
+        end
 
         printf '%s' (fish_git_prompt)
 
