@@ -143,13 +143,13 @@
         pushd .
         cd ~/.dotfiles
         gunignore ./modules/user.nix
-        gwip
+        gwip 1> /dev/null
 
         nix flake update
         nix flake lock --update-input home-manager
         home-manager switch --flake ~/.dotfiles#mooping
 
-        gunwip
+        gunwip 1> /dev/null
         gignore ./modules/user.nix
         popd
       '';
