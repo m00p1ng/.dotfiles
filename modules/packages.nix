@@ -7,6 +7,7 @@ let
     coreutils
     curl
     fd
+    fnm
     gcc
     gh
     gnused
@@ -29,6 +30,7 @@ let
     rsync
     ruby
     rustup
+    smartmontools
     wget
     youtube-dl
   ];
