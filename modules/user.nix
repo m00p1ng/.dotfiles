@@ -7,6 +7,5 @@
     username = "git username";
     email = "git email";
   };
-  installOptional = false;
 }
 
