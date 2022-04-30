@@ -51,6 +51,7 @@
             hey     # load test
             httpie
             jq
+            kubectl
             less
             minikube
             neovim
