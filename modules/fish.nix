@@ -58,6 +58,7 @@
       showfiles = "defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder";
       hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
       icloud = "cd ~/Library/Mobile\\ Documents/com\~apple\~CloudDocs";
+      s = "kitty +kitten ssh";
     };
     shellAbbrs = {
       g = "git";
