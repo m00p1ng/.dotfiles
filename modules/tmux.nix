@@ -8,7 +8,7 @@
     escapeTime = 300;
     historyLimit = 50000;
     keyMode = "vi";
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
 
     extraConfig = ''
       set -g mouse            on
@@ -67,6 +67,9 @@
       set  -g message-style                "fg=#77DD77,bg=#262626" # Message
       set  -g message-command-style        "fg=#77DD77,bg=#262626" # Command message
       set  -g mode-style                   "bg=#1D361D"            # Copy mode highlight
+
+      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+      set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
     '';
   };
 }
