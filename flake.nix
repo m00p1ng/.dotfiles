@@ -49,7 +49,6 @@
             gh
             gnused
             hey     # load test
-            httpie
             jq
             kubectl
             less
