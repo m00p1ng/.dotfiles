@@ -41,6 +41,7 @@
           home.packages = with pkgs; [
             awscli
             btop
+            cocoapods
             coreutils
             curl
             fd
