@@ -8,7 +8,7 @@
     escapeTime = 300;
     historyLimit = 50000;
     keyMode = "vi";
-    terminal = "tmux-256color";
+    terminal = "\${TERM}";
 
     extraConfig = ''
       set -g mouse            on
