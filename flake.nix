@@ -8,12 +8,14 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       config = import ./modules/user.nix;
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
     in
     {
       homeConfigurations.mooping = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
         system = "aarch64-darwin";
         stateVersion = "22.05";
         homeDirectory = config.home.path;
@@ -39,7 +41,7 @@
           ];
 
           home.packages = with pkgs; [
-            awscli
+            # awscli
             btop
             cocoapods
             coreutils
@@ -73,6 +75,7 @@
       };
 
       homeConfigurations.mongkonchai = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
         system = "aarch64-darwin";
         stateVersion = "22.05";
         homeDirectory = config.home.path;
