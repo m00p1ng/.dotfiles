@@ -77,8 +77,6 @@
 
       homeConfigurations.mongkonchai = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        homeDirectory = config.home.path;
-        username = config.home.username;
 
         modules = [
           {
@@ -120,7 +118,7 @@
               tree-sitter
             ];
           }
-        ]
+        ];
       };
     };
 }
