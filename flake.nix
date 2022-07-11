@@ -16,107 +16,111 @@
     {
       homeConfigurations.mooping = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        system = "aarch64-darwin";
-        stateVersion = "22.05";
-        homeDirectory = config.home.path;
-        username = config.home.username;
 
-        configuration = { pkgs, ... }: {
-          programs.home-manager.enable = true;
-          programs.git = {
-            userName = config.git.username;
-            userEmail = config.git.email;
-          };
-
-          imports = [
-            ./modules/bat.nix
-            ./modules/fish.nix
-            ./modules/fzf.nix
-            ./modules/git.nix
-            ./modules/go.nix
-            ./modules/ripgrep.nix
-            ./modules/ssh.nix
-            ./modules/tmux.nix
-            ./modules/zoxide.nix
-          ];
-
-          home.packages = with pkgs; [
-            # awscli
-            btop
-            cocoapods
-            coreutils
-            curl
-            fd
-            fnm
-            gcc
-            gh
-            gnused
-            hey     # load test
-            jq
-            kubectl
-            less
-            minikube
-            neovim
-            nmap
-            nodejs
-            python3
-            rsync
-            ruby
-            rustup
-            smartmontools
-            sqlite
-            stow
-            tree
-            tree-sitter
-            wget
-            youtube-dl
-          ];
-        };
+        modules = [
+          {
+            home = {
+              stateVersion = "22.11";
+              homeDirectory = config.home.path;
+              username = config.home.username;
+            };
+            programs.home-manager.enable = true;
+            programs.git = {
+              userName = config.git.username;
+              userEmail = config.git.email;
+            };
+          }
+          ./modules/bat.nix
+          ./modules/fish.nix
+          ./modules/fzf.nix
+          ./modules/git.nix
+          ./modules/go.nix
+          ./modules/ripgrep.nix
+          ./modules/ssh.nix
+          ./modules/tmux.nix
+          ./modules/zoxide.nix
+          {
+            home.packages = with pkgs; [
+              # awscli
+              btop
+              cocoapods
+              coreutils
+              curl
+              fd
+              fnm
+              gcc
+              gh
+              gnused
+              hey     # load test
+              jq
+              kubectl
+              less
+              minikube
+              neovim
+              nmap
+              nodejs
+              python3
+              rsync
+              ruby
+              rustup
+              smartmontools
+              sqlite
+              stow
+              tree
+              tree-sitter
+              wget
+              youtube-dl
+            ];
+          }
+        ];
       };
 
       homeConfigurations.mongkonchai = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        system = "aarch64-darwin";
-        stateVersion = "22.05";
         homeDirectory = config.home.path;
         username = config.home.username;
 
-        configuration = { pkgs, ... }: {
-          programs.home-manager.enable = true;
-          programs.git = {
-            userName = config.git.username;
-            userEmail = config.git.email;
-          };
-
-          imports = [
-            ./modules/bat.nix
-            ./modules/fish.nix
-            ./modules/fzf.nix
-            ./modules/git.nix
-            ./modules/ripgrep.nix
-            ./modules/ssh.nix
-            ./modules/tmux.nix
-            ./modules/zoxide.nix
-          ];
-
-          home.packages = with pkgs; [
-            btop
-            coreutils
-            curl
-            fd
-            fnm
-            gcc
-            gh
-            gnused
-            jq
-            less
-            neovim
-            nodejs
-            smartmontools
-            tree
-            tree-sitter
-          ];
-        };
+        modules = [
+          {
+            home = {
+              stateVersion = "22.11";
+              homeDirectory = config.home.path;
+              username = config.home.username;
+            };
+            programs.home-manager.enable = true;
+            programs.git = {
+              userName = config.git.username;
+              userEmail = config.git.email;
+            };
+          }
+          ./modules/bat.nix
+          ./modules/fish.nix
+          ./modules/fzf.nix
+          ./modules/git.nix
+          ./modules/ripgrep.nix
+          ./modules/ssh.nix
+          ./modules/tmux.nix
+          ./modules/zoxide.nix
+          {
+            home.packages = with pkgs; [
+              btop
+              coreutils
+              curl
+              fd
+              fnm
+              gcc
+              gh
+              gnused
+              jq
+              less
+              neovim
+              nodejs
+              smartmontools
+              tree
+              tree-sitter
+            ];
+          }
+        ]
       };
     };
 }
