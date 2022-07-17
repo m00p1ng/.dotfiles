@@ -59,6 +59,7 @@
       hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
       icloud = "cd ~/Library/Mobile\\ Documents/com\~apple\~CloudDocs";
       s = "kitty +kitten ssh";
+      check_disk = "sudo smartctl --all /dev/disk0s1";
     };
     shellAbbrs = {
       g = "git";
