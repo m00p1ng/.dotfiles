@@ -54,6 +54,7 @@
       gignore = "git update-index --skip-worktree";
       gignored = "git ls-files -v | grep \"^S\"";
       gunignore = "git update-index --no-skip-worktree";
+      gcount = "git shortlog -sn";
 
       showfiles = "defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder";
       hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
