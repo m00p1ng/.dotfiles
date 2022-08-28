@@ -51,8 +51,8 @@
       set  -g status-right                 "#[fg=#3A3A3A,bg=#262626]#[fg=colour009,bg=#3A3A3A] ♥ #[fg=white,bg=#3A3A3A]#(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';') #[fg=#77DD77,bg=#3A3A3A]#[fg=#262626,bg=#77DD77]  %a %-d %H:%M "
 
       # Window status
-      setw -g window-status-format         " #I ⮁ #{?window_zoomed_flag,(,}#W#{?window_zoomed_flag,),} "
-      setw -g window-status-current-format "#[fg=#262626,bg=#363636]⮀#[fg=white,bg=#363636] #I ⮁#[fg=white,bg=#363636] #{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),} #[fg=#3A3A3A,bg=#262626]⮀"
+      setw -g window-status-format         " #I  #{?window_zoomed_flag,(,}#W#{?window_zoomed_flag,),} "
+      setw -g window-status-current-format "#[fg=#262626,bg=#363636]#[fg=white,bg=#363636] #I  #[fg=white,bg=#363636]#{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),} #[fg=#3A3A3A,bg=#262626]"
 
       # Others
       setw -g window-status-separator      ""                      # Window separator
