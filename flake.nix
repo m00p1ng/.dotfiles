@@ -41,8 +41,7 @@
           ./modules/zoxide.nix
           {
             home.packages = with pkgs; [
-              # awscli
-              btop
+              awscli
               cocoapods
               coreutils
               curl
@@ -52,6 +51,7 @@
               gh
               gnused
               hey     # load test
+              htop
               jq
               kubectl
               less
@@ -101,7 +101,6 @@
           ./modules/zoxide.nix
           {
             home.packages = with pkgs; [
-              btop
               coreutils
               curl
               fd
@@ -109,6 +108,7 @@
               gcc
               gh
               gnused
+              htop
               jq
               less
               neovim
