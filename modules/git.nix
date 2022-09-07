@@ -3,7 +3,8 @@
     enable = true;
     ignores = [ ".DS_Store" ];
     aliases = {
-      logs = "log --abbrev-commit --graph --decorate --pretty=oneline";
+      logs = "log --abbrev-commit --graph --decorate --oneline";
+      logl = "log --oneline -10";
       logs-full = "log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr) %C(dim white)<%an>%C(reset)'";
       logs-date = "log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr)%C(reset)'";
       logs-author = "log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)%an%C(reset)'";
