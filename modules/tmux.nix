@@ -61,8 +61,8 @@
       set  -g status-justify               left                    # Window status alignment
       set  -g pane-border-style            "fg=#444444,bg=default" # Pane border
       set  -g pane-active-border-style     "fg=#77DD77"            # Active pane border
-      set  -g display-panes-colour         "#444444"               # Pane number indicator
-      set  -g display-panes-active-colour  "#777777"               # Active pane number indicator
+      # set  -g display-panes-colour         "#444444"               # Pane number indicator
+      # set  -g display-panes-active-colour  "#777777"               # Active pane number indicator
       set  -g clock-mode-colour            "#77DD77"               # Clock mode
       set  -g message-style                "fg=#77DD77,bg=#262626" # Message
       set  -g message-command-style        "fg=#77DD77,bg=#262626" # Command message
