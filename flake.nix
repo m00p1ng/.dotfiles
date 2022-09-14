@@ -33,6 +33,7 @@
           ./modules/bat.nix
           ./modules/fish.nix
           ./modules/fzf.nix
+          ./modules/fnm.nix
           ./modules/git.nix
           ./modules/go.nix
           ./modules/k8s.nix
@@ -47,7 +48,6 @@
               coreutils
               curl
               fd
-              fnm
               gcc
               gh
               gnused
@@ -95,7 +95,9 @@
           ./modules/bat.nix
           ./modules/fish.nix
           ./modules/fzf.nix
+          ./modules/fnm.nix
           ./modules/git.nix
+          ./modules/k8s.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -105,7 +107,6 @@
               coreutils
               curl
               fd
-              fnm
               gcc
               gh
               gnused
