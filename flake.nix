@@ -32,10 +32,13 @@
           }
           ./modules/bat.nix
           ./modules/fish.nix
-          ./modules/fzf.nix
           ./modules/fnm.nix
+          ./modules/fzf.nix
+          ./modules/gh.nix
           ./modules/git.nix
           ./modules/go.nix
+          ./modules/htop.nix
+          ./modules/jq.nix
           ./modules/k8s.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
@@ -49,14 +52,9 @@
               curl
               fd
               gcc
-              gh
               gnused
               hey     # load test
-              htop
-              jq
-              kubectl
               less
-              minikube
               neovim
               nmap
               nodejs
@@ -94,9 +92,12 @@
           }
           ./modules/bat.nix
           ./modules/fish.nix
-          ./modules/fzf.nix
           ./modules/fnm.nix
+          ./modules/fzf.nix
+          ./modules/gh.nix
           ./modules/git.nix
+          ./modules/htop.nix
+          ./modules/jq.nix
           ./modules/k8s.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
@@ -108,10 +109,7 @@
               curl
               fd
               gcc
-              gh
               gnused
-              htop
-              jq
               less
               neovim
               nodejs
