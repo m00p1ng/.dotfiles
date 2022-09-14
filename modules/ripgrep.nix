@@ -24,5 +24,4 @@ in {
     --glob=!.git/*
     --hidden
   '';
-
 }

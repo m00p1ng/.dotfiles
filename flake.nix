@@ -35,6 +35,7 @@
           ./modules/fzf.nix
           ./modules/git.nix
           ./modules/go.nix
+          ./modules/k8s.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
