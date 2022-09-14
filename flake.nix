@@ -40,6 +40,7 @@
           ./modules/htop.nix
           ./modules/jq.nix
           ./modules/k8s.nix
+          ./modules/kitty.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -99,6 +100,7 @@
           ./modules/htop.nix
           ./modules/jq.nix
           ./modules/k8s.nix
+          ./modules/kitty.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
