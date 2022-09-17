@@ -6,7 +6,7 @@
     interactiveShellInit = ''
       set -gx EDITOR nvim
 
-      source ${config.xdg.configHome}/myfish/theme.fish
+      source ${config.xdg.configHome}/fish/myconfig/theme.fish
     '';
     shellAliases = {
       vim = "nvim";
@@ -57,7 +57,7 @@
     };
   };
 
-  xdg.configFile.myfish = {
+  xdg.configFile."fish/myconfig" = {
     source = ../configs/fish;
     recursive = true;
   };
