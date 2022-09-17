@@ -34,7 +34,7 @@ set fish_pager_color_progress FFFB66
 # set fish_pager_color_prefix
 # set fish_pager_color_completion
 # set fish_pager_color_description
-set fish_pager_color_selected_background --background 0087D7
+set fish_pager_color_selected_background -b 0087D7
 set fish_pager_color_selected_prefix FFFFFF
 set fish_pager_color_selected_completion FFFFFF
 set fish_pager_color_selected_description FFFFFF
@@ -79,12 +79,12 @@ function get_left_prompt
   set -g __fish_git_prompt_char_upstream_prefix ' '
 
   if [ $__fish_last_status -eq 0 ]
-    set_color --background 5FAFAF FFFFFF
+    set_color -b 5FAFAF FFFFFF
   else
-    set_color --background FF6D67 FFFFFF
+    set_color -b FF6D67 FFFFFF
   end
   echo -n " $USER "
-  set_color --background normal normal; echo -n " : "
+  set_color -b normal normal; echo -n " : "
   set_color AFFF00
   if [ $PWD = $HOME ]
     echo -n "~"
@@ -110,9 +110,8 @@ function get_padding
     set space " "$space
   end
 
-  set_color -b black
+  set_color -b normal normal
   printf $space
-  set_color normal
 end
 
 function get_right_prompt

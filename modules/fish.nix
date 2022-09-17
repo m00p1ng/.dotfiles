@@ -7,6 +7,7 @@
       set -gx EDITOR nvim
 
       source ${config.xdg.configHome}/fish/myconfig/theme.fish
+      source ${config.xdg.configHome}/fish/myconfig/home_config_apply.fish
     '';
     shellAliases = {
       vim = "nvim";
@@ -33,27 +34,6 @@
       gl = "git pull";
       gp = "git push";
       gpo = "git push -u origin HEAD";
-    };
-    functions = {
-      home_config_apply = ''
-        if test (count $argv) != 1
-          echo Please provide name
-          return 1
-        end
-
-        pushd .
-        cd ~/.dotfiles
-        gunignore ./modules/user.nix
-        gwip 1> /dev/null
-
-        nix flake update
-        nix flake lock --update-input home-manager
-        home-manager switch --flake ~/.dotfiles#$argv[1]
-
-        gunwip 1> /dev/null
-        gignore ./modules/user.nix
-        popd
-      '';
     };
   };
 
