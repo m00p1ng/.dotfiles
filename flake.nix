@@ -95,7 +95,6 @@
           ./modules/fish.nix
           ./modules/fnm.nix
           ./modules/fzf.nix
-          ./modules/gh.nix
           ./modules/git.nix
           ./modules/htop.nix
           ./modules/jq.nix
