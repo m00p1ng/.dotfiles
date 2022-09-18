@@ -6,8 +6,8 @@ calendar_widget () {
 
 battery_widget () {
   heart="#[fg=colour009,bg=#3A3A3A] ♥ #[fg=white,bg=#3A3A3A]"
-  battery=$(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';')
-  echo "$heart$battery%"
+  battery="#(pmset -g batt | tail -1 | awk '{print \$3}' | tr -d ';')"
+  echo "$heart$battery"
 }
 
 set_right_status_theme () {
