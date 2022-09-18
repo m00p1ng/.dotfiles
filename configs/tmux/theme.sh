@@ -1,30 +1,52 @@
-set_status_right_theme () {
-  status_right="#[fg=#3A3A3A,bg=#262626]"
-  heart="#[fg=colour009,bg=#3A3A3A] ♥ #[fg=white,bg=#3A3A3A]"
-  battery=$(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';')
-  calendar="#[fg=#6A9955,bg=#3A3A3A]#[fg=#262626,bg=#6A9955]  %a %-d %H:%M "
-
-  status_right="$status_right$heart$battery% $calendar"
-
-  tmux set  -g status-right-length          150
-  tmux set  -g status-right                 "$status_right"
+calendar_widget () {
+  format="%a %-d %H:%M"
+  calendar="#[fg=#6A9955,bg=#3A3A3A]#[fg=#262626,bg=#6A9955]  $format"
+  echo $calendar
 }
 
-set_status_left_theme () {
-  tmux set  -g status-left-length           150
-  tmux set  -g status-left                  "#[fg=#262626,bg=#6A9955,bold]  #S #[fg=#6A9955,bg=#262626,nobold]"
+battery_widget () {
+  heart="#[fg=colour009,bg=#3A3A3A] ♥ #[fg=white,bg=#3A3A3A]"
+  battery=$(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';')
+  echo "$heart$battery%"
+}
+
+set_right_status_theme () {
+  status_right="#[fg=#3A3A3A,bg=#262626]"
+  calendar=$(calendar_widget)
+  battery=$(battery_widget)
+
+  status_right="$status_right$battery $calendar "
+
+  tmux set  -g status-right-length 150
+  tmux set  -g status-right "$status_right"
+}
+
+set_left_status_theme () {
+  tmux set  -g status-left-length 150
+  tmux set  -g status-left "#[fg=#262626,bg=#6A9955,bold]  #S #[fg=#6A9955,bg=#262626,nobold]"
+}
+
+set_window_status_theme () {
+  zoom_prefix="#{?window_zoomed_flag,(,}"
+  zoom_suffix="#{?window_zoomed_flag,),}"
+  status=" #I  $zoom_prefix#W$zoom_suffix "
+  tmux setw -g window-status-format "$status"
+
+  current_arrow_prefix="#[fg=#262626,bg=#363636]#[fg=white,bg=#363636]"
+  current_arrow_suffix="#[fg=#363636,bg=#262626]"
+  current_zoom_prefix="#{?window_zoomed_flag,#[fg=red](,#[fg=white]}"
+  current_zoom_suffix="#{?window_zoomed_flag,),}"
+  current_status=" #I  $current_zoom_prefix#W$current_zoom_suffix "
+  tmux setw -g window-status-current-format "$current_arrow_prefix$current_status$current_arrow_suffix"
 }
 
 set_theme () {
   # Status bar
-  tmux set -g status-fg                     "#626262"
-  tmux set -g status-bg                     "#262626"
-  set_status_right_theme
-  set_status_left_theme
-
-  # Window status
-  tmux setw -g window-status-format         " #I  #{?window_zoomed_flag,(,}#W#{?window_zoomed_flag,),} "
-  tmux setw -g window-status-current-format "#[fg=#262626,bg=#363636]#[fg=white,bg=#363636] #I  #[fg=white,bg=#363636]#{?window_zoomed_flag,#[fg=red](,}#W#{?window_zoomed_flag,#[fg=red]),} #[fg=#3A3A3A,bg=#262626]"
+  tmux set -g status-fg "#626262"
+  tmux set -g status-bg "#262626"
+  set_right_status_theme
+  set_left_status_theme
+  set_window_status_theme
 
   # Others
   tmux setw -g window-status-separator      ""                      # Window separator
