@@ -58,7 +58,6 @@
               less
               neovim
               nmap
-              nodejs
               nodePackages.pnpm
               python3
               rsync
@@ -113,7 +112,6 @@
               gnused
               less
               neovim
-              nodejs
               smartmontools
               tree
               tree-sitter
