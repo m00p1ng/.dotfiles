@@ -59,13 +59,13 @@
               neovim
               nmap
               nodejs
+              nodePackages.pnpm
               python3
               rsync
               ruby
               rustup
               smartmontools
               sqlite
-              stow
               tree
               tree-sitter
               wget

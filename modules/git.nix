@@ -55,7 +55,10 @@
         colorMoved = "default";
       };
       pull = {
-        rebase = false;
+        rebase = true;
+      };
+      rebase = {
+        autoStash = true;
       };
     };
     delta = {
