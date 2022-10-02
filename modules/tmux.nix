@@ -36,11 +36,16 @@
       ##  Theme  ##
       #############
 
-      # Status options
-      set -g status-interval               1
-      set -g status                        on
+      # Title
+      set -g set-titles         on
+      set -g set-titles-string  "#T [tmux]"
 
-      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+      # Status options
+      set -g status-interval  1
+      set -g status           on
+      set -g status-position  bottom
+
+      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
       run-shell ${config.xdg.configHome}/tmux/theme.sh
