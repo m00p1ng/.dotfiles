@@ -20,7 +20,7 @@
         modules = [
           {
             home = {
-              stateVersion = "22.11";
+              stateVersion = "22.05";
               homeDirectory = config.home.path;
               username = config.home.username;
             };
@@ -80,7 +80,7 @@
         modules = [
           {
             home = {
-              stateVersion = "22.11";
+              stateVersion = "22.05";
               homeDirectory = config.home.path;
               username = config.home.username;
             };
