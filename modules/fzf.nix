@@ -2,8 +2,12 @@
   programs.fzf = {
     enable = true;
 
+    defaultOptions = [
+      "--reverse"
+      "--inline-info"
+    ];
+
     historyWidgetOptions = [
-      "--layout=reverse"
       "--height=12"
     ];
   };
