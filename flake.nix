@@ -41,6 +41,7 @@
           ./modules/jq.nix
           ./modules/k8s.nix
           ./modules/kitty.nix
+          ./modules/less.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -55,7 +56,6 @@
               gcc
               gnused
               hey     # load test
-              less
               neovim
               nmap
               nodePackages.pnpm
@@ -99,6 +99,7 @@
           ./modules/jq.nix
           ./modules/k8s.nix
           ./modules/kitty.nix
+          ./modules/less.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -110,7 +111,6 @@
               fd
               gcc
               gnused
-              less
               neovim
               smartmontools
               tree
