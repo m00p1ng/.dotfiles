@@ -56,6 +56,7 @@
               gcc
               gnused
               hey     # load test
+              httpie
               neovim
               nmap
               nodePackages.pnpm
@@ -111,6 +112,7 @@
               fd
               gcc
               gnused
+              httpie
               neovim
               smartmontools
               tree
