@@ -14,22 +14,29 @@ make_bubble () {
 }
 
 calendar_widget () {
-  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
+  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
   format="%a %-d %H:%M"
   make_bubble "$icon $format"
 }
 
 battery_widget () {
-  heart="#[fg=#$AP,bg=$AT]♥#[fg=#$TX,bg=$AT]"
+  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
   battery="#(pmset -g batt | tail -1 | awk '{print \$3}' | tr -d ';')"
-  make_bubble "$heart $battery"
+  make_bubble "$icon $battery"
+}
+
+wifi_widget () {
+  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
+  wifi="#(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -e 'SSID:' | awk '{print (\$2==\"\" ? \"[Offline]\" : \$2)}')"
+  make_bubble "$icon $wifi"
 }
 
 set_right_status_theme () {
   battery=$(battery_widget)
   calendar=$(calendar_widget)
+  wifi=$(wifi_widget)
 
-  status_right="$battery $calendar "
+  status_right="$wifi $battery $calendar "
 
   tmux set -g status-right-length 150
   tmux set -g status-right "$status_right"
