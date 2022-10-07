@@ -1,14 +1,15 @@
 FG="#626262"
 BG="#111111"
 TC="#6A9955"
-SC="#E8AB53"
+# SC="#E8AB53"
+SC="#264F78"
 AP="#D16969"
 AT="#363636"
 TX="#CCCCCC"
 
 calendar_widget () {
   format="%a %-d %H:%M"
-  calendar="#[fg=$TC,bg=$AT]#[fg=$BG,bg=$TC]  $format"
+  calendar="$format"
   echo $calendar
 }
 
@@ -23,7 +24,7 @@ set_right_status_theme () {
   calendar=$(calendar_widget)
   battery=$(battery_widget)
 
-  status_right="$status_right$battery $calendar "
+  status_right="$status_right$battery | $calendar "
 
   tmux set -g status-right-length 150
   tmux set -g status-right "$status_right"
@@ -68,7 +69,7 @@ set_theme () {
   tmux set -g clock-mode-colour            "$TC"            # Clock mode
   tmux set -g message-style                "fg=$TC,bg=$BG"  # Message
   tmux set -g message-command-style        "fg=$TC,bg=$BG"  # Command message
-  tmux set -g mode-style                   "fg=$BG,bg=$SC"  # Copy mode highlight
+  tmux set -g mode-style                   "fg=$TX,bg=$SC"  # Copy mode highlight
 }
 
 set_theme
