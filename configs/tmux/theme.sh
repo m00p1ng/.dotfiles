@@ -7,24 +7,29 @@ AP="#D16969"
 AT="#363636"
 TX="#CCCCCC"
 
+make_bubble () {
+  prefix="#[fg=$AT,bg=$BG]#[fg=#$TX,bg=$AT]"
+  suffix="#[fg=$AT,bg=$BG]"
+  echo "$prefix$1$suffix"
+}
+
 calendar_widget () {
+  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
   format="%a %-d %H:%M"
-  calendar="$format"
-  echo $calendar
+  make_bubble "$icon $format"
 }
 
 battery_widget () {
-  heart="#[fg=#$AP,bg=$AT] ♥ #[fg=#$TX,bg=$AT]"
+  heart="#[fg=#$AP,bg=$AT]♥#[fg=#$TX,bg=$AT]"
   battery="#(pmset -g batt | tail -1 | awk '{print \$3}' | tr -d ';')"
-  echo "$heart$battery"
+  make_bubble "$heart $battery"
 }
 
 set_right_status_theme () {
-  status_right="#[fg=$AT,bg=$BG]"
-  calendar=$(calendar_widget)
   battery=$(battery_widget)
+  calendar=$(calendar_widget)
 
-  status_right="$status_right$battery | $calendar "
+  status_right="$battery $calendar "
 
   tmux set -g status-right-length 150
   tmux set -g status-right "$status_right"
@@ -32,7 +37,7 @@ set_right_status_theme () {
 
 set_left_status_theme () {
   tmux set -g status-left-length 150
-  tmux set -g status-left "#[fg=$BG,bg=$TC,bold]  #S #[fg=$TC,bg=$BG] "
+  tmux set -g status-left "#[fg=$BG,bg=$TC,bold]  #S#[fg=$TC,bg=$BG] "
 }
 
 set_window_status_theme () {
@@ -41,12 +46,10 @@ set_window_status_theme () {
   status="  #I $zoom_prefix#W$zoom_suffix  "
   tmux setw -g window-status-format "$status"
 
-  active_prefix="#[fg=$AT,bg=$BG]#[fg=#$TX,bg=$AT]"
-  active_suffix="#[fg=$AT,bg=$BG]"
   current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$AP],#[fg=#$TX]}"
   current_zoom_suffix="#{?window_zoomed_flag,*,}"
-  current_status="#I $current_zoom_prefix#W$current_zoom_suffix"
-  tmux setw -g window-status-current-format "$active_prefix $current_status $active_suffix"
+  current_status=$(make_bubble " #I $current_zoom_prefix#W$current_zoom_suffix ")
+  tmux setw -g window-status-current-format "$current_status"
 }
 
 set_theme () {
