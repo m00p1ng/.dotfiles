@@ -117,6 +117,7 @@
               smartmontools
               tree
               tree-sitter
+              wget
             ];
           }
         ];

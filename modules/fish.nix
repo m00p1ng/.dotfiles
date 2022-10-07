@@ -9,6 +9,7 @@
     shellAliases = {
       vim = "nvim";
       mv = "mv -i";
+      gc = "git commit";
       glog = "git log --oneline --decorate --graph";
       gloga = "git log --oneline --decorate --graph --all";
       glg = "git log --stat";
