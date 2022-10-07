@@ -42,6 +42,7 @@
           ./modules/k8s.nix
           ./modules/kitty.nix
           ./modules/less.nix
+          ./modules/neovim.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -57,7 +58,6 @@
               gnused
               hey     # load test
               httpie
-              neovim
               nmap
               nodePackages.pnpm
               python3
@@ -101,6 +101,7 @@
           ./modules/k8s.nix
           ./modules/kitty.nix
           ./modules/less.nix
+          ./modules/neovim.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -113,7 +114,6 @@
               gcc
               gnused
               httpie
-              neovim
               smartmontools
               tree
               tree-sitter

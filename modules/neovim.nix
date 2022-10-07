@@ -1,11 +1,12 @@
-{ pkgs, ... }:
+
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
-    less
+    neovim
   ];
 
   home.sessionVariables = {
-    LESS = "--mouse";
+    EDITOR = "nvim";
   };
 }

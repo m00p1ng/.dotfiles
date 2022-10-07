@@ -11,7 +11,7 @@
   ];
 
   home.sessionVariables = {
-    "K9SCONFIG" = "${config.xdg.configHome}/k9s";
+    K9SCONFIG = "${config.xdg.configHome}/k9s";
   };
 
   xdg.configFile.k9s = {

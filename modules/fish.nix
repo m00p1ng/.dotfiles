@@ -3,9 +3,6 @@
 {
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      set -gx EDITOR nvim
-   '';
     shellAliases = {
       vim = "nvim";
       mv = "mv -i";
