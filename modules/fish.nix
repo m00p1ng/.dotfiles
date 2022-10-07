@@ -28,6 +28,7 @@
       g = "git";
       gl = "git pull";
       gp = "git push";
+      gpf = "git push --force-with-lease";
       gpo = "git push -u origin HEAD";
     };
   };

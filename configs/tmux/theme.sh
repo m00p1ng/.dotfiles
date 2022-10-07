@@ -1,17 +1,25 @@
+FG="#626262"
+BG="#111111"
+TC="#6A9955"
+SC="#E8AB53"
+AP="#D16969"
+AT="#363636"
+TX="#CCCCCC"
+
 calendar_widget () {
   format="%a %-d %H:%M"
-  calendar="#[fg=#6A9955,bg=#3A3A3A]#[fg=#111111,bg=#6A9955]  $format"
+  calendar="#[fg=$TC,bg=$AT]#[fg=$BG,bg=$TC]  $format"
   echo $calendar
 }
 
 battery_widget () {
-  heart="#[fg=colour009,bg=#3A3A3A] ♥ #[fg=white,bg=#3A3A3A]"
+  heart="#[fg=#$AP,bg=$AT] ♥ #[fg=#$TX,bg=$AT]"
   battery="#(pmset -g batt | tail -1 | awk '{print \$3}' | tr -d ';')"
   echo "$heart$battery"
 }
 
 set_right_status_theme () {
-  status_right="#[fg=#3A3A3A,bg=#111111]"
+  status_right="#[fg=$AT,bg=$BG]"
   calendar=$(calendar_widget)
   battery=$(battery_widget)
 
@@ -23,7 +31,7 @@ set_right_status_theme () {
 
 set_left_status_theme () {
   tmux set -g status-left-length 150
-  tmux set -g status-left "#[fg=#111111,bg=#6A9955,bold]  #S #[fg=#6A9955,bg=#111111,nobold] "
+  tmux set -g status-left "#[fg=$BG,bg=$TC,bold]  #S #[fg=$TC,bg=$BG] "
 }
 
 set_window_status_theme () {
@@ -32,35 +40,35 @@ set_window_status_theme () {
   status="  #I $zoom_prefix#W$zoom_suffix  "
   tmux setw -g window-status-format "$status"
 
-  current_arrow_prefix="#[fg=#363636,bg=#111111]#[fg=white,bg=#363636]"
-  current_arrow_suffix="#[fg=#363636,bg=#111111]"
-  current_zoom_prefix="#{?window_zoomed_flag,#[fg=red],#[fg=white]}"
+  active_prefix="#[fg=$AT,bg=$BG]#[fg=#$TX,bg=$AT]"
+  active_suffix="#[fg=$AT,bg=$BG]"
+  current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$AP],#[fg=#$TX]}"
   current_zoom_suffix="#{?window_zoomed_flag,*,}"
-  current_status=" #I $current_zoom_prefix#W$current_zoom_suffix "
-  tmux setw -g window-status-current-format "$current_arrow_prefix$current_status$current_arrow_suffix"
+  current_status="#I $current_zoom_prefix#W$current_zoom_suffix"
+  tmux setw -g window-status-current-format "$active_prefix $current_status $active_suffix"
 }
 
 set_theme () {
   # Status bar
-  tmux set -g status-fg "#626262"
-  tmux set -g status-bg "#111111"
+  tmux set -g status-fg "$FG"
+  tmux set -g status-bg "$BG"
   set_right_status_theme
   set_left_status_theme
   set_window_status_theme
 
   # Others
-  tmux setw -g window-status-separator      ""                      # Window separator
-  tmux setw -g window-status-current-style  "fg=#6A9955,bg=#111111" # Current window status
+  tmux set -g window-status-separator      ""               # Window separator
+  tmux set -g window-status-current-style  "fg=$TC,bg=$BG"  # Current window status
 
-  tmux set  -g status-justify               left                    # Window status alignment
-  tmux set  -g pane-border-style            "fg=#444444,bg=default" # Pane border
-  tmux set  -g pane-active-border-style     "fg=#6A9955"            # Active pane border
-  # tmux set  -g display-panes-colour         "#444444"               # Pane number indicator
-  # tmux set  -g display-panes-active-colour  "#777777"               # Active pane number indicator
-  tmux set  -g clock-mode-colour            "#6A9955"               # Clock mode
-  tmux set  -g message-style                "fg=#6A9955,bg=#111111" # Message
-  tmux set  -g message-command-style        "fg=#6A9955,bg=#111111" # Command message
-  tmux set  -g mode-style                   "bg=#1D361D"            # Copy mode highlight
+  tmux set -g status-justify               left             # Window status alignment
+  tmux set -g pane-border-style            "fg=#444444"     # Pane border
+  tmux set -g pane-active-border-style     "fg=$TC"         # Active pane border
+  # tmux set -g display-panes-colour         "#444444"        # Pane number indicator
+  # tmux set -g display-panes-active-colour  "#777777"        # Active pane number indicator
+  tmux set -g clock-mode-colour            "$TC"            # Clock mode
+  tmux set -g message-style                "fg=$TC,bg=$BG"  # Message
+  tmux set -g message-command-style        "fg=$TC,bg=$BG"  # Command message
+  tmux set -g mode-style                   "fg=$BG,bg=$SC"  # Copy mode highlight
 }
 
 set_theme
