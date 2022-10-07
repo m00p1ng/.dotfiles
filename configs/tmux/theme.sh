@@ -13,10 +13,10 @@ make_bubble () {
   echo "$prefix$1$suffix"
 }
 
-calendar_widget () {
-  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
-  format="%a %-d %H:%M"
-  make_bubble "$icon $format"
+date_widget () {
+  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
+  date="%a %-d %H:%M"
+  make_bubble "$icon $date"
 }
 
 battery_widget () {
@@ -31,12 +31,19 @@ wifi_widget () {
   make_bubble "$icon $wifi"
 }
 
-set_right_status_theme () {
-  battery=$(battery_widget)
-  calendar=$(calendar_widget)
-  wifi=$(wifi_widget)
+keyboard_widget () {
+  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
+  keyboard="#(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | grep 'KeyboardLayout Name' | awk '{print \$4}' | tr -d ';')"
+  make_bubble "$icon $keyboard"
+}
 
-  status_right="$wifi $battery $calendar "
+set_right_status_theme () {
+  keyboard=$(keyboard_widget)
+  wifi=$(wifi_widget)
+  battery=$(battery_widget)
+  date=$(date_widget)
+
+  status_right="$keyboard $wifi $battery $date"
 
   tmux set -g status-right-length 150
   tmux set -g status-right "$status_right"
