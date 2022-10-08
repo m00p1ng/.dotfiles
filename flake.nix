@@ -54,6 +54,7 @@
               coreutils
               curl
               fd
+              gawk
               gcc
               gnused
               hey     # load test
@@ -111,6 +112,7 @@
               coreutils
               curl
               fd
+              gawk
               gcc
               gnused
               httpie

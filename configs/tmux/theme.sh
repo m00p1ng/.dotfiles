@@ -1,11 +1,12 @@
 FG="#626262"
 BG="#111111"
 TC="#6A9955"
-# SC="#E8AB53"
+MT="#613214"
 SC="#264F78"
 AP="#D16969"
 AT="#363636"
 TX="#CCCCCC"
+WN="#E8AB53"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -67,7 +68,7 @@ set_window_status_theme () {
   status="  #I $zoom_prefix#W$zoom_suffix  "
   tmux setw -g window-status-format "$status"
 
-  current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$AP],#[fg=#$TX]}"
+  current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$WN],#[fg=#$TX]}"
   current_zoom_suffix="#{?window_zoomed_flag,$zoom_icon,}"
   current_status=$(make_bubble " #I" "$current_zoom_prefix#W$current_zoom_suffix ")
   tmux setw -g window-status-current-format "$current_status"
@@ -82,18 +83,18 @@ set_theme () {
   set_window_status_theme
 
   # Others
-  tmux set -g window-status-separator      ""               # Window separator
-  tmux set -g window-status-current-style  "fg=$TC,bg=$BG"  # Current window status
+  tmux set -g window-status-separator        ""               # Window separator
+  tmux set -g window-status-current-style    "fg=$TC,bg=$BG"  # Current window status
 
-  tmux set -g status-justify               left             # Window status alignment
-  tmux set -g pane-border-style            "fg=#444444"     # Pane border
-  tmux set -g pane-active-border-style     "fg=$TC"         # Active pane border
-  # tmux set -g display-panes-colour         "#444444"        # Pane number indicator
-  # tmux set -g display-panes-active-colour  "#777777"        # Active pane number indicator
-  tmux set -g clock-mode-colour            "$TC"            # Clock mode
-  tmux set -g message-style                "fg=$TC,bg=$BG"  # Message
-  tmux set -g message-command-style        "fg=$TC,bg=$BG"  # Command message
-  tmux set -g mode-style                   "fg=$TX,bg=$SC"  # Copy mode highlight
+  tmux set -g status-justify                 left             # Window status alignment
+  tmux set -g pane-border-style              "fg=#444444"     # Pane border
+  tmux set -g pane-active-border-style       "fg=$TC"         # Active pane border
+  tmux set -g clock-mode-colour              "$TC"            # Clock mode
+  tmux set -g message-style                  "fg=$TC,bg=$BG"  # Message
+  tmux set -g message-command-style          "fg=$TC,bg=$BG"  # Command message
+  tmux set -g mode-style                     "fg=$TX,bg=$SC"  # Copy mode highlight
+  tmux set -g copy-mode-match-style          "fg=$TX,bg=$MT"  # Search match
+  tmux set -g copy-mode-current-match-style  "fg=$TX,bg=$SC"  # Search current match
 }
 
 set_theme
