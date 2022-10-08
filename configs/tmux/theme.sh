@@ -61,13 +61,14 @@ set_left_status_theme () {
 }
 
 set_window_status_theme () {
+  zoom_icon=""
   zoom_prefix="#{?window_zoomed_flag,,}"
-  zoom_suffix="#{?window_zoomed_flag,*,}"
+  zoom_suffix="#{?window_zoomed_flag,$zoom_icon,}"
   status="  #I $zoom_prefix#W$zoom_suffix  "
   tmux setw -g window-status-format "$status"
 
   current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$AP],#[fg=#$TX]}"
-  current_zoom_suffix="#{?window_zoomed_flag,*,}"
+  current_zoom_suffix="#{?window_zoomed_flag,$zoom_icon,}"
   current_status=$(make_bubble " #I" "$current_zoom_prefix#W$current_zoom_suffix ")
   tmux setw -g window-status-current-format "$current_status"
 }
