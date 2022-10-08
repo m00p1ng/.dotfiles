@@ -1,10 +1,13 @@
+CONNECT_ICON=""
+DISCONNECT_ICON=""
+
 main () {
   result=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -o 'SSID: .\+')
 
   if [ "$result" = "" ]; then
-    echo 'Offline'
+    echo "$DISCONNECT_ICON"
   else
-    echo $result | cut -d: -f2 | awk '{gsub(/^ /, ""); print}'
+    echo "$CONNECT_ICON"
   fi
 }
 
