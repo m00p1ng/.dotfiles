@@ -7,34 +7,40 @@ AP="#D16969"
 AT="#363636"
 TX="#CCCCCC"
 
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 make_bubble () {
   prefix="#[fg=$AT,bg=$BG]#[fg=#$TX,bg=$AT]"
   suffix="#[fg=$AT,bg=$BG]"
-  echo "$prefix$1$suffix"
+
+  icon="#[fg=#$AP,bg=$AT,bold]$1#[fg=#$TX,bg=$AT]"
+  value="$2"
+
+  echo "$prefix$icon $value$suffix"
 }
 
 date_widget () {
-  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
+  icon=""
   date="%a %-d %H:%M"
-  make_bubble "$icon $date"
+  make_bubble "$icon" "$date"
 }
 
 battery_widget () {
-  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
-  battery="#(pmset -g batt | tail -1 | awk '{print \$3}' | tr -d ';')"
-  make_bubble "$icon $battery"
+  icon="#($CURRENT_DIR/scripts/battery_icon.sh)"
+  value="#($CURRENT_DIR/scripts/battery.sh)"
+  make_bubble "$icon" "$value"
 }
 
 wifi_widget () {
-  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
-  wifi="#(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -e 'SSID:' | awk '{print (\$2==\"\" ? \"[Offline]\" : \$2)}')"
-  make_bubble "$icon $wifi"
+  icon=""
+  value="#($CURRENT_DIR/scripts/wifi.sh)"
+  make_bubble "$icon" "$value"
 }
 
 keyboard_widget () {
-  icon="#[fg=#$AP,bg=$AT]#[fg=#$TX,bg=$AT]"
-  keyboard="#(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | grep 'KeyboardLayout Name' | awk '{print \$4}' | tr -d ';')"
-  make_bubble "$icon $keyboard"
+  icon=""
+  value="#($CURRENT_DIR/scripts/keyboard.sh)"
+  make_bubble "$icon" "$value"
 }
 
 set_right_status_theme () {
@@ -62,7 +68,7 @@ set_window_status_theme () {
 
   current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$AP],#[fg=#$TX]}"
   current_zoom_suffix="#{?window_zoomed_flag,*,}"
-  current_status=$(make_bubble " #I $current_zoom_prefix#W$current_zoom_suffix ")
+  current_status=$(make_bubble " #I" "$current_zoom_prefix#W$current_zoom_suffix ")
   tmux setw -g window-status-current-format "$current_status"
 }
 
