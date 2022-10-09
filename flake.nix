@@ -44,6 +44,7 @@
           ./modules/kitty.nix
           ./modules/less.nix
           ./modules/neovim.nix
+          ./modules/onefetch.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -57,7 +58,6 @@
               gcc
               # hey     # load test
               httpie
-              neofetch
               nmap
               nodePackages.pnpm
               onefetch
@@ -104,6 +104,7 @@
           ./modules/kitty.nix
           ./modules/less.nix
           ./modules/neovim.nix
+          ./modules/onefetch.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -115,7 +116,6 @@
               gcc
               httpie
               neofetch
-              onefetch
               smartmontools
               tree
               tree-sitter

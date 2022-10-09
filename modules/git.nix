@@ -13,7 +13,6 @@
       find = "log --all --full-history --oneline";
       parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #";
       diffs = "!git -c delta.side-by-side=true diff";
-      info = "!onefetch";
     };
     extraConfig = {
       core = {
