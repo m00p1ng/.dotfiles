@@ -54,12 +54,15 @@ prefix_widget () {
 }
 
 set_right_status_theme () {
-  keyboard=$(keyboard_widget)
-  wifi=$(wifi_widget)
-  battery=$(battery_widget)
-  date=$(date_widget)
-  prefix=$(prefix_widget)
-  echo "$prefix $keyboard $wifi $battery $date"
+  widget=(
+    "$(prefix_widget)"
+    "$(keyboard_widget)"
+    "$(wifi_widget)"
+    "$(battery_widget)"
+    "$(date_widget)"
+  )
+  joined_widget=$(IFS=' ' ; echo "${widget[*]}")
+  echo "$joined_widget"
 }
 
 set_left_status_theme () {
