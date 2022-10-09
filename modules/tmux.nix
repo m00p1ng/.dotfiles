@@ -87,10 +87,12 @@ in {
       set -g set-titles-string  "#T (tmux)"
 
       # Status options
-      set -g status           on
-      set -g status-interval  1
-      set -g status-position  top
-      set -g status-justify   left
+      set -g status               on
+      set -g status-interval      1
+      set -g status-position      top
+      set -g status-justify       left
+      set -g status-left-length   150
+      set -g status-right-length  150
 
       set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0

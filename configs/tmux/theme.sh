@@ -97,12 +97,9 @@ set_window_status_current_theme () {
 
 set_theme () {
   # Status bar
-  tmux set -g status-fg           "$FG"
-  tmux set -g status-bg           "$BG"
-  tmux set -g status-left         "$(set_left_status_theme)"
-  tmux set -g status-left-length  150
-  tmux set -g status-right        "$(set_right_status_theme)"
-  tmux set -g status-right-length 150
+  tmux set -g status-style  "fg=$FG,bg=$BG"
+  tmux set -g status-left   "$(set_left_status_theme)"
+  tmux set -g status-right  "$(set_right_status_theme)"
 
   # Window status
   tmux set -g window-status-format           "$(set_window_status_theme)"
