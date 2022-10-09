@@ -3,6 +3,7 @@
 with lib;
 
 let
+  # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
   plugins = with pkgs.tmuxPlugins; [
     {
       plugin = battery;
@@ -15,9 +16,20 @@ let
         set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
         set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
         set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
-        set -g @batt_icon_status_charged ''
+        set -g @batt_icon_status_charged  ''
         set -g @batt_icon_status_charging ''
         set -g @batt_icon_status_attached ''
+      '';
+    }
+    {
+      plugin = prefix-highlight;
+      extraConfig = ''
+        set -g @prefix_highlight_fg '##000000'
+        set -g @prefix_highlight_bg '##ff8800'
+        set -g @prefix_highlight_show_copy_mode 'on'
+        set -g @prefix_highlight_show_sync_mode 'on'
+        set -g @prefix_highlight_copy_mode_attr 'fg=##000000,bg=##ff8800'
+        set -g @prefix_highlight_sync_mode_attr 'fg=##000000,bg=##ff8800'
       '';
     }
   ];
@@ -49,7 +61,6 @@ in {
       bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'     'select-pane -R'
       bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\'    'send-keys -R C-l; clear-history'
 
-
       bind-key -T copy-mode-vi 'C-h' select-pane -L
       bind-key -T copy-mode-vi 'C-j' select-pane -D
       bind-key -T copy-mode-vi 'C-k' select-pane -U
@@ -73,6 +84,7 @@ in {
 
       run-shell ${config.xdg.configHome}/tmux/theme.sh
 
+      # Ref: https://github.com/nix-community/home-manager/blob/master/modules/programs/tmux.nix#L115-L128
       # ============================================= #
       # Load plugins with Home Manager                #
       # --------------------------------------------- #

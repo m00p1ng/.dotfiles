@@ -49,12 +49,17 @@ keyboard_widget () {
   make_bubble "$icon" "$value"
 }
 
+prefix_widget () {
+  echo "#{prefix_highlight}"
+}
+
 set_right_status_theme () {
   keyboard=$(keyboard_widget)
   wifi=$(wifi_widget)
   battery=$(battery_widget)
   date=$(date_widget)
-  echo "$keyboard $wifi $battery $date"
+  prefix=$(prefix_widget)
+  echo "$prefix $keyboard $wifi $battery $date"
 }
 
 set_left_status_theme () {
