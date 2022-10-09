@@ -32,8 +32,8 @@ date_widget () {
 }
 
 battery_widget () {
-  icon="#($CURRENT_DIR/scripts/battery_icon.sh)"
-  value="#($CURRENT_DIR/scripts/battery.sh)"
+  icon="#{battery_icon}"
+  value="#{battery_percentage}"
   make_bubble "$icon" "$value"
 }
 

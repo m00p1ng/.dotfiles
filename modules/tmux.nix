@@ -1,6 +1,29 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
-{
+with lib;
+
+let
+  plugins = with pkgs.tmuxPlugins; [
+    {
+      plugin = battery;
+      extraConfig = ''
+        set -g @batt_icon_charge_tier8 ' ' # [95%-100%]
+        set -g @batt_icon_charge_tier7 ' ' # [80%-95%)
+        set -g @batt_icon_charge_tier6 ' ' # [65%-80%)
+        set -g @batt_icon_charge_tier5 ' ' # [50%-65%)
+        set -g @batt_icon_charge_tier4 ' ' # [35%-50%)
+        set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
+        set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
+        set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
+        set -g @batt_icon_status_charged ''
+        set -g @batt_icon_status_charging ''
+        set -g @batt_icon_status_attached ''
+      '';
+    }
+  ];
+
+  pluginName = p: if types.package.check p then p.pname else p.plugin.pname;
+in {
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -49,6 +72,17 @@
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
       run-shell ${config.xdg.configHome}/tmux/theme.sh
+
+      # ============================================= #
+      # Load plugins with Home Manager                #
+      # --------------------------------------------- #
+      ${(concatMapStringsSep "\n\n" (p: ''
+        # ${pluginName p}
+        # ---------------------
+        ${p.extraConfig or ""}
+        run-shell ${if types.package.check p then p.rtp else p.plugin.rtp}
+      '') plugins)}
+      # ============================================= #
     '';
   };
 
