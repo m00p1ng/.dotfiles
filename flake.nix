@@ -59,8 +59,8 @@
               # hey     # load test
               httpie
               nmap
+              neofetch
               nodePackages.pnpm
-              onefetch
               python3
               rsync
               ruby
