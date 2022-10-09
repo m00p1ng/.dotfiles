@@ -36,7 +36,7 @@ make_bubble () {
 
 date_widget () {
   icon=""
-  date="%a %-d %H:%M"
+  value="%a %-d %H:%M"
   output=$(make_bubble "$icon" "$value")
   hide_on_width "$output" 80
 }
