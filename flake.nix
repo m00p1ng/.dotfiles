@@ -55,10 +55,12 @@
               curl
               fd
               gcc
-              hey     # load test
+              # hey     # load test
               httpie
+              neofetch
               nmap
               nodePackages.pnpm
+              onefetch
               python3
               rsync
               ruby
@@ -112,6 +114,8 @@
               fd
               gcc
               httpie
+              neofetch
+              onefetch
               smartmontools
               tree
               tree-sitter
