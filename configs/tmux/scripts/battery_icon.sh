@@ -3,17 +3,21 @@ BATTERY_1=" "
 BATTERY_2=" "
 BATTERY_3=" "
 BATTERY_4=" "
+CHARGING=""
 
 main () {
-  result=$(pmset -g batt | tail -1 | awk '{print $3}' | tr -d '%;')
+  percent=$(pmset -g batt | tail -1 | awk '{print $3}' | tr -d '%;')
+  discharging=$(pmset -g batt | tail -1 | grep discharging)
 
-  if [ $result -ge 85 ]; then
+  if [ "$discharging" = "" ]; then
+    echo "$CHARGING"
+  elif [ $percent -ge 85 ]; then
     echo "$BATTERY_4"
-  elif [ $result -ge 60 ]; then
+  elif [ $percent -ge 60 ]; then
     echo "$BATTERY_3"
-  elif [ $result -ge 30 ]; then
+  elif [ $percent -ge 30 ]; then
     echo "$BATTERY_2"
-  elif [ $result -ge 10 ]; then
+  elif [ $percent -ge 10 ]; then
     echo "$BATTERY_1"
   else
     echo "$BATTERY_0"
