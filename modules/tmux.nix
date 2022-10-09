@@ -49,6 +49,9 @@ in {
     extraConfig = ''
       set -g mouse            on
       set -g renumber-windows on
+      set -g monitor-activity on
+      set -g monitor-bell     on
+      set -g visual-activity  off
 
       bind-key '"' split-window -v -c "#{pane_current_path}"
       bind-key %   split-window -h -c "#{pane_current_path}"

@@ -9,7 +9,9 @@ TX="#CCCCCC"
 WN="#E8AB53"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ZOOM_ICON=""
+ZOOM_ICON=""
+BELL_ICON=""
+ACTIVITY_ICON="ﱣ"
 
 make_bubble () {
   prefix="#[fg=$AT,bg=$BG]#[fg=#$TX,bg=$AT]"
@@ -70,14 +72,15 @@ set_left_status_theme () {
 }
 
 set_window_status_theme () {
-  zoom_suffix="#{?window_zoomed_flag,$ZOOM_ICON,}"
-  echo "  #I #W$zoom_suffix  "
+  activity_icon="#{?window_activity_flag,#[fg=#$TC#,italics#,bold]$ACTIVITY_ICON#[fg=$FG],#I}"
+  bell_icon="#{?window_bell_flag,#[fg=#$WN#,italics#,bold]$BELL_ICON#[fg=#$FG],$activity_icon}"
+  pane_icon="$bell_icon"
+  echo "  $pane_icon #W  "
 }
 
 set_window_status_current_theme () {
-  current_zoom_prefix="#{?window_zoomed_flag,#[fg=#$WN],#[fg=#$TX]}#[italics]"
-  current_zoom_suffix="#{?window_zoomed_flag,$ZOOM_ICON,}"
-  make_bubble " #[bold]#I" "$current_zoom_prefix#W$current_zoom_suffix "
+  pane_icon="#{?window_zoomed_flag,$ZOOM_ICON,#I}"
+  make_bubble " #[bold]$pane_icon" "#[fg=#$TX,italics]#W "
 }
 
 set_theme () {
@@ -94,6 +97,8 @@ set_theme () {
   tmux set -g window-status-current-format   "$(set_window_status_current_theme)"
   tmux set -g window-status-separator        ""
   tmux set -g window-status-current-style    "fg=$TC,bg=$BG"
+  tmux set -g window-status-activity-style   "none"
+  tmux set -g window-status-bell-style       "none"
 
   # Others
   tmux set -g pane-border-style              "fg=$AT"
