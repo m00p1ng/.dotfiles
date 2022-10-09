@@ -36,6 +36,7 @@
           ./modules/fzf.nix
           ./modules/gh.nix
           ./modules/git.nix
+          ./modules/gnu.nix
           ./modules/go.nix
           ./modules/htop.nix
           ./modules/jq.nix
@@ -51,12 +52,9 @@
             home.packages = with pkgs; [
               awscli
               cocoapods
-              coreutils
               curl
               fd
-              gawk
               gcc
-              gnused
               hey     # load test
               httpie
               nmap
@@ -97,6 +95,7 @@
           ./modules/fnm.nix
           ./modules/fzf.nix
           ./modules/git.nix
+          ./modules/gnu.nix
           ./modules/htop.nix
           ./modules/jq.nix
           ./modules/k8s.nix
@@ -109,12 +108,9 @@
           ./modules/zoxide.nix
           {
             home.packages = with pkgs; [
-              coreutils
               curl
               fd
-              gawk
               gcc
-              gnused
               httpie
               smartmontools
               tree
