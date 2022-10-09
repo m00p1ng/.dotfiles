@@ -19,17 +19,18 @@ let
         set -g @batt_icon_status_charged  ''
         set -g @batt_icon_status_charging ''
         set -g @batt_icon_status_attached ''
+        set -g @batt_icon_status_unknown  ''
       '';
     }
     {
       plugin = prefix-highlight;
       extraConfig = ''
         set -g @prefix_highlight_fg '##000000'
-        set -g @prefix_highlight_bg '##ff8800'
+        set -g @prefix_highlight_bg '##FF8800'
         set -g @prefix_highlight_show_copy_mode 'on'
         set -g @prefix_highlight_show_sync_mode 'on'
-        set -g @prefix_highlight_copy_mode_attr 'fg=##000000,bg=##ff8800'
-        set -g @prefix_highlight_sync_mode_attr 'fg=##000000,bg=##ff8800'
+        set -g @prefix_highlight_copy_mode_attr 'fg=##000000,bg=##FF8800'
+        set -g @prefix_highlight_sync_mode_attr 'fg=##000000,bg=##FF8800'
       '';
     }
   ];
@@ -41,7 +42,7 @@ in {
     baseIndex = 1;
     clock24 = true;
     escapeTime = 300;
-    historyLimit = 50000;
+    historyLimit = 100000;
     keyMode = "vi";
     terminal = "\${TERM}";
 
@@ -49,9 +50,9 @@ in {
       set -g mouse            on
       set -g renumber-windows on
 
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind %   split-window -h -c "#{pane_current_path}"
-      bind c   new-window   -c    "#{pane_current_path}"
+      bind-key '"' split-window -v -c "#{pane_current_path}"
+      bind-key %   split-window -h -c "#{pane_current_path}"
+      bind-key c   new-window   -c    "#{pane_current_path}"
 
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
         | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(fzf|view|n?vim?x?)(diff)?$'"
@@ -60,11 +61,19 @@ in {
       bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'     'select-pane -U'
       bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'     'select-pane -R'
       bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\'    'send-keys -R C-l; clear-history'
+      # bind-key -n 'C-[' copy-mode    # Conflict with <Esc> vim
+      bind-key -n 'C-]' paste-buffer -p
+      bind-key -n 'M-[' swap-window -t- \; select-window -t-
+      bind-key -n 'M-]' swap-window -t+ \; select-window -t+
 
       bind-key -T copy-mode-vi 'C-h' select-pane -L
       bind-key -T copy-mode-vi 'C-j' select-pane -D
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
+
+      bind-key -T copy-mode-vi v send -X begin-selection
+      bind-key -T copy-mode-vi V send -X select-line
+      bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
 
       #############
       ##  Theme  ##
@@ -75,9 +84,10 @@ in {
       set -g set-titles-string  "#T (tmux)"
 
       # Status options
-      set -g status-interval  1
       set -g status           on
+      set -g status-interval  1
       set -g status-position  top
+      set -g status-justify   left
 
       set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0

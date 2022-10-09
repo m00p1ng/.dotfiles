@@ -89,13 +89,13 @@ set_theme () {
   tmux set -g status-right        "$(set_right_status_theme)"
   tmux set -g status-right-length 150
 
-  # Others
+  # Window status
   tmux set -g window-status-format           "$(set_window_status_theme)"
   tmux set -g window-status-current-format   "$(set_window_status_current_theme)"
   tmux set -g window-status-separator        ""
   tmux set -g window-status-current-style    "fg=$TC,bg=$BG"
 
-  tmux set -g status-justify                 left
+  # Others
   tmux set -g pane-border-style              "fg=$AT"
   tmux set -g pane-active-border-style       "fg=$TC"
   tmux set -g clock-mode-colour              "$TC"
