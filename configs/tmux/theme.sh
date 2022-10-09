@@ -13,6 +13,13 @@ ZOOM_ICON=""
 BELL_ICON=""
 ACTIVITY_ICON="ﱣ"
 
+hide_on_width () {
+  value=$(echo $1 | sed "s/,/#,/g")
+  width=$2
+  template="#{e|>:#{client_width},$width}"
+  echo "#{?$template,$value,}"
+}
+
 make_bubble () {
   prefix="#[fg=$AT,bg=$BG]#[fg=#$TX,bg=$AT]"
   suffix="#[fg=$AT,bg=$BG]"
@@ -30,25 +37,29 @@ make_bubble () {
 date_widget () {
   icon=""
   date="%a %-d %H:%M"
-  make_bubble "$icon" "$date"
+  output=$(make_bubble "$icon" "$value")
+  hide_on_width "$output" 80
 }
 
 battery_widget () {
   icon="#{battery_icon}"
   value="#{battery_percentage}"
-  make_bubble "$icon" "$value"
+  output=$(make_bubble "$icon" "$value")
+  hide_on_width "$output" 100
 }
 
 wifi_widget () {
   icon="#($CURRENT_DIR/scripts/wifi_icon.sh)"
   value="#($CURRENT_DIR/scripts/wifi.sh)"
-  make_bubble "$icon" "$value"
+  output=$(make_bubble "$icon" "$value")
+  hide_on_width "$output" 120
 }
 
 keyboard_widget () {
   icon=""
   value="#($CURRENT_DIR/scripts/keyboard.sh)"
-  make_bubble "$icon" "$value"
+  output=$(make_bubble "$icon" "$value")
+  hide_on_width "$output" 140
 }
 
 prefix_widget () {
