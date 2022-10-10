@@ -57,8 +57,8 @@
               gcc
               # hey     # load test
               httpie
-              nmap
               neofetch
+              nmap
               nodePackages.pnpm
               python3
               rsync

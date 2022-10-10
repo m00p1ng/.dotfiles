@@ -41,7 +41,7 @@ in {
     enable = true;
     baseIndex = 1;
     clock24 = true;
-    escapeTime = 300;
+    escapeTime = 50;
     historyLimit = 100000;
     keyMode = "vi";
     terminal = "\${TERM}";
@@ -64,10 +64,16 @@ in {
       bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'     'select-pane -U'
       bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'     'select-pane -R'
       bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\'    'send-keys -R C-l; clear-history'
+
+      bind-key -r H resize-pane -L 5
+      bind-key -r J resize-pane -D 5
+      bind-key -r K resize-pane -U 5
+      bind-key -r L resize-pane -R 5
+
       # bind-key -n 'C-[' copy-mode    # Conflict with <Esc> vim
       bind-key -n 'C-]' paste-buffer -p
-      bind-key -n 'M-[' swap-window -t- \; select-window -t-
-      bind-key -n 'M-]' swap-window -t+ \; select-window -t+
+      bind-key -n 'M-[' swap-window -d -t-
+      bind-key -n 'M-]' swap-window -d -t+
 
       bind-key -T copy-mode-vi 'C-h' select-pane -L
       bind-key -T copy-mode-vi 'C-j' select-pane -D
@@ -76,7 +82,7 @@ in {
 
       bind-key -T copy-mode-vi v send -X begin-selection
       bind-key -T copy-mode-vi V send -X select-line
-      bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
+      bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel
 
       #############
       ##  Theme  ##
@@ -98,6 +104,8 @@ in {
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
       run-shell ${config.xdg.configHome}/tmux/theme.sh
+
+
 
       # Ref: https://github.com/nix-community/home-manager/blob/master/modules/programs/tmux.nix#L115-L128
       # ============================================= #
