@@ -44,7 +44,6 @@
           ./modules/kitty.nix
           ./modules/less.nix
           ./modules/neovim.nix
-          ./modules/onefetch.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
@@ -104,7 +103,6 @@
           ./modules/kitty.nix
           ./modules/less.nix
           ./modules/neovim.nix
-          ./modules/onefetch.nix
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
