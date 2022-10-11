@@ -1,4 +1,4 @@
-function drmi --description "docker - remove image"
+function drmi -d "docker - remove image"
   docker images \
   | sed 1d \
   | fzf -q "$1" --no-sort -m -e --tac --height=20 \

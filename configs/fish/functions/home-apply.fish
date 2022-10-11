@@ -1,4 +1,4 @@
-function home_config_apply -a profile
+function home-apply -a profile -d 'Home manager wrapper'
   if not test "$profile"
     echo Please provide configuration profile
     return 1

@@ -33,8 +33,8 @@
     };
   };
 
-  xdg.configFile."fish/functions" = {
-    source = ../configs/fish/functions;
+  xdg.configFile."fish" = {
+    source = ../configs/fish;
     recursive = true;
   };
 }

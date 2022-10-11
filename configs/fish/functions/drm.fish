@@ -1,4 +1,4 @@
-function drm --description "docker - remove container"
+function drm -d "docker - remove container"
   docker ps -a \
   | sed 1d \
   | fzf -q "$1" --no-sort -m -e --tac --height=20 \
