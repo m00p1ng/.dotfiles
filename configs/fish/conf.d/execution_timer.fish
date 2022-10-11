@@ -22,6 +22,7 @@ function execution_timer -e fish_postexec
   set -l hours (math -s0 "$total_time % $DAY / $HOUR")
   set -l mins (math -s0 "$total_time % $HOUR / $MIN")
   set -l secs (math -s0 "$total_time % $MIN / $SEC")
+  set -l millis (math -s0 "$total_time % $SEC")
 
   set -l output ""
 
@@ -38,7 +39,11 @@ function execution_timer -e fish_postexec
   end
 
   if [ $secs -ne 0 ]
-    set output (join_space $output "$secs"s)
+    if [ $total_time -lt $MIN ]
+      set output (echo "$secs.$millis"s)
+    else
+      set output (join_space $output "$secs"s)
+    end
   end
 
   set_color -b 303030
