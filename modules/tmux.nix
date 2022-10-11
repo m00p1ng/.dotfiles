@@ -70,8 +70,6 @@ in {
       bind-key -r K resize-pane -U 5
       bind-key -r L resize-pane -R 5
 
-      # bind-key -n 'C-[' copy-mode    # Conflict with <Esc> vim
-      bind-key -n 'C-]' paste-buffer -p
       bind-key -n 'M-[' swap-window -d -t-
       bind-key -n 'M-]' swap-window -d -t+
 
