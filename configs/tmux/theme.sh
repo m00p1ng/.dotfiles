@@ -84,8 +84,8 @@ set_left_status_theme () {
 }
 
 set_window_status_theme () {
-  activity_icon="#{?window_activity_flag,#[fg=#$TC#,italics#,bold]$ACTIVITY_ICON#[fg=$FG],#I}"
-  bell_icon="#{?window_bell_flag,#[fg=#$WN#,italics#,bold]$BELL_ICON#[fg=#$FG],$activity_icon}"
+  activity_icon="#{?window_activity_flag,#[fg=#$TC]$ACTIVITY_ICON#[fg=$FG],#I}"
+  bell_icon="#{?window_bell_flag,#[fg=#$WN]$BELL_ICON#[fg=#$FG],$activity_icon}"
   pane_icon="$bell_icon"
   echo "  $pane_icon #W  "
 }
