@@ -31,7 +31,7 @@ function execution_timer -e fish_postexec
   end
 
   if [ $hours -ne 0 ]
-    set output (join_space $output "$hours"s)
+    set output (join_space $output "$hours"h)
   end
 
   if [ $mins -ne 0 ]
