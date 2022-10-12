@@ -9,9 +9,10 @@ TX="#CCCCCC"
 WN="#E8AB53"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ZOOM_ICON=""
-BELL_ICON=""
+ZOOM_ICON=""
+BELL_ICON=""
 ACTIVITY_ICON="ﱣ"
+SEP=' '
 
 hide_on_width () {
   value=$(echo "$1" | sed "s/,/#,/g")
@@ -25,40 +26,37 @@ make_bubble () {
   suffix="#[fg=$AT,bg=$BG]"
 
   icon="#[fg=#$AP,bg=$AT]$1#[fg=#$TX,bg=$AT]"
-  value="$2"
+  sep="$2"
+  value="$3"
 
-  if [ "$value" = "" ]; then
-    echo "$prefix$icon$suffix"
-  else
-    echo "$prefix$icon $value$suffix"
-  fi
+  echo "$prefix$icon$sep$value$suffix"
 }
 
 date_widget () {
   icon=""
   value="%a %-d %H:%M"
-  output=$(make_bubble "$icon" "$value")
+  output=$(make_bubble "$icon" "$SEP" "$value")
   hide_on_width "$output" 80
 }
 
 battery_widget () {
   icon="#{battery_icon}"
   value="#{battery_percentage}"
-  output=$(make_bubble "$icon" "$value")
+  output=$(make_bubble "$icon" "$SEP" "$value")
   hide_on_width "$output " 100
 }
 
 wifi_widget () {
   icon="#($CURRENT_DIR/scripts/wifi_icon.sh)"
   value="#($CURRENT_DIR/scripts/wifi.sh)"
-  output=$(make_bubble "$icon" "$value")
+  output=$(make_bubble "$icon" "" "$value")
   hide_on_width "$output " 120
 }
 
 keyboard_widget () {
   icon=""
   value="#($CURRENT_DIR/scripts/keyboard.sh)"
-  output=$(make_bubble "$icon" "$value")
+  output=$(make_bubble "$icon" "$SEP" "$value")
   hide_on_width "$output " 140
 }
 
@@ -92,7 +90,7 @@ set_window_status_theme () {
 
 set_window_status_current_theme () {
   pane_icon="#{?window_zoomed_flag,$ZOOM_ICON,#I}"
-  make_bubble " #[bold]$pane_icon" "#[fg=#$TX,italics]#W "
+  make_bubble " #[bold]$pane_icon" "$SEP" "#[fg=#$TX,italics]#W "
 }
 
 set_theme () {
