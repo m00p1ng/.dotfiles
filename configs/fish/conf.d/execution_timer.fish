@@ -1,4 +1,4 @@
-function join_space
+function __join_space
   if [ "$argv[1]" = "" ]
     echo "$argv[2]"
   else
@@ -31,18 +31,18 @@ function execution_timer -e fish_postexec
   end
 
   if [ $hours -ne 0 ]
-    set output (join_space $output "$hours"h)
+    set output (__join_space $output "$hours"h)
   end
 
   if [ $mins -ne 0 ]
-    set output (join_space $output "$mins"m)
+    set output (__join_space $output "$mins"m)
   end
 
   if [ $secs -ne 0 ]
     if [ $total_time -lt $MIN ]
       set output (echo "$secs.$millis"s)
     else
-      set output (join_space $output "$secs"s)
+      set output (__join_space $output "$secs"s)
     end
   end
 
