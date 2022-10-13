@@ -60,7 +60,8 @@
               neofetch
               nmap
               nodePackages.pnpm
-              python3
+              python3Full
+              python310Packages.ipython
               rsync
               ruby
               rustup
