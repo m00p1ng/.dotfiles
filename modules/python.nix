@@ -2,8 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    coreutils
-    gnused
-    gawk
+    python3Full
+    python310Packages.ipython
   ];
 }

@@ -44,7 +44,9 @@
           ./modules/kitty.nix
           ./modules/less.nix
           ./modules/neovim.nix
+          ./modules/python.nix
           ./modules/ripgrep.nix
+          ./modules/ruby.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
           ./modules/zoxide.nix
@@ -60,10 +62,7 @@
               neofetch
               nmap
               nodePackages.pnpm
-              python3Full
-              python310Packages.ipython
               rsync
-              ruby
               rustup
               smartmontools
               sqlite
