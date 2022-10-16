@@ -1,8 +1,16 @@
 { pkgs, ... }:
 
+let
+  pythonEnv = pkgs.python3Full.withPackages (ps: [
+    ps.ipython
+    ps.pip
+    ps.numpy
+    ps.pandas
+    ps.debugpy
+  ]);
+in
 {
-  home.packages = with pkgs; [
-    python3Full
-    python310Packages.ipython
+  home.packages = [
+    pythonEnv
   ];
 }

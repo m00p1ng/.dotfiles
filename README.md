@@ -3,6 +3,7 @@
 $ nix-channel --update
 $ nix-collect-garbage -d
 $ home-manager generations
+$ sudo nix-store --verify --repair --check-contents
 ```
 ## Fish add path
 ```sh
