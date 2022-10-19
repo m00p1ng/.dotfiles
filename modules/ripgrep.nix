@@ -19,7 +19,7 @@
     --colors=path:fg:green
     --colors=path:style:bold
 
-    --glob=!.git/*
+    --glob=!.git/
     --hidden
   '';
 }
