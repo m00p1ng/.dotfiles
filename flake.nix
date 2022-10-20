@@ -49,6 +49,7 @@
           ./modules/ruby.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
+          ./modules/yt-dlp.nix
           ./modules/zoxide.nix
           {
             home.packages = with pkgs; [
@@ -69,7 +70,6 @@
               tree
               tree-sitter
               wget
-              youtube-dl
             ];
           }
         ];
