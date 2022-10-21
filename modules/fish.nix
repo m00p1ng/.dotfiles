@@ -4,6 +4,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
+      "..." = "cd ../..";
       vim = "nvim";
       mv = "mv -i";
       gc = "git commit";
@@ -31,6 +32,10 @@
       gpf = "git push --force-with-lease";
       gpo = "git push -u origin HEAD";
     };
+    interactiveShellInit = ''
+      bind \ep history-token-search-backward
+      bind \en history-token-search-forward
+    '';
   };
 
   xdg.configFile."fish" = {
