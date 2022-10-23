@@ -49,6 +49,7 @@
           ./modules/ruby.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
+          ./modules/vscode.nix
           ./modules/yt-dlp.nix
           ./modules/zoxide.nix
           {
@@ -106,6 +107,7 @@
           ./modules/ripgrep.nix
           ./modules/ssh.nix
           ./modules/tmux.nix
+          ./modules/vscode.nix
           ./modules/zoxide.nix
           {
             home.packages = with pkgs; [
