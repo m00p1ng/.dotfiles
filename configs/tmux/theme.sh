@@ -43,7 +43,7 @@ date_widget () {
   icon=""
   value="%a %-d %H:%M"
   output=$(make_status "$icon" "$SEP" "$value")
-  hide_on_width "$output" 80
+  hide_on_width "$output" 100
 }
 
 battery_widget () {
@@ -67,21 +67,30 @@ keyboard_widget () {
   hide_on_width "$output$PADDING" 140
 }
 
+exchange_widget () {
+  icon=""
+  value="#($CURRENT_DIR/scripts/exchange.sh)"
+  output=$(make_status "$icon" "$SEP" "$value")
+  hide_on_width "$output$PADDING" 140
+}
+
 prefix_widget () {
   echo "#{prefix_highlight}"
-  hide_on_width "$PADDING" 80
+  hide_on_width "$PADDING" 100
 }
 
 set_right_status_theme () {
   widget=(
     "$(prefix_widget)"
+    "$(exchange_widget)"
     "$(keyboard_widget)"
     "$(wifi_widget)"
     "$(battery_widget)"
     "$(date_widget)"
   )
   joined_widget=$(IFS='' ; echo "${widget[*]}")
-  echo "$joined_widget "
+  echo "$joined_widget"
+  hide_on_width "$SEP" 100
 }
 
 set_left_status_theme () {
