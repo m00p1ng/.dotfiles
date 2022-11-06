@@ -25,12 +25,14 @@ let
     {
       plugin = prefix-highlight;
       extraConfig = ''
-        set -g @prefix_highlight_fg '##000000'
-        set -g @prefix_highlight_bg '##FF8800'
+        set -g @prefix_highlight_fg '##D16969,bold'
+        set -g @prefix_highlight_bg '##111111'
+        set -g @prefix_highlight_output_prefix "["
+        set -g @prefix_highlight_output_suffix "]"
         set -g @prefix_highlight_show_copy_mode 'on'
         set -g @prefix_highlight_show_sync_mode 'on'
-        set -g @prefix_highlight_copy_mode_attr 'fg=##000000,bg=##FF8800'
-        set -g @prefix_highlight_sync_mode_attr 'fg=##000000,bg=##FF8800'
+        set -g @prefix_highlight_copy_mode_attr 'fg=##D16969,bold,bg=##111111'
+        set -g @prefix_highlight_sync_mode_attr 'fg=##D16969,bold,bg=##111111'
       '';
     }
   ];

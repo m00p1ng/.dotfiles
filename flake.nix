@@ -71,6 +71,7 @@
               tree
               tree-sitter
               wget
+              yarn
             ];
           }
         ];
