@@ -6,7 +6,7 @@ let
     ps.pip
     ps.numpy
     ps.pandas
-    ps.debugpy
+    # ps.debugpy
   ]);
 in
 {
