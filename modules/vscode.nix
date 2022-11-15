@@ -9,6 +9,7 @@
       vscode-extensions.emmanuelbeziat.vscode-great-icons
       vscode-extensions.vscodevim.vim
       vscode-extensions.streetsidesoftware.code-spell-checker
+      vscode-extensions.WakaTime.vscode-wakatime
     ];
     userSettings = {
       # Editor
