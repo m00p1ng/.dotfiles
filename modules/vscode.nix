@@ -5,11 +5,12 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs; [
+      vscode-extensions.WakaTime.vscode-wakatime
       vscode-extensions.eamodio.gitlens
       vscode-extensions.emmanuelbeziat.vscode-great-icons
-      vscode-extensions.vscodevim.vim
       vscode-extensions.streetsidesoftware.code-spell-checker
-      vscode-extensions.WakaTime.vscode-wakatime
+      vscode-extensions.tabnine.tabnine-vscode
+      vscode-extensions.vscodevim.vim
     ];
     userSettings = {
       # Editor
