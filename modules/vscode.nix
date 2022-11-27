@@ -87,6 +87,9 @@
           ];
         }
       ];
+
+      # Tabnine
+      "tabnine.experimentalAutoImports" = true;
     };
   };
 
