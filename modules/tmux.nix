@@ -66,11 +66,14 @@ in {
       is_fzf="ps -o state= -o comm= -t '#{pane_tty}' \
         | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?fzf$'"
 
-      bind-key -n 'C-h' if-shell "$is_vim"              'send-keys C-h'  'select-pane -L'
-      bind-key -n 'C-j' if-shell "($is_vim || $is_fzf)" 'send-keys C-j'  'select-pane -D'
-      bind-key -n 'C-k' if-shell "($is_vim || $is_fzf)" 'send-keys C-k'  'select-pane -U'
-      bind-key -n 'C-l' if-shell "$is_vim"              'send-keys C-l'  'select-pane -R'
-      bind-key -n 'C-\' if-shell "$is_vim"              'send-keys C-\\' 'send-keys -R C-l; clear-history'
+      is_browsh="ps -o state= -o comm= -t '#{pane_tty}' \
+        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?browsh$'"
+
+      bind-key -n 'C-h' if-shell "$is_vim"                 'send-keys C-h'  'select-pane -L'
+      bind-key -n 'C-j' if-shell "($is_vim || $is_fzf)"    'send-keys C-j'  'select-pane -D'
+      bind-key -n 'C-k' if-shell "($is_vim || $is_fzf)"    'send-keys C-k'  'select-pane -U'
+      bind-key -n 'C-l' if-shell "($is_vim || $is_browsh)" 'send-keys C-l'  'select-pane -R'
+      bind-key -n 'C-\' if-shell "$is_vim"                 'send-keys C-\\' 'send-keys -R C-l; clear-history'
 
       bind-key -r H resize-pane -L 5
       bind-key -r J resize-pane -D 5

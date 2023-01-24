@@ -31,6 +31,7 @@
             };
           }
           ./modules/bat.nix
+          ./modules/browsh.nix
           ./modules/fish.nix
           ./modules/fnm.nix
           ./modules/fzf.nix
