@@ -5,8 +5,12 @@
     enable = true;
 
     extraConfig = ''
-      AddKeysToAgent yes
-      IdentityFile ~/.ssh/id_rsa
+      Host github.com
+        IdentityFile ~/.ssh/id_rsa
+
+      Host *
+        AddKeysToAgent yes
+        IdentityFile ~/.ssh/id_rsa
     '';
   };
 
