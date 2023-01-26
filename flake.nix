@@ -99,7 +99,9 @@
           ./modules/fnm.nix
           ./modules/fzf.nix
           ./modules/git.nix
+          ./modules/gh.nix
           ./modules/gnu.nix
+          ./modules/go.nix
           ./modules/htop.nix
           ./modules/jq.nix
           ./modules/k8s.nix
