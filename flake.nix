@@ -41,6 +41,7 @@
           ./modules/vscode.nix
           ./modules/yt-dlp.nix
           ./modules/zoxide.nix
+          ./modules/override.nix
           ({ pkgs, ... }: {
             home.packages = with pkgs; [
               awscli
