@@ -9,26 +9,14 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-    let
-      config = import ./modules/user.nix;
-      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-    in
     {
       homeConfigurations.mooping = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
         modules = [
           {
-            home = {
-              stateVersion = "22.05";
-              homeDirectory = config.home.path;
-              username = config.home.username;
-            };
+            home.stateVersion = "23.05";
             programs.home-manager.enable = true;
-            programs.git = {
-              userName = config.git.username;
-              userEmail = config.git.email;
-            };
           }
           ./modules/bat.nix
           ./modules/browsh.nix
@@ -53,7 +41,7 @@
           ./modules/vscode.nix
           ./modules/yt-dlp.nix
           ./modules/zoxide.nix
-          {
+          ({ pkgs, ... }: {
             home.packages = with pkgs; [
               awscli
               cocoapods
@@ -74,25 +62,17 @@
               wget
               yarn
             ];
-          }
+          })
         ];
       };
 
       homeConfigurations.mongkonchai = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
         modules = [
           {
-            home = {
-              stateVersion = "22.05";
-              homeDirectory = config.home.path;
-              username = config.home.username;
-            };
+            home.stateVersion = "23.05";
             programs.home-manager.enable = true;
-            programs.git = {
-              userName = config.git.username;
-              userEmail = config.git.email;
-            };
           }
           ./modules/bat.nix
           ./modules/fish.nix
@@ -114,7 +94,7 @@
           ./modules/vscode.nix
           ./modules/zoxide.nix
           ./modules/override.nix
-          {
+          ({ pkgs, ... }: {
             home.packages = with pkgs; [
               curl
               fd
@@ -126,7 +106,7 @@
               tree-sitter
               wget
             ];
-          }
+          })
         ];
       };
     };

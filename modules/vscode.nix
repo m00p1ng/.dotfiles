@@ -4,13 +4,17 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs; [
-      vscode-extensions.WakaTime.vscode-wakatime
-      vscode-extensions.eamodio.gitlens
-      vscode-extensions.emmanuelbeziat.vscode-great-icons
-      vscode-extensions.streetsidesoftware.code-spell-checker
-      vscode-extensions.tabnine.tabnine-vscode
-      vscode-extensions.vscodevim.vim
+    extensions = with pkgs.vscode-extensions; [
+      Arjun.swagger-viewer
+      WakaTime.vscode-wakatime
+      eamodio.gitlens
+      emmanuelbeziat.vscode-great-icons
+      streetsidesoftware.code-spell-checker
+      tabnine.tabnine-vscode
+      vscodevim.vim
+
+      # Vscode only
+      # ms-vsliveshare.vsliveshare
     ];
     userSettings = {
       # Editor
