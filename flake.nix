@@ -113,6 +113,7 @@
           ./modules/tmux.nix
           ./modules/vscode.nix
           ./modules/zoxide.nix
+          ./modules/override.nix
           {
             home.packages = with pkgs; [
               curl

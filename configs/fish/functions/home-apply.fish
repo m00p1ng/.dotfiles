@@ -16,6 +16,8 @@ function home-apply -a profile -d 'Home manager wrapper'
     nix flake lock --update-input home-manager
   end
   home-manager switch --flake ~/.dotfiles#$profile
+  # for VSCode
+  # home-manager switch --flake ~/.dotfiles#$profile --impure
 
   gunwip 1> /dev/null
   gignore ./modules/user.nix
