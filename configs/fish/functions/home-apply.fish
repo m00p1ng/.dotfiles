@@ -8,7 +8,7 @@ function home-apply -a profile -d 'Home manager wrapper'
 
   pushd .
   cd ~/.dotfiles
-  gunignore ./modules/user.nix
+  gunignore ./modules/override.nix
   gwip 1> /dev/null
 
   if not test "$_flag_no_update"
@@ -20,7 +20,7 @@ function home-apply -a profile -d 'Home manager wrapper'
   # home-manager switch --flake ~/.dotfiles#$profile --impure
 
   gunwip 1> /dev/null
-  gignore ./modules/user.nix
+  gignore ./modules/override.nix
   popd
 end
 
