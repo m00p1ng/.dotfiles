@@ -34,3 +34,12 @@ $ sudo nix-store --verify --repair --check-contents
 $ fish_add_path ~/.nix-profile/bin
 $ fish_add_path /nix/var/nix/profiles/default/bin
 ```
+## fix touch id on tmux
+```sh
+$ sudo vim /etc/pam.d/sudo
+
+paste
+
+auth       optional       $HOME/.nix-profile/lib/pam/pam_reattach.so
+auth       sufficient     pam_tid.so
+```
