@@ -72,7 +72,7 @@ function get_left_prompt
   set -g __fish_git_prompt_color_cleanstate green
 
   set -g __fish_git_prompt_show_informative_status 1
-  set -g __fish_git_prompt_hide_untrackedfiles 1
+  set -g __fish_git_prompt_showuntrackedfiles 1
   set -g __fish_git_prompt_showupstream informative
   set -g __fish_git_prompt_showstashstate 1
   set -g __fish_git_prompt_char_stateseparator ' '
