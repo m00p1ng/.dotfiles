@@ -54,6 +54,7 @@
               neofetch
               nmap
               nodePackages.pnpm
+              pam-reattach
               rsync
               rustup
               smartmontools
@@ -103,6 +104,7 @@
               httpie
               neofetch
               smartmontools
+              pam-reattach
               tree
               tree-sitter
               wget
