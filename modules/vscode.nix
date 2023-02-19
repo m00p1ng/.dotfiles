@@ -94,6 +94,8 @@
 
       # Tabnine
       "tabnine.experimentalAutoImports" = true;
+
+      "redhat.telemetry.enabled" = false;
     };
   };
 
