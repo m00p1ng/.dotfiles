@@ -59,6 +59,7 @@
               rustup
               smartmontools
               sqlite
+              terraform
               tree
               tree-sitter
               wget
