@@ -45,25 +45,24 @@
           ({ pkgs, ... }: {
             home.packages = with pkgs; [
               awscli
-              cocoapods
+              # cocoapods
               curl
               fd
               gcc
               # hey     # load test
               httpie
               neofetch
-              nmap
+              # nmap
               nodePackages.pnpm
-              pam-reattach
               rsync
-              rustup
+              # rustup
               smartmontools
               sqlite
-              terraform
+              # terraform
               tree
               tree-sitter
               wget
-              yarn
+              # yarn
             ];
           })
         ];
@@ -105,7 +104,6 @@
               httpie
               neofetch
               smartmontools
-              pam-reattach
               tree
               tree-sitter
               wget
