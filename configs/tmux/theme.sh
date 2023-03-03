@@ -9,7 +9,7 @@ TX="#CCCCCC"
 WN="#E8AB53"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ZOOM_ICON=""
+ZOOM_ICON="󰪥"
 BELL_ICON=""
 ACTIVITY_ICON="ﱣ"
 SEP=' '
@@ -79,9 +79,18 @@ prefix_widget () {
   hide_on_width "$PADDING" 100
 }
 
+cpu_widget () {
+  icon="󰍛"
+  value="#{cpu_percentage}"
+  output=$(make_status "$icon" "$SEP" "$value")
+  hide_on_width "$output$PADDING" 140
+}
+
 set_right_status_theme () {
   widget=(
     "$(prefix_widget)"
+    "$(cpu_widget)"
+    "$(ram_widget)"
     "$(exchange_widget)"
     "$(keyboard_widget)"
     "$(wifi_widget)"

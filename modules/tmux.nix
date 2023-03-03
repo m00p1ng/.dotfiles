@@ -35,6 +35,9 @@ let
         set -g @prefix_highlight_sync_mode_attr 'fg=##D16969,bold,bg=##111111'
       '';
     }
+    {
+      plugin = cpu;
+    }
   ];
 
   pluginName = p: if types.package.check p then p.pname else p.plugin.pname;
