@@ -36,6 +36,8 @@
     interactiveShellInit = ''
       bind \ep history-token-search-backward
       bind \en history-token-search-forward
+
+      abbr -a !! --position anywhere --function last_history_item
     '';
   };
 
