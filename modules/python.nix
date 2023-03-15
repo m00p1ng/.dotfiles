@@ -6,8 +6,8 @@ let
     ps.pip
     # ps.numpy
     # ps.pandas
-    ps.black
     # ps.debugpy
+    ps.pytest
   ]);
 in
 {
