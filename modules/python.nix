@@ -7,6 +7,7 @@ let
     # ps.numpy
     # ps.pandas
     # ps.debugpy
+    ps.black
     ps.pytest
   ]);
 in

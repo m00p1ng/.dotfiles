@@ -4,7 +4,7 @@ main () {
   if [ "$result" = "" ]; then
     echo 'Offline'
   else
-    echo $result | cut -d: -f2 | awk '{gsub(/^ /, ""); print}'
+    echo "$result" | cut -d: -f2 | awk '{gsub(/^ /, ""); print}'
   fi
 }
 

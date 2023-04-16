@@ -16,7 +16,7 @@ SEP=' '
 PADDING='  '
 
 hide_on_width () {
-  value=$(echo "$1" | sed "s/,/#,/g")
+  value="${1//,/#,}"
   width=$2
   template="#{e|>:#{client_width},$width}"
   echo "#{?$template,$value,}"
