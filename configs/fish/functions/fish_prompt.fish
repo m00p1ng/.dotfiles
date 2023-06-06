@@ -96,7 +96,7 @@ function get_left_prompt
 
   set -lx __git_output (fish_git_prompt)
   if [ (count $__git_output) -eq 1 ]
-    set -lx __git_wip (git log -n 1 | grep "\-\-wip\-\-")
+    set -lx __git_wip (git log -n 1 | grep -e "--wip--")
     if [ (count $__git_wip) -eq 1 ]
       printf "%s WIP!!!" (set_color FF6D67)
     end
