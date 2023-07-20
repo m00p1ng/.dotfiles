@@ -54,6 +54,7 @@
               neofetch
               # nmap
               nodePackages.pnpm
+              # pstree
               rsync
               # rustup
               smartmontools
@@ -63,6 +64,7 @@
               tree-sitter
               wget
               # yarn
+              # yq-go
             ];
           })
         ];
@@ -104,9 +106,11 @@
               httpie
               neofetch
               smartmontools
+              pstree
               tree
               tree-sitter
               wget
+              yq-go
             ];
           })
         ];
