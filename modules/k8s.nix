@@ -18,4 +18,10 @@
     source = ../configs/k9s;
     recursive = true;
   };
+
+  programs.fish = {
+    shellAliases = {
+      k = "kubectl";
+    };
+  };
 }
