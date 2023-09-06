@@ -33,6 +33,7 @@
           ./modules/kitty.nix
           ./modules/less.nix
           ./modules/neovim.nix
+          ./modules/pnpm.nix
           ./modules/python.nix
           ./modules/ripgrep.nix
           ./modules/ruby.nix
@@ -53,7 +54,6 @@
               httpie
               neofetch
               # nmap
-              nodePackages.pnpm
               # pstree
               rsync
               # rustup
