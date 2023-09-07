@@ -19,6 +19,10 @@
     recursive = true;
   };
 
+  xdg.configFile.stern = {
+    source = ../configs/stern;
+    recursive = true;
+
   programs.fish = {
     shellAliases = {
       k = "kubectl";

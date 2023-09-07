@@ -64,7 +64,6 @@
               tree-sitter
               wget
               # yarn
-              # yq-go
             ];
           })
         ];
@@ -85,7 +84,6 @@
           ./modules/git.nix
           ./modules/gh.nix
           ./modules/gnu.nix
-          ./modules/go.nix
           ./modules/htop.nix
           ./modules/jq.nix
           ./modules/k8s.nix
@@ -110,7 +108,6 @@
               tree
               tree-sitter
               wget
-              yq-go
             ];
           })
         ];
