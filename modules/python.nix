@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  pythonEnv = pkgs.python312Full.withPackages (ps: [
+  pythonEnv = pkgs.python3Full.withPackages (ps: [
     ps.ipython
     ps.pip
     # ps.numpy
