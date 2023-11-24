@@ -11,7 +11,8 @@
       emmanuelbeziat.vscode-great-icons
       streetsidesoftware.code-spell-checker
       tabnine.tabnine-vscode
-      vscodevim.vim
+      # vscodevim.vim
+      asvetliakov.vscode-neovim
 
       # Vscode only
       # ms-vsliveshare.vsliveshare
@@ -62,35 +63,44 @@
       "git.mergeEditor" = false;
       "git.autofetch" = true;
       "git.confirmSync" = false;
+      # Git lens
       "gitlens.codeLens.enabled" = false;
       "gitlens.views.searchAndCompare.files.layout" = "list";
 
+      # Window
+      "window.commandCenter" = false;
+
       # Vim
-      "vim.hlsearch" = true;
-      "vim.normalModeKeyBindingsNonRecursive" = [
-        {
-          "before" = ["<leader>" "e"];
-          "after" = [];
-          "commands" = [
-            {
-              "command" = "editor.action.commentLine";
-              "when" = "editorTextFocus && !editorReadonly";
-            }
-          ];
-        }
-      ];
-      "vim.visualModeKeyBindingsNonRecursive" = [
-        {
-          "before" = ["<leader>" "e"];
-          "after" = [];
-          "commands" = [
-            {
-              "command" = "editor.action.commentLine";
-              "when" = "editorTextFocus && !editorReadonly";
-            }
-          ];
-        }
-      ];
+      # "vim.hlsearch" = true;
+      # "vim.normalModeKeyBindingsNonRecursive" = [
+      #   {
+      #     "before" = ["<leader>" "e"];
+      #     "after" = [];
+      #     "commands" = [
+      #       {
+      #         "command" = "editor.action.commentLine";
+      #         "when" = "editorTextFocus && !editorReadonly";
+      #       }
+      #     ];
+      #   }
+      # ];
+      # "vim.visualModeKeyBindingsNonRecursive" = [
+      #   {
+      #     "before" = ["<leader>" "e"];
+      #     "after" = [];
+      #     "commands" = [
+      #       {
+      #         "command" = "editor.action.commentLine";
+      #         "when" = "editorTextFocus && !editorReadonly";
+      #       }
+      #     ];
+      #   }
+      # ];
+
+      # Neovim
+      "extensions.experimental.affinity" = {
+          "asvetliakov.vscode-neovim" = 1;
+      };
 
       # Tabnine
       "tabnine.experimentalAutoImports" = true;
