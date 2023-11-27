@@ -157,23 +157,22 @@
       }
       {
          key = "ctrl+h";
-         command = "workbench.explorer.fileView.focus";
-         when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert' && activeEditorGroupIndex == 1 && explorerViewletVisible";
+         command = "workbench.action.focusSideBar";
+         when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert' && activeEditorGroupIndex == 1 && sideBarVisible";
       }
       {
         key = "ctrl+l";
         command = "-vscode-neovim.send";
       }
       {
-         key = "ctrl+l";
-         command = "workbench.action.focusRightGroup";
-         when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert'";
+        key = "ctrl+l";
+        command = "workbench.action.focusRightGroup";
+        when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert'";
       }
       {
-         key = "ctrl+l";
-         command = "workbench.action.focusFirstEditorGroup";
-         when = "filesExplorerFocus";
-         args = "<C-l>";
+        key = "ctrl+l";
+        command = "workbench.action.focusFirstEditorGroup";
+        when = "sideBarFocus";
       }
     ];
   };
