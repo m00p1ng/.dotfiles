@@ -145,6 +145,36 @@
         key = "cmd+9";
         command = "workbench.action.openEditorAtIndex9";
       }
+      # https://stackoverflow.com/questions/52093417/switch-cursor-from-editor-to-file-explorer-and-vice-versa-in-vs-code
+      {
+        key = "ctrl+h";
+        command = "-vscode-neovim.send";
+      }
+      {
+        key = "ctrl+h";
+        command = "workbench.action.focusLeftGroup";
+        when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert'";
+      }
+      {
+         key = "ctrl+h";
+         command = "workbench.explorer.fileView.focus";
+         when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert' && activeEditorGroupIndex == 1 && explorerViewletVisible";
+      }
+      {
+        key = "ctrl+l";
+        command = "-vscode-neovim.send";
+      }
+      {
+         key = "ctrl+l";
+         command = "workbench.action.focusRightGroup";
+         when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert'";
+      }
+      {
+         key = "ctrl+l";
+         command = "workbench.action.focusFirstEditorGroup";
+         when = "filesExplorerFocus";
+         args = "<C-l>";
+      }
     ];
   };
 
