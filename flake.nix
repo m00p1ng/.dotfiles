@@ -42,7 +42,7 @@
           ./modules/vscode.nix
           ./modules/yt-dlp.nix
           ./modules/zoxide.nix
-          ./modules/override.nix
+          ./overridden.nix
           ({ pkgs, ... }: {
             home.packages = with pkgs; [
               awscli
@@ -95,7 +95,7 @@
           ./modules/tmux.nix
           ./modules/vscode.nix
           ./modules/zoxide.nix
-          ./modules/override.nix
+          ./overridden.nix
           ({ pkgs, ... }: {
             home.packages = with pkgs; [
               curl
