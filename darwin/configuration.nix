@@ -58,7 +58,7 @@
   system.defaults.trackpad.TrackpadRightClick = true;
   system.defaults.trackpad.Clicking = true;
 
-  system.defaults.universalaccess.closeViewScrollWheelToggle = true;
+  # system.defaults.universalaccess.closeViewScrollWheelToggle = true;
 
   system.defaults.loginwindow.GuestEnabled = false;
 

@@ -6,11 +6,13 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
 
   pushd .
   cd ~/.dotfiles
+  gunignore ./overridden.nix
   gwip 1> /dev/null
 
-  /run/current-system/sw/bin/darwin-rebuild switch --flake ~/.dotfiles/darwin#$profile
+  /run/current-system/sw/bin/darwin-rebuild switch --flake ~/.dotfiles#$profile
 
   gunwip 1> /dev/null
+  gignore ./overridden.nix
   popd
 end
 

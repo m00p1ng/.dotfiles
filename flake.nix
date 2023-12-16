@@ -93,47 +93,65 @@
         ];
       };
 
-      homeConfigurations.mongkonchai = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      darwinConfigurations.mongkonchai = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
 
         modules = [
+          # Main `nix-darwin` config
+          ./darwin/configuration.nix
           {
-            home.stateVersion = "24.05";
-            programs.home-manager.enable = true;
+            users.users.mongkonchai = {
+              name = "mongkonchai";
+              home = "/Users/mongkonchai";
+            };
           }
-          ./modules/bat.nix
-          ./modules/fish.nix
-          ./modules/fnm.nix
-          ./modules/fzf.nix
-          ./modules/git.nix
-          ./modules/gh.nix
-          ./modules/gnu.nix
-          ./modules/htop.nix
-          ./modules/jq.nix
-          ./modules/k8s.nix
-          ./modules/kitty.nix
-          ./modules/less.nix
-          ./modules/neovim.nix
-          ./modules/ripgrep.nix
-          ./modules/ssh.nix
-          ./modules/tmux.nix
-          ./modules/vscode.nix
-          ./modules/zoxide.nix
-          ./overridden.nix
-          ({ pkgs, ... }: {
-            home.packages = with pkgs; [
-              curl
-              fd
-              gcc
-              httpie
-              neofetch
-              smartmontools
-              pstree
-              tree
-              tree-sitter
-              wget
-            ];
-          })
+          # `home-manager` module
+          home-manager.darwinModules.home-manager
+          {
+            # `home-manager` config
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.mongkonchai = {
+              imports = [
+                {
+                  home.stateVersion = "24.05";
+                }
+                ./modules/bat.nix
+                ./modules/fish.nix
+                ./modules/fnm.nix
+                ./modules/fzf.nix
+                ./modules/git.nix
+                ./modules/gh.nix
+                ./modules/gnu.nix
+                ./modules/htop.nix
+                ./modules/jq.nix
+                ./modules/k8s.nix
+                ./modules/kitty.nix
+                ./modules/less.nix
+                ./modules/neovim.nix
+                ./modules/ripgrep.nix
+                ./modules/ssh.nix
+                ./modules/tmux.nix
+                ./modules/vscode.nix
+                ./modules/zoxide.nix
+                ./overridden.nix
+                ({ pkgs, ... }: {
+                  home.packages = with pkgs; [
+                    curl
+                    fd
+                    gcc
+                    httpie
+                    neofetch
+                    smartmontools
+                    pstree
+                    tree
+                    tree-sitter
+                    wget
+                  ];
+                })
+              ];
+            };
+          }
         ];
       };
     };
