@@ -1,72 +1,95 @@
 {
+  # ref: https://gist.github.com/jmatsushita/5c50ef14b4b96cb24ae5268dab613050
   description = "Home Manager configuration of Mooping";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, darwin, ... }:
     {
-      homeConfigurations.mooping = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      darwinConfigurations.m00p1ng = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
 
         modules = [
+          # Main `nix-darwin` config
+          ./darwin/configuration.nix
           {
-            home.stateVersion = "24.05";
-            programs.home-manager.enable = true;
+            users.users.m00p1ng = {
+              name = "m00p1ng";
+              home = "/Users/m00p1ng";
+            };
           }
-          ./modules/bat.nix
-          # ./modules/browsh.nix
-          ./modules/fish.nix
-          ./modules/fnm.nix
-          ./modules/fzf.nix
-          ./modules/gh.nix
-          ./modules/git.nix
-          ./modules/gnu.nix
-          ./modules/go.nix
-          ./modules/htop.nix
-          ./modules/jq.nix
-          ./modules/k8s.nix
-          ./modules/kitty.nix
-          ./modules/less.nix
-          ./modules/neovim.nix
-          ./modules/pnpm.nix
-          ./modules/python.nix
-          ./modules/ripgrep.nix
-          ./modules/ruby.nix
-          ./modules/ssh.nix
-          ./modules/tmux.nix
-          ./modules/vscode.nix
-          ./modules/yt-dlp.nix
-          ./modules/zoxide.nix
-          ./overridden.nix
-          ({ pkgs, ... }: {
+          # `home-manager` module
+          home-manager.darwinModules.home-manager
+          {
             nixpkgs.config.allowUnfree = true;
-            home.packages = with pkgs; [
-              awscli
-              # cocoapods
-              curl
-              fd
-              gcc
-              # hey     # load test
-              httpie
-              neofetch
-              # nmap
-              # pstree
-              rsync
-              # rustup
-              smartmontools
-              sqlite
-              terraform
-              tree
-              tree-sitter
-              wget
-              # yarn
-            ];
-          })
+            # `home-manager` config
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.m00p1ng = {
+              imports = [
+                {
+                  home.stateVersion = "24.05";
+                }
+                ./modules/bat.nix
+                # ./modules/browsh.nix
+                ./modules/fish.nix
+                ./modules/fnm.nix
+                ./modules/fzf.nix
+                ./modules/gh.nix
+                ./modules/git.nix
+                ./modules/gnu.nix
+                ./modules/go.nix
+                ./modules/htop.nix
+                ./modules/jq.nix
+                ./modules/k8s.nix
+                ./modules/kitty.nix
+                ./modules/less.nix
+                ./modules/neovim.nix
+                ./modules/pnpm.nix
+                ./modules/python.nix
+                ./modules/ripgrep.nix
+                ./modules/ruby.nix
+                ./modules/ssh.nix
+                ./modules/tmux.nix
+                ./modules/vscode.nix
+                ./modules/yt-dlp.nix
+                ./modules/zoxide.nix
+                ./overridden.nix
+                ({ pkgs, ... }: {
+                  home.packages = with pkgs; [
+                    awscli
+                    # cocoapods
+                    curl
+                    fd
+                    gcc
+                    # hey     # load test
+                    httpie
+                    neofetch
+                    # nmap
+                    # pstree
+                    rsync
+                    # rustup
+                    smartmontools
+                    sqlite
+                    terraform
+                    tree
+                    tree-sitter
+                    wget
+                    # yarn
+                  ];
+                })
+              ];
+            };
+          }
         ];
       };
 
