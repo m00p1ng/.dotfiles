@@ -52,7 +52,8 @@
       "workbench.editor.enablePreview" = true;
       "workbench.sideBar.location" = "left";
       "workbench.iconTheme" = "vscode-great-icons";
-      "workbench.colorTheme" = "Default Dark+";
+      # "workbench.colorTheme" = "Default Dark+";
+      "workbench.colorTheme" = "Default Dark Modern";
 
       # Explorer
       "explorer.openEditors.visible" = 0;

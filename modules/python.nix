@@ -4,6 +4,7 @@ let
   pythonEnv = pkgs.python311.withPackages (ps: [
     ps.ipython
     ps.pip
+    ps.pynvim
     # ps.numpy
     # ps.pandas
     # ps.debugpy
