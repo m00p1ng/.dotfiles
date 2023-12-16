@@ -4,12 +4,18 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
     return 1
   end
 
+  argparse 'no-update' -- $argv
+
   pushd .
   cd ~/.dotfiles
   gunignore ./overridden.nix
   gwip 1> /dev/null
 
-  /run/current-system/sw/bin/darwin-rebuild switch --flake ~/.dotfiles#$profile
+   if not test "$_flag_no_update"
+    nix flake update
+  end
+
+  darwin-rebuild switch --flake ~/.dotfiles#$profile
 
   gunwip 1> /dev/null
   gignore ./overridden.nix

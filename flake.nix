@@ -34,12 +34,10 @@
             nixpkgs.config.allowUnfree = true;
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.m00p1ng = {
+            home-manager.useUserPackages = false;
+            home-manager.users.m00p1ng = { pkgs, ... }: {
+              home.stateVersion = "24.05";
               imports = [
-                {
-                  home.stateVersion = "24.05";
-                }
                 ./modules/bat.nix
                 # ./modules/browsh.nix
                 ./modules/fish.nix
@@ -65,29 +63,28 @@
                 ./modules/yt-dlp.nix
                 ./modules/zoxide.nix
                 ./overridden.nix
-                ({ pkgs, ... }: {
-                  home.packages = with pkgs; [
-                    awscli
-                    # cocoapods
-                    curl
-                    fd
-                    gcc
-                    # hey     # load test
-                    httpie
-                    neofetch
-                    # nmap
-                    # pstree
-                    rsync
-                    # rustup
-                    smartmontools
-                    sqlite
-                    terraform
-                    tree
-                    tree-sitter
-                    wget
-                    # yarn
-                  ];
-                })
+              ];
+
+              home.packages = with pkgs; [
+                awscli
+                # cocoapods
+                curl
+                fd
+                gcc
+                # hey     # load test
+                httpie
+                neofetch
+                # nmap
+                # pstree
+                rsync
+                # rustup
+                smartmontools
+                sqlite
+                # terraform
+                tree
+                tree-sitter
+                wget
+                # yarn
               ];
             };
           }
@@ -111,12 +108,10 @@
           {
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mongkonchai = {
+            home-manager.useUserPackages = false;
+            home-manager.users.mongkonchai = { pkgs, ... }: {
+              home.stateVersion = "24.05";
               imports = [
-                {
-                  home.stateVersion = "24.05";
-                }
                 ./modules/bat.nix
                 ./modules/fish.nix
                 ./modules/fnm.nix
@@ -136,20 +131,19 @@
                 ./modules/vscode.nix
                 ./modules/zoxide.nix
                 ./overridden.nix
-                ({ pkgs, ... }: {
-                  home.packages = with pkgs; [
-                    curl
-                    fd
-                    gcc
-                    httpie
-                    neofetch
-                    smartmontools
-                    pstree
-                    tree
-                    tree-sitter
-                    wget
-                  ];
-                })
+              ];
+
+              home.packages = with pkgs; [
+                curl
+                fd
+                gcc
+                httpie
+                neofetch
+                smartmontools
+                pstree
+                tree
+                tree-sitter
+                wget
               ];
             };
           }
