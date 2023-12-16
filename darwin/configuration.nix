@@ -40,8 +40,11 @@
     };
   };
 
-  # TouchId
-  security.pam.enableSudoTouchIdAuth = true;
+  # allow touchid to auth sudo -- this comes from pam.nix, which needs to be loaded before this
+  # it's now standard to nix-darwin, but without the special such needed for tmux, so we
+  # will continue using our custom script
+  security.pam.enableCustomSudoTouchIdAuth = true;
+  # security.pam.enableSudoTouchIdAuth = true;
 
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;

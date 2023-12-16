@@ -21,6 +21,7 @@
         modules = [
           # Main `nix-darwin` config
           ./darwin/configuration.nix
+          ./darwin/pam.nix
           {
             users.users.m00p1ng = {
               name = "m00p1ng";

@@ -42,10 +42,6 @@ let
 
   pluginName = p: if types.package.check p then p.pname else p.plugin.pname;
 in {
-  home.packages = with pkgs; [
-    pam-reattach
-  ];
-
   programs.tmux = {
     enable = true;
     baseIndex = 1;
