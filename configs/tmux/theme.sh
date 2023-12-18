@@ -10,8 +10,8 @@ WN="#E8AB53"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ZOOM_ICON="󰪥"
-BELL_ICON=""
-ACTIVITY_ICON="ﱣ"
+BELL_ICON="󱅫"
+ACTIVITY_ICON=""
 SEP=' '
 PADDING='  '
 
@@ -61,14 +61,14 @@ wifi_widget () {
 }
 
 keyboard_widget () {
-  icon=""
+  icon="󰌌"
   value="#($CURRENT_DIR/scripts/keyboard.sh)"
   output=$(make_status "$icon" "$SEP" "$value")
   hide_on_width "$output$PADDING" 140
 }
 
 exchange_widget () {
-  icon=""
+  icon=""
   value="#($CURRENT_DIR/scripts/exchange.sh)"
   output=$(make_status "$icon" "$SEP" "$value")
   hide_on_width "$output$PADDING" 140
