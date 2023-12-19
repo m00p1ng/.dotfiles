@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
+with lib;
 {
-  programs.vscode = {
+  config.programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
@@ -150,7 +151,7 @@
     ];
   };
 
-  programs.fish = {
+  config.programs.fish = mkIf (config.programs.vscode.package == pkgs.vscodium) {
     shellAliases = {
       code = "codium";
     };

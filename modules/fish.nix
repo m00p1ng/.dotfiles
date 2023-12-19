@@ -48,13 +48,18 @@
       gco = "git checkout";
       "-" = "cd -"; # abbr -a -- - 'cd -'
     };
+    shellInit = ''
+      fish_add_path ~/.nix-profile/bin
+      fish_add_path /nix/var/nix/profiles/default/bin
+      fish_add_path /run/current-system/sw/bin
+    '';
     interactiveShellInit = ''
       bind \ep history-token-search-backward
       bind \en history-token-search-forward
 
-      fish_add_path ~/.nix-profile/bin
-      fish_add_path /nix/var/nix/profiles/default/bin
-      fish_add_path /run/current-system/sw/bin
+      for f in ${config.xdg.configHome}/fish/functions/macos/*.fish
+        source $f
+      end
     '';
     plugins = with pkgs; [
       # {
@@ -73,10 +78,4 @@
     source = ../configs/fish;
     recursive = true;
   };
-
-  xdg.configFile."fish/conf.d/macos.fish".text = ''
-    for f in ${config.xdg.configHome}/fish/functions/macos/*.fish
-      source $f
-    end
-  '';
 }
