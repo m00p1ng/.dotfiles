@@ -97,6 +97,7 @@
         modules = [
           # Main `nix-darwin` config
           ./darwin/configuration.nix
+          ./darwin/pam.nix
           {
             users.users.mongkonchai = {
               name = "mongkonchai";
