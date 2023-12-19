@@ -11,7 +11,7 @@ WN="#E8AB53"
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ZOOM_ICON="󰪥"
 BELL_ICON="󱅫"
-ACTIVITY_ICON=""
+ACTIVITY_ICON="●"
 SEP=' '
 PADDING='  '
 
