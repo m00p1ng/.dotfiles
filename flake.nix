@@ -62,7 +62,7 @@
                 ./modules/vscode.nix
                 ./modules/yt-dlp.nix
                 ./modules/zoxide.nix
-                ./overridden.nix
+                ./overriding.nix
               ];
 
               home.packages = with pkgs; [
@@ -126,7 +126,7 @@
                 ./modules/tmux.nix
                 ./modules/vscode.nix
                 ./modules/zoxide.nix
-                ./overridden.nix
+                ./overriding.nix
               ];
 
               home.packages = with pkgs; [

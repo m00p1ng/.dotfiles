@@ -8,7 +8,7 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
 
   pushd .
   cd ~/.dotfiles
-  gunignore ./overridden.nix
+  gunignore ./overriding.nix
   gwip 1> /dev/null
 
    if test "$_flag_update"
@@ -18,7 +18,7 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
   darwin-rebuild switch --flake ~/.dotfiles#$profile
 
   gunwip 1> /dev/null
-  gignore ./overridden.nix
+  gignore ./overriding.nix
   popd
 end
 
