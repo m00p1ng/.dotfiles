@@ -66,25 +66,19 @@
               ];
 
               home.packages = with pkgs; [
-                awscli
-                # cocoapods
                 curl
                 fd
                 gcc
                 # hey     # load test
                 httpie
                 neofetch
-                # nmap
-                # pstree
                 rsync
                 # rustup
                 smartmontools
                 sqlite
-                # terraform
                 tree
                 tree-sitter
                 wget
-                # yarn
               ];
             };
           }

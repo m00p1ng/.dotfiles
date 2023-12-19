@@ -4,14 +4,14 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
     return 1
   end
 
-  argparse 'no-update' -- $argv
+  argparse 'update' -- $argv
 
   pushd .
   cd ~/.dotfiles
   gunignore ./overridden.nix
   gwip 1> /dev/null
 
-   if not test "$_flag_no_update"
+   if test "$_flag_update"
     nix flake update
   end
 

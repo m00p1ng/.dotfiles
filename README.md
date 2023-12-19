@@ -11,3 +11,6 @@ $ nix-channel --update
 $ nix-collect-garbage -d
 $ sudo nix-store --verify --repair --check-contents
 ```
+
+## References
+- https://nixos.wiki/wiki/Flakes

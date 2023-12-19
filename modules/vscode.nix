@@ -13,9 +13,6 @@ with lib;
       streetsidesoftware.code-spell-checker
       tabnine.tabnine-vscode
       asvetliakov.vscode-neovim
-
-      # Vscode only
-      # ms-vsliveshare.vsliveshare
     ];
     userSettings = {
       # Editor
