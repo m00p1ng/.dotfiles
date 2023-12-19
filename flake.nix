@@ -107,6 +107,7 @@
           # `home-manager` module
           home-manager.darwinModules.home-manager
           {
+            nixpkgs.config.allowUnfree = true;
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = false;
