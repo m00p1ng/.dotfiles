@@ -13,20 +13,41 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, darwin, ... }: let
-    mkDarwin = username: darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-
-      modules = [
-        home-manager.darwinModules.home-manager
-        ./modules/darwin
-      ];
-      specialArgs = { inherit username; };
-    };
-  in {
+  outputs = { nixpkgs, home-manager, darwin, ... }: {
     darwinConfigurations = {
-      m00p1ng = mkDarwin "m00p1ng";
-      mongkonchai = mkDarwin "mongkonchai";
+      m00p1ng = let
+        username = "m00p1ng";
+      in darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+
+        modules = [
+          home-manager.darwinModules.home-manager
+          ./modules/darwin
+          {
+            home-manager = {
+              users.${username} = import ./hosts/m00p1ng/home.nix;
+            };
+          }
+        ];
+        specialArgs = { inherit username; };
+      };
+
+      mongkonchai = let
+        username = "mongkonchai";
+      in darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+
+        modules = [
+          home-manager.darwinModules.home-manager
+          ./modules/darwin
+          {
+            home-manager = {
+              users.${username} = import ./hosts/mongkonchai/home.nix;
+            };
+          }
+        ];
+        specialArgs = { inherit username; };
+      };
     };
   };
 }

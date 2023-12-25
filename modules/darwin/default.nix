@@ -1,5 +1,3 @@
-{ pkgs, username, ... }:
-
 {
   imports = [
     ../common.nix
@@ -14,7 +12,5 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = false;
-    users.${username} = import ../../hosts/${username}/home.nix;
-    extraSpecialArgs = { inherit pkgs; };
   };
 }
