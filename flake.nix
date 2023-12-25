@@ -13,51 +13,20 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, darwin, ... }: {
-    darwinConfigurations.m00p1ng = darwin.lib.darwinSystem {
+  outputs = { nixpkgs, home-manager, darwin, ... }: let
+    mkDarwin = username: darwin.lib.darwinSystem {
       system = "aarch64-darwin";
 
       modules = [
-        # Main `nix-darwin` config
-        ./modules/darwin
-        {
-          users.users.m00p1ng = {
-            home = "/Users/m00p1ng";
-          };
-        }
-        # `home-manager` module
         home-manager.darwinModules.home-manager
-        {
-          nixpkgs.config.allowUnfree = true;
-          # `home-manager` config
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = false;
-          home-manager.users.m00p1ng = import ./hosts/m00p1ng/home.nix;
-        }
+        ./modules/darwin
       ];
+      specialArgs = { inherit nixpkgs home-manager username; };
     };
-
-    darwinConfigurations.mongkonchai = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-
-      modules = [
-        # Main `nix-darwin` config
-        ./modules/darwin
-        {
-          users.users.mongkonchai = {
-            home = "/Users/mongkonchai";
-          };
-        }
-        # `home-manager` module
-        home-manager.darwinModules.home-manager
-        {
-          nixpkgs.config.allowUnfree = true;
-          # `home-manager` config
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = false;
-          home-manager.users.mongkonchai = import ./hosts/mongkonchai/home.nix;
-        }
-      ];
+  in {
+    darwinConfigurations = {
+      m00p1ng = mkDarwin "m00p1ng";
+      mongkonchai = mkDarwin "mongkonchai";
     };
   };
 }

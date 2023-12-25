@@ -14,7 +14,6 @@ with lib;
     # ../../modules/home-manager/python.nix
     # ../../modules/home-manager/ripgrep.nix
     # ../../modules/home-manager/ruby.nix
-    # ../../modules/home-manager/ssh.nix
     # ../../modules/home-manager/tmux.nix
     # ../../modules/home-manager/vscode.nix
     ../../modules/home-manager
