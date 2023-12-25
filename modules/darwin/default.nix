@@ -1,3 +1,5 @@
+{ pkgs, username, ... }:
+
 {
   imports = [
     ../common.nix
@@ -5,4 +7,14 @@
     ./core.nix
     ./preferences.nix
   ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  # `home-manager` config
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = false;
+    users.${username} = import ../../hosts/${username}/home.nix;
+    extraSpecialArgs = { inherit pkgs; };
+  };
 }

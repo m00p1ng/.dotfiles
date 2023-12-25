@@ -21,7 +21,7 @@
         home-manager.darwinModules.home-manager
         ./modules/darwin
       ];
-      specialArgs = { inherit nixpkgs home-manager username; };
+      specialArgs = { inherit username; };
     };
   in {
     darwinConfigurations = {

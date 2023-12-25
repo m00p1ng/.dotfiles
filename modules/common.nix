@@ -1,4 +1,4 @@
-{ pkgs, lib, username, nixpkgs, ... }:
+{ pkgs, lib, username, ... }:
 
 with lib;
 {
@@ -19,15 +19,5 @@ with lib;
       if pkgs.stdenvNoCC.isDarwin
       then "/Users/${username}"
       else "/home/${username}";
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  # `home-manager` config
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = false;
-    users.${username} = import ../hosts/${username}/home.nix;
-    extraSpecialArgs = { inherit pkgs; };
   };
 }
