@@ -55,7 +55,7 @@
           # `home-manager` config
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = false;
-          home-manager.users.m00p1ng = import ./hosts/mongkonchai/home.nix;
+          home-manager.users.mongkonchai = import ./hosts/mongkonchai/home.nix;
         }
       ];
     };
