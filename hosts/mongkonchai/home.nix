@@ -10,7 +10,6 @@ with lib;
     # ../../modules/home-manager/kitty.nix
     # ../../modules/home-manager/less.nix
     # ../../modules/home-manager/neovim.nix
-    # ../../modules/home-manager/tmux.nix
     ../../modules/home-manager
     ../../overriding.nix
   ];
@@ -45,6 +44,10 @@ with lib;
     };
 
     ssh = {
+      enable = true;
+    };
+
+    tmux = {
       enable = true;
     };
 

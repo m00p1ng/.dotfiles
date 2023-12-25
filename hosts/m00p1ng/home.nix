@@ -12,10 +12,7 @@ with lib;
     # ../../modules/home-manager/neovim.nix
     # ../../modules/home-manager/pnpm.nix
     # ../../modules/home-manager/python.nix
-    # ../../modules/home-manager/ripgrep.nix
     # ../../modules/home-manager/ruby.nix
-    # ../../modules/home-manager/tmux.nix
-    # ../../modules/home-manager/vscode.nix
     ../../modules/home-manager
     ../../overriding.nix
   ];
@@ -58,6 +55,10 @@ with lib;
     };
 
     ssh = {
+      enable = true;
+    };
+
+    tmux = {
       enable = true;
     };
 
