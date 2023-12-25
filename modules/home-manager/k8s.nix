@@ -12,12 +12,12 @@
   };
 
   xdg.configFile.k9s = {
-    source = ../configs/k9s;
+    source = ./configs/k9s;
     recursive = true;
   };
 
   xdg.configFile.stern = {
-    source = ../configs/stern;
+    source = ./configs/stern;
     recursive = true;
   };
 

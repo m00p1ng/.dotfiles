@@ -6,7 +6,7 @@
   };
 
   xdg.configFile.kitty = {
-    source = ../configs/kitty;
+    source = ./configs/kitty;
     recursive = true;
   };
 }

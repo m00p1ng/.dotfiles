@@ -157,7 +157,7 @@ in {
   };
 
   xdg.configFile."tmux" = {
-    source = ../configs/tmux;
+    source = ./configs/tmux;
     recursive = true;
   };
 }
