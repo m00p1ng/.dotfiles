@@ -20,8 +20,7 @@
 
         modules = [
           # Main `nix-darwin` config
-          ./darwin/configuration.nix
-          ./darwin/pam.nix
+          ./modules/darwin
           {
             users.users.m00p1ng = {
               name = "m00p1ng";
@@ -90,8 +89,7 @@
 
         modules = [
           # Main `nix-darwin` config
-          ./darwin/configuration.nix
-          ./darwin/pam.nix
+          ./modules/darwin
           {
             users.users.mongkonchai = {
               name = "mongkonchai";
