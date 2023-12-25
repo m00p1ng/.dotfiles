@@ -71,7 +71,6 @@ in
           };
         };
         delta = {
-          enable = true;
           options = {
             features = "line-numbers file-decorators";
             inspect-raw-lines = false;

@@ -36,6 +36,9 @@ with lib;
 
     git = {
       enable = true;
+      delta = {
+        enable = true;
+      };
     };
 
     go = {
