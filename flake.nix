@@ -1,5 +1,5 @@
+# ref: https://gist.github.com/jmatsushita/5c50ef14b4b96cb24ae5268dab613050
 {
-  # ref: https://gist.github.com/jmatsushita/5c50ef14b4b96cb24ae5268dab613050
   description = "Home Manager configuration of Mooping";
 
   inputs = {
