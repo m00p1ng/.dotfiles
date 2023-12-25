@@ -1,7 +1,5 @@
 {
   programs.fzf = {
-    enable = true;
-
     defaultOptions = [
       "--reverse"
       "--inline-info"

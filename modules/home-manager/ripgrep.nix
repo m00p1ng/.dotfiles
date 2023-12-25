@@ -1,6 +1,5 @@
 {
   programs.ripgrep = {
-    enable = true;
     arguments = [
       "--type-add=web:*.{html,css,scss,sass,vue,js,jsx,ts,tsx}*"
 

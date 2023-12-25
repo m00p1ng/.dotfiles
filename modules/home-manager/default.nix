@@ -1,0 +1,24 @@
+{
+  imports = [
+    ./bat.nix
+    ./browsh.nix
+    ./fish.nix
+    ./fnm.nix
+    ./fzf.nix
+    ./gh.nix
+    ./git.nix
+    ./gnu.nix
+    ./go.nix
+    ./k8s.nix
+    ./kitty.nix
+    ./less.nix
+    ./neovim.nix
+    ./pnpm.nix
+    ./python.nix
+    ./ripgrep.nix
+    ./ruby.nix
+    ./ssh.nix
+    ./tmux.nix
+    ./vscode.nix
+  ];
+}
