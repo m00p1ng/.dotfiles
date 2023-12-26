@@ -8,7 +8,6 @@ in {
     programs.fish = {
       shellAliases = {
         "..." = "cd ../..";
-        vim = "nvim";
         mv = "mv -i";
 
         s = "kitty +kitten ssh";

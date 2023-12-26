@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,5 +7,11 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+  };
+
+  programs.fish = {
+    shellAliases = {
+      vim = "nvim";
+    };
   };
 }
