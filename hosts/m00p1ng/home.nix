@@ -5,8 +5,6 @@
   # ../../modules/home-manager/fnm.nix
   # ../../modules/home-manager/k8s.nix
   # ../../modules/home-manager/pnpm.nix
-  # ../../modules/home-manager/python.nix
-  # ../../modules/home-manager/ruby.nix
   imports = mylib.scanPaths ../../modules/home-manager;
 
   programs = {
@@ -49,7 +47,15 @@
       enable = true;
     };
 
+    python = {
+      enable = true;
+    };
+
     ripgrep = {
+      enable = true;
+    };
+
+    ruby = {
       enable = true;
     };
 

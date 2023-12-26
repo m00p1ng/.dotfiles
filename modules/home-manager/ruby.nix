@@ -1,8 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
-{
-  home.packages = with pkgs; [
-    ruby
-    pry
-  ];
+with lib;
+let
+  cfg = config.programs.ruby;
+in {
+  options.programs.ruby = {
+    enable = mkEnableOption "Ruby";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      ruby
+      pry
+    ];
+  };
 }

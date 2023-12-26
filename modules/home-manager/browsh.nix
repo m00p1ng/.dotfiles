@@ -1,7 +1,6 @@
 { pkgs, config, lib, ... }:
 
 with lib;
-
 let
   cfg = config.programs.browsh;
 in
