@@ -13,7 +13,6 @@ with lib;
     # ../../modules/home-manager/python.nix
     # ../../modules/home-manager/ruby.nix
     ../../modules/home-manager
-    ../../overriding.nix
   ];
 
   programs = {

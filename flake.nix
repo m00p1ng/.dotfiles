@@ -13,40 +13,47 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, darwin, ... }: {
+  outputs = { nixpkgs, home-manager, darwin, ... }:
+  let
+    inherit (nixpkgs) lib;
+    mylib = import ./lib { inherit lib; };
+  in
+  {
     darwinConfigurations = {
-      m00p1ng = let
+      mooping = let
         username = "m00p1ng";
       in darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-
+        specialArgs = { inherit username; };
         modules = [
           home-manager.darwinModules.home-manager
-          ./modules/darwin
           {
             home-manager = {
               users.${username} = import ./hosts/m00p1ng/home.nix;
+              extraSpecialArgs = { inherit mylib; };
             };
           }
+          ./modules/darwin
+          ./overriding.nix
         ];
-        specialArgs = { inherit username; };
       };
 
       mongkonchai = let
         username = "mongkonchai";
       in darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-
+        specialArgs = { inherit username; };
         modules = [
           home-manager.darwinModules.home-manager
-          ./modules/darwin
           {
             home-manager = {
               users.${username} = import ./hosts/mongkonchai/home.nix;
+              extraSpecialArgs = { inherit mylib; };
             };
           }
+          ./modules/darwin
+          ./overriding.nix
         ];
-        specialArgs = { inherit username; };
       };
     };
   };

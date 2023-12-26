@@ -10,7 +10,6 @@ with lib;
     # ../../modules/home-manager/less.nix
     # ../../modules/home-manager/neovim.nix
     ../../modules/home-manager
-    ../../overriding.nix
   ];
 
   programs = {
