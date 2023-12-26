@@ -4,46 +4,8 @@ with lib;
 
 let
   cfg = config.programs.tmux;
-  # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
-  plugins = with pkgs.tmuxPlugins; [
-    {
-      plugin = battery;
-      extraConfig = ''
-        set -g @batt_icon_charge_tier8 ' ' # [95%-100%]
-        set -g @batt_icon_charge_tier7 ' ' # [80%-95%)
-        set -g @batt_icon_charge_tier6 ' ' # [65%-80%)
-        set -g @batt_icon_charge_tier5 ' ' # [50%-65%)
-        set -g @batt_icon_charge_tier4 ' ' # [35%-50%)
-        set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
-        set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
-        set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
-        set -g @batt_icon_status_charged  ''
-        set -g @batt_icon_status_charging ''
-        set -g @batt_icon_status_attached ''
-        set -g @batt_icon_status_unknown  ''
-      '';
-    }
-    {
-      plugin = prefix-highlight;
-      extraConfig = ''
-        set -g @prefix_highlight_fg '##D16969,bold'
-        set -g @prefix_highlight_bg '##111111'
-        set -g @prefix_highlight_output_prefix "["
-        set -g @prefix_highlight_output_suffix "]"
-        set -g @prefix_highlight_show_copy_mode 'on'
-        set -g @prefix_highlight_show_sync_mode 'on'
-        set -g @prefix_highlight_copy_mode_attr 'fg=##D16969,bold,bg=##111111'
-        set -g @prefix_highlight_sync_mode_attr 'fg=##D16969,bold,bg=##111111'
-      '';
-    }
-    {
-      plugin = cpu;
-    }
-  ];
-
-  pluginName = p: if types.package.check p then p.pname else p.plugin.pname;
 in {
-  config = mkMerge ([
+  config = mkIf cfg.enable (mkMerge ([
     {
       programs.tmux = {
         baseIndex = 1;
@@ -52,6 +14,43 @@ in {
         historyLimit = 100000;
         keyMode = "vi";
         terminal = "\${TERM}";
+
+        # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
+        plugins = with pkgs.tmuxPlugins; [
+          {
+            plugin = battery;
+            extraConfig = ''
+              set -g @batt_icon_charge_tier8 ' ' # [95%-100%]
+              set -g @batt_icon_charge_tier7 ' ' # [80%-95%)
+              set -g @batt_icon_charge_tier6 ' ' # [65%-80%)
+              set -g @batt_icon_charge_tier5 ' ' # [50%-65%)
+              set -g @batt_icon_charge_tier4 ' ' # [35%-50%)
+              set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
+              set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
+              set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
+              set -g @batt_icon_status_charged  ''
+              set -g @batt_icon_status_charging ''
+              set -g @batt_icon_status_attached ''
+              set -g @batt_icon_status_unknown  ''
+            '';
+          }
+          {
+            plugin = prefix-highlight;
+            extraConfig = ''
+              set -g @prefix_highlight_fg '##D16969,bold'
+              set -g @prefix_highlight_bg '##111111'
+              set -g @prefix_highlight_output_prefix "["
+              set -g @prefix_highlight_output_suffix "]"
+              set -g @prefix_highlight_show_copy_mode 'on'
+              set -g @prefix_highlight_show_sync_mode 'on'
+              set -g @prefix_highlight_copy_mode_attr 'fg=##D16969,bold,bg=##111111'
+              set -g @prefix_highlight_sync_mode_attr 'fg=##D16969,bold,bg=##111111'
+            '';
+          }
+          {
+            plugin = cpu;
+          }
+        ];
 
         extraConfig = ''
           set -g mouse            on
@@ -121,49 +120,40 @@ in {
             "Join Pane"                          j "choose-window 'join-pane -h -s \"%%\"'" \
             "#{?window_zoomed_flag,Unzoom,Zoom}" z "resize-pane -Z"
 
-          #############
-          ##  Theme  ##
-          #############
-
-          # Title
-          set -g set-titles         on
-          set -g set-titles-string  "#T (tmux)"
-
-          # Status options
-          set -g status               on
-          set -g status-interval      1
-          set -g status-position      top
-          set -g status-justify       left
-          set -g status-left-length   150
-          set -g status-right-length  150
-
-          set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
-          set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
-          run-shell ${config.xdg.configHome}/tmux/theme.sh
-
-
-
-          # Ref: https://github.com/nix-community/home-manager/blob/master/modules/programs/tmux.nix#L115-L128
-          # ============================================= #
-          # Load plugins with Home Manager                #
-          # --------------------------------------------- #
-          ${(concatMapStringsSep "\n\n" (p: ''
-            # ${pluginName p}
-            # ---------------------
-            ${p.extraConfig or ""}
-            run-shell ${if types.package.check p then p.rtp else p.plugin.rtp}
-          '') plugins)}
-          # ============================================= #
         '';
       };
     }
 
-    (mkIf cfg.enable {
+    {
+      xdg.configFile."tmux/tmux.conf".text = mkBefore ''
+        #############
+        ##  Theme  ##
+        #############
+
+        # Title
+        set -g set-titles         on
+        set -g set-titles-string  "#T (tmux)"
+
+        # Status options
+        set -g status               on
+        set -g status-interval      1
+        set -g status-position      top
+        set -g status-justify       left
+        set -g status-left-length   150
+        set -g status-right-length  150
+
+        set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
+        set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+        run-shell ${config.xdg.configHome}/tmux/theme.sh
+      '';
+    }
+
+    {
       xdg.configFile."tmux" = {
         source = ./configs/tmux;
         recursive = true;
       };
-    })
-  ]);
+    }
+  ]));
 }
