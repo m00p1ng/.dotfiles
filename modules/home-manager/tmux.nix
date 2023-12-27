@@ -118,7 +118,6 @@ in {
           "Break Pane"                         t break-pane \
           "Join Pane"                          j "choose-window 'join-pane -h -s \"%%\"'" \
           "#{?window_zoomed_flag,Unzoom,Zoom}" z "resize-pane -Z"
-
       '';
     };
 

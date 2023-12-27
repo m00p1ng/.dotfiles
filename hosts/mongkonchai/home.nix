@@ -2,7 +2,6 @@
 
 {
   home.stateVersion = "24.05";
-  # ../../modules/home-manager/fnm.nix
   # ../../modules/home-manager/k8s.nix
   imports = mylib.scanPaths ../../modules/home-manager;
 
@@ -31,6 +30,10 @@
     };
 
     jq = {
+      enable = true;
+    };
+
+    node = {
       enable = true;
     };
 

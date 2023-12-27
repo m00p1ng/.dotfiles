@@ -2,9 +2,7 @@
 
 {
   home.stateVersion = "24.05";
-  # ../../modules/home-manager/fnm.nix
   # ../../modules/home-manager/k8s.nix
-  # ../../modules/home-manager/pnpm.nix
   imports = mylib.scanPaths ../../modules/home-manager;
 
   programs = {
@@ -45,6 +43,13 @@
 
     kitty = {
       enable = true;
+    };
+
+    node = {
+      enable = true;
+      pnpm = {
+        enable = true;
+      };
     };
 
     python = {
