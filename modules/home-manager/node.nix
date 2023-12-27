@@ -7,16 +7,22 @@ let
 in {
   options.programs.node = {
     enable = mkEnableOption "node";
+    package = mkOption {
+      type = types.package;
+      default = pkgs.fnm;
+    };
     pnpm = {
       enable = mkEnableOption "pnpm";
+      package = mkOption {
+        type = types.package;
+        default = pkgs.nodePackages.pnpm;
+      };
     };
   };
 
   config = mkIf cfg.enable (mkMerge([
     {
-      home.packages = with pkgs; [
-        fnm
-      ];
+      home.packages = [ cfg.package ];
 
       programs.fish = {
         interactiveShellInit = ''
@@ -28,9 +34,7 @@ in {
     }
 
     (mkIf cfg.pnpm.enable {
-      home.packages = with pkgs; [
-        nodePackages.pnpm
-      ];
+      home.packages = [ cfg.pnpm.package ];
 
       home.sessionVariables = {
         PNPM_HOME = pnpmPath;
