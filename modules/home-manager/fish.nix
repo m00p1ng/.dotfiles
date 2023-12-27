@@ -6,28 +6,33 @@ let
 in {
   config = mkIf cfg.enable {
     programs.fish = {
-      shellAliases = {
-        "..." = "cd ../..";
-        mv = "mv -i";
+      shellAliases = mkMerge([
+        {
+          "..." = "cd ../..";
+          mv = "mv -i";
 
-        s = "kitty +kitten ssh";
-        check_disk = "sudo smartctl --all /dev/disk0s1";
-        isodate = "date +%Y-%m-%d";
-        isodatetime = "date +\"%Y-%m-%dT%H:%M:%S\"";
+          s = "kitty +kitten ssh";
+          check_disk = "sudo smartctl --all /dev/disk0s1";
+          isodate = "date +%Y-%m-%d";
+          isodatetime = "date +\"%Y-%m-%dT%H:%M:%S\"";
 
-        # network
-        ip = "curl api.ipify.org";
-        watchdns = "sudo tcpdump -vvi any port 53";
-        cleardns = "sudo killall -HUP mDNSResponder";
-        wifi-network-name = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'";
-        wifi-password = "security find-generic-password -wa (wifi-network-name)";
-        wifi-reset = "networksetup -setairportpower en0 off && networksetup -setairportpower en0 on";
+          # network
+          ip = "curl api.ipify.org";
+        }
 
-        # macos
-        showfiles = "defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder";
-        hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
-        icloud = "cd ~/Library/Mobile\\ Documents/com\~apple\~CloudDocs";
-      };
+        (mkIf pkgs.stdenv.hostPlatform.isDarwin {
+          watchdns = "sudo tcpdump -vvi any port 53";
+          cleardns = "sudo killall -HUP mDNSResponder";
+          wifi-network-name = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'";
+          wifi-password = "security find-generic-password -wa (wifi-network-name)";
+          wifi-reset = "networksetup -setairportpower en0 off && networksetup -setairportpower en0 on";
+
+          # macos
+          showfiles = "defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder";
+          hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
+          icloud = "cd ~/Library/Mobile\\ Documents/com\~apple\~CloudDocs";
+        })
+      ]);
       shellAbbrs = {
         "-" = "cd -"; # abbr -a -- - 'cd -'
       };
