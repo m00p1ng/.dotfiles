@@ -1,3 +1,0 @@
-exclude-container: istio
-exclude: Healthcheck
-template: '{{color .PodColor .PodName}} {{.Message}}{{"\n"}}'

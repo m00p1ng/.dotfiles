@@ -2,7 +2,6 @@
 
 {
   home.stateVersion = "24.05";
-  # ../../modules/home-manager/k8s.nix
   imports = mylib.scanPaths ../../modules/home-manager;
 
   programs = {
@@ -39,6 +38,16 @@
 
     kitty = {
       enable = true;
+    };
+
+    kubernetes = {
+      enable = true;
+      stern = {
+        enable = true;
+      };
+      k9s = {
+        enable = true;
+      };
     };
 
     ripgrep = {
