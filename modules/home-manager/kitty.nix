@@ -25,10 +25,10 @@
       mouse_map = "cmd+left release grabbed,ungrabbed mouse_handle_click link";
 
       ### Theme
-      background =            "#1E1E1E";
-      foreground =            "#CCCCCC";
+      background =            "#181818";
+      foreground =            "#C8C8C8";
 
-      cursor =                "#CCCCCC";
+      cursor =                "#C8C8C8";
       cursor_text_color =     "#FFFEFE";
 
       selection_foreground =  "#191919";
