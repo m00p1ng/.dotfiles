@@ -6,7 +6,11 @@ let
 in {
   config = mkIf cfg.enable {
     programs.git = {
-      ignores = [ ".DS_Store" ];
+      ignores = [
+        ".DS_Store"
+        ".nvim.lua"
+        ".neoconf.json"
+      ];
       aliases = {
         logs = "log --abbrev-commit --graph --decorate --oneline";
         logl = "log --oneline -10";
