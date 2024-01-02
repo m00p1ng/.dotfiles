@@ -19,24 +19,20 @@ in
       ];
       userSettings = {
         # Editor
+        "editor.accessibilitySupport" = "off";
+        "editor.codeActionsOnSave" = {
+          "source.fixAll.eslint" = "explicit";
+        };
         "editor.colorDecorators" = false;
         "editor.formatOnSave" = true;
         "editor.insertSpaces" = true;
-        "editor.occurrencesHighlight" = false;
+        "editor.minimap.enabled" = false;
+        "editor.occurrencesHighlight" = "off";
+        "editor.rulers" = [80 100 120];
         "editor.suggestSelection" = "first";
         "editor.tabSize" = 2;
-        "editor.rulers" = [80 100 120];
-        "editor.minimap.enabled" = false;
-        "editor.codeActionsOnSave" = {
-          "source.fixAll.eslint" = true;
-        };
-        "editor.accessibilitySupport" = "off";
 
         # File
-        "files.exclude" = {
-          "**/.git" = true;
-          "**/.DS_Store" = true;
-        };
         "files.associations" = {
           # "*.js" = "javascriptreact",
           "[Dd]ockerfile*" = "dockerfile";
@@ -44,16 +40,20 @@ in
           ".zsh*" = "shellscript";
           ".env*" = "dotenv";
         };
-        "files.trimTrailingWhitespace" = true;
+        "files.exclude" = {
+          "**/.DS_Store" = true;
+          "**/.git" = true;
+        };
         "files.trimFinalNewlines" = true;
+        "files.trimTrailingWhitespace" = true;
 
         # Workbench
-        "workbench.editor.highlightModifiedTabs" = true;
-        "workbench.editor.enablePreview" = true;
-        "workbench.sideBar.location" = "left";
-        "workbench.iconTheme" = "vscode-great-icons";
         # "workbench.colorTheme" = "Default Dark+";
         "workbench.colorTheme" = "Default Dark Modern";
+        "workbench.editor.enablePreview" = true;
+        "workbench.editor.highlightModifiedTabs" = true;
+        "workbench.iconTheme" = "vscode-great-icons";
+        "workbench.sideBar.location" = "left";
 
         # Explorer
         "explorer.openEditors.visible" = 0;
@@ -61,9 +61,9 @@ in
         "explorer.confirmDragAndDrop" = false;
 
         # Git
-        "git.mergeEditor" = false;
         "git.autofetch" = true;
         "git.confirmSync" = false;
+        "git.mergeEditor" = false;
         # Git lens
         "gitlens.codeLens.enabled" = false;
         "gitlens.views.searchAndCompare.files.layout" = "list";
