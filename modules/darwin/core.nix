@@ -12,11 +12,13 @@
   fonts.fontDir.enable =
     true; # if this is true, manually installed system fonts will be deleted!
   fonts.fonts = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-      ];
-    })
+    jetbrains-mono
+
+    # (nerdfonts.override {
+    #   fonts = [
+    #     "NerdFontsSymbolsOnly"
+    #   ];
+    # })
   ];
 
   # allow touchid to auth sudo -- this comes from pam.nix, which needs to be loaded before this
