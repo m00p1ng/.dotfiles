@@ -30,7 +30,7 @@
 
       mongkonchai = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = { inherit username; };
+        specialArgs = { inherit nixpkgs username; };
         modules = [
           home-manager.darwinModules.home-manager
           ./modules/darwin
