@@ -14,30 +14,24 @@
   };
 
   outputs = { nixpkgs, home-manager, darwin, ... }: let
-    username = "m00p1ng";
+    mkMacOS = username: modules: darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = { inherit nixpkgs username; };
+        modules = [
+          home-manager.darwinModules.home-manager
+          ./modules/darwin
+          ./overriding.nix
+        ] ++ modules;
+    };
   in {
     darwinConfigurations = {
-      mooping = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit nixpkgs username; };
-        modules = [
-          home-manager.darwinModules.home-manager
-          ./modules/darwin
-          ./hosts/m00p1ng/configuration.nix
-          ./overriding.nix
-        ];
-      };
+      mooping = mkMacOS "m00p1ng" [
+        ./hosts/m00p1ng/configuration.nix
+      ];
 
-      mongkonchai = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit nixpkgs username; };
-        modules = [
-          home-manager.darwinModules.home-manager
-          ./modules/darwin
-          ./hosts/mongkonchai/configuration.nix
-          ./overriding.nix
-        ];
-      };
+      mongkonchai = mkMacOS "mongkonchai" [
+        ./hosts/mongkonchai/configuration.nix
+      ];
     };
   };
 }
