@@ -133,9 +133,7 @@ in {
       set -g set-titles         on
       set -g set-titles-string  "#T (tmux)"
       set -g automatic-rename on
-      if-shell "($is_vim || $is_fish)" \
-        "set -g automatic-rename-format '#{b:pane_current_path}'" \
-        "set -g automatic-rename-format '#{pane_current_command}'"
+      set -g automatic-rename-format '#{?#{||:#{==:#{pane_current_command},nvim},#{==:#{pane_current_command},fish}},#{b:pane_current_path},#{pane_current_command}}'
 
       # Status options
       set -g status               on
