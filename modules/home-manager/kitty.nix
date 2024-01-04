@@ -6,7 +6,7 @@
       font_size = 14;
       font_family = "JetBrains Mono";
 
-      cursor_shape = "beam";
+      cursor_shape = "block";
       cursor_blink_interval = 0;
       disable_ligatures = "cursor";
 
