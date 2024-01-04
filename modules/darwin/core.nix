@@ -9,9 +9,10 @@
     remapCapsLockToControl = true;
   };
 
-  fonts.fontDir.enable =
-    true; # if this is true, manually installed system fonts will be deleted!
+  # if this is true, manually installed system fonts will be deleted!
+  fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
+    ../../fonts/MenloNerdFont-Regular.otf
     jetbrains-mono
 
     # (nerdfonts.override {
