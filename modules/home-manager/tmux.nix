@@ -63,6 +63,15 @@ in {
         bind-key %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
         bind-key c   new-window -c "#{pane_current_path}"
 
+        is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+
+        is_fzf="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?fzf$'"
+
+        is_browsh="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?browsh$'"
+
         bind-key -n 'C-h' if-shell "$is_vim"                 'send-keys C-h'  'select-pane -L'
         bind-key -n 'C-j' if-shell "($is_vim || $is_fzf)"    'send-keys C-j'  'select-pane -D'
         bind-key -n 'C-k' if-shell "($is_vim || $is_fzf)"    'send-keys C-k'  'select-pane -U'
@@ -113,18 +122,6 @@ in {
     };
 
     xdg.configFile."tmux/tmux.conf".text = mkBefore ''
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-
-      is_fzf="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?fzf$'"
-
-      is_browsh="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?browsh$'"
-
-      is_fish="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?fish$'"
-
       #############
       ##  Theme  ##
       #############
