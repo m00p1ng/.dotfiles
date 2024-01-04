@@ -1,6 +1,6 @@
 # https://github.com/zmre/nix-config/blob/main/modules/darwin/core.nix
 # https://gist.github.com/Moscarda/1abb40b39c6636d4f022cbfbd90cf890
-_: {
+{
   system.defaults = {
     NSGlobalDomain = {
       ApplePressAndHoldEnabled = false;

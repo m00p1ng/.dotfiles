@@ -1,6 +1,7 @@
 # Borrowed from [shaunsingh's](https://github.com/shaunsingh/nix-darwin-dotfiles/blob/main/modules/pam.nix) config
 # https://github.com/zmre/nix-config/blob/main/modules/darwin/pam.nix
 { config, lib, pkgs, ... }:
+
 with lib;
 # The PR https://github.com/LnL7/nix-darwin/pull/228 theoretically makes this file standard
 # BUT... they didn't add the pam_reattach stuff, which means it doesn't work in tmux, which
