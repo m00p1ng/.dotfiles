@@ -51,7 +51,7 @@ in {
       home.packages = [ cfg.k9s.package ];
 
       xdg.configFile.k9s = {
-        source = ./configs/k9s;
+        source = ./config/k9s;
         recursive = true;
       };
     })

@@ -12,6 +12,7 @@ in {
       escapeTime = 50;
       historyLimit = 100000;
       keyMode = "vi";
+      mouse = true;
       terminal = "\${TERM}";
 
       # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
@@ -52,7 +53,6 @@ in {
       ];
 
       extraConfig = ''
-        set -g mouse            on
         set -g renumber-windows on
         set -g monitor-activity on
         set -g monitor-bell     on
@@ -152,7 +152,7 @@ in {
     '';
 
     xdg.configFile."tmux" = {
-      source = ./configs/tmux;
+      source = ./config/tmux;
       recursive = true;
     };
   };
