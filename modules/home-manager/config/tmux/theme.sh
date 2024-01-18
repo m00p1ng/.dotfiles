@@ -118,11 +118,20 @@ set_window_status_current_theme () {
   make_bubble " #[bold]$pane_icon" "$SEP" "#[fg=#$TX,italics]#W "
 }
 
+set_automatic_rename_format () {
+  is_nvim="#{==:#{pane_current_command},nvim}"
+  is_fish="#{==:#{pane_current_command},fish}"
+  path_format="#{?#{==:#{pane_current_path},#{HOME}},~ (#{pane_current_command}),#{b:pane_current_path}}"
+
+  echo "#{?#{||:$is_nvim,$is_fish},$path_format,#{pane_current_command}}"
+}
+
 set_theme () {
   # Status bar
   tmux set -g status-style  "fg=$FG,bg=$BG"
   tmux set -g status-left   "$(set_left_status_theme)"
   tmux set -g status-right  "$(set_right_status_theme)"
+  tmux set -g automatic-rename-format "$(set_automatic_rename_format)"
 
   # Window status
   tmux set -g window-status-format           "$(set_window_status_theme)"

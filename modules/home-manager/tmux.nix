@@ -130,7 +130,6 @@ in {
       set -g set-titles         on
       set -g set-titles-string  "#T (tmux)"
       set -g automatic-rename on
-      set -g automatic-rename-format '#{?#{||:#{==:#{pane_current_command},nvim},#{==:#{pane_current_command},fish}},#{b:pane_current_path},#{pane_current_command}}'
 
       # Status options
       set -g status               on
