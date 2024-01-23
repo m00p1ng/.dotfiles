@@ -27,6 +27,9 @@
     darwinConfigurations = {
       mooping = mkMacOS "m00p1ng" [
         ./hosts/m00p1ng/configuration.nix
+        ./modules/darwin/sketchybar.nix
+        ./modules/darwin/yabai.nix
+        ./modules/darwin/skhd.nix
       ];
 
       mongkonchai = mkMacOS "mongkonchai" [
