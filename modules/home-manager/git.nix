@@ -8,8 +8,8 @@ in {
     programs.git = {
       ignores = [
         ".DS_Store"
-        ".nvim.lua"
-        ".neoconf.json"
+        # ".nvim.lua"
+        # ".neoconf.json"
       ];
       aliases = {
         logs = "log --abbrev-commit --graph --decorate --oneline";
