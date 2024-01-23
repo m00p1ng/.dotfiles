@@ -15,7 +15,6 @@
       NSAutomaticSpellingCorrectionEnabled = false;
     };
 
-    # Dock
     dock = {
       autohide = true;
       autohide-delay = 0.0;
@@ -28,25 +27,24 @@
       tilesize = 48;
     };
 
-    # Screencapture
     screencapture = {
       disable-shadow = true;
+      location = "~/Desktop";
+      type = "png";
     };
 
-    # Screensaver -- doesn't work
-    # screensaver = {
-    #   askForPassword = true;
-    #   askForPasswordDelay = 0;
-    # };
+    # doesn't work
+    screensaver = {
+      askForPassword = true;
+      askForPasswordDelay = 0;
+    };
 
-    # Trackpad
     trackpad = {
       TrackpadThreeFingerDrag = true;
       TrackpadRightClick = true;
       Clicking = true;
     };
 
-    # Magicmouse
     magicmouse = {
       MouseButtonMode = "TwoButton";
     };
@@ -59,8 +57,8 @@
       GuestEnabled = false;
     };
 
-    # Finder
     finder = {
+      # When performing a search, search the current folder by default
       FXDefaultSearchScope = "SCcf";
     };
 
@@ -68,6 +66,10 @@
     CustomUserPreferences = {
       "com.apple.finder" = {
         _FXSortFoldersFirst = true; # Keep folders on top when sorting by name
+        ShowExternalHardDrivesOnDesktop = true;
+        ShowHardDrivesOnDesktop = true;
+        ShowMountedServersOnDesktop = true;
+        ShowRemovableMediaOnDesktop = true;
       };
       "com.apple.desktopservices" = {
         # Avoid creating .DS_Store files on network or USB volumes
@@ -89,6 +91,15 @@
         AutoFillCreditCardData = false;
         AutoFillMiscellaneousForms = false;
         WarnAboutFraudulentWebsites = true;
+      };
+      "com.apple.SoftwareUpdate" = {
+        AutomaticCheckEnabled = true;
+        # Check for software updates daily, not just once per week
+        ScheduleFrequency = 1;
+        # Download newly available updates in background
+        AutomaticDownload = 1;
+        # Install System data files & security updates
+        CriticalUpdateInstall = 1;
       };
     };
   };
