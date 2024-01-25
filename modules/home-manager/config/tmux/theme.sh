@@ -130,7 +130,8 @@ set_theme () {
   # Status bar
   tmux set -g status-style  "fg=$FG,bg=$BG"
   tmux set -g status-left   "$(set_left_status_theme)"
-  tmux set -g status-right  "$(set_right_status_theme)"
+  # tmux set -g status-right  "$(set_right_status_theme)"
+  tmux set -g status-right ""
   tmux set -g automatic-rename-format "$(set_automatic_rename_format)"
 
   # Window status

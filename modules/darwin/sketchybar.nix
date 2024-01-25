@@ -7,7 +7,11 @@ in
 {
   config = mkIf cfg.enable {
     system.defaults.NSGlobalDomain._HIHideMenuBar = true;
-    services.yabai.config.external_bar = "all:28:0";
+    services = {
+      yabai.config.external_bar = "all:28:0";
+
+      sketchybar.extraPackages = [pkgs.jq];
+    };
 
     home-manager = {
       users.${username} = {
@@ -17,6 +21,11 @@ in
               hide_window_decorations  = "titlebar-only";
             };
           };
+        };
+
+        xdg.configFile."sketchybar" = {
+          source = ../home-manager/config/sketchybar;
+          recursive = true;
         };
       };
     };
