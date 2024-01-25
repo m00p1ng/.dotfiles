@@ -8,4 +8,18 @@ in {
     users.${username} = import ./home.nix;
     extraSpecialArgs = { inherit mylib; };
   };
+
+  services = {
+    sketchybar = {
+      enable = true;
+    };
+
+    yabai = {
+      enable = true;
+    };
+
+    skhd = {
+      enable = true;
+    };
+  };
 }

@@ -1,11 +1,9 @@
 # ref: https://github.com/crissNb/dotfiles/blob/main/yabai/yabairc
 {
   services.yabai = {
-    enable = true;
     # SIP Must be disabled
     # enableScriptingAddition = true;
     config = {
-      external_bar = "all:28:0";
       mouse_follows_focus = "off";
       focus_follows_mouse = "off";
       window_origin_display = "default";
@@ -22,6 +20,10 @@
       split_ratio = 0.50;
       split_type = "auto";
       auto_balance = "off";
+      top_padding = 12;
+      bottom_padding = 12;
+      left_padding = 12;
+      right_padding = 12;
       window_gap = 6;
       layout = "bsp";
       mouse_modifier = "fn";
@@ -32,10 +34,12 @@
     extraConfig = ''
       yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
       yabai -m rule --add label="System Settings" app="^System Settings$" manage=off
+      yabai -m rule --add app="^System Information$" manage=off
       yabai -m rule --add label="App Store" app="^App Store$" manage=off
       yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
       yabai -m rule --add app="^Messages$" layer=above manage=off
       yabai -m rule --add app="^1Password$" layer=above manage=off
+      yabai -m rule --add app="^zoom.us$" manage=off
     '';
   };
 }
