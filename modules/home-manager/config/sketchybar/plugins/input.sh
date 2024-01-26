@@ -1,10 +1,5 @@
 #!/usr/bin/env sh
 
-SOURCE=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID)
+SOURCE=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID | cut -d. -f4)
 
-case ${SOURCE} in
-'com.apple.keylayout.ABC') LABEL='ABC' ;;
-'com.apple.keylayout.Thai') LABEL='กขค' ;;
-esac
-
-sketchybar --set $NAME label="$LABEL"
+sketchybar --set $NAME label="$SOURCE"
