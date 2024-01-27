@@ -48,7 +48,7 @@ in {
         bind \en history-token-search-forward
 
         ${optionalString pkgs.stdenv.hostPlatform.isDarwin ''
-          for f in ${config.xdg.configHome}/fish/functions/macos/*.fish
+          for f in ${config.xdg.configHome}/fish/macos/*.fish
             source $f
           end
         ''}
@@ -67,7 +67,12 @@ in {
     };
 
     xdg.configFile."fish" = {
-      source = ../../config/fish;
+      source = ../../config/fish/main;
+      recursive = true;
+    };
+
+    xdg.configFile."fish/macos" = mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      source = ../../config/fish/helper/macos;
       recursive = true;
     };
   };
