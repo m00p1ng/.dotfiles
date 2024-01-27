@@ -32,13 +32,12 @@
       mouse_drop_action = "swap";
     };
     extraConfig = ''
-      yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
+      yabai -m rule --add app="^Finder$" layer=above manage=off
       yabai -m rule --add label="System Settings" app="^System Settings$" manage=off
       yabai -m rule --add app="^System Information$" manage=off
       yabai -m rule --add label="App Store" app="^App Store$" manage=off
       yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
 
-      yabai -m rule --add app="^Messages$" layer=above manage=off
       yabai -m rule --add app="^1Password$" layer=above manage=off
       yabai -m rule --add app="^zoom.us$" manage=off
       yabai -m rule --add app="^coconutBattery$" manage=off
