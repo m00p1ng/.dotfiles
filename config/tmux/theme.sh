@@ -54,7 +54,7 @@ battery_widget () {
 }
 
 wifi_widget () {
-  icon="#($CURRENT_DIR/scripts/wifi_icon.sh)"
+  icon="󰖩 "
   value="#($CURRENT_DIR/scripts/wifi.sh)"
   output=$(make_status "$icon" "" "$value")
   hide_on_width "$output$PADDING" 120
@@ -67,16 +67,9 @@ keyboard_widget () {
   hide_on_width "$output$PADDING" 140
 }
 
-exchange_widget () {
-  icon=""
-  value="#($CURRENT_DIR/scripts/exchange.sh)"
-  output=$(make_status "$icon" "$SEP" "$value")
-  hide_on_width "$output$PADDING" 140
-}
-
 prefix_widget () {
   echo "#{prefix_highlight}"
-  hide_on_width "$PADDING" 100
+  # hide_on_width "$PADDING" 100
 }
 
 cpu_widget () {
@@ -89,13 +82,11 @@ cpu_widget () {
 set_right_status_theme () {
   widget=(
     "$(prefix_widget)"
-    "$(cpu_widget)"
-    "$(ram_widget)"
-    "$(exchange_widget)"
-    "$(keyboard_widget)"
-    "$(wifi_widget)"
-    "$(battery_widget)"
-    "$(date_widget)"
+    # "$(cpu_widget)"
+    # "$(keyboard_widget)"
+    # "$(wifi_widget)"
+    # "$(battery_widget)"
+    # "$(date_widget)"
   )
   joined_widget=$(IFS='' ; echo "${widget[*]}")
   echo "$joined_widget"
@@ -126,31 +117,26 @@ set_automatic_rename_format () {
   echo "#{?#{||:$is_nvim,$is_fish},$path_format,#{pane_current_command}}"
 }
 
-set_theme () {
-  # Status bar
-  tmux set -g status-style  "fg=$FG,bg=$BG"
-  tmux set -g status-left   "$(set_left_status_theme)"
-  # tmux set -g status-right  "$(set_right_status_theme)"
-  tmux set -g status-right ""
-  tmux set -g automatic-rename-format "$(set_automatic_rename_format)"
+# Status bar
+tmux set -g status-style  "fg=$FG,bg=$BG"
+tmux set -g status-left   "$(set_left_status_theme)"
+tmux set -g status-right  "$(set_right_status_theme)"
+tmux set -g automatic-rename-format "$(set_automatic_rename_format)"
 
-  # Window status
-  tmux set -g window-status-format           "$(set_window_status_theme)"
-  tmux set -g window-status-current-format   "$(set_window_status_current_theme)"
-  tmux set -g window-status-separator        ""
-  tmux set -g window-status-current-style    "fg=$TC,bg=$BG"
-  tmux set -g window-status-activity-style   "none"
-  tmux set -g window-status-bell-style       "none"
+# Window status
+tmux set -g window-status-format           "$(set_window_status_theme)"
+tmux set -g window-status-current-format   "$(set_window_status_current_theme)"
+tmux set -g window-status-separator        ""
+tmux set -g window-status-current-style    "fg=$TC,bg=$BG"
+tmux set -g window-status-activity-style   "none"
+tmux set -g window-status-bell-style       "none"
 
-  # Others
-  tmux set -g pane-border-style              "fg=$AT"
-  tmux set -g pane-active-border-style       "fg=$TC"
-  tmux set -g clock-mode-colour              "$TC"
-  tmux set -g message-style                  "fg=$TC,bg=$BG"
-  tmux set -g message-command-style          "fg=$TC,bg=$BG"
-  tmux set -g mode-style                     "fg=$TX,bg=$SC"
-  tmux set -g copy-mode-match-style          "fg=$TX,bg=$MT"
-  tmux set -g copy-mode-current-match-style  "fg=$TX,bg=$SC"
-}
-
-set_theme
+# Others
+tmux set -g pane-border-style              "fg=$AT"
+tmux set -g pane-active-border-style       "fg=$TC"
+tmux set -g clock-mode-colour              "$TC"
+tmux set -g message-style                  "fg=$TC,bg=$BG"
+tmux set -g message-command-style          "fg=$TC,bg=$BG"
+tmux set -g mode-style                     "fg=$TX,bg=$SC"
+tmux set -g copy-mode-match-style          "fg=$TX,bg=$MT"
+tmux set -g copy-mode-current-match-style  "fg=$TX,bg=$SC"
