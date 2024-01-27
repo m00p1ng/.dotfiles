@@ -67,7 +67,7 @@ in {
     };
 
     xdg.configFile."fish" = {
-      source = ./config/fish;
+      source = ../../config/fish;
       recursive = true;
     };
   };

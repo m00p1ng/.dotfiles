@@ -24,7 +24,7 @@ in
         };
 
         xdg.configFile."sketchybar" = {
-          source = ../home-manager/config/sketchybar;
+          source = ../../config/sketchybar;
           recursive = true;
         };
       };
