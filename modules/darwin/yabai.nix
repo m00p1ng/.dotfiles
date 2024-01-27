@@ -38,11 +38,13 @@
       yabai -m rule --add label="App Store" app="^App Store$" manage=off
       yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
 
+      yabai -m rule --add title="Preferences" manage=off
       yabai -m rule --add app="^1Password$" layer=above manage=off
       yabai -m rule --add app="^zoom.us$" manage=off
       yabai -m rule --add app="^coconutBattery$" manage=off
       yabai -m rule --add app="^Flux$" manage=off
       yabai -m rule --add app="^Ivanti Secure Access Client$" manage=off
+      yabai -m rule --add app="VLC"
     '';
   };
 }
