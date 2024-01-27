@@ -1,5 +1,3 @@
-source "$CONFIG_DIR/icons.sh"
-source "$CONFIG_DIR/colors.sh"
+#!/bin/bash
 
-sketchybar --set $NAME label="$(date '+%H:%M')"
-
+sketchybar --set "$NAME" label="$(date '+%H:%M')"

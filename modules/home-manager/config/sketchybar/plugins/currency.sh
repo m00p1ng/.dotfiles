@@ -24,4 +24,4 @@ fi
 
 CURRENCY=$(jq .rates.THB "$CACHED_PATH" | awk '{printf "%.2f\n", $1}')
 
-sketchybar --set $NAME icon=$DOLLAR_SIGN label=$CURRENCY
+sketchybar --set "$NAME" icon="$DOLLAR_SIGN" label="$CURRENCY"
