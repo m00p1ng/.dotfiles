@@ -3,13 +3,10 @@
 source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/icons.sh"
 
-# Register custom event - this will be use by sketchy bar's space items as well as app_space.sh
 ICONS_SPACE=(󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞)
+LENGTH=$(yabai -m query --spaces --display | jq '. | length')
 
-# Space items
-LENGTH=${#ICONS_SPACE[@]}
-
-for i in "${!ICONS_SPACE[@]}"
+for i in $(seq 0 "$((LENGTH-1))")
 do
   sid=$((i+1))
   PAD_LEFT=1
@@ -29,7 +26,7 @@ do
     icon="${ICONS_SPACE[i]}"
     icon.color="$GREY"
     icon.highlight_color="$MAGENTA"
-    icon.width=12
+    icon.width=6
   )
   sketchybar --add space space.$sid left          \
              --set       space.$sid "${space[@]}" \
@@ -39,13 +36,10 @@ done
 # Space bracket
 space_bracket=(
   background.color="$BACKGROUND_2"
-  blur_radius=30
-  shadow=on
   background.border_color="$WHITE"
   background.border_width=0
-  icon.highlight_color="$BACKGROUND_2"
-  icon.padding_left=6
-  icon.padding_right=2
+  blur_radius=30
+  shadow=on
 )
-sketchybar --add bracket spaces '/space\..*/' \
+sketchybar --add bracket spaces yabai '/space\..*/' \
            --set         spaces "${space_bracket[@]}"

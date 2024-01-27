@@ -66,6 +66,7 @@ sketchybar --default "${defaults[@]}"
 
 # Left
 source "$ITEM_DIR/apple.sh"
+source "$ITEM_DIR/yabai.sh"
 source "$ITEM_DIR/space.sh"
 source "$ITEM_DIR/front_app.sh"
 
@@ -81,11 +82,11 @@ source "$ITEM_DIR/currency.sh"
 
 # bracket for everything
 status_bracket=(
-  shadow=on
   background.height=30
   background.color="$BACKGROUND_2"
   background.border_color="$BACKGROUND_2"
   blur_radius=30
+  shadow=on
 )
 
 group=(

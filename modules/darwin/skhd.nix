@@ -35,10 +35,12 @@ in
 
         alt - x : yabai -m space --mirror x-axis
         alt - y : yabai -m space --mirror y-axis
+        alt + shift - 0 : yabai -m space --balance
+        alt + shift - r : yabai -m space --rotate 270
 
-        alt + shift - q : yabai -m config layout float
-        alt + shift - w : yabai -m config layout bsp
-        alt + shift - e : yabai -m config layout stack
+        alt + shift - q : yabai -m space --layout float; sketchybar --trigger window_focus
+        alt + shift - w : yabai -m space --layout bsp; sketchybar --trigger window_focus
+        alt + shift - e : yabai -m space --layout stack; sketchybar --trigger window_focus
 
         # Example for sketchybar config
         alt - space : yabai -m window --toggle float
@@ -47,12 +49,7 @@ in
       '';
     };
 
-    home-manager = {
-      users.${username} = {
-        home.packages = with pkgs; [
-          skhd
-        ];
-      };
-    };
+    # ref: https://github.com/LnL7/nix-darwin/pull/260
+    environment.systemPackages = [ cfg.package ];
   };
 }
