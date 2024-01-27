@@ -36,10 +36,6 @@ done
 # Space bracket
 space_bracket=(
   background.color="$BACKGROUND_2"
-  background.border_color="$WHITE"
-  background.border_width=0
-  blur_radius=30
-  shadow=on
 )
 sketchybar --add bracket spaces yabai '/space\..*/' \
            --set         spaces "${space_bracket[@]}"
