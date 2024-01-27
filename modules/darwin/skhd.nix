@@ -16,7 +16,7 @@
       # float mode yabai
       alt + shift - q : yabai -m config layout float
       # Bsp mode yabai
-      alt - shift - w: yabai -m config layout bsp
+      alt + shift - w: yabai -m config layout bsp
 
       # Example for sckatchy bar config
       lalt - space : yabai -m window --toggle float; sketchybar --trigger window_focus
