@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source "$HOME/.config/sketchybar/colors.sh"
-source "$HOME/.config/sketchybar/icons.sh"
+source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/icons.sh"
 
 # Register custom event - this will be use by sketchy bar's space items as well as app_space.sh
 ICONS_SPACE=(󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞)
@@ -11,12 +11,12 @@ LENGTH=${#ICONS_SPACE[@]}
 
 for i in "${!ICONS_SPACE[@]}"
 do
-  sid=$(($i+1))
+  sid=$((i+1))
   PAD_LEFT=1
   PAD_RIGHT=1
   if [[ $i == 0 ]]; then
     PAD_LEFT=8
-  elif [[ $i == $(($LENGTH-1)) ]]; then
+  elif [[ $i == $((LENGTH-1)) ]]; then
     PAD_RIGHT=8
   fi
 
@@ -26,7 +26,7 @@ do
     padding_left="$PAD_LEFT"
     padding_right="$PAD_RIGHT"
     icon="${ICONS_SPACE[i]}"
-    icon.color="$WHITE"
+    icon.color="$GREY"
     icon.highlight_color="$MAGENTA"
     icon.width=12
   )
@@ -46,5 +46,5 @@ space_bracket=(
   icon.padding_left=6
   icon.padding_right=2
 )
-sketchybar --add bracket spaces '/space\..*/'                        \
+sketchybar --add bracket spaces '/space\..*/' \
            --set         spaces "${space_bracket[@]}"
