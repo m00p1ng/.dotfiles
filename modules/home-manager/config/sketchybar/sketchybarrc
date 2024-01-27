@@ -20,8 +20,6 @@ $CONFIG_DIR/helper/helper $HELPER > /dev/null 2>&1 &
 # Setting up the general bar appearance of the bar
 bar=(
   height=40
-  # color=$BAR_COLOR
-  # color="0xbf2e3440"
   color="$TRANSPARENT"
   blur_radius=30
   border_width=0
@@ -68,9 +66,7 @@ sketchybar --default "${defaults[@]}"
 
 # Left
 source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/spaces.sh"
-
-# Center
+source "$ITEM_DIR/space.sh"
 source "$ITEM_DIR/front_app.sh"
 
 # Right

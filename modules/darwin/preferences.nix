@@ -67,8 +67,8 @@
       "com.apple.finder" = {
         _FXSortFoldersFirst = true; # Keep folders on top when sorting by name
         ShowExternalHardDrivesOnDesktop = true;
-        ShowHardDrivesOnDesktop = true;
-        ShowMountedServersOnDesktop = true;
+        ShowHardDrivesOnDesktop = false;
+        ShowMountedServersOnDesktop = false;
         ShowRemovableMediaOnDesktop = true;
       };
       "com.apple.desktopservices" = {

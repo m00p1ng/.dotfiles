@@ -21,7 +21,8 @@ do
   fi
 
   space=(
-    script="$PLUGIN_DIR/app_space.sh"
+    script="$PLUGIN_DIR/space.sh"
+    background.drawing="false"
     associated_space="$sid"
     padding_left="$PAD_LEFT"
     padding_right="$PAD_RIGHT"
