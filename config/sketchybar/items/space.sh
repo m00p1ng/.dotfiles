@@ -4,17 +4,14 @@ source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/icons.sh"
 
 ICONS_SPACE=(󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞 󰧞)
-LENGTH=$(yabai -m query --spaces --display | jq '. | length')
 
-for i in $(seq 0 "$((LENGTH-1))")
+for i in "${!ICONS_SPACE[@]}"
 do
   sid=$((i+1))
   PAD_LEFT=1
   PAD_RIGHT=1
   if [[ $i == 0 ]]; then
     PAD_LEFT=8
-  elif [[ $i == $((LENGTH-1)) ]]; then
-    PAD_RIGHT=8
   fi
 
   space=(
