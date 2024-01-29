@@ -83,6 +83,7 @@ source "$ITEM_DIR/currency.sh"
 # bracket for everything
 status_bracket=(
   background.color="$BACKGROUND_2"
+  blur_radius=30
 )
 
 group=(
