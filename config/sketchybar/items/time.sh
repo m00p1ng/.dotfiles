@@ -19,6 +19,6 @@ time=(
   blur_radius=30
 )
 
-sketchybar --add item time right       \
+sketchybar --add item time right \
            --set time "${time[@]}" \
            --subscribe time

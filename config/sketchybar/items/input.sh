@@ -10,6 +10,6 @@ input=(
   icon.y_offset=1
 )
 sketchybar --add event input_change 'AppleSelectedInputSourcesChangedNotification' \
-    --add item input right \
-    --set input "${input[@]}" \
-    --subscribe input input_change
+           --add item input right \
+           --set input "${input[@]}" \
+           --subscribe input input_change

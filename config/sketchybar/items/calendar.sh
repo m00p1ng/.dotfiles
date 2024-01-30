@@ -14,6 +14,6 @@ calendar=(
   background.height=20
   blur_radius=30
 )
-sketchybar --add item calendar right       \
+sketchybar --add item calendar right \
            --set calendar "${calendar[@]}" \
            --subscribe calendar system_woke

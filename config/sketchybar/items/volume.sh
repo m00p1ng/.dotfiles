@@ -14,6 +14,6 @@ volume=(
 
 ALIAS_NAME="Control Center,Sound"
 
-sketchybar --add alias "$ALIAS_NAME" right    \
+sketchybar --add alias "$ALIAS_NAME" right \
            --set "$ALIAS_NAME" "${volume[@]}" \
            --subscribe "$ALIAS_NAME" volume_change

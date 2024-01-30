@@ -14,5 +14,5 @@ currency=(
   updates=on
 )
 
-sketchybar --add item currency right      \
+sketchybar --add item currency right \
            --set currency "${currency[@]}"

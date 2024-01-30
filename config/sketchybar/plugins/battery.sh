@@ -30,4 +30,10 @@ if [[ $CHARGING != "" ]]; then
   DRAWING=on
 fi
 
-sketchybar --set "$NAME" drawing="$DRAWING" icon="$ICON" label="$PERCENTAGE%" icon.color="$COLOR"
+battery=(
+  drawing="$DRAWING"
+  icon="$ICON"
+  label="$PERCENTAGE%"
+  icon.color="$COLOR"
+)
+sketchybar --set "$NAME" "${battery[@]}"

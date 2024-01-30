@@ -22,6 +22,10 @@ elif [ "$(date '+%s')" -gt "$next_update" ]; then
   call_exchange_api
 fi
 
-CURRENCY=$(jq .rates.THB "$CACHED_PATH" | awk '{printf "%.2f\n", $1}')
+THB=$(jq .rates.THB "$CACHED_PATH" | awk '{printf "%.2f\n", $1}')
 
-sketchybar --set "$NAME" icon="$DOLLAR_SIGN" label="$CURRENCY"
+currency=(
+  icon="$DOLLAR_SIGN"
+  label="$THB"
+)
+sketchybar --set "$NAME" "${currency[@]}"
