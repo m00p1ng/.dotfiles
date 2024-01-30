@@ -35,3 +35,5 @@ KEYBOARD=􀇳
 
 SPACE="󰧞"
 SPACE_SELECTED=""
+
+SLACK="󰒱"
