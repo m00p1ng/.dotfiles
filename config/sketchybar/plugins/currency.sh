@@ -1,8 +1,5 @@
 #!/bin/bash
 
-source "$CONFIG_DIR/icons.sh"
-source "$CONFIG_DIR/colors.sh"
-
 CACHED_PATH=$HOME/.cache/exchange-api.json
 EXCHANGE_API=https://open.er-api.com/v6/latest/USD
 
@@ -25,7 +22,6 @@ fi
 THB=$(jq .rates.THB "$CACHED_PATH" | awk '{printf "%.2f\n", $1}')
 
 currency=(
-  icon="$DOLLAR_SIGN"
   label="$THB"
 )
 sketchybar --set "$NAME" "${currency[@]}"

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "$CONFIG_DIR/icons.sh"
-
 wifi=(
   padding_right=3
   label.width=0

@@ -10,7 +10,10 @@ volume_change() {
     *) COLOR=$YELLOW ;;
   esac
 
-  sketchybar --set "$NAME" alias.color="$COLOR"
+  volume=(
+    alias.color="$COLOR"
+  )
+  sketchybar --set "$NAME" "${volume[@]}"
 }
 
 case "$SENDER" in

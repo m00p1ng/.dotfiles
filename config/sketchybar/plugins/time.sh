@@ -1,3 +1,6 @@
 #!/bin/bash
 
-sketchybar --set "$NAME" label="$(date '+%H:%M')"
+time=(
+  label="$(date '+%H:%M')"
+)
+sketchybar --set "$NAME" "${time[@]}"

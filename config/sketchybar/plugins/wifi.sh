@@ -7,7 +7,12 @@ update() {
   ICON="$([ -n "$INFO" ] && echo "$WIFI_CONNECTED" || echo "$WIFI_DISCONNECTED")"
   COLOR="$([ -n "$INFO" ] && echo "$GREEN" || echo "$RED")"
 
-  sketchybar --set "$NAME" icon="$ICON" color="$COLOR" label="$LABEL"
+  wifi=(
+    icon="$ICON"
+    color="$COLOR"
+    label="$LABEL"
+  )
+  sketchybar --set "$NAME" "${wifi[@]}"
 }
 
 click() {

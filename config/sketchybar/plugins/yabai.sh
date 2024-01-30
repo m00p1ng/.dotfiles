@@ -11,4 +11,7 @@ case "$mode" in
   float) ICON="$YABAI_FLOAT" ;;
 esac
 
-sketchybar -m --set yabai icon="$ICON"
+yabai=(
+ icon="$ICON"
+)
+sketchybar -m --set yabai "${yabai[@]}"
