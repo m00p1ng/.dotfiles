@@ -4,7 +4,7 @@
     # SIP Must be disabled
     # enableScriptingAddition = true;
     config = {
-      mouse_follows_focus = "on";
+      mouse_follows_focus = "off";
       focus_follows_mouse = "off";
       window_origin_display = "focused";
       window_placement = "second_child";
