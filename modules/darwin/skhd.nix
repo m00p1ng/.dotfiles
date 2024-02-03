@@ -33,6 +33,23 @@ in
         alt + shift - p : yabai -m window --swap prev || \
                           yabai -m window --swap last
 
+        # warp managed window
+        alt + ctrl - h : yabai -m window --warp west
+        alt + ctrl - j : yabai -m window --warp south
+        alt + ctrl - k : yabai -m window --warp north
+        alt + ctrl - l : yabai -m window --warp east
+
+        # focus space
+        ctrl - 1 : yabai -m space --focus 1
+        ctrl - 2 : yabai -m space --focus 2
+        ctrl - 3 : yabai -m space --focus 3
+        ctrl - 4 : yabai -m space --focus 4
+        ctrl - 5 : yabai -m space --focus 5
+        ctrl - 6 : yabai -m space --focus 6
+        ctrl - 7 : yabai -m space --focus 7
+        ctrl - 8 : yabai -m space --focus 8
+        ctrl - 9 : yabai -m space --focus 9
+
         alt - x : yabai -m space --mirror x-axis
         alt - y : yabai -m space --mirror y-axis
         alt + shift - 0 : yabai -m space --balance

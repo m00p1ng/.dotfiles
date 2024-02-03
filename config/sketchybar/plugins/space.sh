@@ -11,6 +11,7 @@ fi
 space=(
   icon="$ICON"
 	icon.highlight="$SELECTED"
+  click_script="yabai -m space --focus $SID"
 )
 
 sketchybar --set "$NAME" "${space[@]}"

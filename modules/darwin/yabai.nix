@@ -4,9 +4,9 @@
     # SIP Must be disabled
     # enableScriptingAddition = true;
     config = {
-      mouse_follows_focus = "off";
+      mouse_follows_focus = "on";
       focus_follows_mouse = "off";
-      window_origin_display = "default";
+      window_origin_display = "focused";
       window_placement = "second_child";
       window_zoom_persist = "off";
       window_shadow = "on";
@@ -14,10 +14,10 @@
       window_animation_frame_rate = 120;
       window_opacity_duration = 0.0;
       active_window_opacity = 1.0;
-      normal_window_opacity = 0.90;
+      normal_window_opacity = 0.9;
       window_opacity = "off";
       insert_feedback_color = "0xffd75f5f";
-      split_ratio = 0.50;
+      split_ratio = 0.5;
       split_type = "auto";
       auto_balance = "off";
       top_padding = 12;
