@@ -33,10 +33,10 @@
     };
     extraConfig = ''
       yabai -m rule --add app="^Finder$" layer=above manage=off
-      yabai -m rule --add label="System Settings" app="^System Settings$" manage=off
+      yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^System Information$" manage=off
-      yabai -m rule --add label="App Store" app="^App Store$" manage=off
-      yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
+      yabai -m rule --add app="^App Store$" manage=off
+      yabai -m rule --add app="^Activity Monitor$" manage=off
 
       yabai -m rule --add title="Preferences" manage=off
       yabai -m rule --add app="^1Password$" layer=above manage=off
