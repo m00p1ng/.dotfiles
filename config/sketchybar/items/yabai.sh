@@ -1,3 +1,5 @@
+#!/bin/bash
+
 yabai=(
   update_freq=3
   icon.font="$ICON_FONT:Regular:14.0"

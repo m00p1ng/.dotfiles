@@ -7,7 +7,7 @@ COLOR=$WHITE
 volume_change() {
   case $INFO in
     0) COLOR=$GREY ;;
-    *) COLOR=$YELLOW ;;
+    *) COLOR=$MAGENTA ;;
   esac
 
   volume=(

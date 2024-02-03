@@ -44,7 +44,7 @@ defaults=(
   icon.color="$ICON_COLOR"
   icon.padding_left="$PADDINGS"
   icon.padding_right="$PADDINGS"
-  label.font="$LABEL_FONT:Bold:11.0"
+  label.font="$LABEL_FONT:Regular:11.0"
   label.color="$LABEL_COLOR"
   label.padding_left="$PADDINGS"
   label.padding_right="$PADDINGS"
@@ -53,12 +53,6 @@ defaults=(
   background.height=30
   background.corner_radius=9
   background.border_width=0
-  popup.background.border_width=1
-  popup.background.corner_radius=9
-  popup.background.border_color="$POPUP_BORDER_COLOR"
-  popup.background.color="$POPUP_BACKGROUND_COLOR"
-  popup.blur_radius=20
-  popup.background.shadow.drawing=on
   scroll_texts=on
 )
 

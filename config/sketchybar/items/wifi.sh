@@ -6,7 +6,7 @@ wifi=(
   icon.y_offset=1
   icon.font.size="14"
   icon="$WIFI_DISCONNECTED"
-  icon.color="$MAGENTA"
+  icon.color="$BLUE"
   script="$PLUGIN_DIR/wifi.sh"
 )
 

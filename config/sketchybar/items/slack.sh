@@ -1,3 +1,5 @@
+#!/bin/bash
+
 slack=(
   icon="$SLACK"
   icon.font.size=18

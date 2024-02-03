@@ -1,10 +1,7 @@
 #!/bin/bash
 
 calendar=(
-  icon="$CALENDAR"
-  icon.font="$ICON_FONT:Regular:13.0"
-  icon.color="$BLUE"
-  icon.y_offset=1
+  icon.drawing=off
   label.font="$LABEL_FONT:Bold:11.0"
   label.color="$WHITE"
   label.padding_left=3

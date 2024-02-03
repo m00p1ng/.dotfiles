@@ -1,19 +1,19 @@
 #!/bin/bash
 
 front_app=(
+  label.color="$WHITE"
   label.font="$LABEL_FONT:Regular:14.0"
   label.y_offset=2
   label.padding_right=10
-  icon.background.drawing=on
-  display=active
-  label.color="$WHITE"
-  background.padding_left=4
-  background.color="$BACKGROUND_2"
-  background.border_color="$BACKGROUND_2"
-  blur_radius=15
   icon.drawing=on
   icon.background.image.scale=0.9
   icon.background.image.padding_left=2
+  icon.background.drawing=on
+  background.color="$BACKGROUND_2"
+  background.border_color="$BACKGROUND_2"
+  background.padding_left=4
+  display=active
+  blur_radius=15
   script="$PLUGIN_DIR/front_app.sh"
 )
 
