@@ -47,9 +47,6 @@ in {
             set -g @prefix_highlight_sync_mode_attr 'fg=##D16969,bold,bg=##111111'
           '';
         }
-        {
-          plugin = cpu;
-        }
       ];
 
       extraConfig = ''
@@ -118,30 +115,30 @@ in {
           "Break Pane"                         t break-pane \
           "Join Pane"                          j "choose-window 'join-pane -h -s \"%%\"'" \
           "#{?window_zoomed_flag,Unzoom,Zoom}" z "resize-pane -Z"
+
+        #############
+        ##  Theme  ##
+        #############
+
+        # Title
+        set -g set-titles         on
+        set -g set-titles-string  "#T (tmux)"
+        set -g automatic-rename on
+
+        # Status options
+        set -g status               on
+        set -g status-interval      1
+        set -g status-position      top
+        set -g status-justify       left
+        set -g status-left-length   150
+        set -g status-right-length  150
+
+        set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
+        set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
       '';
     };
 
     xdg.configFile."tmux/tmux.conf".text = mkBefore ''
-      #############
-      ##  Theme  ##
-      #############
-
-      # Title
-      set -g set-titles         on
-      set -g set-titles-string  "#T (tmux)"
-      set -g automatic-rename on
-
-      # Status options
-      set -g status               on
-      set -g status-interval      1
-      set -g status-position      top
-      set -g status-justify       left
-      set -g status-left-length   150
-      set -g status-right-length  150
-
-      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
-      set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
       run-shell ${config.xdg.configHome}/tmux/theme.sh
     '';
 

@@ -9,9 +9,9 @@ TX="#CCCCCC"
 WN="#E8AB53"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ZOOM_ICON="󰪥"
-BELL_ICON="󱅫"
-ACTIVITY_ICON="●"
+ZOOM_ICON=󰪥
+BELL_ICON=󱅫
+ACTIVITY_ICON=●
 SEP=' '
 PADDING='  '
 
@@ -40,7 +40,7 @@ make_bubble () {
 }
 
 date_widget () {
-  icon=""
+  icon=
   value="%a %-d %H:%M"
   output=$(make_status "$icon" "$SEP" "$value")
   hide_on_width "$output" 100
@@ -54,14 +54,14 @@ battery_widget () {
 }
 
 wifi_widget () {
-  icon="󰖩 "
+  icon=󰖩
   value="#($CURRENT_DIR/scripts/wifi.sh)"
   output=$(make_status "$icon" "" "$value")
   hide_on_width "$output$PADDING" 120
 }
 
 keyboard_widget () {
-  icon="󰌌"
+  icon=󰌌
   value="#($CURRENT_DIR/scripts/keyboard.sh)"
   output=$(make_status "$icon" "$SEP" "$value")
   hide_on_width "$output$PADDING" 140
@@ -72,17 +72,9 @@ prefix_widget () {
   # hide_on_width "$PADDING" 100
 }
 
-cpu_widget () {
-  icon="󰍛"
-  value="#{cpu_percentage}"
-  output=$(make_status "$icon" "$SEP" "$value")
-  hide_on_width "$output$PADDING" 140
-}
-
 set_right_status_theme () {
   widget=(
     "$(prefix_widget)"
-    # "$(cpu_widget)"
     # "$(keyboard_widget)"
     # "$(wifi_widget)"
     # "$(battery_widget)"
