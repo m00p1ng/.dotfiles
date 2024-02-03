@@ -40,12 +40,10 @@ sketchybar --bar "${bar[@]}"
 # Setting up default values
 defaults=(
   updates=when_shown
-  icon.font="$ICON_FONT:Regular:12.0"
-  icon.color="$ICON_COLOR"
+  icon.font="$ICON_FONT:Regular:18.0"
   icon.padding_left="$PADDINGS"
   icon.padding_right="$PADDINGS"
-  label.font="$LABEL_FONT:Regular:11.0"
-  label.color="$LABEL_COLOR"
+  label.font="$LABEL_FONT:Regular:12.0"
   label.padding_left="$PADDINGS"
   label.padding_right="$PADDINGS"
   padding_right="$PADDINGS"

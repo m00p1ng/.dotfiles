@@ -1,15 +1,15 @@
 #!/bin/bash
 
 time=(
-  icon.font="$ICON_FONT:Regular:14.0"
-  icon.color="$BLACK"
-  label.font="$LABEL_FONT:Bold:12.0"
+  icon.drawing=off
+  label.font.style=Bold
+  label.font.size=12.0
   label.color="$BLACK"
   label.padding_right=8
-  label.padding_left=0
-  background.y_offset=1
+  label.padding_left=8
   label.y_offset=1
   label.align=right
+  background.y_offset=1
   update_freq=30
   padding_left=0
   script="$PLUGIN_DIR/time.sh"

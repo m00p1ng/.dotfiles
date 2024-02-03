@@ -24,6 +24,7 @@ do
     padding_left=1
     padding_right=1
     icon="${ICONS_SPACE[i]}"
+    icon.font.size=12
     icon.color="$GREY"
     icon.highlight_color="$MAGENTA"
     icon.width=6
