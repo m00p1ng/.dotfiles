@@ -8,7 +8,7 @@ slack=(
   background.padding_left=8
   background.padding_right=8
   blur_radius=30
-  update_freq=180
+  update_freq=10
   script="$PLUGIN_DIR/slack.sh"
   click_script="open -a Slack"
 )
