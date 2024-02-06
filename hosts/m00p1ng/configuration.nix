@@ -9,6 +9,29 @@ in {
     extraSpecialArgs = { inherit mylib; };
   };
 
+  homebrew = {
+    enable = false;
+    casks = [
+       "google-chrome"
+       "firefox"
+
+       "flux"
+       "coconutbattery"
+       "alfred"
+       "1password"
+
+       "notion"
+       "zoom"
+       "discord"
+       "sf-symbols"
+
+       "postman"
+       "docker"
+
+       "vlc"
+    ];
+  };
+
   services = {
     sketchybar = {
       enable = true;
