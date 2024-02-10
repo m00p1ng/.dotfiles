@@ -60,7 +60,7 @@ in
         alt + shift - e : yabai -m space --layout stack; sketchybar --trigger window_focus
 
         # Example for sketchybar config
-        alt - space : yabai -m window --toggle float
+        alt + shift + m : yabai -m window --toggle float
         alt - f : yabai -m window --toggle zoom-parent
         alt + shift - f : yabai -m window --toggle zoom-fullscreen
       '';

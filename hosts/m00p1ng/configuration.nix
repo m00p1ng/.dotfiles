@@ -10,7 +10,7 @@ in {
   };
 
   homebrew = {
-    enable = false;
+    enable = true;
     casks = [
        "google-chrome"
        "firefox"
@@ -19,6 +19,7 @@ in {
        "coconutbattery"
        "alfred"
        "1password"
+       "setapp"
 
        "notion"
        "zoom"
