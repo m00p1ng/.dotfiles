@@ -10,7 +10,9 @@ currency=(
   script="$PLUGIN_DIR/currency.sh"
   update_freq=3600
   updates=on
+  click_script="$PLUGIN_DIR/currency.sh"
 )
 
 sketchybar --add item currency right \
-           --set currency "${currency[@]}"
+           --set currency "${currency[@]}" \
+           --subscribe currency mouse.clicked
