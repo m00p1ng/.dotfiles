@@ -3,16 +3,18 @@
 source "$CONFIG_DIR/colors.sh"
 
 STATUS_LABEL=$(lsappinfo info -only StatusLabel "Slack")
+
+LABEL_DRAWING=on
+ICON_PADDING_LEFT=7
+ICON_PADDING_RIGHT=7
+LABEL_PADDING_LEFT=4
+LABEL_PADDING_RIGHT=7
+
 if [[ $STATUS_LABEL =~ \"label\"=\"([^\"]*)\" ]]; then
     LABEL="${BASH_REMATCH[1]}"
-    LABEL_DRAWING=on
-    ICON_PADDING_LEFT=7
-    ICON_PADDING_RIGHT=7
-    LABEL_PADDING_LEFT=4
-    LABEL_PADDING_RIGHT=7
 
     if [[ $LABEL == "" ]]; then
-        ICON_COLOR="$GREY"
+        ICON_COLOR="$GREEN"
         LABEL_DRAWING=off
     elif [[ $LABEL == "•" ]]; then
         ICON_COLOR="$YELLOW"
