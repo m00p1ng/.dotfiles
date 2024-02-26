@@ -40,6 +40,7 @@
       yabai -m rule --add app="^Messages$" manage=off
 
       yabai -m rule --add title="Preferences" manage=off
+      yabai -m rule --add title="Open" manage=off
       yabai -m rule --add app="^1Password$" layer=above manage=off
       yabai -m rule --add app="^zoom.us$" manage=off
       yabai -m rule --add app="^coconutBattery$" manage=off
