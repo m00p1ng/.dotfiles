@@ -47,6 +47,7 @@
       yabai -m rule --add app="^Ivanti Secure Access Client$" manage=off
       yabai -m rule --add app="^VLC$" manage=off
       yabai -m rule --add app="^CleanMyMac X$" manage=off
+      yabai -m rule --add app="^Archive Utility$" manage=off
     '';
   };
 }
