@@ -29,6 +29,7 @@ in
         "editor.minimap.enabled" = false;
         "editor.occurrencesHighlight" = "off";
         "editor.rulers" = [80 100 120];
+        "editor.stickyScroll.enabled" = false;
         "editor.suggestSelection" = "first";
         "editor.tabSize" = 2;
 
