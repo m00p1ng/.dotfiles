@@ -3,7 +3,7 @@
 with lib;
 let
   cfg = config.programs.python;
-  pythonEnv = pkgs.python311.withPackages (ps: [
+  pythonEnv = pkgs.python312.withPackages (ps: [
     ps.ipython
     ps.pip
     ps.pynvim
