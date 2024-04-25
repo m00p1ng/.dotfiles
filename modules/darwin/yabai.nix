@@ -49,7 +49,6 @@
       yabai -m rule --add app="^zoom.us$" manage=off
       yabai -m rule --add app="^coconutBattery$" manage=off
       yabai -m rule --add app="^Flux$" manage=off
-      yabai -m rule --add app="^Ivanti Secure Access Client$" manage=off
       yabai -m rule --add app="^VLC$" manage=off
       yabai -m rule --add app="^Movist Pro$" manage=off
       yabai -m rule --add app="^CleanMyMac X$" manage=off
