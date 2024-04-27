@@ -86,7 +86,7 @@ set_right_status_theme () {
 }
 
 set_left_status_theme () {
-  echo "#[fg=$BG,bg=$TC,bold]  #S#[fg=$TC,bg=$BG] "
+  echo "#[fg=$BG,bg=$TC,bold] 󰕰 #S#[fg=$TC,bg=$BG] "
 }
 
 set_window_status_theme () {
