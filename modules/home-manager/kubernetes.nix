@@ -54,6 +54,10 @@ in {
         source = ../../config/k9s;
         recursive = true;
       };
+
+      home.sessionVariables = {
+        K9S_CONFIG_DIR = "${config.xdg.configHome}/k9s";
+      };
     })
   ]));
 }

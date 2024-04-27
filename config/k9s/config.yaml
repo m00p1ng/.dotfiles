@@ -10,6 +10,7 @@ k9s:
     crumbsless: false
     noIcons: false
     reactive: false
+    skin: catppuccin_mocha
   logger:
     tail: 100
     buffer: 5000
