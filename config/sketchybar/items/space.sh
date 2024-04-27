@@ -27,7 +27,7 @@ do
     icon.font.size=12
     icon.color="$GREY"
     icon.highlight_color="$MAGENTA"
-    icon.width=6
+    icon.width=7
   )
   sketchybar --add space space.$sid left \
              --set       space.$sid "${space[@]}" \
