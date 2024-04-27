@@ -50,7 +50,7 @@ in
 
         # Workbench
         # "workbench.colorTheme" = "Default Dark+";
-        "workbench.colorTheme" = "Default Dark Modern";
+        "workbench.colorTheme" = "Catppuccin Mocha";
         "workbench.editor.enablePreview" = true;
         "workbench.editor.highlightModifiedTabs" = true;
         "workbench.iconTheme" = "vscode-great-icons";
