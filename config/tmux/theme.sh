@@ -7,6 +7,7 @@ AP="#f38ba8"
 AT="#181825"
 TX="#9399b2"
 WN="#fab387"
+SS="#cba6f7"
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ZOOM_ICON=󰪥
@@ -86,7 +87,7 @@ set_right_status_theme () {
 }
 
 set_left_status_theme () {
-  echo "#[fg=$BG,bg=$TC,bold] 󰕰 #S#[fg=$TC,bg=$BG] "
+  echo "#[fg=$BG,bg=$SS,bold] 󰕰 #S#[fg=$SS,bg=$BG] "
 }
 
 set_window_status_theme () {
