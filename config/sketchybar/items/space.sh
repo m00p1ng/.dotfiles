@@ -46,7 +46,7 @@ sketchybar --add item space.padding left \
 
 # Space bracket
 space_bracket=(
-  background.color="$BACKGROUND_2"
+  background.color="$BACKGROUND"
 )
 sketchybar --add bracket spaces yabai '/space\..*/' \
            --set spaces "${space_bracket[@]}"

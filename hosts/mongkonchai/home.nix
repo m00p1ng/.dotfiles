@@ -76,7 +76,7 @@
     fd
     gcc
     httpie
-    neofetch
+    fastfetch
     smartmontools
     pstree
     tree

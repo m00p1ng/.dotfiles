@@ -100,7 +100,7 @@
     gcc
     # hey     # load test
     httpie
-    neofetch
+    fastfetch
     rsync
     # rustup
     smartmontools

@@ -75,7 +75,7 @@ source "$ITEM_DIR/currency.sh"
 
 # bracket for everything
 status_bracket=(
-  background.color="$BACKGROUND_2"
+  background.color="$BACKGROUND"
   blur_radius=30
 )
 

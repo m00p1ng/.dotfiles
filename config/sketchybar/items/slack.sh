@@ -2,7 +2,7 @@
 
 slack=(
   icon="$SLACK"
-  background.color="$BACKGROUND_2"
+  background.color="$BACKGROUND"
   padding_left=8
   padding_right=8
   background.padding_left=8

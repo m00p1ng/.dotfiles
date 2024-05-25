@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apple_logo=(
-  background.color="$BACKGROUND_1"
+  background.color="$BACKGROUND"
   icon="$APPLE"
   icon.font.size=16
   icon.color="$WHITE"
