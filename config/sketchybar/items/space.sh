@@ -13,9 +13,8 @@ ICONS_SPACE=(
   "$SPACE"
 )
 
-for i in "${!ICONS_SPACE[@]}"
-do
-  sid=$((i+1))
+for i in "${!ICONS_SPACE[@]}"; do
+  sid=$((i + 1))
 
   space=(
     script="$PLUGIN_DIR/space.sh"
@@ -30,8 +29,8 @@ do
     icon.width=7
   )
   sketchybar --add space space.$sid left \
-             --set       space.$sid "${space[@]}" \
-             --subscribe space.$sid front_app_switched window_change
+    --set space.$sid "${space[@]}" \
+    --subscribe space.$sid front_app_switched window_change
 done
 
 space_padding=(
@@ -42,11 +41,11 @@ space_padding=(
   padding_right=6
 )
 sketchybar --add item space.padding left \
-           --set space.padding "${space_padding[@]}"
+  --set space.padding "${space_padding[@]}"
 
 # Space bracket
 space_bracket=(
-  background.color="$BACKGROUND"
+  background.color="$TRANSPARENT"
 )
 sketchybar --add bracket spaces yabai '/space\..*/' \
-           --set spaces "${space_bracket[@]}"
+  --set spaces "${space_bracket[@]}"

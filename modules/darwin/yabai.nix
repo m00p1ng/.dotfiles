@@ -20,11 +20,11 @@
       split_ratio = 0.5;
       split_type = "auto";
       auto_balance = "off";
-      top_padding = 12;
-      bottom_padding = 12;
-      left_padding = 12;
-      right_padding = 12;
-      window_gap = 6;
+      top_padding = 8;
+      bottom_padding = 8;
+      left_padding = 8;
+      right_padding = 8;
+      window_gap = 4;
       layout = "bsp";
       mouse_modifier = "fn";
       mouse_action1 = "move";

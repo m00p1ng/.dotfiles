@@ -8,14 +8,13 @@ front_app=(
   icon.background.drawing=on
   icon.background.image.scale=0.9
   icon.background.image.padding_left=2
-  background.color="$BACKGROUND"
-  background.border_color="$BACKGROUND"
+  background.color="$TRANSPARENT"
+  background.border_color="$TRANSPARENT"
   background.padding_left=4
   display=active
-  blur_radius=15
   script="$PLUGIN_DIR/front_app.sh"
 )
 
 sketchybar --add item front_app left \
-           --set front_app "${front_app[@]}" \
-           --subscribe front_app front_app_switched
+  --set front_app "${front_app[@]}" \
+  --subscribe front_app front_app_switched

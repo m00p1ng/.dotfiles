@@ -16,9 +16,9 @@ time=(
   update_freq=30
   padding_left=0
   script="$PLUGIN_DIR/time.sh"
-  blur_radius=30
+  click_script="$PLUGIN_DIR/time.sh"
 )
 
 sketchybar --add item time right \
-           --set time "${time[@]}" \
-           --subscribe time
+  --set time "${time[@]}" \
+  --subscribe time
