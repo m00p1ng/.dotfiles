@@ -8,7 +8,7 @@ in
   config = mkIf cfg.enable {
     system.defaults.NSGlobalDomain._HIHideMenuBar = true;
     services = {
-      yabai.config.external_bar = "all:28:0";
+      yabai.config.external_bar = "all:40:0";
 
       sketchybar.extraPackages = [
         pkgs.jq
