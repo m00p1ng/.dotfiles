@@ -9,13 +9,12 @@ in
     programs.vscode = {
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
-        Arjun.swagger-viewer
-        WakaTime.vscode-wakatime
+        asvetliakov.vscode-neovim
         eamodio.gitlens
         emmanuelbeziat.vscode-great-icons
         streetsidesoftware.code-spell-checker
         tabnine.tabnine-vscode
-        asvetliakov.vscode-neovim
+        wakatime.vscode-wakatime
       ];
       userSettings = {
         # Editor
