@@ -11,8 +11,7 @@
   };
 
   # if this is true, manually installed system fonts will be deleted!
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     ../../fonts/MenloNerdFont-Regular.otf
     jetbrains-mono
 
