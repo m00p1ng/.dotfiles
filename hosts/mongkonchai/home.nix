@@ -50,6 +50,10 @@
       };
     };
 
+    python = {
+       enable = true;
+    };
+
     ripgrep = {
       enable = true;
     };

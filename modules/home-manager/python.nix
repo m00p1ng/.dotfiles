@@ -3,7 +3,7 @@
 with lib;
 let
   cfg = config.programs.python;
-  pythonEnv = pkgs.python312.withPackages (ps: [
+  pythonEnv = cfg.package.withPackages (ps: [
     ps.ipython
     ps.pip
     ps.pynvim
@@ -11,10 +11,19 @@ let
 in {
   options.programs.python = {
     enable = mkEnableOption "python";
+    package = mkOption {
+      type = types.package;
+      default = pkgs.python312;
+      defaultText = literalExpression "pkgs.python312";
+      example = literalExpression "pkgs.python3";
+      description = ''
+        Version of python to install.
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
+    home.packages = with pkgs; [
       pythonEnv
     ];
 
