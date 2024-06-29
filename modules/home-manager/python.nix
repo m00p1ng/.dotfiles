@@ -35,7 +35,7 @@ in {
         # Check if we are inside a git directory
         if git rev-parse --show-toplevel &>/dev/null
           set gitdir (realpath (git rev-parse --show-toplevel))
-          set cwd (pwd)
+          set cwd (pwd -P)
           # While we are still inside the git directory, find the closest
           # virtualenv starting from the current directory.
           while string match "$gitdir*" "$cwd" &>/dev/null
