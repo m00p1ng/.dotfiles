@@ -76,22 +76,22 @@
         DSDontWriteNetworkStores = true;
         DSDontWriteUSBStores = true;
       };
-      "com.apple.Safari" = {
-        ShowFullURLInSmartSearchField = true;
-        ShowOverlayStatusBar = true;
-        # Prevent Safari from opening ‘safe’ files automatically after downloading
-        AutoOpenSafeDownloads = false;
-        IncludeInternalDebugMenu = true;
-        IncludeDevelopMenu = true;
-        WebKitDeveloperExtrasEnabledPreferenceKey = true;
-        WebContinuousSpellCheckingEnabled = true;
-        WebAutomaticSpellingCorrectionEnabled = false;
-        AutoFillFromAddressBook = false;
-        AutoFillPasswords = false;
-        AutoFillCreditCardData = false;
-        AutoFillMiscellaneousForms = false;
-        WarnAboutFraudulentWebsites = true;
-      };
+      # "com.apple.Safari" = {
+      #   ShowFullURLInSmartSearchField = true;
+      #   ShowOverlayStatusBar = true;
+      #   # Prevent Safari from opening ‘safe’ files automatically after downloading
+      #   AutoOpenSafeDownloads = false;
+      #   IncludeInternalDebugMenu = true;
+      #   IncludeDevelopMenu = true;
+      #   WebKitDeveloperExtrasEnabledPreferenceKey = true;
+      #   WebContinuousSpellCheckingEnabled = true;
+      #   WebAutomaticSpellingCorrectionEnabled = false;
+      #   AutoFillFromAddressBook = false;
+      #   AutoFillPasswords = false;
+      #   AutoFillCreditCardData = false;
+      #   AutoFillMiscellaneousForms = false;
+      #   WarnAboutFraudulentWebsites = true;
+      # };
       "com.apple.SoftwareUpdate" = {
         AutomaticCheckEnabled = true;
         # Check for software updates daily, not just once per week

@@ -6,6 +6,7 @@ let
   pythonEnv = cfg.package.withPackages (ps: [
     ps.ipython
     ps.pip
+    ps.pipx
     ps.pynvim
   ]);
 in {
@@ -26,6 +27,11 @@ in {
     home.packages = with pkgs; [
       pythonEnv
     ];
+
+    # for pipx binary path
+    programs.fish.interactiveShellInit = ''
+      fish_add_path ~/.local/bin
+    '';
 
     # ref: https://gist.github.com/tommyip/cf9099fa6053e30247e5d0318de2fb9e
     xdg.configFile."fish/conf.d/venv.fish".text = ''
