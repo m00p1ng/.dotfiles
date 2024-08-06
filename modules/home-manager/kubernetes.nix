@@ -45,6 +45,13 @@ in {
         exclude: Healthcheck
         template: '{{color .PodColor .PodName}} {{.Message}}{{"\n"}}'
       '';
+
+      programs.fish = {
+        interactiveShellInit = ''
+          # stern configuration
+          stern --completion fish | source
+        '';
+      };
     })
 
     (mkIf cfg.k9s.enable {
