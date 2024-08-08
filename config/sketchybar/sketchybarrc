@@ -19,7 +19,7 @@ $CONFIG_DIR/helper/helper $HELPER >/dev/null 2>&1 &
 
 # Setting up the general bar appearance of the bar
 bar=(
-  height=40
+  height=28
   color="$BACKGROUND"
   blur_radius=30
   border_width=0
