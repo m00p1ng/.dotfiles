@@ -67,7 +67,7 @@ source "$ITEM_DIR/input.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/currency.sh"
 # source "$ITEM_DIR/cpu.sh"
-# source "$ITEM_DIR/slack.sh"
+source "$ITEM_DIR/slack.sh"
 
 # bracket for everything
 status_bracket=(
