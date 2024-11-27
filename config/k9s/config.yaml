@@ -1,45 +1,58 @@
 k9s:
+  # Enable periodic refresh of resource browser windows. Default false
+  liveViewAutoRefresh: false
+  # The path to screen dump. Default: '%temp_dir%/k9s-screens-%username%' (k9s info)
+  # screenDumpDir: /tmp/dumps
+  # Represents ui poll intervals. Default 2secs
   refreshRate: 2
+  # Number of retries once the connection to the api-server is lost. Default 15.
   maxConnRetry: 5
+  # Indicates whether modification commands like delete/kill/edit are disabled. Default is false
   readOnly: false
+  # Toggles whether k9s should exit when CTRL-C is pressed. When set to true, you will need to exist k9s via the :quit command. Default is false.
   noExitOnCtrlC: false
+  #UI settings
   ui:
+    # Enable mouse support. Default false
     enableMouse: true
+    # Set to true to hide K9s header. Default false
     headless: false
+    # Set to true to hide the K9S logo Default false
     logoless: false
+    # Set to true to hide K9s crumbs. Default false
     crumbsless: false
     noIcons: false
+    # Toggles reactive UI. This option provide for watching on disk artifacts changes and update the UI live Defaults to false.
     reactive: false
     skin: catppuccin_mocha
+    # Allows to set certain views default fullscreen mode. (yaml, helm history, describe, value_extender, details, logs) Default false
+    defaultsToFullScreen: false
+  # Toggles whether k9s should check for the latest revision from the Github repository releases. Default is false.
+  skipLatestRevCheck: false
+  # Logs configuration
   logger:
-    tail: 100
-    buffer: 5000
-    sinceSeconds: 60
-    fullScreen: false
+    # Defines the number of lines to return. Default 100
+    tail: 200
+    # Defines the total number of log lines to allow in the view. Default 1000
+    buffer: 500
+    # Represents how far to go back in the log timeline in seconds. Setting to -1 will tail logs. Default is -1.
+    sinceSeconds: 300 # => tail the last 5 mins.
+    # Toggles log line wrap. Default false
     textWrap: false
+    # Toggles log line timestamp info. Default false
     showTime: false
-  currentContext: ""
-  currentCluster: ""
-  clusters:
-    "":
-      namespace:
-        active: default
-        lockFavorites: false
-        favorites:
-        - default
-      view:
-        active: po
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.31
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-      portForwardAddress: localhost
+  # Provide shell pod customization when nodeShell feature gate is enabled!
+  shellPod:
+    # The shell pod image to use.
+    image: busybox:1.35.0
+    # The namespace to launch to shell pod into.
+    namespace: default
+    # The resource limit to set on the shell pod.
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    # Enable TTY
+    tty: true
   thresholds:
     cpu:
       critical: 90
@@ -47,5 +60,3 @@ k9s:
     memory:
       critical: 90
       warn: 70
-  screenDumpDir: /tmp/k9s-screens
-
