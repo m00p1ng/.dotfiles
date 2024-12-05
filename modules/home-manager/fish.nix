@@ -9,6 +9,7 @@ in {
       shellAliases = mkMerge([
         {
           "..." = "cd ../..";
+          "...." = "cd ../../..";
           mv = "mv -i";
 
           s = "kitty +kitten ssh";
@@ -23,7 +24,7 @@ in {
         (mkIf pkgs.stdenv.hostPlatform.isDarwin {
           watchdns = "sudo tcpdump -vvi any port 53";
           cleardns = "sudo killall -HUP mDNSResponder";
-          wifi-network-name = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'";
+          wifi-network-name = "ipconfig getsummary en0 | awk -F ' SSID : ' '/ SSID : / {print $2}'";
           wifi-password = "security find-generic-password -wa (wifi-network-name)";
           wifi-reset = "networksetup -setairportpower en0 off && networksetup -setairportpower en0 on";
 

@@ -22,6 +22,6 @@ fi
 THB=$(jq .rates.THB "$CACHED_PATH" | awk '{printf "%.2f\n", $1}')
 
 currency=(
-  label="$THB"
+  label="${THB:-N/A}"
 )
 sketchybar --set "$NAME" "${currency[@]}"

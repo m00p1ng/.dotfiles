@@ -15,4 +15,4 @@ currency=(
 
 sketchybar --add item currency right \
            --set currency "${currency[@]}" \
-           --subscribe currency mouse.clicked
+           --subscribe currency mouse.clicked wifi_change
