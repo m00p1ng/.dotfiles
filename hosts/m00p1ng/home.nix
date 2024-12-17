@@ -99,6 +99,7 @@
     fd
     gcc
     # hey     # load test
+    htop
     httpie
     fastfetch
     rsync

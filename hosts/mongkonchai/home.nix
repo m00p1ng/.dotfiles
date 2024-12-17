@@ -79,6 +79,7 @@
     curl
     fd
     gcc
+    htop
     httpie
     fastfetch
     smartmontools
