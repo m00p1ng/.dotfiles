@@ -8,8 +8,6 @@ in {
     programs.git = {
       ignores = [
         ".DS_Store"
-        # ".nvim.lua"
-        # ".neoconf.json"
       ];
       aliases = {
         logs = "log --abbrev-commit --graph --decorate --oneline";
@@ -23,6 +21,8 @@ in {
         parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #";
         diffs = "!git -c delta.side-by-side=true diff";
         info = "!onefetch";
+        clear = "!git clean -fd && git reset --hard";
+        remote-prune = "!git fetch --all --prune &&  git branch -v | grep '\\[gone\\]' | cut -d ' ' -f3 | xargs git branch -D";
       };
       extraConfig = {
         core = {
