@@ -66,7 +66,7 @@ set_right_status_theme () {
   )
   joined_widget=$(IFS='' ; echo "${widget[*]}")
   echo "$joined_widget"
-  hide_on_width "$SEP" 100
+  # hide_on_width "$SEP" 100
 }
 
 set_left_status_theme () {
