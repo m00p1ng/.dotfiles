@@ -9,6 +9,10 @@
       enable = true;
     };
 
+    eza = {
+      enable = true;
+    };
+
     fish = {
       enable = true;
     };

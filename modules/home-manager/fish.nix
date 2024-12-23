@@ -12,8 +12,6 @@ in {
           "...." = "cd ../../..";
           mv = "mv -i";
 
-          s = "kitty +kitten ssh";
-          check_disk = "sudo smartctl --all /dev/disk0s1";
           isodate = "date +%Y-%m-%d";
           isodatetime = "date +\"%Y-%m-%dT%H:%M:%S\"";
 
@@ -27,8 +25,8 @@ in {
           wifi-network-name = "ipconfig getsummary en0 | awk -F ' SSID : ' '/ SSID : / {print $2}'";
           wifi-password = "security find-generic-password -wa (wifi-network-name)";
           wifi-reset = "networksetup -setairportpower en0 off && networksetup -setairportpower en0 on";
+          check_disk = "sudo smartctl --all /dev/disk0s1";
 
-          # macos
           showfiles = "defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder";
           hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
           icloud = "cd ~/Library/Mobile\\ Documents/com\~apple\~CloudDocs";
