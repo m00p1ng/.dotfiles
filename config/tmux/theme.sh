@@ -9,7 +9,6 @@ TX="#9399b2"
 WN="#fab387"
 SS="#cba6f7"
 
-CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ZOOM_ICON=󰪥
 BELL_ICON=󱅫
 ACTIVITY_ICON=●
@@ -54,20 +53,6 @@ battery_widget () {
   hide_on_width "$output$PADDING" 100
 }
 
-wifi_widget () {
-  icon=󰖩
-  value="#($CURRENT_DIR/scripts/wifi.sh)"
-  output=$(make_status "$icon" "" "$value")
-  hide_on_width "$output$PADDING" 120
-}
-
-keyboard_widget () {
-  icon=󰌌
-  value="#($CURRENT_DIR/scripts/keyboard.sh)"
-  output=$(make_status "$icon" "$SEP" "$value")
-  hide_on_width "$output$PADDING" 140
-}
-
 prefix_widget () {
   echo "#{prefix_highlight}"
   # hide_on_width "$PADDING" 100
@@ -76,8 +61,6 @@ prefix_widget () {
 set_right_status_theme () {
   widget=(
     "$(prefix_widget)"
-    # "$(keyboard_widget)"
-    # "$(wifi_widget)"
     # "$(battery_widget)"
     # "$(date_widget)"
   )
