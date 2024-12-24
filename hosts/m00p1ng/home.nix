@@ -67,6 +67,9 @@
 
     python = {
       enable = true;
+      poetry = {
+        enable = true;
+      };
     };
 
     ripgrep = {
