@@ -10,6 +10,7 @@ in {
       baseIndex = 1;
       clock24 = true;
       escapeTime = 50;
+      focusEvents = true;
       historyLimit = 100000;
       keyMode = "vi";
       mouse = true;
