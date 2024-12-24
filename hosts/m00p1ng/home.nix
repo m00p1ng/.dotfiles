@@ -82,6 +82,11 @@
 
     ssh = {
       enable = true;
+      matchBlocks = {
+        "*" = {
+          identityFile = "~/.ssh/mooping-macbook";
+        };
+      };
     };
 
     tmux = {
