@@ -6,7 +6,7 @@ let
 in {
   config = mkIf cfg.enable {
     programs.eza = {
-      icons = "always";
+      icons = "auto";
       extraOptions = [
         "--group-directories-first"
       ];
