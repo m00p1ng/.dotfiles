@@ -5,7 +5,7 @@
 
   programs.fish = {
     shellAliases = {
-      ssh = "TERM=xterm-256color ssh"
+      ssh = "TERM=xterm-256color command ssh";
     };
   };
 }
