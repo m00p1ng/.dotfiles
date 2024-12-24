@@ -44,7 +44,9 @@ in {
             # While we are still inside the git directory, find the closest
             # virtualenv starting from the current directory.
             while string match "$gitdir*" "$cwd" &>/dev/null
-              set poetry_path (poetry env info --path 2>/dev/null)
+              if type -q poetry
+                set poetry_path (poetry env info --path 2>/dev/null)
+              end
               if test -n "$poetry_path"
                 source "$poetry_path/bin/activate.fish" &>/dev/null
                 return
