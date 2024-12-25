@@ -95,6 +95,7 @@
 
     vscode = {
       enable = true;
+      package = pkgs.vscodium;
     };
 
     yt-dlp = {
