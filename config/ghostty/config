@@ -1,0 +1,41 @@
+font-size = 14
+theme = catppuccin-mocha
+cursor-style-blink = false
+macos-option-as-alt = true
+quit-after-last-window-closed = true
+
+# Full screen
+keybind = cmd+enter=toggle_fullscreen
+
+# Delete
+keybind = cmd+backspace=text:\x15
+keybind = opt+backspace=text:\x17
+
+# Tmux mapping
+# ref: https://www.joshmedeski.com/posts/macos-keyboard-shortcuts-for-tmux
+keybind = cmd+t=text:\x02c
+keybind = cmd+w=text:\x02x
+keybind = cmd+,=text:\x02, # not work for now
+keybind = cmd+f=text:\x02[?
+keybind = cmd+r=text:\x02[
+
+# Split pane
+keybind = cmd+d=text:\x02%
+keybind = cmd+shift+d=text:\x02"
+
+# Select window
+keybind = cmd+[=text:\x02p # not work for now
+keybind = cmd+]=text:\x02n # not work for now
+
+# ref: https://github.com/ghostty-org/ghostty/discussions/3447
+keybind = cmd+one=text:\x021
+keybind = cmd+two=text:\x022
+keybind = cmd+three=text:\x023
+keybind = cmd+four=text:\x024
+keybind = cmd+five=text:\x025
+keybind = cmd+six=text:\x026
+keybind = cmd+seven=text:\x027
+keybind = cmd+eight=text:\x028
+keybind = cmd+nine=text:\x029
+
+# vi: ft=conf

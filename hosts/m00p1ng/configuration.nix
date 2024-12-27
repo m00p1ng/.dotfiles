@@ -29,6 +29,7 @@ in {
 
        "postman"
        "docker"
+       "ghostty"
 
        "vlc"
     ];
