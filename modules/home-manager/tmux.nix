@@ -18,23 +18,23 @@ in {
 
       # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
       plugins = with pkgs.tmuxPlugins; [
-        {
-          plugin = battery;
-          extraConfig = ''
-            set -g @batt_icon_charge_tier8 ' ' # [95%-100%]
-            set -g @batt_icon_charge_tier7 ' ' # [80%-95%)
-            set -g @batt_icon_charge_tier6 ' ' # [65%-80%)
-            set -g @batt_icon_charge_tier5 ' ' # [50%-65%)
-            set -g @batt_icon_charge_tier4 ' ' # [35%-50%)
-            set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
-            set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
-            set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
-            set -g @batt_icon_status_charged  ''
-            set -g @batt_icon_status_charging ''
-            set -g @batt_icon_status_attached ''
-            set -g @batt_icon_status_unknown  ''
-          '';
-        }
+        # {
+        #   plugin = battery;
+        #   extraConfig = ''
+        #     set -g @batt_icon_charge_tier8 ' ' # [95%-100%]
+        #     set -g @batt_icon_charge_tier7 ' ' # [80%-95%)
+        #     set -g @batt_icon_charge_tier6 ' ' # [65%-80%)
+        #     set -g @batt_icon_charge_tier5 ' ' # [50%-65%)
+        #     set -g @batt_icon_charge_tier4 ' ' # [35%-50%)
+        #     set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
+        #     set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
+        #     set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
+        #     set -g @batt_icon_status_charged  ''
+        #     set -g @batt_icon_status_charging ''
+        #     set -g @batt_icon_status_attached ''
+        #     set -g @batt_icon_status_unknown  ''
+        #   '';
+        # }
         {
           plugin = prefix-highlight;
           extraConfig = ''
@@ -46,6 +46,12 @@ in {
             set -g @prefix_highlight_show_sync_mode 'on'
             set -g @prefix_highlight_copy_mode_attr 'fg=##f38ba8,bold,bg=##1e1e2e'
             set -g @prefix_highlight_sync_mode_attr 'fg=##f38ba8,bold,bg=##1e1e2e'
+          '';
+        }
+        {
+          plugin = fzf-tmux-url;
+          extraConfig = ''
+            set -g @fzf-url-fzf-options '-w 50% -h 50% --multi -0 --no-preview'
           '';
         }
       ];

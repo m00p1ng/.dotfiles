@@ -66,9 +66,5 @@ in {
       enable = true;
       config.external_bar = "all:28:0";
     };
-
-    skhd = {
-      enable = true;
-    };
   };
 }

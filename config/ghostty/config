@@ -2,10 +2,13 @@ font-size = 14
 theme = catppuccin-mocha
 cursor-style-blink = false
 mouse-hide-while-typing = true
-quit-after-last-window-closed = true
+# quit-after-last-window-closed = true
 window-decoration = true
 macos-option-as-alt = true
 macos-titlebar-style = hidden
+
+# Open URL
+keybind = cmd+shift+e=text:\x02u
 
 # Full screen
 keybind = cmd+enter=toggle_fullscreen
