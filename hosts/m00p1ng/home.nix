@@ -108,7 +108,6 @@
   };
 
   home.packages = with pkgs; [
-    awscli
     curl
     fd
     gcc
