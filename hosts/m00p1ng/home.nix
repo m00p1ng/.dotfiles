@@ -25,6 +25,10 @@
       enable = true;
     };
 
+    ghostty = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       delta = {
