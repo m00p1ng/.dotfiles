@@ -1,7 +1,9 @@
 font-size = 14
 theme = catppuccin-mocha
 cursor-style-blink = false
+mouse-hide-while-typing = true
 quit-after-last-window-closed = true
+window-decoration = true
 macos-option-as-alt = true
 macos-titlebar-style = hidden
 
@@ -16,8 +18,7 @@ keybind = opt+backspace=text:\x17
 # ref: https://www.joshmedeski.com/posts/macos-keyboard-shortcuts-for-tmux
 keybind = cmd+t=text:\x02c
 keybind = cmd+w=text:\x02x
-# cmd+, not work for now
-keybind = cmd+,=text:\x02,
+keybind = cmd+comma=text:\x02,
 keybind = cmd+f=text:\x02[?
 keybind = cmd+r=text:\x02[
 
@@ -26,12 +27,11 @@ keybind = cmd+d=text:\x02%
 keybind = cmd+shift+d=text:\x02"
 
 # Select window
-# cmd+[ and cmd+] not work for now
-# ref: https://github.com/ghostty-org/ghostty/discussions/3187
-keybind = cmd+[=text:\x02p
-keybind = cmd+]=text:\x02n
-
 # ref: https://github.com/ghostty-org/ghostty/discussions/3447
+# some key not work ref: https://github.com/ghostty-org/ghostty/discussions/3187
+keybind = cmd+left_bracket=text:\x02p
+keybind = cmd+right_bracket=text:\x02n
+
 keybind = cmd+one=text:\x021
 keybind = cmd+two=text:\x022
 keybind = cmd+three=text:\x023
