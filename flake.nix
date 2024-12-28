@@ -20,7 +20,7 @@
         modules = [
           home-manager.darwinModules.home-manager
           ./modules/darwin
-          ./overriding.nix
+          ./override.nix
         ] ++ modules;
     };
   in {
