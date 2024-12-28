@@ -48,10 +48,6 @@
       enable = true;
     };
 
-    kitty = {
-      enable = true;
-    };
-
     kubernetes = {
       enable = true;
       stern = {
