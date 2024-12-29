@@ -22,7 +22,6 @@ in {
        "setapp"
 
        "notion"
-       "zoom"
        "discord"
        "sf-symbols"
        "grammarly-desktop"
