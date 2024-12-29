@@ -99,29 +99,6 @@ in {
         bind-key -T copy-mode-vi V send -X select-line
         bind-key -T copy-mode-vi y                 send -X copy-pipe-and-cancel 'pbcopy'
         bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel 'pbcopy'
-        bind-key -n M-w display-menu -x W -y S \
-          "New Session"                        S "command-prompt -p \"New Session:\" \"new-session -A -s '%%'\"" \
-          "Kill Session"                       x "kill-session" \
-          "Kill Other Session(s)"              X "kill-session -a" \
-          "" \
-          "New Window"                         ␍ new-window \
-          "Kill Window"                        k "killw"  \
-          "Choose Window"                      w choose-window \
-          "Previous Window"                    🡠 previous-window \
-          "Next Window"                        🡢 next-window \
-          "Swap Window Right"                  ↑ "swap-window -t -1" \
-          "Swap Window Left"                   ↓ "swap-window -t +1" \
-          "Horizontal Split"                   v "split-window -h" \
-          "Vertical Split"                     s "split-window -v"  \
-          "" \
-          "Layout Horizontal"                  h "select-layout even-horizontal"  \
-          "Layout Vertical"                    k "select-layout even-horizontal"  \
-          "" \
-          "Swap Pane Up"                       < "swap-pane -U" \
-          "Swap Pane Down"                     > "swap-pane -D" \
-          "Break Pane"                         t break-pane \
-          "Join Pane"                          j "choose-window 'join-pane -h -s \"%%\"'" \
-          "#{?window_zoomed_flag,Unzoom,Zoom}" z "resize-pane -Z"
 
         #############
         ##  Theme  ##
@@ -142,10 +119,6 @@ in {
 
         set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
         set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
-        # bug shell: https://github.com/nix-community/home-manager/issues/5952
-        set -gu default-command
-        set -g default-shell "$SHELL"
       '';
     };
 
@@ -158,9 +131,9 @@ in {
       recursive = true;
     };
 
+    # auto attach tmux configuration
     programs.fish = {
       interactiveShellInit = ''
-        # auto attach tmux configuration
         if not set -q TMUX
           set tmux_default_session_name workspace
           set tmux_attached_client (tmux list-clients 2> /dev/null | grep $tmux_default_session_name | wc -l)
