@@ -17,7 +17,7 @@ in {
 
        "flux"
        "coconutbattery"
-       "alfred"
+       "raycast"
        "1password"
        "setapp"
 
