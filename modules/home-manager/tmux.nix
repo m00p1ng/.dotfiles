@@ -19,10 +19,18 @@ in {
       # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
       plugins = with pkgs.tmuxPlugins; [
         {
-          plugin = fzf-tmux-url;
-          extraConfig = ''
-            set -g @fzf-url-fzf-options '-w 50% -h 50% --multi -0 --no-preview'
-          '';
+          # https://github.com/junegunn/tmux-fzf-url
+          plugin = mkTmuxPlugin {
+            pluginName = "tmux-fzf-url";
+            version = "unstable-2024-09-01";
+            src = pkgs.fetchFromGitHub {
+              owner = "junegunn";
+              repo = "tmux-fzf-url";
+              rev = "1ffce234173d0bc8004fc5934599e473e36af01c";
+              sha256 = "sha256-qTzKToCVfWkO4C++cu2uXEutDWci972g+T5TbUgNOm0=";
+            };
+            rtpFilePath = "fzf-url.tmux";
+          };
         }
         {
           # https://github.com/catppuccin/tmux
