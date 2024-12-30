@@ -18,40 +18,53 @@ in {
 
       # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
       plugins = with pkgs.tmuxPlugins; [
-        # {
-        #   plugin = battery;
-        #   extraConfig = ''
-        #     set -g @batt_icon_charge_tier8 ' ' # [95%-100%]
-        #     set -g @batt_icon_charge_tier7 ' ' # [80%-95%)
-        #     set -g @batt_icon_charge_tier6 ' ' # [65%-80%)
-        #     set -g @batt_icon_charge_tier5 ' ' # [50%-65%)
-        #     set -g @batt_icon_charge_tier4 ' ' # [35%-50%)
-        #     set -g @batt_icon_charge_tier3 ' ' # [20%-35%)
-        #     set -g @batt_icon_charge_tier2 ' ' # (5%-20%)
-        #     set -g @batt_icon_charge_tier1 ' ' # [0%-5%]
-        #     set -g @batt_icon_status_charged  ''
-        #     set -g @batt_icon_status_charging ''
-        #     set -g @batt_icon_status_attached ''
-        #     set -g @batt_icon_status_unknown  ''
-        #   '';
-        # }
-        {
-          plugin = prefix-highlight;
-          extraConfig = ''
-            set -g @prefix_highlight_fg '##f38ba8,bold'
-            set -g @prefix_highlight_bg '##1e1e2e'
-            set -g @prefix_highlight_output_prefix "["
-            set -g @prefix_highlight_output_suffix "]"
-            set -g @prefix_highlight_show_copy_mode 'on'
-            set -g @prefix_highlight_show_sync_mode 'on'
-            set -g @prefix_highlight_copy_mode_attr 'fg=##f38ba8,bold,bg=##1e1e2e'
-            set -g @prefix_highlight_sync_mode_attr 'fg=##f38ba8,bold,bg=##1e1e2e'
-          '';
-        }
         {
           plugin = fzf-tmux-url;
           extraConfig = ''
             set -g @fzf-url-fzf-options '-w 50% -h 50% --multi -0 --no-preview'
+          '';
+        }
+        {
+          # https://github.com/catppuccin/tmux
+          plugin = catppuccin.overrideAttrs ( _: {
+            src = pkgs.fetchFromGitHub {
+              owner = "catppuccin";
+              repo = "tmux";
+              rev = "ba9bd88c98c81f25060f051ed983e40f82fdd3ba";
+              sha256 = "sha256-HegD89d0HUJ7dHKWPkiJCIApPY/yqgYusn7e1LDYS6c=";
+            };
+          });
+          extraConfig = ''
+            set -g @catppuccin_flavor 'mocha'
+
+            # Pane styling options
+            set -g @catppuccin_pane_active_border_style "fg=#{@thm_peach}"
+
+            # Window options
+            set -g @catppuccin_window_status_style "rounded"
+            set -g @catppuccin_window_number_color "#{@thm_bg}"
+            set -g @catppuccin_window_text "#[fg=#{@thm_surface_2},bg=#{@thm_bg}]#W "
+            set -g @catppuccin_window_number "#[fg=#{@thm_surface_2},bg=#{@thm_bg}]#{?window_activity_flag,#[fg=#{@thm_mauve}]●,#I}"
+            set -g @catppuccin_window_number_position "left"
+            set -g @catppuccin_window_current_number_color "#{?window_zoomed_flag,#{@thm_red},#{@thm_peach}}"
+            set -g @catppuccin_window_current_text "#[bg=#{@thm_surface_0}] #[italics,bold]#W"
+            set -g @catppuccin_window_current_number "#{?window_zoomed_flag,,#I}"
+
+            # Status line options
+            set -g @catppuccin_status_background "#{@thm_bg}"
+            set -g @catppuccin_status_left_separator  ""
+            set -g @catppuccin_status_right_separator ""
+            set -g @catppuccin_status_middle_separator ""
+            set -g @catppuccin_status_fill "icon"
+            set -g @catppuccin_status_connect_separator "no"
+
+            set -g @catppuccin_date_time_color "#{@thm_blue}"
+            set -g @catppuccin_date_time_text " %H:%M"
+            set -g @catppuccin_session_color "#{?client_prefix,#{@thm_red},#{?pane_in_mode,#{@thm_peach},#{?pane_synchronized,#{@thm_peach},#{@thm_green}}}}"
+
+
+            set -g status-left '#{E:@catppuccin_status_session} '
+            set -g status-right '#{E:@catppuccin_status_date_time}'
           '';
         }
       ];
@@ -116,6 +129,10 @@ in {
 
         set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'                                                         # undercurl support
         set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
+        # catppuccin
+        set -g copy-mode-match-style          "fg=#{@thm_fg},bg=#{@thm_surface_1}"
+        set -g copy-mode-current-match-style  "fg=#{@thm_surface_1},bg=#{@thm_red}"
       '';
     };
 
