@@ -22,14 +22,14 @@ in {
           # https://github.com/junegunn/tmux-fzf-url
           plugin = mkTmuxPlugin {
             pluginName = "tmux-fzf-url";
-            version = "unstable-2024-09-01";
-            src = pkgs.fetchFromGitHub {
-              owner = "junegunn";
-              repo = "tmux-fzf-url";
-              rev = "1ffce234173d0bc8004fc5934599e473e36af01c";
-              sha256 = "sha256-qTzKToCVfWkO4C++cu2uXEutDWci972g+T5TbUgNOm0=";
-            };
+            version = "unstable-2024-12-31";
             rtpFilePath = "fzf-url.tmux";
+            src = pkgs.fetchFromGitHub {
+              owner = "m00p1ng";
+              repo = "tmux-fzf-url";
+              rev = "15535a1fa017914300dfaf8662c87ba52e560c5a";
+              sha256 = "sha256-u+P8xl48delYK0cPUJVsBqg1LmZP0w4t9xBSOowXJO4=";
+            };
           };
         }
         {
