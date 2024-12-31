@@ -27,8 +27,8 @@ in {
             src = pkgs.fetchFromGitHub {
               owner = "m00p1ng";
               repo = "tmux-fzf-url";
-              rev = "15535a1fa017914300dfaf8662c87ba52e560c5a";
-              sha256 = "sha256-u+P8xl48delYK0cPUJVsBqg1LmZP0w4t9xBSOowXJO4=";
+              rev = "2df0c7e82bf923746208d47cb3fba5c44a2ccb97";
+              sha256 = "sha256-x5BBZGfCQNr1++RwF8T6XsI9qT6Na7ivYbPbvzTp3G8=";
             };
           };
         }
