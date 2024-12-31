@@ -72,7 +72,7 @@ in {
         options = {
           features = "line-numbers file-decorators";
           inspect-raw-lines = false;
-          syntax-theme = "Visual Studio Dark+";
+          syntax-theme = "Catppuccin Mocha";
           line-numbers = {
             line-numbers-zero-style = "243";
             line-numbers-left-style = "243";
