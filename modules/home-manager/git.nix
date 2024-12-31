@@ -3,6 +3,12 @@
 with lib;
 let
   cfg = config.programs.git;
+  catppuccinDelta = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "delta";
+    rev = "0674ec5114c08393d808e2516d153c7e6df00d41";
+    sha256 = "sha256-JvkTvAe1YltgmYSHeewzwg6xU38oGOIYoehXdHwW1zI=";
+  };
 in {
   config = mkIf cfg.enable {
     programs.git = {
@@ -67,27 +73,30 @@ in {
         rebase = {
           autoStash = true;
         };
+        include = {
+          path = "${catppuccinDelta}/catppuccin.gitconfig";
+        };
       };
       delta = {
         options = {
-          features = "line-numbers file-decorators";
+          features = "line-numbers file-decorators catppuccin-mocha";
           inspect-raw-lines = false;
           syntax-theme = "Catppuccin Mocha";
-          line-numbers = {
-            line-numbers-zero-style = "243";
-            line-numbers-left-style = "243";
-            line-numbers-right-style = "243";
-            line-numbers-minus-style = "red";
-            line-numbers-plus-style = "green";
-          };
-          file-decorators = {
-            file-style = "bold yellow";
-            file-modified-label = "modified:";
-            file-decoration-style = "yellow box ul";
-            hunk-header-style = "syntax";
-            hunk-header-decoration-style = "243 box";
-            commit-decoration-style = "green box ul";
-          };
+          # line-numbers = {
+          #   line-numbers-zero-style = "243";
+          #   line-numbers-left-style = "243";
+          #   line-numbers-right-style = "243";
+          #   line-numbers-minus-style = "red";
+          #   line-numbers-plus-style = "green";
+          # };
+          # file-decorators = {
+          #   file-style = "bold yellow";
+          #   file-modified-label = "modified:";
+          #   file-decoration-style = "yellow box ul";
+          #   hunk-header-style = "syntax";
+          #   hunk-header-decoration-style = "243 box";
+          #   commit-decoration-style = "green box ul";
+          # };
         };
       };
     };

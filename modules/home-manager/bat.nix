@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-let 
+let
   catppuccinBat = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "bat";
