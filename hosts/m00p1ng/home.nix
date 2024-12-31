@@ -115,6 +115,7 @@
     htop
     httpie
     fastfetch
+    imagemagick
     rsync
     # rustup
     smartmontools

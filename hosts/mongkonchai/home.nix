@@ -86,6 +86,7 @@
     htop
     httpie
     fastfetch
+    imagemagick
     smartmontools
     pstree
     tree
