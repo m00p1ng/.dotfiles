@@ -46,7 +46,8 @@ in {
             set -g @catppuccin_flavor 'mocha'
 
             # Pane styling options
-            set -g @catppuccin_pane_active_border_style "fg=#{@thm_peach}"
+            set -g @catppuccin_pane_border_style "fg=#{@thm_mantle}"
+            set -g @catppuccin_pane_active_border_style "##{?pane_in_mode,fg=#{@thm_peach},##{?pane_synchronized,fg=#{@thm_peach},fg=#{@thm_green}}}"
 
             # Window options
             set -g @catppuccin_window_status_style "rounded"
