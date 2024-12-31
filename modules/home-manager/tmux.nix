@@ -84,6 +84,7 @@ in {
         set -g monitor-bell     on
         set -g visual-activity  off
         set -g activity-action  none
+        set -g allow-passthrough on
 
         bind-key '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
         bind-key %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
