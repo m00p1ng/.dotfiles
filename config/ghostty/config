@@ -1,48 +1,51 @@
 font-size = 14
 theme = catppuccin-mocha
+
+cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
+
 # quit-after-last-window-closed = true
 window-decoration = true
+shell-integration-features = no-cursor
+
 macos-option-as-alt = true
 macos-titlebar-style = hidden
 
-# Open URL
+## Open URL
 keybind = cmd+shift+e=text:\x02u
 
-# Full screen
+## Full screen
 keybind = cmd+enter=toggle_fullscreen
 
-# Delete
+## Delete
 keybind = cmd+backspace=text:\x15
 keybind = opt+backspace=text:\x17
 
 # Tmux mapping
-# ref: https://www.joshmedeski.com/posts/macos-keyboard-shortcuts-for-tmux
+## ref: https://www.joshmedeski.com/posts/macos-keyboard-shortcuts-for-tmux
 keybind = cmd+t=text:\x02c
 keybind = cmd+w=text:\x02x
-keybind = cmd+comma=text:\x02,
+keybind = cmd+,=text:\x02,
 keybind = cmd+f=text:\x02[?
 keybind = cmd+r=text:\x02[
 
-# Split pane
+## Split pane
 keybind = cmd+d=text:\x02%
 keybind = cmd+shift+d=text:\x02"
 
-# Select window
-# ref: https://github.com/ghostty-org/ghostty/discussions/3447
-# some key not work ref: https://github.com/ghostty-org/ghostty/discussions/3187
-keybind = cmd+left_bracket=text:\x02p
-keybind = cmd+right_bracket=text:\x02n
+## Select window
+keybind = cmd+[=text:\x02p
+keybind = cmd+]=text:\x02n
 
-keybind = cmd+one=text:\x021
-keybind = cmd+two=text:\x022
-keybind = cmd+three=text:\x023
-keybind = cmd+four=text:\x024
-keybind = cmd+five=text:\x025
-keybind = cmd+six=text:\x026
-keybind = cmd+seven=text:\x027
-keybind = cmd+eight=text:\x028
-keybind = cmd+nine=text:\x029
+keybind = cmd+1=text:\x021
+keybind = cmd+2=text:\x022
+keybind = cmd+3=text:\x023
+keybind = cmd+4=text:\x024
+keybind = cmd+5=text:\x025
+keybind = cmd+6=text:\x026
+keybind = cmd+7=text:\x027
+keybind = cmd+8=text:\x028
+keybind = cmd+9=text:\x029
 
-# vi: ft=conf
+# vim: ft=conf:syntax=dosini
