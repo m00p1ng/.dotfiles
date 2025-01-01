@@ -89,6 +89,10 @@
       };
     };
 
+    thefuck = {
+      enable = true;
+    };
+
     tmux = {
       enable = true;
     };
