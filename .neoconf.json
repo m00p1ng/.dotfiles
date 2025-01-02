@@ -1,0 +1,13 @@
+{
+  "lspconfig": {
+    "nixd": {
+      "nixd": {
+        "options": {
+          "darwin": {
+            "expr": "(builtins.getFlake (\"git+file://\" + toString ./.)).darwinConfigurations.mooping.options"
+          }
+        }
+      }
+    }
+  }
+}
