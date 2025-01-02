@@ -1,7 +1,9 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.eza;
 in {
   config = mkIf cfg.enable {

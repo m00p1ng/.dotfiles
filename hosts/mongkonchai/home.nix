@@ -1,6 +1,8 @@
-{ pkgs, mylib, ... }:
-
 {
+  pkgs,
+  mylib,
+  ...
+}: {
   home.stateVersion = "24.05";
   imports = mylib.scanPaths ../../modules/home-manager;
 
@@ -55,7 +57,7 @@
     };
 
     python = {
-       enable = true;
+      enable = true;
     };
 
     ripgrep = {

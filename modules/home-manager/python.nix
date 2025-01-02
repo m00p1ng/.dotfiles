@@ -1,7 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.python;
   pythonEnv = cfg.package.withPackages (ps: [
     ps.ipython
@@ -25,9 +28,9 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge([
+  config = mkIf cfg.enable (mkMerge [
     {
-      home.packages = with pkgs; [
+      home.packages = [
         pythonEnv
       ];
 
@@ -44,12 +47,12 @@ in {
             # virtualenv starting from the current directory.
             while string match "$gitdir*" "$cwd" &>/dev/null
               ${optionalString cfg.poetry.enable ''
-                set poetry_path (poetry env info --path 2>/dev/null)
-                if test -n "$poetry_path"
-                  source "$poetry_path/bin/activate.fish" &>/dev/null
-                  return
-                end
-              ''}
+          set poetry_path (poetry env info --path 2>/dev/null)
+          if test -n "$poetry_path"
+            source "$poetry_path/bin/activate.fish" &>/dev/null
+            return
+          end
+        ''}
 
               if test -e "$cwd/.venv/bin/activate.fish"
                 source "$cwd/.venv/bin/activate.fish" &>/dev/null
@@ -72,5 +75,5 @@ in {
         enable = true;
       };
     })
-  ]));
+  ]);
 }

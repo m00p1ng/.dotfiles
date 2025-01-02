@@ -1,7 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.git;
   catppuccinDelta = pkgs.fetchFromGitHub {
     owner = "catppuccin";

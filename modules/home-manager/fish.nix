@@ -1,12 +1,15 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.fish;
 in {
   config = mkIf cfg.enable {
     programs.fish = {
-      shellAliases = mkMerge([
+      shellAliases = mkMerge [
         {
           "..." = "cd ../..";
           "...." = "cd ../../..";
@@ -31,7 +34,7 @@ in {
           hidefiles = "defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder";
           icloud = "cd ~/Library/Mobile\\ Documents/com\~apple\~CloudDocs";
         })
-      ]);
+      ];
       shellAbbrs = {
         "-" = "cd -"; # abbr -a -- - 'cd -'
       };
@@ -53,7 +56,7 @@ in {
           end
         ''}
       '';
-      plugins = with pkgs; [
+      plugins = [
         # {
         #   name = "fish-functions";
         #   src = fetchFromGitHub {

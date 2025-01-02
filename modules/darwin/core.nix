@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   system.stateVersion = 5;
 
   # Auto upgrade nix package and the daemon service.

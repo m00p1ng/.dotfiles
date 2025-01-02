@@ -1,8 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.tmux;
 in {
   config = mkIf cfg.enable {
@@ -34,7 +36,7 @@ in {
         }
         {
           # https://github.com/catppuccin/tmux
-          plugin = catppuccin.overrideAttrs ( _: {
+          plugin = catppuccin.overrideAttrs (_: {
             src = pkgs.fetchFromGitHub {
               owner = "catppuccin";
               repo = "tmux";

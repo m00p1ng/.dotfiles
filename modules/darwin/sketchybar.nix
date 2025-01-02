@@ -1,10 +1,13 @@
-{ config, lib, pkgs, username, ... }:
-
-with lib;
-let
-  cfg = config.services.sketchybar;
-in
 {
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+}:
+with lib; let
+  cfg = config.services.sketchybar;
+in {
   config = mkIf cfg.enable {
     system.defaults.NSGlobalDomain._HIHideMenuBar = true;
     services = {
@@ -17,7 +20,7 @@ in
 
     home-manager.users.${username} = {
       programs.kitty.settings = {
-        hide_window_decorations  = "titlebar-only";
+        hide_window_decorations = "titlebar-only";
       };
 
       xdg.configFile."sketchybar" = {

@@ -13,16 +13,24 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, darwin, ... }: let
-    mkMacOS = username: modules: darwin.lib.darwinSystem {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    darwin,
+    ...
+  }: let
+    mkMacOS = username: modules:
+      darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = { inherit nixpkgs username; };
-        modules = [
-          home-manager.darwinModules.home-manager
-          ./modules/darwin
-          ./override.nix
-        ] ++ modules;
-    };
+        specialArgs = {inherit nixpkgs username;};
+        modules =
+          [
+            home-manager.darwinModules.home-manager
+            ./modules/darwin
+            ./override.nix
+          ]
+          ++ modules;
+      };
   in {
     darwinConfigurations = {
       mooping = mkMacOS "m00p1ng" [

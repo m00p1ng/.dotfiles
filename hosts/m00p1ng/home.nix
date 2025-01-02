@@ -1,6 +1,8 @@
-{ pkgs, mylib, ... }:
-
 {
+  pkgs,
+  mylib,
+  ...
+}: {
   home.stateVersion = "24.05";
   imports = mylib.scanPaths ../../modules/home-manager;
 
@@ -127,5 +129,8 @@
     tree
     tree-sitter
     wget
+
+    nixd
+    alejandra
   ];
 }

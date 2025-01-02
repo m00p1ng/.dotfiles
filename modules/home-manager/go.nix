@@ -1,17 +1,19 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
-  cfg = config.programs.go;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.programs.go;
+in {
   options.programs.go = {
     gvm = {
       enable = mkEnableOption "gvm fish integration";
     };
   };
 
-  config = mkIf cfg.enable (mkMerge ([
+  config = mkIf cfg.enable (mkMerge [
     {
       programs.go = {
         goPath = "tools/go";
@@ -47,5 +49,5 @@ in
         '';
       };
     })
-  ]));
+  ]);
 }

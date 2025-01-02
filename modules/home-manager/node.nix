@@ -1,7 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.node;
   pnpmPath = "${config.home.homeDirectory}/tools/pnpm";
 in {
@@ -20,9 +23,9 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge([
+  config = mkIf cfg.enable (mkMerge [
     {
-      home.packages = [ cfg.package ];
+      home.packages = [cfg.package];
 
       programs.fish = {
         interactiveShellInit = ''
@@ -34,7 +37,7 @@ in {
     }
 
     (mkIf cfg.pnpm.enable {
-      home.packages = [ cfg.pnpm.package ];
+      home.packages = [cfg.pnpm.package];
 
       home.sessionVariables = {
         PNPM_HOME = pnpmPath;
@@ -49,5 +52,5 @@ in {
         '';
       };
     })
-  ]));
+  ]);
 }

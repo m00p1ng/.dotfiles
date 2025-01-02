@@ -1,7 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.kubernetes;
 in {
   options.programs.kubernetes = {
@@ -26,9 +29,9 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge([
+  config = mkIf cfg.enable (mkMerge [
     {
-      home.packages = [ cfg.package ];
+      home.packages = [cfg.package];
 
       programs.fish = {
         shellAliases = {
@@ -38,7 +41,7 @@ in {
     }
 
     (mkIf cfg.stern.enable {
-      home.packages = [ cfg.stern.package ];
+      home.packages = [cfg.stern.package];
 
       xdg.configFile."stern/config.yaml".text = ''
         exclude-container: istio
@@ -55,7 +58,7 @@ in {
     })
 
     (mkIf cfg.k9s.enable {
-      home.packages = [ cfg.k9s.package ];
+      home.packages = [cfg.k9s.package];
 
       xdg.configFile.k9s = {
         source = ../../config/k9s;
@@ -66,5 +69,5 @@ in {
         K9S_CONFIG_DIR = "${config.xdg.configHome}/k9s";
       };
     })
-  ]));
+  ]);
 }

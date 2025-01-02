@@ -1,7 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.ruby;
   rubyEnv = pkgs.ruby.withPackages (ps: [
     ps.pry
@@ -12,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
+    home.packages = [
       rubyEnv
     ];
   };

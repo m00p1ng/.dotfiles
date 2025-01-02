@@ -1,36 +1,38 @@
-{ nixpkgs, username, ... }:
-
-let
+{
+  nixpkgs,
+  username,
+  ...
+}: let
   inherit (nixpkgs) lib;
-  mylib = import ../../lib { inherit lib; };
+  mylib = import ../../lib {inherit lib;};
 in {
   home-manager = {
     users.${username} = import ./home.nix;
-    extraSpecialArgs = { inherit mylib; };
+    extraSpecialArgs = {inherit mylib;};
   };
 
   homebrew = {
     enable = true;
     casks = [
-       "google-chrome"
-       "firefox"
+      "google-chrome"
+      "firefox"
 
-       "flux"
-       "coconutbattery"
-       "raycast"
-       "1password"
-       "setapp"
+      "flux"
+      "coconutbattery"
+      "raycast"
+      "1password"
+      "setapp"
 
-       "notion"
-       "discord"
-       "sf-symbols"
-       "grammarly-desktop"
+      "notion"
+      "discord"
+      "sf-symbols"
+      "grammarly-desktop"
 
-       "postman"
-       "docker"
-       "ghostty"
+      "postman"
+      "docker"
+      "ghostty"
 
-       "vlc"
+      "vlc"
     ];
 
     masApps = {

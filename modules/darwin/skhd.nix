@@ -1,10 +1,11 @@
-{ config, lib, pkgs, username, ... }:
-
-with lib;
-let
-  cfg = config.services.skhd;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.services.skhd;
+in {
   config = mkIf cfg.enable {
     services.skhd = {
       skhdConfig = ''
@@ -67,6 +68,6 @@ in
     };
 
     # ref: https://github.com/LnL7/nix-darwin/pull/260
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = [cfg.package];
   };
 }

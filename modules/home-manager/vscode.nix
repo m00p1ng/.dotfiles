@@ -1,10 +1,12 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-let
-  cfg = config.programs.vscode;
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.programs.vscode;
+in {
   config = {
     programs.vscode = {
       extensions = with pkgs.vscode-extensions; [
@@ -72,7 +74,7 @@ in
 
         # Neovim
         "extensions.experimental.affinity" = {
-            "asvetliakov.vscode-neovim" = 1;
+          "asvetliakov.vscode-neovim" = 1;
         };
 
         # Tabnine
@@ -129,9 +131,9 @@ in
           when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert'";
         }
         {
-           key = "ctrl+h";
-           command = "workbench.action.focusSideBar";
-           when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert' && activeEditorGroupIndex == 1 && sideBarVisible";
+          key = "ctrl+h";
+          command = "workbench.action.focusSideBar";
+          when = "editorTextFocus && neovim.ctrlKeysNormal.h && neovim.init && neovim.mode != 'insert' && activeEditorGroupIndex == 1 && sideBarVisible";
         }
         {
           key = "ctrl+l";
