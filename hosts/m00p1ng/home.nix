@@ -25,7 +25,7 @@
       enable = true;
     };
 
-    ghostty = {
+    ghostty-config = {
       enable = true;
     };
 

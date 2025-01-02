@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.programs.ghostty;
+  cfg = config.programs.ghostty-config;
 in
 {
-  options.programs.ghostty = {
-    enable = mkEnableOption "ghostty terminal";
+  options.programs.ghostty-config = {
+    enable = mkEnableOption "ghostty terminal config";
   };
 
   config = mkIf cfg.enable {
