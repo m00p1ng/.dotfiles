@@ -89,6 +89,7 @@ in {
         bind-key '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
         bind-key %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
         bind-key c   new-window -c "#{pane_current_path}"
+        bind-key j   choose-tree -Z "join-pane -t %%"
 
         is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
           | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
@@ -107,8 +108,9 @@ in {
         bind-key -r K resize-pane -U 5
         bind-key -r L resize-pane -R 5
 
-        bind-key -n 'M-[' swap-window -d -t-
-        bind-key -n 'M-]' swap-window -d -t+
+        # NOTE: Don't map with `M-[` and `M-]`
+        bind-key -n 'M-{' swap-window -d -t-
+        bind-key -n 'M-}' swap-window -d -t+
 
         bind-key -T copy-mode-vi 'C-h' select-pane -L
         bind-key -T copy-mode-vi 'C-j' select-pane -D

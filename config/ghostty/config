@@ -28,7 +28,6 @@ keybind = cmd+t=text:\x02c
 keybind = cmd+w=text:\x02x
 keybind = cmd+,=text:\x02,
 keybind = cmd+f=text:\x02[?
-keybind = cmd+r=text:\x02[
 
 ## Split pane
 keybind = cmd+d=text:\x02%
@@ -37,6 +36,8 @@ keybind = cmd+shift+d=text:\x02"
 ## Select window
 keybind = cmd+[=text:\x02p
 keybind = cmd+]=text:\x02n
+keybind = cmd+shift+[=text:\x1b{
+keybind = cmd+shift+]=text:\x1b}
 
 keybind = cmd+1=text:\x021
 keybind = cmd+2=text:\x022
