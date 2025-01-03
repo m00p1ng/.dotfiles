@@ -38,6 +38,10 @@
       };
     };
 
+    gvm = {
+      enable = true;
+    };
+
     jq = {
       enable = true;
     };
@@ -69,6 +73,10 @@
     };
 
     ssh = {
+      enable = true;
+    };
+
+    thefuck = {
       enable = true;
     };
 

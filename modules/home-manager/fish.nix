@@ -49,12 +49,6 @@ in {
       interactiveShellInit = ''
         bind \ep history-token-search-backward
         bind \en history-token-search-forward
-
-        ${optionalString pkgs.stdenv.hostPlatform.isDarwin ''
-          for f in ${config.xdg.configHome}/fish/macos/*.fish
-            source $f
-          end
-        ''}
       '';
       plugins = [
         # {
@@ -77,6 +71,10 @@ in {
     xdg.configFile."fish/macos" = mkIf pkgs.stdenv.hostPlatform.isDarwin {
       source = ../../config/fish/helper/macos;
       recursive = true;
+      onChange = ''
+        run mv ${config.xdg.configHome}/fish/macos/* ${config.xdg.configHome}/fish/functions
+        run rmdir ${config.xdg.configHome}/fish/macos
+      '';
     };
   };
 }
