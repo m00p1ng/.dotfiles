@@ -24,13 +24,13 @@ in {
           # https://github.com/junegunn/tmux-fzf-url
           plugin = mkTmuxPlugin {
             pluginName = "tmux-fzf-url";
-            version = "unstable-2024-12-31";
+            version = "unstable-2025-01-04";
             rtpFilePath = "fzf-url.tmux";
             src = pkgs.fetchFromGitHub {
               owner = "m00p1ng";
               repo = "tmux-fzf-url";
-              rev = "2df0c7e82bf923746208d47cb3fba5c44a2ccb97";
-              sha256 = "sha256-x5BBZGfCQNr1++RwF8T6XsI9qT6Na7ivYbPbvzTp3G8=";
+              rev = "99aef26a2cc5eb43aa17fb802fd81aa892166fb4";
+              sha256 = "sha256-EO/JXWRgM/KH1b53LHTnAFY2ys/K4YpwNo93QIl9yEo=";
             };
           };
         }
