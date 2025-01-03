@@ -42,6 +42,10 @@
       enable = true;
     };
 
+    nix-development = {
+      enable = true;
+    };
+
     node = {
       enable = true;
     };

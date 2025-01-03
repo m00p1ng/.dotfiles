@@ -60,6 +60,10 @@
       };
     };
 
+    nix-development = {
+      enable = true;
+    };
+
     node = {
       enable = true;
       pnpm = {
@@ -129,8 +133,5 @@
     tree
     tree-sitter
     wget
-
-    nixd
-    alejandra
   ];
 }
