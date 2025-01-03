@@ -26,6 +26,7 @@
         modules =
           [
             home-manager.darwinModules.home-manager
+            ./pkgs
             ./modules/darwin
             ./override.nix
           ]

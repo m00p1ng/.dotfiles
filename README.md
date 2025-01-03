@@ -10,6 +10,8 @@ $ sh <(curl -L https://nixos.org/nix/install)
 $ nix-channel --update
 $ nix-collect-garbage -d
 $ sudo nix-store --verify --repair --check-contents
+
+$ nix-build -E 'with import <nixpkgs> { }; callPackage ./package.nix { }'
 ```
 
 ## References
