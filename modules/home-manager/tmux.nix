@@ -82,6 +82,7 @@ in {
             set -g @catppuccin_status_fill "icon"
             set -g @catppuccin_status_connect_separator "no"
 
+            set -g @catppuccin_date_time_icon " "
             set -g @catppuccin_date_time_color "#{@thm_blue}"
             set -g @catppuccin_date_time_text " %a %-d %H:%M"
             set -g @catppuccin_session_color "#{?client_prefix,#{@thm_red},#{?pane_in_mode,#{@thm_peach},#{?pane_synchronized,#{@thm_peach},#{@thm_green}}}}"

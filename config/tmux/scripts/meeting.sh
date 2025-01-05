@@ -2,9 +2,9 @@
 # https://github.com/omerxx/dotfiles/blob/master/tmux/scripts/cal.sh
 
 LIMIT_TITLE=30
-ICON_FREE="󱁕 "
-ICON_IN_MEETING="󰭹 "
-ICON_NEXT_MEETING="󱙭 "
+ICON_FREE=" "
+ICON_IN_MEETING="󰃰 "
+ICON_NEXT_MEETING=" "
 
 get_next_meeting() {
   next_meeting=$(icalBuddy \
