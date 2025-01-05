@@ -21,6 +21,12 @@ with lib; let
     };
   };
 in {
+  options.programs.tmux = {
+    meeting = {
+      enable = mkEnableOption "meeting plugin";
+    };
+  };
+
   config = mkIf cfg.enable {
     programs.tmux = {
       baseIndex = 1;
@@ -81,8 +87,12 @@ in {
             set -g @catppuccin_session_color "#{?client_prefix,#{@thm_red},#{?pane_in_mode,#{@thm_peach},#{?pane_synchronized,#{@thm_peach},#{@thm_green}}}}"
 
 
-            set -g status-left '#{E:@catppuccin_status_session} '
-            set -g status-right '#{E:@catppuccin_status_meeting} #{E:@catppuccin_status_date_time}'
+            set -g status-left "#{E:@catppuccin_status_session} "
+            ${
+              if cfg.meeting.enable
+              then ''set -g status-right "#{E:@catppuccin_status_meeting} #{E:@catppuccin_status_date_time}"''
+              else ''set -g status-right "#{E:@catppuccin_status_date_time}"''
+            }
           '';
         }
       ];
@@ -152,7 +162,9 @@ in {
         set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
         # catppuccin
-        source -F "${config.xdg.configHome}/tmux/status/meeting.conf"
+        ${optionalString cfg.meeting.enable ''
+          source -F "${config.xdg.configHome}/tmux/status/meeting.conf"
+        ''}
         set -g copy-mode-match-style          "fg=#{@thm_fg},bg=#{@thm_surface_1}"
         set -g copy-mode-current-match-style  "fg=#{@thm_surface_1},bg=#{@thm_red}"
       '';
@@ -167,7 +179,7 @@ in {
       recursive = true;
     };
 
-    xdg.configFile."tmux/status/meeting.conf".text = mkBefore ''
+    xdg.configFile."tmux/status/meeting.conf".text = ''
       # vim:set ft=tmux:
       %hidden MODULE_NAME="meeting"
 
@@ -199,8 +211,8 @@ in {
       '';
     };
 
-    home.packages = with pkgs; [
+    home.packages = mkIf cfg.meeting.enable (with pkgs; [
       icalBuddy
-    ];
+    ]);
   };
 }
