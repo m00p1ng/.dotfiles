@@ -61,6 +61,9 @@ in {
   services = {
     sketchybar = {
       enable = true;
+      widget = {
+        currency = true;
+      };
     };
 
     yabai = {

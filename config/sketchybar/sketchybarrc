@@ -3,6 +3,7 @@
 
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 source "$CONFIG_DIR/icons.sh"  # Loads all defined icons
+source "$CONFIG_DIR/features.sh"
 
 ITEM_DIR="$CONFIG_DIR/items"     # Directory where the items are configured
 PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
@@ -12,14 +13,16 @@ LABEL_FONT="JetBrains Mono"
 PADDINGS=3 # All paddings use this value (icon, label, background)
 
 # Setting up and starting the helper process
-HELPER=git.felix.helper
-killall helper
-(cd $CONFIG_DIR/helper && make)
-$CONFIG_DIR/helper/helper $HELPER >/dev/null 2>&1 &
+if $ENABLED_CPU; then
+  HELPER=git.felix.helper
+  killall helper
+  (cd $CONFIG_DIR/helper && make)
+  $CONFIG_DIR/helper/helper $HELPER >/dev/null 2>&1 &
+fi
 
 # Setting up the general bar appearance of the bar
 bar=(
-  height=28
+  height="$SKETCHYBAR_BAR_HEIGHT"
   color="$BACKGROUND"
   blur_radius=30
   border_width=0
@@ -65,21 +68,42 @@ source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/input.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/currency.sh"
-# source "$ITEM_DIR/cpu.sh"
-# source "$ITEM_DIR/slack.sh"
+
+if $ENABLED_CURRENCY; then
+  source "$ITEM_DIR/currency.sh"
+fi
+
+if $ENABLED_CPU; then
+  source "$ITEM_DIR/cpu.sh"
+fi
+
+if $ENABLED_SLACK; then
+  source "$ITEM_DIR/slack.sh"
+fi
 
 # bracket for everything
 status_bracket=(
   background.color="$TRANSPARENT"
 )
 
-group=(
-  # cpu.top
-  # cpu.percent
-  # cpu.sys
-  # cpu.user
-  currency
+group=()
+
+if $ENABLED_CPU; then
+  group+=(
+    cpu.top
+    cpu.percent
+    cpu.sys
+    cpu.user
+  )
+fi
+
+if $ENABLED_CURRENCY; then
+  group+=(
+    currency
+  )
+fi
+
+group+=(
   "Control Center,Sound"
   input
   wifi
