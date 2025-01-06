@@ -184,33 +184,12 @@ in {
       # vim:set ft=tmux:
       %hidden MODULE_NAME="meeting"
 
-      set -ogq "@catppuccin_${"$"}{MODULE_NAME}_icon" "#(${scriptsPath}/meeting.sh icon)"
-      set -ogqF "@catppuccin_${"$"}{MODULE_NAME}_color" "#{E:@thm_mauve}"
-      set -ogq "@catppuccin_${"$"}{MODULE_NAME}_text" " #(${scriptsPath}/meeting.sh title)"
+      set -ogq "@catppuccin_''${MODULE_NAME}_icon" "#(${scriptsPath}/meeting.sh icon)"
+      set -ogq "@catppuccin_''${MODULE_NAME}_color" "#{E:@thm_mauve}"
+      set -ogq "@catppuccin_''${MODULE_NAME}_text" " #(${scriptsPath}/meeting.sh title)"
 
       source -F "${catppuccinTmux}/share/tmux-plugins/catppuccin/utils/status_module.conf"
     '';
-
-    # auto attach tmux configuration
-    programs.fish = {
-      interactiveShellInit = ''
-        if not set -q TMUX
-          set tmux_default_session_name workspace
-          set tmux_attached_client (tmux list-clients 2> /dev/null | grep $tmux_default_session_name | wc -l)
-          set tmux_has_default_session (tmux ls 2> /dev/null | grep $tmux_default_session_name | wc -l)
-
-          if [ $tmux_attached_client -eq 0 ]
-            if [ $tmux_has_default_session -eq 0 ]
-              tmux new -s $tmux_default_session_name
-            else
-              tmux a -t $tmux_default_session_name
-            end
-          else
-            tmux
-          end
-        end
-      '';
-    };
 
     home.packages = mkIf cfg.meeting.enable (with pkgs; [
       icalBuddy
