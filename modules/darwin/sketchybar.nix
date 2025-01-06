@@ -25,7 +25,7 @@ in {
   config = mkIf cfg.enable {
     system.defaults.NSGlobalDomain._HIHideMenuBar = true;
     services = {
-      yabai.config.external_bar = "all:${cfg.bar.height}:0";
+      yabai.config.external_bar = "all:${toString cfg.bar.height}:0";
 
       sketchybar.extraPackages = with pkgs; [
         jq
@@ -37,7 +37,7 @@ in {
         SKETCHYBAR_WIDGET_SLACK = boolToString cfg.widget.slack;
         SKETCHYBAR_WIDGET_CURRENCY = boolToString cfg.widget.currency;
         SKETCHYBAR_WIDGET_CPU = boolToString cfg.widget.cpu;
-        SKETCHYBAR_BAR_HEIGHT = builtins.toString cfg.bar.height;
+        SKETCHYBAR_BAR_HEIGHT = toString cfg.bar.height;
       };
     };
 

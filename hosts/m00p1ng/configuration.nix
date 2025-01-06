@@ -68,7 +68,6 @@ in {
 
     yabai = {
       enable = true;
-      config.external_bar = "all:28:0";
     };
   };
 }

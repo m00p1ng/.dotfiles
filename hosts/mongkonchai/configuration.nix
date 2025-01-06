@@ -14,13 +14,10 @@ in {
   services = {
     sketchybar = {
       enable = true;
+      bar.height = 32;
     };
 
     yabai = {
-      enable = true;
-    };
-
-    skhd = {
       enable = true;
     };
   };
