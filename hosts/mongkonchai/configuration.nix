@@ -14,6 +14,9 @@ in {
   services = {
     sketchybar = {
       enable = true;
+      widget = {
+        slack = true;
+      };
       bar.height = 32;
     };
 
