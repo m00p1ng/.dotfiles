@@ -1,6 +1,6 @@
 # auto attach tmux configuration
 status is-interactive; and begin
-  if [ $TERM_PROGRAM != "ghostty" ] || set -q TMUX
+  if [ "$TERM_PROGRAM" != "ghostty" ] || set -q TMUX
     return
   end
 
