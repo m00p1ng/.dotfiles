@@ -71,6 +71,7 @@ in {
 
         # Window
         "window.commandCenter" = false;
+        "window.title" = "\${rootName}\${separator}\${activeEditorShort}\${separator}\${profileName}";
 
         # Neovim
         "extensions.experimental.affinity" = {
