@@ -118,6 +118,10 @@
 
     zoxide = {
       enable = true;
+      excludeDirs = [
+        "\$HOME/Library/*"
+        "\$HOME/Downloads/*"
+      ];
     };
   };
 
