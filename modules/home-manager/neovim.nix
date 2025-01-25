@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     neovim
+    imagemagick
   ];
 
   home.sessionVariables = {

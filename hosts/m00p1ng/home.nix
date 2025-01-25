@@ -133,7 +133,7 @@
     htop
     httpie
     fastfetch
-    imagemagick
+    numbat
     rsync
     # rustup
     smartmontools

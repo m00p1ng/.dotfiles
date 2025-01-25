@@ -100,7 +100,7 @@
     htop
     httpie
     fastfetch
-    imagemagick
+    numbat
     smartmontools
     pstree
     tree
