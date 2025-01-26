@@ -50,6 +50,10 @@ in {
         shellInit = ''
           fish_add_path ${pnpmPath}
         '';
+        interactiveShellInit = ''
+          # PNPM configuration
+          pnpm completion fish | source
+        '';
       };
     })
   ]);
