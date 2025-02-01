@@ -6,7 +6,7 @@ cursor-style-blink = false
 adjust-cursor-thickness = 300%
 mouse-hide-while-typing = true
 
-# quit-after-last-window-closed = true
+quit-after-last-window-closed = true
 window-decoration = true
 shell-integration-features = no-cursor
 
