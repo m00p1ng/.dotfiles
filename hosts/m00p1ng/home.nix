@@ -99,6 +99,10 @@
       };
     };
 
+    television = {
+      enable = true;
+    };
+
     thefuck = {
       enable = true;
     };

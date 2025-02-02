@@ -30,8 +30,8 @@ in {
       programs.fish = {
         interactiveShellInit = ''
           # FNM configuration
-          fnm env --use-on-cd | source
-          fnm completions --shell fish | source
+          ${cfg.package}/bin/fnm env --use-on-cd | source
+          ${cfg.package}/bin/fnm completions --shell fish | source
         '';
       };
     }
@@ -52,7 +52,7 @@ in {
         '';
         interactiveShellInit = ''
           # PNPM configuration
-          pnpm completion fish | source
+          ${cfg.pnpm.package}/bin/pnpm completion fish | source
         '';
       };
     })
