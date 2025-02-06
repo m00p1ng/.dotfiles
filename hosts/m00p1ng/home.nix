@@ -132,7 +132,6 @@
   home.packages = with pkgs; [
     curl
     fd
-    gcc
     # hey     # load test
     htop
     httpie

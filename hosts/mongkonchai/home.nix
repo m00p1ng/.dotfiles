@@ -96,7 +96,6 @@
   home.packages = with pkgs; [
     curl
     fd
-    gcc
     htop
     httpie
     fastfetch
