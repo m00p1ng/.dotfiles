@@ -25,6 +25,11 @@ in {
       '';
     };
 
+    xdg.configFile.television = {
+      source = ../../config/television;
+      recursive = true;
+    };
+
     programs.fzf = {
       enableFishIntegration = false;
     };
