@@ -2,7 +2,7 @@
   system.stateVersion = 5;
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  nix.enable = true;
 
   # Keyboard
   system.keyboard = {
