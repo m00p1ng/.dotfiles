@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     neovim
     imagemagick
+    ghostscript_headless
+    tectonic
   ];
 
   home.sessionVariables = {
