@@ -35,11 +35,11 @@
   in {
     darwinConfigurations = {
       mooping = mkMacOS "m00p1ng" [
-        ./hosts/m00p1ng/configuration.nix
+        ./hosts/mooping/configuration.nix
       ];
 
-      mongkonchai = mkMacOS "mongkonchai" [
-        ./hosts/mongkonchai/configuration.nix
+      work = mkMacOS "mongkonchai" [
+        ./hosts/work/configuration.nix
       ];
     };
   };
