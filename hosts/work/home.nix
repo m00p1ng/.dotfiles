@@ -76,10 +76,6 @@
       enable = true;
     };
 
-    thefuck = {
-      enable = true;
-    };
-
     tmux = {
       enable = true;
     };
