@@ -31,7 +31,7 @@
       mouse_action2 = "resize";
       mouse_drop_action = "swap";
     };
-    extraConfig = ''
+    extraConfig = /*sh*/''
       yabai -m rule --add app="^Finder$" layer=above manage=off
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^System Information$" manage=off

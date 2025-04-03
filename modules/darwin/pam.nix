@@ -19,7 +19,7 @@ with lib;
     in ''
       ${
         if isEnabled
-        then ''
+        then /*sh*/''
           # Enable sudo Touch ID authentication, if not already enabled
           if ! grep 'pam_tid.so' ${file} > /dev/null; then
             /usr/bin/sed -i "" '2i\
@@ -28,7 +28,7 @@ with lib;
             ' ${file}
           fi
         ''
-        else ''
+        else /*sh*/''
           # Disable sudo Touch ID authentication, if added by nix-darwin
           if grep '${option}' ${file} > /dev/null; then
             /usr/bin/sed -i "" '/${option}/d' ${file}

@@ -57,7 +57,7 @@ in {
         {
           # https://github.com/catppuccin/tmux
           plugin = catppuccinTmux;
-          extraConfig = ''
+          extraConfig = /*bash*/''
             set -g @catppuccin_flavor 'mocha'
 
             # Pane styling options
@@ -98,7 +98,7 @@ in {
         }
       ];
 
-      extraConfig = ''
+      extraConfig = /*bash*/''
         set -g renumber-windows on
         set -g monitor-activity on
         set -g monitor-bell     on
@@ -180,7 +180,7 @@ in {
       recursive = true;
     };
 
-    xdg.configFile."tmux/status/meeting.conf".text = ''
+    xdg.configFile."tmux/status/meeting.conf".text = /*bash*/''
       # vim:set ft=tmux:
       %hidden MODULE_NAME="meeting"
 
