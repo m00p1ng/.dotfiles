@@ -20,6 +20,45 @@ with lib; let
       sha256 = "sha256-HegD89d0HUJ7dHKWPkiJCIApPY/yqgYusn7e1LDYS6c=";
     };
   };
+
+  # ref: https://github.com/christoomey/vim-tmux-navigator/issues/418
+  is_vim = pkgs.writeShellScriptBin "is_vim.sh" /*bash*/''
+    pane_pid=$(tmux display -p "#{pane_pid}")
+
+    [ -z "$pane_pid" ] && exit 1
+
+    # Retrieve all descendant processes of the tmux pane's shell by iterating through the process tree.
+    # This includes child processes and their descendants recursively.
+    descendants=$(ps -eo pid=,ppid=,stat= | awk -v pid="$pane_pid" '{
+        if ($3 !~ /^T/) {
+            pid_array[$1]=$2
+        }
+    } END {
+        for (p in pid_array) {
+            current_pid = p
+            while (current_pid != "" && current_pid != "0") {
+                if (current_pid == pid) {
+                    print p
+                    break
+                }
+                current_pid = pid_array[current_pid]
+            }
+        }
+    }')
+
+    if [ -n "$descendants" ]; then
+
+        descendant_pids=$(echo "$descendants" | tr '\n' ',' | sed 's/,$//')
+
+        ps -o args= -p "$descendant_pids" | grep -iqE "(^|/)([gn]?vim?x?)(diff)?";
+
+        if [ $? -eq 0 ]; then
+            exit 0
+        fi
+    fi
+
+    exit 1
+  '';
 in {
   options.programs.tmux = {
     meeting = {
@@ -111,17 +150,11 @@ in {
         bind-key c   new-window -c "#{pane_current_path}"
         bind-key j   choose-tree -Z "join-pane -t %%"
 
-        is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-
-        is_fzf="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?fzf$'"
-
-        bind-key -n 'C-h' if-shell "$is_vim"              'send-keys C-h'  'select-pane -L'
-        bind-key -n 'C-j' if-shell "($is_vim || $is_fzf)" 'send-keys C-j'  'select-pane -D'
-        bind-key -n 'C-k' if-shell "($is_vim || $is_fzf)" 'send-keys C-k'  'select-pane -U'
-        bind-key -n 'C-l' if-shell "$is_vim"              'send-keys C-l'  'select-pane -R'
-        bind-key -n 'C-\' if-shell "$is_vim"              'send-keys C-\\' 'send-keys -R C-l; clear-history'
+        bind-key -n 'C-h' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-h'  'select-pane -L'
+        bind-key -n 'C-j' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-j'  'select-pane -D'
+        bind-key -n 'C-k' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-k'  'select-pane -U'
+        bind-key -n 'C-l' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-l'  'select-pane -R'
+        bind-key -n 'C-\' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
 
         bind-key -r H resize-pane -L 5
         bind-key -r J resize-pane -D 5
