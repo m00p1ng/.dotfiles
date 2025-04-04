@@ -64,6 +64,7 @@ in {
     meeting = {
       enable = mkEnableOption "meeting plugin";
     };
+    is_vim_patch = mkEnableOption "is_vim patch";
   };
 
   config = mkIf cfg.enable {
@@ -150,11 +151,26 @@ in {
         bind-key c   new-window -c "#{pane_current_path}"
         bind-key j   choose-tree -Z "join-pane -t %%"
 
-        bind-key -n 'C-h' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-h'  'select-pane -L'
-        bind-key -n 'C-j' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-j'  'select-pane -D'
-        bind-key -n 'C-k' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-k'  'select-pane -U'
-        bind-key -n 'C-l' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-l'  'select-pane -R'
-        bind-key -n 'C-\' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
+        ${
+          if cfg.is_vim_patch
+          then /*bash*/''
+            bind-key -n 'C-h' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-h'  'select-pane -L'
+            bind-key -n 'C-j' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-j'  'select-pane -D'
+            bind-key -n 'C-k' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-k'  'select-pane -U'
+            bind-key -n 'C-l' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-l'  'select-pane -R'
+            bind-key -n 'C-\' if-shell "${is_vim}/bin/is_vim.sh" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
+          ''
+          else /*bash*/''
+            is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+              | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+
+            bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+            bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+            bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+            bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+            bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
+          ''
+        }
 
         bind-key -r H resize-pane -L 5
         bind-key -r J resize-pane -D 5
