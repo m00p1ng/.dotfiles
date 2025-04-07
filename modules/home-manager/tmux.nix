@@ -201,6 +201,7 @@ in {
           # NOTE: Don't map with `M-[` and `M-]`
           bind-key -n 'M-{' swap-window -d -t-
           bind-key -n 'M-}' swap-window -d -t+
+          bind-key -n 'M-l' switch-client -l
 
           bind-key -T copy-mode-vi 'C-h' select-pane -L
           bind-key -T copy-mode-vi 'C-j' select-pane -D
