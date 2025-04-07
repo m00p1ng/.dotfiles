@@ -65,7 +65,7 @@
     };
 
     python = {
-      enable = true;
+      enable = false;
     };
 
     ripgrep = {
