@@ -9,17 +9,6 @@ with lib; let
 
   cfg = config.programs.tmux;
   scriptsPath = "${config.xdg.configHome}/tmux/scripts";
-  catppuccinTmux = tmuxPlugins.mkTmuxPlugin {
-    pluginName = "catppuccin";
-    version = "unstable-2024-12-28";
-    rtpFilePath = "catppuccin.tmux";
-    src = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "tmux";
-      rev = "ba9bd88c98c81f25060f051ed983e40f82fdd3ba";
-      sha256 = "sha256-HegD89d0HUJ7dHKWPkiJCIApPY/yqgYusn7e1LDYS6c=";
-    };
-  };
 
   # ref: https://github.com/christoomey/vim-tmux-navigator/issues/418
   is_vim =
@@ -101,7 +90,7 @@ in {
         }
         {
           # https://github.com/catppuccin/tmux
-          plugin = catppuccinTmux;
+          plugin = catppuccin;
           extraConfig =
             /*
             bash
@@ -263,7 +252,7 @@ in {
         set -ogq "@catppuccin_''${MODULE_NAME}_color" "#{E:@thm_mauve}"
         set -ogq "@catppuccin_''${MODULE_NAME}_text" " #(${scriptsPath}/meeting.sh title)"
 
-        source -F "${catppuccinTmux}/share/tmux-plugins/catppuccin/utils/status_module.conf"
+        source -F "${tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/utils/status_module.conf"
       '';
 
     home.packages = mkIf cfg.meeting.enable (with pkgs; [
