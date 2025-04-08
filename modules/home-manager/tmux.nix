@@ -55,7 +55,7 @@ with lib; let
 
           descendant_pids=$(echo "$descendants" | tr '\n' ',' | sed 's/,$//')
 
-          ps -o args= -p "$descendant_pids" | grep -iqE "(^|/)([gn]?vim?x?)(diff)?";
+          ps -o args= -p "$descendant_pids" | grep -iqE "(^|/)([gn]?vim?x?|fzf|tv)(diff)?";
 
           if [ $? -eq 0 ]; then
               exit 0
@@ -183,7 +183,7 @@ in {
               */
               ''
                 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-                  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+                  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv)(diff)?$'"
 
                 bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
                 bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'

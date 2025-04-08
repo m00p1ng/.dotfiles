@@ -84,6 +84,10 @@
       enable = true;
     };
 
+    television = {
+      enable = true;
+    };
+
     vscode = {
       enable = true;
     };
