@@ -11,6 +11,10 @@
       enable = true;
     };
 
+    direnv = {
+      enable = true;
+    };
+
     eza = {
       enable = true;
     };
