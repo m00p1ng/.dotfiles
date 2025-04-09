@@ -13,10 +13,10 @@ in {
         default = {
           extensions = with pkgs.vscode-extensions; [
             asvetliakov.vscode-neovim
+            catppuccin.catppuccin-vsc
             eamodio.gitlens
             emmanuelbeziat.vscode-great-icons
             streetsidesoftware.code-spell-checker
-            tabnine.tabnine-vscode
             wakatime.vscode-wakatime
           ];
           userSettings = {
