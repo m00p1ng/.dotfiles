@@ -77,7 +77,7 @@
 
     python = {
       enable = true;
-      poetry = {
+      uv = {
         enable = true;
       };
     };
