@@ -133,6 +133,7 @@
     httpie
     fastfetch
     numbat
+    presenterm
     rsync
     # rustup
     smartmontools

@@ -3,6 +3,8 @@ theme = catppuccin-mocha
 
 cursor-style = block
 cursor-style-blink = false
+cursor-color = #f2d5cf
+cursor-text = #1e1e2e
 adjust-cursor-thickness = 300%
 mouse-hide-while-typing = true
 
