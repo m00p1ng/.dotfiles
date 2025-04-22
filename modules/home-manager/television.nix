@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -7,17 +6,11 @@
 with lib; let
   cfg = config.programs.television;
 in {
-  options.programs.television = {
-    enable = mkEnableOption "television";
-    package = mkOption {
-      type = types.package;
-      default = pkgs.television;
-    };
-  };
-
   config = mkIf cfg.enable {
     home.packages = [cfg.package];
 
+    # TODO: remove this when upstream integration is available
+    # ref: https://github.com/nix-community/home-manager/blob/master/modules/programs/television.nix
     programs.fish = {
       interactiveShellInit = ''
         # television configuration

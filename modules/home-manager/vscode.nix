@@ -84,6 +84,11 @@ in {
             "tabnine.experimentalAutoImports" = true;
 
             "redhat.telemetry.enabled" = false;
+
+            # CSpell
+            "cSpell.ignoreRegExpList" = [
+              "/[\\u0E00-\\u0E7F]/g"
+            ];
           };
 
           keybindings = [
