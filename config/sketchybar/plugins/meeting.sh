@@ -5,11 +5,14 @@ source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
 
 LIMIT_TITLE=30
-COLOR=$RED
-DRAWING=on
+
+ICON="$CALENDAR"
+ICON_COLOR=$RED
+ICON_DRAWING=on
+LABEL_DRAWING=on
 
 get_next_meeting() {
-  next_meeting=$(icalBuddy \
+  icalBuddy \
     --includeEventProps "title,datetime" \
     --propertyOrder "datetime,title" \
     --noCalendarNames \
@@ -19,90 +22,90 @@ get_next_meeting() {
     --excludeAllDayEvents \
     --separateByDate \
     --bullet "" \
-    eventsToday)
+    eventsToday
 }
 
 parse_result() {
-  array=()
+  local array=()
   for line in $1; do
     array+=("$line")
   done
-  time="${array[2]}"
+  start_time="${array[2]}"
+  end_time="${array[4]}"
   title="${array[*]:5:30}"
 }
 
 calculate_times() {
-  epoc_meeting=$(/bin/date -j -f "%T" "${time:-00:00}:00" +%s)
   epoc_now=$(/bin/date +%s)
+
+  epoc_meeting=$(/bin/date -j -f "%T" "${start_time:-00:00}:00" +%s)
   epoc_diff=$((epoc_meeting - epoc_now))
   minutes_till_meeting=$((epoc_diff / 60))
+
+  epoc_end_meeting=$(/bin/date -j -f "%T" "${end_time:-00:00}:00" +%s)
+  epoc_end_diff=$((epoc_end_meeting - epoc_now))
+  minutes_till_end_meeting=$((epoc_end_diff / 60))
 }
 
-parse_time() {
-  abs_mins=$((minutes_till_meeting > 0 ? minutes_till_meeting : -minutes_till_meeting))
+get_duration() {
+  abs_mins=$((minutes_till_meeting > 0 ? minutes_till_meeting : minutes_till_end_meeting))
   hours=$((abs_mins / 60))
   minutes=$((abs_mins % 60))
-
-  if [[ $minutes_till_meeting -lt 0 ]]; then
-    echo "(Now!)"
-    return
-  fi
 
   res=""
   if [[ $hours -gt 0 ]]; then
     res="$res${hours}h"
   fi
 
-  echo "($res${minutes}m)"
+  if [[ $minutes -gt 0 ]]; then
+    res="$res${minutes}m"
+  fi
+
+  if [[ $minutes_till_meeting -lt 1 ]]; then
+    res="$res left"
+  fi
+
+  echo "($res)"
 }
 
-parse_title() {
-  res=""
+get_title() {
   if [[ ${#title} -gt $LIMIT_TITLE ]]; then
-    res="$res${title:0:$LIMIT_TITLE}..."
+    echo "${title:0:$LIMIT_TITLE}..."
   else
-    res="$res$title"
-  fi
-
-  echo "$res"
-}
-
-print_meeting_title() {
-  if [[ "$title" != "" ]]; then
-    echo "$time $(parse_title) $(parse_time)"
-  else
-    echo "-"
+    echo "$title"
   fi
 }
 
-print_meeting_icon() {
-  if [[ $title == "" ]]; then
-    COLOR=$GREEN
-    echo "$CALENDAR_FREE"
-    return
-  fi
-
-  if [[ $epoc_diff -gt 0 ]]; then
-    echo "$CALENDAR"
-    DRAWING=off
-    return
-  fi
-
-  COLOR=$ORANGE
-  echo "$CALENDAR_BUSY"
-}
-
-get_next_meeting
-parse_result "$next_meeting"
+parse_result "$(get_next_meeting)"
 calculate_times
 
-LABEL=$(print_meeting_title)
-ICON=$(print_meeting_icon)
+if [[ "$title" != "" ]]; then
+  LABEL="$start_time $(get_title)"
+else
+  LABEL_DRAWING=off
+fi
+
+if [[ $title == "" ]]; then
+  ICON="$CALENDAR_FREE"
+  ICON_DRAWING=off
+elif [[ $minutes_till_meeting -ge 1 ]]; then
+  ICON_COLOR=$BLUE
+else
+  ICON="$CALENDAR_BUSY"
+  ICON_COLOR=$ORANGE
+fi
 
 meeting=(
   icon="$ICON"
-  icon.color="$COLOR"
-  icon.drawing="$DRAWING"
+  icon.color="$ICON_COLOR"
+  icon.drawing="$ICON_DRAWING"
   label="$LABEL"
+  label.drawing="$LABEL_DRAWING"
 )
+
+meeting_duration=(
+  label="$(get_duration)"
+)
+
 sketchybar --set "$NAME" "${meeting[@]}"
+sketchybar --set "$NAME.duration" "${meeting_duration[@]}"

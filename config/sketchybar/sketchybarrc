@@ -77,12 +77,12 @@ if $ENABLED_CPU; then
   source "$ITEM_DIR/cpu.sh"
 fi
 
-if $ENABLED_SLACK; then
-  source "$ITEM_DIR/slack.sh"
-fi
-
 if $ENABLED_MEETING; then
   source "$ITEM_DIR/meeting.sh"
+fi
+
+if $ENABLED_SLACK; then
+  source "$ITEM_DIR/slack.sh"
 fi
 
 # bracket for everything
@@ -91,12 +91,6 @@ status_bracket=(
 )
 
 group=()
-
-if $ENABLED_MEETING; then
-  group+=(
-    meeting
-  )
-fi
 
 if $ENABLED_CPU; then
   group+=(
