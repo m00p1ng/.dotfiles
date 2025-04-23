@@ -6,11 +6,12 @@
 }:
 with lib; let
   cfg = config.programs.python;
-  pythonEnv = cfg.package.withPackages (ps: [
-    ps.ipython
-    ps.pipx
-    ps.pynvim
-  ]);
+  pythonEnv = cfg.package.withPackages (ps:
+    with ps; [
+      ipython
+      pipx
+      pynvim
+    ]);
 in {
   options.programs.python = {
     enable = mkEnableOption "python";
