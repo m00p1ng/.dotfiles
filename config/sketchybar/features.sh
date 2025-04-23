@@ -15,3 +15,9 @@ if [[ "$SKETCHYBAR_WIDGET_CPU" == "true" ]]; then
 else
   ENABLED_CPU=false
 fi
+
+if [[ "$SKETCHYBAR_WIDGET_MEETING" == "true" ]]; then
+  ENABLED_MEETING=true
+else
+  ENABLED_MEETING=false
+fi

@@ -81,12 +81,22 @@ if $ENABLED_SLACK; then
   source "$ITEM_DIR/slack.sh"
 fi
 
+if $ENABLED_MEETING; then
+  source "$ITEM_DIR/meeting.sh"
+fi
+
 # bracket for everything
 status_bracket=(
   background.color="$TRANSPARENT"
 )
 
 group=()
+
+if $ENABLED_MEETING; then
+  group+=(
+    meeting
+  )
+fi
 
 if $ENABLED_CPU; then
   group+=(

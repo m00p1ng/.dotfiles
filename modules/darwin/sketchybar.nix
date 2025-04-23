@@ -13,6 +13,7 @@ in {
       slack = mkEnableOption "slack widget";
       currency = mkEnableOption "currency widget";
       cpu = mkEnableOption "cpu widget";
+      meeting = mkEnableOption "meeting widget";
     };
     bar = {
       height = mkOption {
@@ -29,6 +30,7 @@ in {
 
       sketchybar.extraPackages = with pkgs; [
         jq
+        icalBuddy
       ];
     };
 
@@ -37,6 +39,7 @@ in {
         SKETCHYBAR_WIDGET_SLACK = boolToString cfg.widget.slack;
         SKETCHYBAR_WIDGET_CURRENCY = boolToString cfg.widget.currency;
         SKETCHYBAR_WIDGET_CPU = boolToString cfg.widget.cpu;
+        SKETCHYBAR_WIDGET_MEETING = boolToString cfg.widget.meeting;
         SKETCHYBAR_BAR_HEIGHT = toString cfg.bar.height;
       };
     };
