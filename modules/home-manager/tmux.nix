@@ -8,7 +8,6 @@ with lib; let
   inherit (pkgs) tmuxPlugins;
 
   cfg = config.programs.tmux;
-  scriptsPath = "${config.xdg.configHome}/tmux/scripts";
 
   # ref: https://github.com/christoomey/vim-tmux-navigator/issues/418
   is_vim =
@@ -55,9 +54,6 @@ with lib; let
     '';
 in {
   options.programs.tmux = {
-    meeting = {
-      enable = mkEnableOption "meeting plugin";
-    };
     is_vim_patch = mkEnableOption "is_vim patch";
   };
 
@@ -127,11 +123,7 @@ in {
 
 
               set -g status-left "#{E:@catppuccin_status_session} "
-              ${
-                if cfg.meeting.enable
-                then ''set -g status-right "#{E:@catppuccin_status_meeting} #{E:@catppuccin_status_date_time}"''
-                else ''set -g status-right "#{E:@catppuccin_status_date_time}"''
-              }
+              set -g status-right "#{E:@catppuccin_status_date_time}"
             '';
         }
       ];
@@ -223,9 +215,6 @@ in {
           set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
           # catppuccin
-          ${optionalString cfg.meeting.enable ''
-            source -F "${config.xdg.configHome}/tmux/status/meeting.conf"
-          ''}
           set -g copy-mode-match-style          "fg=#{@thm_fg},bg=#{@thm_surface_1}"
           set -g copy-mode-current-match-style  "fg=#{@thm_surface_1},bg=#{@thm_red}"
         '';
@@ -239,24 +228,5 @@ in {
       source = ../../config/tmux;
       recursive = true;
     };
-
-    xdg.configFile."tmux/status/meeting.conf".text =
-      /*
-      bash
-      */
-      ''
-        # vim:set ft=tmux:
-        %hidden MODULE_NAME="meeting"
-
-        set -ogq "@catppuccin_''${MODULE_NAME}_icon" "#(${scriptsPath}/meeting.sh icon)"
-        set -ogq "@catppuccin_''${MODULE_NAME}_color" "#{E:@thm_mauve}"
-        set -ogq "@catppuccin_''${MODULE_NAME}_text" " #(${scriptsPath}/meeting.sh title)"
-
-        source -F "${tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/utils/status_module.conf"
-      '';
-
-    home.packages = mkIf cfg.meeting.enable (with pkgs; [
-      icalBuddy
-    ]);
   };
 }
