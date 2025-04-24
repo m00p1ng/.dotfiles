@@ -8,8 +8,7 @@ LIMIT_TITLE=30
 
 ICON="$CALENDAR"
 ICON_COLOR=$RED
-ICON_DRAWING=on
-LABEL_DRAWING=on
+DRAWING=on
 
 get_next_meeting() {
   icalBuddy \
@@ -61,7 +60,7 @@ get_duration() {
     res="$res${minutes}m"
   fi
 
-  if [[ $minutes_till_meeting -lt 1 ]]; then
+  if [[ $minutes_till_end_meeting -gt 1 ]]; then
     res="$res left"
   fi
 
@@ -82,12 +81,11 @@ calculate_times
 if [[ "$title" != "" ]]; then
   LABEL="$start_time $(get_title)"
 else
-  LABEL_DRAWING=off
+  DRAWING=off
 fi
 
 if [[ $title == "" ]]; then
   ICON="$CALENDAR_FREE"
-  ICON_DRAWING=off
 elif [[ $minutes_till_meeting -ge 1 ]]; then
   ICON_COLOR=$BLUE
 else
@@ -96,14 +94,14 @@ else
 fi
 
 meeting=(
+  drawing="$DRAWING"
   icon="$ICON"
   icon.color="$ICON_COLOR"
-  icon.drawing="$ICON_DRAWING"
   label="$LABEL"
-  label.drawing="$LABEL_DRAWING"
 )
 
 meeting_duration=(
+  drawing="$DRAWING"
   label="$(get_duration)"
 )
 
