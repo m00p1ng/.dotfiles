@@ -76,7 +76,7 @@ function get_left_prompt
   set -g __fish_git_prompt_showupstream informative
   set -g __fish_git_prompt_showstashstate 1
   set -g __fish_git_prompt_char_stateseparator ' '
-  set -g __fish_git_prompt_char_upstream_prefix ' '
+  set -g __fish_git_prompt_char_upstream_prefix ''
   set -g __fish_git_prompt_char_upstream_ahead ''
   set -g __fish_git_prompt_char_upstream_behind ''
 

@@ -39,11 +39,11 @@ calculate_times() {
 
   epoc_meeting=$(/bin/date -j -f "%T" "${start_time:-00:00}:00" +%s)
   epoc_diff=$((epoc_meeting - epoc_now))
-  minutes_till_meeting=$((epoc_diff / 60))
+  minutes_till_meeting=$((epoc_diff / 60 + 1))
 
   epoc_end_meeting=$(/bin/date -j -f "%T" "${end_time:-00:00}:00" +%s)
   epoc_end_diff=$((epoc_end_meeting - epoc_now))
-  minutes_till_end_meeting=$((epoc_end_diff / 60))
+  minutes_till_end_meeting=$((epoc_end_diff / 60 + 1))
 }
 
 get_duration() {
@@ -60,7 +60,7 @@ get_duration() {
     res="$res${minutes}m"
   fi
 
-  if [[ $minutes_till_end_meeting -gt 1 ]]; then
+  if [[ "$title" != "" ]] && [[ $minutes_till_end_meeting -ge 1 ]]; then
     res="$res left"
   fi
 
@@ -84,7 +84,7 @@ else
   DRAWING=off
 fi
 
-if [[ $title == "" ]]; then
+if [[ "$title" == "" ]]; then
   ICON="$CALENDAR_FREE"
 elif [[ $minutes_till_meeting -ge 1 ]]; then
   ICON_COLOR=$BLUE
