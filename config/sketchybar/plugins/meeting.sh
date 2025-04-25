@@ -19,6 +19,7 @@ get_next_meeting() {
     --includeOnlyEventsFromNowOn \
     --limitItems 1 \
     --excludeAllDayEvents \
+    --includeCals "$SKETCHYBAR_WIDGET_MEETING_CALENDARS" \
     --separateByDate \
     --bullet "" \
     eventsToday

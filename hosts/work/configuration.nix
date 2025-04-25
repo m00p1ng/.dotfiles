@@ -16,7 +16,9 @@ in {
       enable = true;
       widget = {
         slack = true;
-        meeting = true;
+        meeting = {
+          enable = true;
+        };
       };
       bar.height = 32;
     };
