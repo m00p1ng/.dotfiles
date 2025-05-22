@@ -1,4 +1,4 @@
-{
+{username, ...}: {
   imports = [
     ../common.nix
     ./pam.nix # enableSudoTouchIdAuth is now in nix-darwin, but without the reattach stuff for tmux
@@ -11,6 +11,7 @@
     ./skhd.nix
   ];
 
+  system.primaryUser = username;
   nixpkgs.config.allowUnfree = true;
 
   # `home-manager` config
