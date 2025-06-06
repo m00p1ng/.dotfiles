@@ -15,7 +15,7 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
     nix flake update
   end
 
-  darwin-rebuild switch --flake ~/.dotfiles#$profile
+  sudo darwin-rebuild switch --flake ~/.dotfiles#$profile
 
   gunwip 1> /dev/null
   gignore ./override.nix
