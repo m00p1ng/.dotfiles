@@ -1,8 +1,9 @@
 {
   programs.ssh = {
-    addKeysToAgent = "yes";
+    enableDefaultConfig = false;
     matchBlocks = {
       "*" = {
+        addKeysToAgent = "yes";
         setEnv = {
           TERM = "xterm-256color";
         };
