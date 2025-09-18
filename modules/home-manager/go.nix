@@ -1,5 +1,7 @@
 {
   programs.go = {
-    goPath = "tools/go";
+    env = {
+      GOPATH = "tools/go";
+    };
   };
 }
