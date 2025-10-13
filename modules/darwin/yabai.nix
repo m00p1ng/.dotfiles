@@ -32,7 +32,7 @@
       mouse_drop_action = "swap";
     };
     extraConfig = /*sh*/''
-      yabai -m rule --add app="^Finder$" layer=above manage=off
+      yabai -m rule --add app="^Finder$" manage=off
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^System Information$" manage=off
       yabai -m rule --add app="^App Store$" manage=off

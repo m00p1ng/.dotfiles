@@ -87,7 +87,7 @@
     };
 
     ruby = {
-      enable = true;
+      enable = false;
     };
 
     ssh = {
@@ -135,7 +135,7 @@
     numbat
     presenterm
     rsync
-    # rustup
+    rustup
     smartmontools
     sqlite
     tree
