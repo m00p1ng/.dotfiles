@@ -10,8 +10,12 @@ with lib; {
     ];
 
     programs.git = {
-      userName = "<git username>";
-      userEmail = "<git email>";
+      settings = {
+        user = {
+          name = "<git username>";
+          email = "<git email>";
+        };
+      };
     };
   };
 }
