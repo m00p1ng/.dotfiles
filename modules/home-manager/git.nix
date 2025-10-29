@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     programs.git = {
       settings = {
-        aliases = {
+        alias = {
           logs = "log --abbrev-commit --graph --decorate --oneline";
           logl = "log --oneline -10";
           logs-full = "log --graph --pretty='%C(yellow)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr) %C(dim white)<%an>%C(reset)'";
