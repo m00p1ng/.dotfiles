@@ -17,7 +17,7 @@ in {
       "google-chrome"
       "firefox"
 
-      "flux"
+      "flux-app"
       "coconutbattery"
       "raycast"
       "1password"
@@ -29,7 +29,7 @@ in {
       "grammarly-desktop"
 
       "postman"
-      "docker"
+      "docker-desktop"
       "ghostty"
 
       "vlc"
