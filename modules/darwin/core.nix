@@ -3,6 +3,7 @@
 
   # Auto upgrade nix package and the daemon service.
   nix.enable = true;
+  nix.settings.download-buffer-size = 524288000;
 
   # Keyboard
   system.keyboard = {
