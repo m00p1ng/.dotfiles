@@ -4,7 +4,7 @@
 # ---------
 #  Linux:   `$HOME/.config/television/config.toml`
 #  macOS:   `$HOME/.config/television/config.toml`
-#  Windows: `%APPDATA%\television\config.toml`
+#  Windows: `%LocalAppData%\television\config.toml`
 #
 # XDG dirs:
 # ---------
@@ -46,7 +46,7 @@ orientation = "landscape"
 # A list of builtin themes can be found in the `themes` directory of the television
 # repository. You may also create your own theme by creating a new file in a `themes`
 # directory in your configuration directory (see the `config.toml` location above).
-theme = "catppuccint"
+theme = "catppuccin"
 
 # Feature-specific configurations
 # Each feature can have its own configuration section
@@ -107,15 +107,9 @@ sort_alphabetically = true
 # text_fg = "#ffffff"
 # selection_bg = "#444444"
 # match_fg = "#ff0000"
-# The default size of the preview panel (in percentage of the screen)
 
 # Keybindings and Events
 # ----------------------------------------------------------------------------
-#
-# NEW CONFIGURATION FORMAT:
-# -------------------------
-# The keybindings are now structured as Key -> Action mappings
-# This provides better discoverability and eliminates configuration complexity
 #
 [keybindings]
 # Application control
@@ -147,6 +141,7 @@ enter = "confirm_selection"
 # --------------------
 pagedown = "scroll_preview_half_page_down"
 pageup = "scroll_preview_half_page_up"
+ctrl-f = "cycle_previews"
 
 # Data operations
 # --------------
@@ -160,6 +155,7 @@ ctrl-t = "toggle_remote_control"
 ctrl-o = "toggle_preview"
 ctrl-h = "toggle_help"
 f12 = "toggle_status_bar"
+ctrl-l = "toggle_layout"
 
 # Input field actions
 # ----------------------------------------
@@ -173,16 +169,6 @@ home = "go_to_input_start"
 ctrl-a = "go_to_input_start"
 end = "go_to_input_end"
 ctrl-e = "go_to_input_end"
-
-# Event bindings
-# ----------------------------------------------------------------------------
-# Event bindings map non-keyboard events to actions
-# This includes mouse events, resize events, and custom events
-[events]
-# Mouse events
-# -----------
-mouse-scroll-up = "scroll_preview_up"
-mouse-scroll-down = "scroll_preview_down"
 
 # Shell integration
 # ----------------------------------------------------------------------------
@@ -214,7 +200,7 @@ fallback_channel = "files"
 # ```
 "alias" = ["alias", "unalias"]
 "env" = ["export", "unset"]
-"dirs" = ["cd", "ls", "rmdir"]
+"dirs" = ["cd", "ls", "rmdir", "z"]
 "files" = [
   "cat",
   "less",
