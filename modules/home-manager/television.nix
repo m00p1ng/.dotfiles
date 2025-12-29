@@ -17,6 +17,7 @@ in {
         ${cfg.package}/bin/tv init fish | source
       '';
     };
+    programs.television.enableFishIntegration = false;
 
     xdg.configFile.television = {
       source = ../../config/television;
