@@ -17,7 +17,7 @@ function get_left_prompt
   set -g __fish_git_prompt_color_suffix yellow
   set -g __fish_git_prompt_color_branch yellow
   set -g __fish_git_prompt_color_dirtystate blue
-  set -g __fish_git_prompt_color_stagedstate fab387
+  set -g __fish_git_prompt_color_stagedstate red
   set -g __fish_git_prompt_color_invalidstate red
   set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
   set -g __fish_git_prompt_color_cleanstate green
@@ -32,20 +32,20 @@ function get_left_prompt
   set -g __fish_git_prompt_char_upstream_behind ''
 
   if [ $__fish_last_status -eq 0 ]
-    set_color -b blue black
+    set_color blue
   else
-    set_color -b red black
+    set_color red
   end
-  echo -n " $USER "
-  set_color -b normal normal; echo -n " : "
+  printf " "
+  set_color -b normal normal; printf ": "
   set_color green
   if [ $PWD = $HOME ]
-    echo -n "~"
+    printf "~"
   else
-    echo -n (basename $PWD)
+    printf (basename $PWD)
   end
 
-  printf '%s' (fish_git_prompt)
+  printf (fish_git_prompt)
 
   set -lx __git_output (fish_git_prompt)
   if [ (count $__git_output) -eq 1 ]
