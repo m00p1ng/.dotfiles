@@ -49,6 +49,8 @@ in {
       interactiveShellInit = ''
         bind \ep history-token-search-backward
         bind \en history-token-search-forward
+
+        fish_config theme choose mooping
       '';
       plugins = [
         # {
