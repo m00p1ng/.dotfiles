@@ -110,7 +110,7 @@ in {
               ''
                 # https://github.com/christoomey/vim-tmux-navigator/issues/417
                 is_vim="ps -o tty= -o state= -o comm= \
-                  | grep -iqE '^#{s|/dev/||:pane_tty} +[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv)(diff)?$'"
+                  | grep -iqE '^#{s|/dev/||:pane_tty} +[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv|sqlit)(diff)?$'"
               ''
             else
               /*
@@ -118,7 +118,7 @@ in {
               */
               ''
                 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-                  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv)(diff)?$'"
+                  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv|sqlit)(diff)?$'"
               ''
           }
 

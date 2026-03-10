@@ -13,7 +13,7 @@ in {
 
   services = {
     sketchybar = {
-      enable = true;
+      enable = false;
       widget = {
         slack = true;
         meeting = {
@@ -24,7 +24,7 @@ in {
     };
 
     yabai = {
-      enable = true;
+      enable = false;
     };
   };
 }
