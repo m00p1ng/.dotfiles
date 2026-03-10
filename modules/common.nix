@@ -14,14 +14,14 @@ with lib; {
         auto-optimise-store = true
         experimental-features = nix-command flakes
       ''
-      + optionalString (pkgs.system == "aarch64-darwin") ''
+      + optionalString (pkgs.stdenv.hostPlatform.isDarwin) ''
         extra-platforms = x86_64-darwin aarch64-darwin
       '';
   };
 
   users.users.${username} = {
     home =
-      if pkgs.stdenvNoCC.isDarwin
+      if pkgs.stdenv.hostPlatform.isDarwin
       then "/Users/${username}"
       else "/home/${username}";
   };
