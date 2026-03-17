@@ -42,9 +42,9 @@ in {
       "1Password for Safari" = 1569813296;
       "Grammarly for Safari" = 1462114288;
 
-      "Pages" = 409201541;
-      "Numbers" = 409203825;
-      "Keynote" = 409183694;
+      "Pages" = 361309726;
+      "Numbers" = 361304891;
+      "Keynote" = 361285480;
 
       "PDF Expert" = 1055273043;
       "Kindle" = 302584613;
@@ -62,14 +62,14 @@ in {
 
   services = {
     sketchybar = {
-      enable = true;
+      enable = false;
       widget = {
         currency = true;
       };
     };
 
     yabai = {
-      enable = true;
+      enable = false;
     };
   };
 }
