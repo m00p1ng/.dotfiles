@@ -7,15 +7,21 @@
 with lib; {
   home-manager.users.${username} = {
     home.packages = with pkgs; [
+      ffmpeg
+      nmap
     ];
 
     programs.git = {
       settings = {
         user = {
-          name = "<git username>";
-          email = "<git email>";
+          name = "m00p1ng";
+          email = "mongkonchai4412@gmail.com";
         };
       };
     };
+  };
+
+  homebrew = {
+    casks = [];
   };
 }
