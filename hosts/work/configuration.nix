@@ -15,18 +15,18 @@ in {
 
   services = {
     sketchybar = {
-      enable = false;
+      enable = true;
       widget = {
         slack = true;
         meeting = {
           enable = true;
         };
       };
-      bar.height = 32;
+      bar.height = 36;
     };
 
     yabai = {
-      enable = false;
+      enable = true;
     };
   };
 }
