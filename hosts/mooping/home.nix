@@ -3,7 +3,7 @@
   mylib,
   ...
 }: {
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.11";
   imports = mylib.scanPaths ../../modules/home-manager;
 
   programs = {

@@ -30,7 +30,7 @@ bar=(
   shadow=off
   position=top
   sticky=on
-  padding_right=10
+  padding_right=14
   padding_left=10
   topmost=window
 )
