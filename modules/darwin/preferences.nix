@@ -14,6 +14,13 @@
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
       NSWindowShouldDragOnGesture = true;
+      AppleICUForce24HourTime = true;
+    };
+
+    controlcenter = {
+      BatteryShowPercentage = true;
+      Bluetooth = true;
+      Sound = true;
     };
 
     dock = {
@@ -50,9 +57,10 @@
       MouseButtonMode = "TwoButton";
     };
 
-    # universalaccess = {
-    #   closeViewScrollWheelToggle = true;
-    # };
+    universalaccess = {
+      closeViewScrollWheelToggle = true;
+      reduceMotion = true;
+    };
 
     loginwindow = {
       GuestEnabled = false;
@@ -77,22 +85,22 @@
         DSDontWriteNetworkStores = true;
         DSDontWriteUSBStores = true;
       };
-      # "com.apple.Safari" = {
-      #   ShowFullURLInSmartSearchField = true;
-      #   ShowOverlayStatusBar = true;
-      #   # Prevent Safari from opening ‘safe’ files automatically after downloading
-      #   AutoOpenSafeDownloads = false;
-      #   IncludeInternalDebugMenu = true;
-      #   IncludeDevelopMenu = true;
-      #   WebKitDeveloperExtrasEnabledPreferenceKey = true;
-      #   WebContinuousSpellCheckingEnabled = true;
-      #   WebAutomaticSpellingCorrectionEnabled = false;
-      #   AutoFillFromAddressBook = false;
-      #   AutoFillPasswords = false;
-      #   AutoFillCreditCardData = false;
-      #   AutoFillMiscellaneousForms = false;
-      #   WarnAboutFraudulentWebsites = true;
-      # };
+      "com.apple.Safari" = {
+        ShowFullURLInSmartSearchField = true;
+        ShowOverlayStatusBar = true;
+        # Prevent Safari from opening ‘safe’ files automatically after downloading
+        AutoOpenSafeDownloads = false;
+        IncludeInternalDebugMenu = true;
+        IncludeDevelopMenu = true;
+        WebKitDeveloperExtrasEnabledPreferenceKey = true;
+        WebContinuousSpellCheckingEnabled = true;
+        WebAutomaticSpellingCorrectionEnabled = false;
+        AutoFillFromAddressBook = false;
+        AutoFillPasswords = false;
+        AutoFillCreditCardData = false;
+        AutoFillMiscellaneousForms = false;
+        WarnAboutFraudulentWebsites = true;
+      };
       "com.apple.SoftwareUpdate" = {
         AutomaticCheckEnabled = true;
         # Check for software updates daily, not just once per week
@@ -101,6 +109,10 @@
         AutomaticDownload = 1;
         # Install System data files & security updates
         CriticalUpdateInstall = 1;
+      };
+      "com.apple.universalcontrol" = {
+        Disable = true;
+        DisableMagicEdges = true;
       };
     };
   };

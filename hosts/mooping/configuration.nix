@@ -40,27 +40,29 @@ in {
       "vlc"
     ];
 
-    masApps = {
-      "Xcode" = 497799835;
-      "1Password for Safari" = 1569813296;
-      "Grammarly for Safari" = 1462114288;
-
-      "Pages" = 361309726;
-      "Numbers" = 361304891;
-      "Keynote" = 361285480;
-
-      "PDF Expert" = 1055273043;
-      "Kindle" = 302584613;
-      "GoodLinks" = 1474335294;
-      "Bear" = 1091189122;
-
-      "LINE" = 539883307;
-      "Spark" = 1176895641;
-      "Fantastical" = 975937182;
-
-      "PiPifier" = 1160374471;
-      "Money Pro" = 972572731;
-    };
+    # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722
+    #
+    # masApps = {
+    #   "Xcode" = 497799835;
+    #   "1Password for Safari" = 1569813296;
+    #   "Grammarly for Safari" = 1462114288;
+    #
+    #   "Pages" = 361309726;
+    #   "Numbers" = 361304891;
+    #   "Keynote" = 361285480;
+    #
+    #   "PDF Expert" = 1055273043;
+    #   "Kindle" = 302584613;
+    #   "GoodLinks" = 1474335294;
+    #   "Bear" = 1091189122;
+    #
+    #   "LINE" = 539883307;
+    #   "Spark" = 1176895641;
+    #   "Fantastical" = 975937182;
+    #
+    #   "PiPifier" = 1160374471;
+    #   "Money Pro" = 972572731;
+    # };
   };
 
   services = {
