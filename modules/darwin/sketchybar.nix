@@ -25,7 +25,7 @@ in {
     bar = {
       height = mkOption {
         type = types.int;
-        default = 28;
+        default = 36;
         description = "Height of the SketchyBar bar";
       };
     };

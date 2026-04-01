@@ -22,7 +22,6 @@ in {
           enable = true;
         };
       };
-      bar.height = 36;
     };
 
     yabai = {

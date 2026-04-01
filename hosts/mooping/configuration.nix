@@ -14,7 +14,7 @@ in {
   };
 
   homebrew = {
-    enable = false;
+    enable = true;
     casks = [
       "google-chrome"
       "firefox"
@@ -38,6 +38,9 @@ in {
       "ghostty"
 
       "vlc"
+
+      "claude"
+      "ollama-app"
     ];
 
     # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722
@@ -67,14 +70,14 @@ in {
 
   services = {
     sketchybar = {
-      enable = false;
+      enable = true;
       widget = {
         currency = true;
       };
     };
 
     yabai = {
-      enable = false;
+      enable = true;
     };
   };
 }

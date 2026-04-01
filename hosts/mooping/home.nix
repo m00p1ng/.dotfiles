@@ -11,6 +11,10 @@
       enable = true;
     };
 
+    bun = {
+      enable = true;
+    };
+
     direnv = {
       enable = true;
     };
@@ -134,9 +138,13 @@
     rsync
     rustup
     smartmontools
+    sqlit-tui
     sqlite
     tree
     tree-sitter
     wget
+
+    claude-code
+    gemini-cli
   ];
 }
