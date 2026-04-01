@@ -104,7 +104,6 @@
     smartmontools
     pstree
     tree
-    # tree-sitter
     wget
   ];
 }

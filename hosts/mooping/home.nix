@@ -141,7 +141,6 @@
     sqlit-tui
     sqlite
     tree
-    tree-sitter
     wget
 
     claude-code
