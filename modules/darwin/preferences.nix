@@ -41,11 +41,11 @@
       type = "png";
     };
 
-    # doesn't work
-    screensaver = {
-      askForPassword = true;
-      askForPasswordDelay = 0;
-    };
+    # BUG: doesn't work
+    # screensaver = {
+    #   askForPassword = true;
+    #   askForPasswordDelay = 0;
+    # };
 
     trackpad = {
       TrackpadThreeFingerDrag = true;

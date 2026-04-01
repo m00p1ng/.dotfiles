@@ -51,6 +51,7 @@
       yabai -m rule --add app="^coconutBattery$" manage=off
       yabai -m rule --add app="^Flux$" manage=off
       yabai -m rule --add app="^VLC$" manage=off
+      yabai -m rule --add app="^Movist$" manage=off
       yabai -m rule --add app="^Movist Pro$" manage=off
       yabai -m rule --add app="^CleanMyMac$" manage=off
       yabai -m rule --add app="^AlDente$" manage=off
