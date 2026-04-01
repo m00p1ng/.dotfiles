@@ -84,7 +84,7 @@
     };
 
     ruby = {
-      enable = false;
+      enable = true;
     };
 
     ssh = {

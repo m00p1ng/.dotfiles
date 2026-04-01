@@ -14,7 +14,7 @@ in {
   };
 
   homebrew = {
-    enable = true;
+    enable = false;
     casks = [
       "google-chrome"
       "firefox"
@@ -23,15 +23,18 @@ in {
       "coconutbattery"
       "raycast"
       "1password"
-      "setapp"
 
       "notion"
       "discord"
       "sf-symbols"
       "grammarly-desktop"
 
-      "postman"
-      "docker-desktop"
+      # "postman"
+      "bruno"
+
+      # "docker-desktop"
+      "orbstack"
+
       "ghostty"
 
       "vlc"
