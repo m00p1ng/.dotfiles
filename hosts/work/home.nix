@@ -106,6 +106,6 @@
     tree
     wget
 
-    copilot-cli
+    github-copilot-cli
   ];
 }
