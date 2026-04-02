@@ -105,5 +105,7 @@
     pstree
     tree
     wget
+
+    copilot-cli
   ];
 }

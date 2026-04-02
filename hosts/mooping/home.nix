@@ -144,6 +144,7 @@
     wget
 
     claude-code
+    copilot-cli
     gemini-cli
   ];
 }
