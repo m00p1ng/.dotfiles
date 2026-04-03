@@ -124,6 +124,15 @@
         "\$HOME/Downloads/*"
       ];
     };
+
+    # AI
+    # claude-code = {
+    #   enable = true;
+    # };
+
+    gemini-cli = {
+      enable = true;
+    };
   };
 
   home.packages = with pkgs; [
@@ -143,8 +152,6 @@
     tree
     wget
 
-    claude-code
-    gemini-cli
     github-copilot-cli
   ];
 }

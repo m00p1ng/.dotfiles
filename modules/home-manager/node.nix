@@ -18,7 +18,7 @@ in {
       enable = mkEnableOption "pnpm";
       package = mkOption {
         type = types.package;
-        default = pkgs.nodePackages.pnpm;
+        default = pkgs.pnpm;
       };
     };
   };
@@ -49,10 +49,6 @@ in {
         };
         shellInit = ''
           fish_add_path ${pnpmPath}
-        '';
-        interactiveShellInit = ''
-          # PNPM configuration
-          ${cfg.pnpm.package}/bin/pnpm completion fish | source
         '';
       };
     })

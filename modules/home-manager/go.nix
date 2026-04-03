@@ -1,7 +1,7 @@
-{
+{config, ...}: {
   programs.go = {
     env = {
-      GOPATH = "tools/go";
+      GOPATH = "${config.home.homeDirectory}/tools/go";
     };
   };
 }
