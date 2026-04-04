@@ -153,5 +153,6 @@
     wget
 
     github-copilot-cli
+    llama-cpp
   ];
 }

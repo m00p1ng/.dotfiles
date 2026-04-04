@@ -7,7 +7,7 @@ $ sh <(curl -L https://nixos.org/nix/install)
 
 ## nix-darwin
 ```sh
-$ nix --extra-experimental-features 'nix-command flakes' \
+$ sudo nix --extra-experimental-features 'nix-command flakes' \
   run nix-darwin -- switch --flake ~/.dotfiles#user
 ```
 

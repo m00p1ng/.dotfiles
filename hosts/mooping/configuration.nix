@@ -40,7 +40,8 @@ in {
       "vlc"
 
       "claude"
-      "ollama-app"
+      # "ollama-app"
+      "lm-studio"
     ];
 
     # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722
