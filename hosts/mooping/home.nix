@@ -126,9 +126,9 @@
     };
 
     # AI
-    # claude-code = {
-    #   enable = true;
-    # };
+    claude-code = {
+      enable = false;
+    };
 
     gemini-cli = {
       enable = true;
