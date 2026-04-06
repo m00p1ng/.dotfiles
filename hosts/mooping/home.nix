@@ -109,11 +109,15 @@
     };
 
     vscode = {
-      enable = true;
+      enable = false;
       package = pkgs.vscodium;
     };
 
     yt-dlp = {
+      enable = true;
+    };
+
+    zed-editor = {
       enable = true;
     };
 

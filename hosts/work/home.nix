@@ -86,6 +86,10 @@
     };
 
     vscode = {
+      enable = false;
+    };
+
+    zed-editor = {
       enable = true;
     };
 
