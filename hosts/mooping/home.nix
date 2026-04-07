@@ -131,7 +131,7 @@
 
     # AI
     claude-code = {
-      enable = false;
+      enable = true;
     };
 
     gemini-cli = {

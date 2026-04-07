@@ -29,11 +29,11 @@
       tab_size = 2;
       vim_mode = true;
       icon_theme = "Icons modern material (Dark)";
-      ui_font_size = 16;
-      buffer_font_size = 15;
+      ui_font_size = 15;
+      buffer_font_size = 14;
       theme = {
         mode = "dark";
-        light = "Ayu Light";
+        light = "Catppuccin Latte";
         dark = "Catppuccin Mocha";
       };
       # lsp = {
