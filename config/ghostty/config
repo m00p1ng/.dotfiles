@@ -67,4 +67,7 @@ keybind = cmd+digit_7=text:\x027
 keybind = cmd+digit_8=text:\x028
 keybind = cmd+digit_9=text:\x029
 
+# fix claude code new line
+keybind = shift+enter=text:\x1b\r
+
 # vim: ft=conf:syntax=dosini
