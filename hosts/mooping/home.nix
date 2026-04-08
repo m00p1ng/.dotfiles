@@ -158,5 +158,6 @@
 
     github-copilot-cli
     llama-cpp
+    opencode
   ];
 }
