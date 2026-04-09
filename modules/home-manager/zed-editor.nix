@@ -1,14 +1,6 @@
 {
   programs.zed-editor = {
     userSettings = {
-      agent_servers = {
-        gemini = {
-          type = "registry";
-        };
-        "github-copilot-cli" = {
-          type = "registry";
-        };
-      };
       base_keymap = "VSCode";
       preview_tabs = {
         enabled = true;

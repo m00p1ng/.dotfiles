@@ -119,6 +119,14 @@
 
     zed-editor = {
       enable = true;
+      agent_servers = {
+        gemini = {
+          type = "registry";
+        };
+        "github-copilot-cli" = {
+          type = "registry";
+        };
+      };
     };
 
     zoxide = {
