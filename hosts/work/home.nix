@@ -91,9 +91,11 @@
 
     zed-editor = {
       enable = true;
-      agent_servers = {
-        "github-copilot-cli" = {
-          type = "registry";
+      userSettings = {
+        agent_servers = {
+          "github-copilot-cli" = {
+            type = "registry";
+          };
         };
       };
     };
