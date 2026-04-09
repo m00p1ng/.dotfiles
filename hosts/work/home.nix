@@ -103,6 +103,10 @@
     zoxide = {
       enable = true;
     };
+
+    opencode = {
+      enable = true;
+    };
   };
 
   home.packages = with pkgs; [

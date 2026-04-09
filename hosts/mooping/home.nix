@@ -150,6 +150,22 @@
 
     opencode = {
       enable = true;
+      settings = {
+        provider = {
+          lmstudio = {
+            npm = "@ai-sdk/openai-compatible";
+            name = "LM Studio (local)";
+            options = {
+              baseURL = "http://127.0.0.1:1234/v1";
+            };
+            models = {
+              "qwen3-coder-30b-a3b-instruct-mlx" = {
+                name = "Qwen3 Coder (local)";
+              };
+            };
+          };
+        };
+      };
     };
   };
 
