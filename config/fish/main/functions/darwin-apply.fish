@@ -1,6 +1,6 @@
 function darwin-apply -a profile -d 'Nix darwin wrapper'
   if not test "$profile"
-    echo Please provide configuration profile
+    echo "Please provide configuration profile"
     return 1
   end
 
@@ -22,3 +22,4 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
   popd
 end
 
+complete -c darwin-apply -n "__fish_use_subcommand" -f -a "mooping work"

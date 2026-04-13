@@ -15,6 +15,7 @@
       NSAutomaticSpellingCorrectionEnabled = false;
       NSWindowShouldDragOnGesture = true;
       AppleICUForce24HourTime = true;
+      # NSMenuEnableActionImages = false;
     };
 
     controlcenter = {
