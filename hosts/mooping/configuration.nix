@@ -40,7 +40,7 @@ in {
       "vlc"
 
       "claude"
-      # "ollama-app"
+      "ollama-app"
       "lm-studio"
     ];
 

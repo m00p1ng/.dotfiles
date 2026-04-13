@@ -6,20 +6,12 @@
 }:
 with lib; let
   cfg = config.programs.node;
-  pnpmPath = "${config.home.homeDirectory}/tools/pnpm";
 in {
   options.programs.node = {
     enable = mkEnableOption "node";
     package = mkOption {
       type = types.package;
       default = pkgs.fnm;
-    };
-    pnpm = {
-      enable = mkEnableOption "pnpm";
-      package = mkOption {
-        type = types.package;
-        default = pkgs.pnpm;
-      };
     };
   };
 
@@ -35,22 +27,5 @@ in {
         '';
       };
     }
-
-    (mkIf cfg.pnpm.enable {
-      home.packages = [cfg.pnpm.package];
-
-      home.sessionVariables = {
-        PNPM_HOME = pnpmPath;
-      };
-
-      programs.fish = {
-        shellAbbrs = {
-          pn = "pnpm";
-        };
-        shellInit = ''
-          fish_add_path ${pnpmPath}
-        '';
-      };
-    })
   ]);
 }

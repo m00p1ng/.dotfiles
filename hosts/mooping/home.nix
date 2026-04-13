@@ -71,9 +71,6 @@
 
     node = {
       enable = true;
-      pnpm = {
-        enable = true;
-      };
     };
 
     python = {
