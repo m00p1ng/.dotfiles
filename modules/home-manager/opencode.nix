@@ -1,14 +1,22 @@
-{config, ...}: let
-  lspRoot = "${config.xdg.dataHome}/nvim/mason/bin";
+let
+  # lspRoot = "${config.xdg.dataHome}/nvim/mason/bin";
 in {
   programs.opencode = {
     settings = {
       lsp = {
         typescript = {
-          command = ["${lspRoot}/vtsls" "--stdio"];
+          disabled = true;
+        };
+        vtsls = {
+          command = ["vtsls" "--stdio"];
+          extensions = [".ts" ".tsx" ".js" ".jsx" ".mjs" ".cjs" ".mts" ".cts"];
         };
         pyright = {
-          command = ["${lspRoot}/basedpyright-langserver" "--stdio"];
+          disabled = true;
+        };
+        basedpyright-langserver = {
+          command = ["basedpyright-langserver" "--stdio"];
+          extensions = [".py" ".pyi"];
         };
       };
     };
