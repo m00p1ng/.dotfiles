@@ -1,8 +1,9 @@
 #!/bin/bash
 
+source "$CONFIG_DIR/icons.sh"
+source "$CONFIG_DIR/colors.sh"
+
 update() {
-  source "$CONFIG_DIR/icons.sh"
-  source "$CONFIG_DIR/colors.sh"
   INFO="$(ipconfig getsummary en0 | awk -F ' SSID : ' '/ SSID : / {print $2}')"
   LABEL="$INFO ($(ipconfig getifaddr en0))"
   ICON="$([ -n "$INFO" ] && echo "$WIFI_CONNECTED" || echo "$WIFI_DISCONNECTED")"

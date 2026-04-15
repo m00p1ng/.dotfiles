@@ -1,23 +1,17 @@
-if [[ "$SKETCHYBAR_WIDGET_SLACK" == "true" ]]; then
-  ENABLED_SLACK=true
-else
-  ENABLED_SLACK=false
-fi
+#!/bin/bash
 
-if [[ "$SKETCHYBAR_WIDGET_CURRENCY" == "true" ]]; then
-  ENABLED_CURRENCY=true
-else
-  ENABLED_CURRENCY=false
-fi
+WIDGETS=(
+  SLACK
+  CURRENCY
+  CPU
+  MEETING
+)
 
-if [[ "$SKETCHYBAR_WIDGET_CPU" == "true" ]]; then
-  ENABLED_CPU=true
-else
-  ENABLED_CPU=false
-fi
-
-if [[ "$SKETCHYBAR_WIDGET_MEETING" == "true" ]]; then
-  ENABLED_MEETING=true
-else
-  ENABLED_MEETING=false
-fi
+for widget in "${WIDGETS[@]}"; do
+  var="SKETCHYBAR_WIDGET_${widget}"
+  if [[ "${!var}" == "true" ]]; then
+    declare "ENABLED_${widget}=true"
+  else
+    declare "ENABLED_${widget}=false"
+  fi
+done
