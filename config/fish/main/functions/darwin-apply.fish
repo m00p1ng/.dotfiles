@@ -16,6 +16,8 @@ function darwin-apply -a profile -d 'Nix darwin wrapper'
   end
 
   sudo darwin-rebuild switch --flake ~/.dotfiles#$profile
+  printf "%b\n" "\033[31m\n===== Applied profile: $profile =====\n\033[0m"
+  nvd diff (command ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)
 
   gunwip 1> /dev/null
   gignore ./override.nix

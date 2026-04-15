@@ -115,7 +115,7 @@
     };
 
     zed-editor = {
-      enable = true;
+      # enable = true;
       userSettings = {
         agent_servers = {
           gemini = {

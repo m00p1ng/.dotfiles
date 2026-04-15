@@ -25,4 +25,8 @@ with lib; {
       then "/Users/${username}"
       else "/home/${username}";
   };
+
+  home-manager.users.${username}.home.packages = with pkgs; [
+    nvd
+  ];
 }
