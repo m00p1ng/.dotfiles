@@ -1,15 +1,15 @@
 function fish_prompt
-  set -l left (get_left_prompt)
-  set -l right (get_right_prompt)
-  set -l padding_length (math $COLUMNS - (remove_color "$left$right" | string length))
+  set -l left (__fish_prompt_left)
+  set -l right (__fish_prompt_right)
+  set -l padding_length (math $COLUMNS - (__fish_prompt_remove_color "$left$right" | string length))
 
-  set -l padding (get_padding $padding_length)
+  set -l padding (__fish_prompt_padding $padding_length)
 
   # traffic light arrow
   printf "\n$left$padding$right\n%s▶%s▶%s▶ " (set_color red) (set_color yellow) (set_color green)
 end
 
-function get_left_prompt
+function __fish_prompt_left
   set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 
   # git set up
@@ -56,7 +56,7 @@ function get_left_prompt
   end
 end
 
-function get_padding
+function __fish_prompt_padding
   set -l space ""
 
   for i in (seq 1 $argv[1])
@@ -67,11 +67,10 @@ function get_padding
   printf $space
 end
 
-function get_right_prompt
+function __fish_prompt_right
   printf '%s[%s]' (set_color grey) (date '+%H:%M:%S')
 end
 
-function remove_color
+function __fish_prompt_remove_color
   printf $argv | perl -pe 's/\x1b.*?[mGKH]//g'
 end
-
