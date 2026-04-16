@@ -18,6 +18,10 @@ in {
           command = ["basedpyright-langserver" "--stdio"];
           extensions = [".py" ".pyi"];
         };
+        ruff = {
+          command = ["ruff" "server"];
+          extensions = [".py"];
+        };
       };
     };
   };
