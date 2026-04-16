@@ -115,7 +115,7 @@
     };
 
     zed-editor = {
-      # enable = true;
+      enable = true;
       userSettings = {
         agent_servers = {
           gemini = {
@@ -147,7 +147,7 @@
 
     opencode = {
       enable = true;
-      settings = {
+      my-settings = {
         provider = {
           lmstudio = {
             npm = "@ai-sdk/openai-compatible";
