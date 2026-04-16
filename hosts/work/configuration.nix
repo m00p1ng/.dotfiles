@@ -12,6 +12,26 @@ in {
     users.${username} = import ./home.nix;
     extraSpecialArgs = {inherit mylib;};
   };
+  homebrew = {
+    enable = true;
+    casks = [
+      "google-chrome"
+
+      "flux-app"
+      "coconutbattery"
+      "raycast"
+      "1password"
+
+      "notion"
+
+      # "postman"
+      "bruno"
+
+      "ghostty"
+
+      "google-gemini"
+    ];
+  };
 
   services = {
     sketchybar = {

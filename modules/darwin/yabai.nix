@@ -57,6 +57,7 @@
       yabai -m rule --add app="^AlDente$" manage=off
       yabai -m rule --add app="^Raycast$" manage=off
       yabai -m rule --add app="^Chromium$" manage=off
+      yabai -m rule --add app="^Gemini$" manage=off
     '';
   };
 }
