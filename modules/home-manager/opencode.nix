@@ -41,6 +41,14 @@ in {
             extensions = [".py"];
           };
         };
+        autoupdate = false;
+      };
+      tui = {
+        keybinds = {
+          leader = "ctrl+o";
+          input_visual_line_end = "none";
+          editor_open = "alt+e";
+        };
       };
     };
 
