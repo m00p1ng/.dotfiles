@@ -30,6 +30,7 @@ in {
           "code-simplifier@claude-plugins-official" = true;
           "github@claude-plugins-official" = true;
           "lua-lsp@claude-plugins-official" = true;
+          "playwright@claude-plugins-official" = true;
           "pyright-lsp@claude-plugins-official" = true;
           "typescript-lsp@claude-plugins-official" = true;
         };
