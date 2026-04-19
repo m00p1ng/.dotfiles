@@ -12,6 +12,7 @@ in {
     users.${username} = import ./home.nix;
     extraSpecialArgs = {inherit mylib;};
   };
+
   homebrew = {
     enable = true;
     casks = [
