@@ -27,5 +27,7 @@ in {
     programs.fzf = {
       enableFishIntegration = false;
     };
+
+    programs.tmux.interactivePrograms = ["tv"];
   };
 }

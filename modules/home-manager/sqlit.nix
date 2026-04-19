@@ -15,5 +15,7 @@ in {
     home.packages = with pkgs; [
       sqlit-tui
     ];
+
+    programs.tmux.interactivePrograms = ["sqlit"];
   };
 }

@@ -8,9 +8,45 @@ with lib; let
   inherit (pkgs) tmuxPlugins;
 
   cfg = config.programs.tmux;
+
+  # https://github.com/junegunn/tmux-fzf-url
+  fzfUrlPlugin = {
+    plugin = tmuxPlugins.mkTmuxPlugin {
+      pluginName = "tmux-fzf-url";
+      version = "unstable-2025-04-08";
+      rtpFilePath = "fzf-url.tmux";
+      src = pkgs.fetchFromGitHub {
+        owner = "m00p1ng";
+        repo = "tmux-fzf-url";
+        rev = "306c0701454edb173a79b7085b5b5af1a3451f59";
+        sha256 = "sha256-EO/JXWRgM/KH1b53LHTnAFY2ys/K4YpwNo93QIl9yEo=";
+      };
+    };
+  };
+
+  interactiveProcessPattern = concatStringsSep "|" cfg.interactivePrograms;
+
+  interactiveNavigatorConfig =
+    if cfg.isInteractivePatch
+    then
+      #bash
+      ''
+        # https://github.com/christoomey/vim-tmux-navigator/issues/417
+        is_interactive="ps -o tty= -o state= -o comm= \
+          | grep -iqE '^#{s|/dev/||:pane_tty} +[^TXZ ]+ +(\\S+\\/)?(${interactiveProcessPattern})$'"
+      ''
+    else
+      #bash
+      ''
+        is_interactive="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?(${interactiveProcessPattern})$'"
+      '';
 in {
   options.programs.tmux = {
-    is_vim_patch = mkEnableOption "is_vim patch";
+    isInteractivePatch = mkEnableOption "interactive patch";
+    interactivePrograms = mkOption {
+      type = types.listOf types.str;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -26,20 +62,7 @@ in {
 
       # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
       plugins = with tmuxPlugins; [
-        {
-          # https://github.com/junegunn/tmux-fzf-url
-          plugin = mkTmuxPlugin {
-            pluginName = "tmux-fzf-url";
-            version = "unstable-2025-04-08";
-            rtpFilePath = "fzf-url.tmux";
-            src = pkgs.fetchFromGitHub {
-              owner = "m00p1ng";
-              repo = "tmux-fzf-url";
-              rev = "306c0701454edb173a79b7085b5b5af1a3451f59";
-              sha256 = "sha256-EO/JXWRgM/KH1b53LHTnAFY2ys/K4YpwNo93QIl9yEo=";
-            };
-          };
-        }
+        fzfUrlPlugin
         {
           # https://github.com/catppuccin/tmux
           plugin = catppuccin;
@@ -82,6 +105,7 @@ in {
         }
       ];
 
+      interactivePrograms = ["vi" "vim" "view"];
       extraConfig =
         #bash
         ''
@@ -97,28 +121,13 @@ in {
           bind-key c   new-window -c "#{pane_current_path}"
           bind-key j   choose-tree -Z "join-pane -t %%"
 
-          ${
-            if cfg.is_vim_patch
-            then
-              #bash
-              ''
-                # https://github.com/christoomey/vim-tmux-navigator/issues/417
-                is_vim="ps -o tty= -o state= -o comm= \
-                  | grep -iqE '^#{s|/dev/||:pane_tty} +[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv|sqlit)(diff)?$'"
-              ''
-            else
-              #bash
-              ''
-                is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-                  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv|sqlit)(diff)?$'"
-              ''
-          }
+          ${interactiveNavigatorConfig}
 
-          bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-          bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-          bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-          bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
-          bind-key -n 'C-\' if-shell "$is_vim" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
+          bind-key -n 'C-h' if-shell "$is_interactive" 'send-keys C-h'  'select-pane -L'
+          bind-key -n 'C-j' if-shell "$is_interactive" 'send-keys C-j'  'select-pane -D'
+          bind-key -n 'C-k' if-shell "$is_interactive" 'send-keys C-k'  'select-pane -U'
+          bind-key -n 'C-l' if-shell "$is_interactive" 'send-keys C-l'  'select-pane -R'
+          bind-key -n 'C-\' if-shell "$is_interactive" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
 
           bind-key -r H resize-pane -L 5
           bind-key -r J resize-pane -D 5

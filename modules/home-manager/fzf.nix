@@ -14,4 +14,6 @@
       "--height=12"
     ];
   };
+
+  programs.tmux.interactivePrograms = ["fzf"];
 }

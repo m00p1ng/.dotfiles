@@ -11,4 +11,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  programs.tmux.interactivePrograms = ["nvim"];
 }
