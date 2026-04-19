@@ -139,6 +139,9 @@
     # AI
     claude-code = {
       enable = true;
+      acp = {
+        enable = true;
+      };
       my-statusline = {
         enable = true;
       };

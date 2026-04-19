@@ -8,8 +8,15 @@
 with lib; let
   cfg = config.programs.claude-code;
   jsonFormat = pkgs.formats.json {};
+  npmPrefix = "${config.home.homeDirectory}/.npm-global";
+  npm = "${pkgs.nodejs}/bin/npm --prefix \"${npmPrefix}\"";
+  acpPackage = "@agentclientprotocol/claude-agent-acp";
 in {
   options.programs.claude-code = {
+    acp = {
+      enable = mkEnableOption "ACP (Agent Communication Protocol) server";
+    };
+
     my-settings = mkOption {
       inherit (jsonFormat) type;
       default = {};
@@ -53,6 +60,16 @@ in {
             src = jsonFormat.generate "claude-code-settings.json" cfg.my-settings;
             dest = "${config.home.homeDirectory}/.claude/settings.json";
           });
+      })
+
+      (mkIf cfg.acp.enable {
+        claudeCodeAcp = lib.hm.dag.entryAfter ["linkGeneration"] /* sh */ ''
+          if ! ${npm} list --depth=0 ${acpPackage} > /dev/null 2>&1; then
+            ${npm} install ${acpPackage}
+          elif ! ${npm} outdated ${acpPackage} > /dev/null 2>&1; then
+            ${npm} update ${acpPackage}
+          fi
+        '';
       })
     ];
   };

@@ -42,6 +42,7 @@
       yabai -m rule --add app="^coreautha$" manage=off
       yabai -m rule --add app="^Archive Utility$" manage=off
       yabai -m rule --add app="^Notification Center$" manage=off
+      yabai -m rule --add app="^FaceTime$" manage=off
 
       yabai -m rule --add title="Preferences" manage=off
       yabai -m rule --add title="Open" manage=off
