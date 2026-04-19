@@ -88,6 +88,10 @@
       enable = true;
     };
 
+    sqlit = {
+      enable = true;
+    };
+
     ssh = {
       enable = true;
       matchBlocks = {
@@ -184,7 +188,6 @@
     rsync
     rustup
     smartmontools
-    sqlit-tui
     sqlite
     tree
     wget
