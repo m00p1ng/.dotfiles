@@ -10,25 +10,27 @@
       escapedDest = lib.escapeShellArg dest;
     in
       if src != null
-      then /* sh */ ''
-        if [ -f ${escapedSrc} ]; then
+      then #sh
+        ''
+          if [ -f ${escapedSrc} ]; then
+            mkdir -p "$(dirname ${escapedDest})"
+            [ -f ${escapedDest} ] && cp -f ${escapedDest} ${escapedDest}.bak
+            cp -f ${escapedSrc} ${escapedDest}
+            chmod u+w ${escapedDest}
+          elif [ -d ${escapedSrc} ]; then
+            mkdir -p ${escapedDest}
+            [ -d ${escapedDest} ] && cp -rf ${escapedDest}/. ${escapedDest}.bak
+            cp -rf ${escapedSrc}/. ${escapedDest}
+            chmod -R u+w ${escapedDest}
+          fi
+        ''
+      else #sh
+        ''
           mkdir -p "$(dirname ${escapedDest})"
           [ -f ${escapedDest} ] && cp -f ${escapedDest} ${escapedDest}.bak
-          cp -f ${escapedSrc} ${escapedDest}
+          printf '%s' '${text}' > ${escapedDest}
           chmod u+w ${escapedDest}
-        elif [ -d ${escapedSrc} ]; then
-          mkdir -p ${escapedDest}
-          [ -d ${escapedDest} ] && cp -rf ${escapedDest}/. ${escapedDest}.bak
-          cp -rf ${escapedSrc}/. ${escapedDest}
-          chmod -R u+w ${escapedDest}
-        fi
-      ''
-      else /* sh */ ''
-        mkdir -p "$(dirname ${escapedDest})"
-        [ -f ${escapedDest} ] && cp -f ${escapedDest} ${escapedDest}.bak
-        printf '%s' '${text}' > ${escapedDest}
-        chmod u+w ${escapedDest}
-      '';
+        '';
 
   scanPaths = path:
     lib.pipe (builtins.readDir path) [

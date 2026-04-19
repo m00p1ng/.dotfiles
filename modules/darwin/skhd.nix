@@ -8,7 +8,7 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     services.skhd = {
-      skhdConfig = /*ini*/''
+      skhdConfig = ''
         # focus window
         alt - h : yabai -m window --focus west
         alt - j : yabai -m window --focus south

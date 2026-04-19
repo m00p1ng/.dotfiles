@@ -44,9 +44,7 @@ in {
           # https://github.com/catppuccin/tmux
           plugin = catppuccin;
           extraConfig =
-            /*
-            bash
-            */
+            #bash
             ''
               set -g @catppuccin_flavor 'mocha'
 
@@ -85,9 +83,7 @@ in {
       ];
 
       extraConfig =
-        /*
-        bash
-        */
+        #bash
         ''
           set -g renumber-windows on
           set -g monitor-activity on
@@ -104,18 +100,14 @@ in {
           ${
             if cfg.is_vim_patch
             then
-              /*
-              bash
-              */
+              #bash
               ''
                 # https://github.com/christoomey/vim-tmux-navigator/issues/417
                 is_vim="ps -o tty= -o state= -o comm= \
                   | grep -iqE '^#{s|/dev/||:pane_tty} +[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv|sqlit)(diff)?$'"
               ''
             else
-              /*
-              bash
-              */
+              #bash
               ''
                 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
                   | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?|fzf|tv|sqlit)(diff)?$'"

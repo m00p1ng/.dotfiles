@@ -31,34 +31,36 @@
       mouse_action2 = "resize";
       mouse_drop_action = "swap";
     };
-    extraConfig = /*sh*/''
-      yabai -m rule --add app="^Finder$" manage=off
-      yabai -m rule --add app="^System Settings$" manage=off
-      yabai -m rule --add app="^System Information$" manage=off
-      yabai -m rule --add app="^App Store$" manage=off
-      yabai -m rule --add app="^Activity Monitor$" manage=off
-      yabai -m rule --add app="^Messages$" manage=off
-      yabai -m rule --add app="^SecurityAgent$" manage=off
-      yabai -m rule --add app="^coreautha$" manage=off
-      yabai -m rule --add app="^Archive Utility$" manage=off
-      yabai -m rule --add app="^Notification Center$" manage=off
-      yabai -m rule --add app="^FaceTime$" manage=off
+    extraConfig =
+      #sh
+      ''
+        yabai -m rule --add app="^Finder$" manage=off
+        yabai -m rule --add app="^System Settings$" manage=off
+        yabai -m rule --add app="^System Information$" manage=off
+        yabai -m rule --add app="^App Store$" manage=off
+        yabai -m rule --add app="^Activity Monitor$" manage=off
+        yabai -m rule --add app="^Messages$" manage=off
+        yabai -m rule --add app="^SecurityAgent$" manage=off
+        yabai -m rule --add app="^coreautha$" manage=off
+        yabai -m rule --add app="^Archive Utility$" manage=off
+        yabai -m rule --add app="^Notification Center$" manage=off
+        yabai -m rule --add app="^FaceTime$" manage=off
 
-      yabai -m rule --add title="Preferences" manage=off
-      yabai -m rule --add title="Open" manage=off
+        yabai -m rule --add title="Preferences" manage=off
+        yabai -m rule --add title="Open" manage=off
 
-      yabai -m rule --add app="^1Password$" layer=above manage=off
-      yabai -m rule --add app="^zoom.us$" manage=off
-      yabai -m rule --add app="^coconutBattery$" manage=off
-      yabai -m rule --add app="^Flux$" manage=off
-      yabai -m rule --add app="^VLC$" manage=off
-      yabai -m rule --add app="^Movist$" manage=off
-      yabai -m rule --add app="^Movist Pro$" manage=off
-      yabai -m rule --add app="^CleanMyMac$" manage=off
-      yabai -m rule --add app="^AlDente$" manage=off
-      yabai -m rule --add app="^Raycast$" manage=off
-      yabai -m rule --add app="^Chromium$" manage=off
-      yabai -m rule --add app="^Gemini$" manage=off
-    '';
+        yabai -m rule --add app="^1Password$" layer=above manage=off
+        yabai -m rule --add app="^zoom.us$" manage=off
+        yabai -m rule --add app="^coconutBattery$" manage=off
+        yabai -m rule --add app="^Flux$" manage=off
+        yabai -m rule --add app="^VLC$" manage=off
+        yabai -m rule --add app="^Movist$" manage=off
+        yabai -m rule --add app="^Movist Pro$" manage=off
+        yabai -m rule --add app="^CleanMyMac$" manage=off
+        yabai -m rule --add app="^AlDente$" manage=off
+        yabai -m rule --add app="^Raycast$" manage=off
+        yabai -m rule --add app="^Chromium$" manage=off
+        yabai -m rule --add app="^Gemini$" manage=off
+      '';
   };
 }

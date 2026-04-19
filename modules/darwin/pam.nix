@@ -19,21 +19,25 @@ with lib;
     in ''
       ${
         if isEnabled
-        then /*sh*/''
-          # Enable sudo Touch ID authentication, if not already enabled
-          if ! grep 'pam_tid.so' ${file} > /dev/null; then
-            /usr/bin/sed -i "" '2i\
-          auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so # nix-darwin: ${option}\
-          auth       sufficient     pam_tid.so # nix-darwin: ${option}
-            ' ${file}
-          fi
-        ''
-        else /*sh*/''
-          # Disable sudo Touch ID authentication, if added by nix-darwin
-          if grep '${option}' ${file} > /dev/null; then
-            /usr/bin/sed -i "" '/${option}/d' ${file}
-          fi
-        ''
+        then
+          #sh
+          ''
+            # Enable sudo Touch ID authentication, if not already enabled
+            if ! grep 'pam_tid.so' ${file} > /dev/null; then
+              /usr/bin/sed -i "" '2i\
+            auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so # nix-darwin: ${option}\
+            auth       sufficient     pam_tid.so # nix-darwin: ${option}
+              ' ${file}
+            fi
+          ''
+        else
+          #sh
+          ''
+            # Disable sudo Touch ID authentication, if added by nix-darwin
+            if grep '${option}' ${file} > /dev/null; then
+              /usr/bin/sed -i "" '/${option}/d' ${file}
+            fi
+          ''
       }
     '';
   in {

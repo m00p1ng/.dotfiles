@@ -63,13 +63,16 @@ in {
       })
 
       (mkIf cfg.acp.enable {
-        claudeCodeAcp = lib.hm.dag.entryAfter ["linkGeneration"] /* sh */ ''
-          if ! ${npm} list --depth=0 ${acpPackage} > /dev/null 2>&1; then
-            ${npm} install ${acpPackage}
-          elif ! ${npm} outdated ${acpPackage} > /dev/null 2>&1; then
-            ${npm} update ${acpPackage}
-          fi
-        '';
+        claudeCodeAcp =
+          lib.hm.dag.entryAfter ["linkGeneration"] #sh
+          
+          ''
+            if ! ${npm} list --depth=0 ${acpPackage} > /dev/null 2>&1; then
+              ${npm} install ${acpPackage}
+            elif ! ${npm} outdated ${acpPackage} > /dev/null 2>&1; then
+              ${npm} update ${acpPackage}
+            fi
+          '';
       })
     ];
   };
