@@ -4,7 +4,7 @@
   ...
 }: {
   home.stateVersion = "25.11";
-  imports = mylib.scanPaths ../../modules/home-manager;
+  imports = mylib.scanPathsRecursive ../../modules/home-manager;
 
   programs = {
     bat = {

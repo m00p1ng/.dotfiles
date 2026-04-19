@@ -40,4 +40,19 @@
       builtins.attrNames
       (map (f: path + "/${f}"))
     ];
+
+  scanPathsRecursive = path: let
+    go = p:
+      lib.pipe (builtins.readDir p) [
+        (lib.filterAttrs (name: _: name != "default.nix"))
+        (lib.mapAttrsToList (name: type:
+          if type == "directory"
+          then go (p + "/${name}")
+          else if lib.hasSuffix ".nix" name
+          then [(p + "/${name}")]
+          else []))
+        lib.flatten
+      ];
+  in
+    go path;
 }
