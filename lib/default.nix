@@ -82,11 +82,11 @@
       mkdir -p "$(dirname ${escapedDest})"
       [ -f ${escapedDest} ] && cp -f ${escapedDest} ${escapedDest}.bak
       if [ -f ${escapedDest}.bak ]; then
-        ${lib.getExe pkgs.jq} -s '.[0] * .[1]' ${escapedDest}.bak - <<'__JSON__' > ${escapedDest}
+        ${lib.getExe pkgs.jq} -s '.[0] * .[1]' ${escapedDest}.bak - <<'__JSON__' | ${lib.getExe pkgs.jq} '.' > ${escapedDest}
       ${resolvedText}
       __JSON__
       else
-        printf '%s' '${resolvedText}' > ${escapedDest}
+        printf '%s' '${resolvedText}' | ${lib.getExe pkgs.jq} '.' > ${escapedDest}
       fi
       chmod u+w ${escapedDest}
     '';

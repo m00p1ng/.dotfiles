@@ -52,6 +52,12 @@ in {
       };
     };
 
+    programs.claude-code = {
+      acp = {
+        enable = true;
+      };
+    };
+
     home.activation = mkMerge [
       (mkIf (cfg.my-settings != {}) {
         opencodeConfig =

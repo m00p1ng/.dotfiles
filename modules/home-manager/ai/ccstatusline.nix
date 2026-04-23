@@ -10,7 +10,7 @@ with lib; let
   jsonFormat = pkgs.formats.json {};
 in {
   options.programs.claude-code = {
-    my-statusline = {
+    my-plugins.statusline = {
       enable = mkEnableOption "claude-code status line";
       settings = mkOption {
         inherit (jsonFormat) type;
@@ -21,7 +21,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.claude-code = {
-      my-statusline = {
+      my-plugins.statusline = {
         settings = {
           version = 3;
           lines = [
@@ -180,11 +180,11 @@ in {
     };
 
     home.activation = mkMerge [
-      (mkIf (cfg.my-statusline.enable) {
+      (mkIf (cfg.my-plugins.statusline.enable) {
         claudeCodeStatusline =
           lib.hm.dag.entryAfter ["linkGeneration"]
           (mylib.mkMutableConfig {
-            src = jsonFormat.generate "cc-statusline" cfg.my-statusline.settings;
+            src = jsonFormat.generate "cc-statusline" cfg.my-plugins.statusline.settings;
             dest = "${config.xdg.configHome}/ccstatusline/settings.json";
           });
       })

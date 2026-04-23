@@ -143,11 +143,12 @@
     # AI
     claude-code = {
       enable = true;
-      acp = {
-        enable = true;
-      };
-      my-statusline = {
-        enable = true;
+      my-plugins = {
+        rtk = true;
+        caveman = true;
+        statusline = {
+          enable = true;
+        };
       };
     };
 
