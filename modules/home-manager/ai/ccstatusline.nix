@@ -2,23 +2,11 @@
   config,
   lib,
   mylib,
-  pkgs,
   ...
 }:
 with lib; let
   cfg = config.programs.claude-code;
-  jsonFormat = pkgs.formats.json {};
 in {
-  options.programs.claude-code = {
-    my-plugins.statusline = {
-      enable = mkEnableOption "claude-code status line";
-      settings = mkOption {
-        inherit (jsonFormat) type;
-        default = {};
-      };
-    };
-  };
-
   config = mkIf cfg.enable {
     programs.claude-code = {
       my-plugins.statusline = {

@@ -20,6 +20,14 @@ in {
     my-plugins = {
       rtk = mkEnableOption "rtk hook integration";
       caveman = mkEnableOption "caveman plugin integration";
+      wakatime = mkEnableOption "wakatime plugin integration";
+      statusline = {
+        enable = mkEnableOption "claude-code status line";
+        settings = mkOption {
+          inherit (jsonFormat) type;
+          default = {};
+        };
+      };
     };
 
     my-settings = mkOption {
@@ -38,7 +46,6 @@ in {
             command = "npx ccstatusline@latest";
           };
           enabledPlugins = {
-            "claude-code-wakatime@wakatime" = true;
             "code-review@claude-plugins-official" = true;
             "code-simplifier@claude-plugins-official" = true;
             "github@claude-plugins-official" = true;
@@ -46,6 +53,17 @@ in {
             "playwright@claude-plugins-official" = true;
             "pyright-lsp@claude-plugins-official" = true;
             "typescript-lsp@claude-plugins-official" = true;
+          };
+          extraKnownMarketplaces = {};
+        };
+      };
+    }
+
+    (mkIf cfg.wakatime {
+      programs.claude-code = {
+        my-settings = {
+          enabledPlugins = {
+            "claude-code-wakatime@wakatime" = true;
           };
           extraKnownMarketplaces = {
             wakatime = {
@@ -57,7 +75,7 @@ in {
           };
         };
       };
-    }
+    })
 
     (mkIf cfg.my-plugins.rtk {
       programs.claude-code = {

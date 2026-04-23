@@ -146,6 +146,7 @@
       my-plugins = {
         rtk = true;
         caveman = true;
+        wakatime = true;
         statusline = {
           enable = true;
         };
