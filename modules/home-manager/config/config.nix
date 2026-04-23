@@ -9,6 +9,10 @@ in {
   options.my-config = {
     ghostty = {
       enable = mkEnableOption "Ghostty terminal config";
+      settings = mkOption {
+        inherit (jsonFormat) type;
+        default = {};
+      };
     };
     zed = {
       enable = mkEnableOption "Zed editor configuration";
