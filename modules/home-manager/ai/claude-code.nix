@@ -11,6 +11,7 @@ with lib; let
   npmPrefix = "${config.home.homeDirectory}/.npm-global";
   npm = "${pkgs.nodejs}/bin/npm --prefix \"${npmPrefix}\"";
   acpPackage = "@agentclientprotocol/claude-agent-acp";
+  settingsDest = "${config.home.homeDirectory}/.claude/settings.json";
 in {
   options.programs.claude-code = {
     acp = {
@@ -48,7 +49,26 @@ in {
               url = "https://github.com/wakatime/claude-code-wakatime.git";
             };
           };
+          # caveman = {
+          #   source = {
+          #     source = "github";
+          #     repo = "JuliusBrussee/caveman";
+          #   };
+          # };
         };
+        # hooks = {
+        #   PreToolUse = [
+        #     {
+        #       matcher = "Bash";
+        #       hooks = [
+        #         {
+        #           type = "command";
+        #           command = "rtk hook claude";
+        #         }
+        #       ];
+        #     }
+        #   ];
+        # };
       };
     };
 
@@ -56,8 +76,8 @@ in {
       (mkIf (cfg.my-settings != {}) {
         claudeCodeConfig =
           lib.hm.dag.entryAfter ["linkGeneration"]
-          (mylib.mkMutableConfig {
-            src = jsonFormat.generate "claude-code-settings.json" cfg.my-settings;
+          (mylib.mkJSONMutableConfig {
+            value = cfg.my-settings;
             dest = "${config.home.homeDirectory}/.claude/settings.json";
           });
       })

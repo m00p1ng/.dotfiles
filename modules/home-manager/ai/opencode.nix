@@ -56,8 +56,8 @@ in {
       (mkIf (cfg.my-settings != {}) {
         opencodeConfig =
           lib.hm.dag.entryAfter ["linkGeneration"]
-          (mylib.mkMutableConfig {
-            src = jsonFormat.generate "opencode.json" cfg.my-settings;
+          (mylib.mkJSONMutableConfig {
+            value = cfg.my-settings;
             dest = "${config.xdg.configHome}/opencode/opencode.json";
           });
       })

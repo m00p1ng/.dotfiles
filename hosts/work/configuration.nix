@@ -4,7 +4,10 @@
   ...
 }: let
   inherit (nixpkgs) lib;
-  mylib = import ../../lib {inherit lib;};
+  mylib = import ../../lib {
+    inherit lib;
+    pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+  };
 in {
   nixpkgs.hostPlatform = "aarch64-darwin";
 
