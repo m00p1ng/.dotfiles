@@ -1,0 +1,68 @@
+{
+  config,
+  lib,
+  mylib,
+  ...
+}:
+with lib; let
+  cfg = config.my-config.zed;
+in {
+  config = {
+    my-config = {
+      zed = {
+        settings = {
+          base_keymap = "VSCode";
+          preview_tabs = {
+            enabled = true;
+          };
+          sticky_scroll = {
+            enabled = false;
+          };
+          minimap = {
+            show = "never";
+          };
+          file_types = {
+            dotenv = [".env*"];
+            dockerfile = ["[Dd]ockerfile*"];
+            yaml = ["docker-compose*"];
+          };
+          wrap_guides = [80 100 120];
+          hard_tabs = false;
+          tab_size = 2;
+          vim_mode = true;
+          icon_theme = "Icons modern material (Dark)";
+          ui_font_size = 15;
+          buffer_font_size = 14;
+          theme = {
+            mode = "dark";
+            light = "Catppuccin Latte";
+            dark = "Catppuccin Mocha";
+          };
+          # lsp = {
+          #   wakatime = {
+          #     initialization_options = {
+          #       "api-key" = "Your api key";
+          #     };
+          #   };
+          # };
+        };
+        # extensions = [
+        #   "catppuccin"
+        #   "icons-modern-material"
+        #   "wakatime"
+        # ];
+      };
+    };
+
+    home.activation = mkMerge [
+      (mkIf cfg.enable {
+        zedEditorConfig =
+          lib.hm.dag.entryAfter ["linkGeneration"]
+          (mylib.mkJSONMutableConfig {
+            value = cfg.settings;
+            dest = "${config.xdg.configHome}/zed/settings.json";
+          });
+      })
+    ];
+  };
+}

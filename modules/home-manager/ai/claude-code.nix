@@ -59,7 +59,7 @@ in {
       };
     }
 
-    (mkIf cfg.wakatime {
+    (mkIf cfg.my-plugins.wakatime {
       programs.claude-code = {
         my-settings = {
           enabledPlugins = {

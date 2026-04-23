@@ -35,10 +35,6 @@
       enable = true;
     };
 
-    ghostty-config = {
-      enable = true;
-    };
-
     git = {
       enable = true;
     };
@@ -118,20 +114,6 @@
       enable = true;
     };
 
-    zed-editor = {
-      enable = true;
-      userSettings = {
-        agent_servers = {
-          gemini = {
-            type = "registry";
-          };
-          "github-copilot-cli" = {
-            type = "registry";
-          };
-        };
-      };
-    };
-
     zoxide = {
       enable = true;
       excludeDirs = [
@@ -175,6 +157,26 @@
       #     };
       #   };
       # };
+    };
+  };
+
+  my-config = {
+    ghostty = {
+      enable = true;
+    };
+
+    zed = {
+      enable = true;
+      settings = {
+        agent_servers = {
+          gemini = {
+            type = "registry";
+          };
+          "github-copilot-cli" = {
+            type = "registry";
+          };
+        };
+      };
     };
   };
 

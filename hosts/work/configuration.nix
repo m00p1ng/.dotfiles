@@ -32,6 +32,7 @@ in {
       "bruno"
 
       "ghostty"
+      "zed"
 
       "google-gemini"
     ];

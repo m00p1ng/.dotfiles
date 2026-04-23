@@ -39,6 +39,7 @@ in {
       "orbstack"
 
       "ghostty"
+      "zed"
 
       "vlc"
 

@@ -89,23 +89,29 @@
       enable = false;
     };
 
-    zed-editor = {
-      enable = true;
-      userSettings = {
-        agent_servers = {
-          "github-copilot-cli" = {
-            type = "registry";
-          };
-        };
-      };
-    };
-
     zoxide = {
       enable = true;
     };
 
     opencode = {
       enable = true;
+    };
+  };
+
+  my-config = {
+    ghostty = {
+      enable = true;
+    };
+
+    zed = {
+      enable = true;
+      settings = {
+        agent_servers = {
+          "github-copilot-cli" = {
+            type = "registry";
+          };
+        };
+      };
     };
   };
 

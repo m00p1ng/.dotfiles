@@ -171,8 +171,8 @@ in {
       (mkIf (cfg.my-plugins.statusline.enable) {
         claudeCodeStatusline =
           lib.hm.dag.entryAfter ["linkGeneration"]
-          (mylib.mkMutableConfig {
-            src = jsonFormat.generate "cc-statusline" cfg.my-plugins.statusline.settings;
+          (mylib.mkJSONMutableConfig {
+            value = cfg.my-plugins.statusline.settings;
             dest = "${config.xdg.configHome}/ccstatusline/settings.json";
           });
       })
