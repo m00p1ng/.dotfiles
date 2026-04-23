@@ -24,18 +24,61 @@ in {
         "-" = "cd -"; # abbr -a -- - 'cd -'
       };
 
-      shellInit = ''
-        fish_add_path ~/.nix-profile/bin
-        fish_add_path /nix/var/nix/profiles/default/bin
-        fish_add_path ~/.local/bin
-      '';
+      shellInit =
+        #sh
+        ''
+          fish_add_path ~/.nix-profile/bin
+          fish_add_path /nix/var/nix/profiles/default/bin
+          fish_add_path ~/.local/bin
+        '';
 
-      interactiveShellInit = ''
-        bind \ep history-token-search-backward
-        bind \en history-token-search-forward
+      interactiveShellInit =
+        #sh
+        ''
+          bind \ep history-token-search-backward
+          bind \en history-token-search-forward
 
-        fish_config theme choose mooping
-      '';
+          fish_config theme choose mooping
+        '';
+
+      functions = {
+        loop = {
+          description = "loop <count> <command>";
+          body =
+            #sh
+            ''
+              for i in (seq 1 $argv[1])
+                eval $argv[2..-1]
+              end
+            '';
+        };
+        repeat =
+          #sh
+          ''
+            while true
+              $argv
+              sleep 1
+            end
+          '';
+        tunnel = {
+          argumentNames = ["host" "port"];
+          body =
+            #sh
+            ''
+              echo "> ssh -NL $port:$host:$port $host"
+              ssh -NL $port:$host:$port $host &
+              set ssh_pid $last_pid
+              sleep .5
+              kill -0 $ssh_pid 2>/dev/null || return
+              retry sh -c "nc -z localhost $port 2> /dev/null"
+              echo "Opening http://localhost:$port in browser..."
+              open http://localhost:$port
+              trap "kill $ssh_pid" SIGINT
+              echo "Hit CONTROL-C to stop."
+              wait $ssh_pid
+            '';
+        };
+      };
 
       plugins = [
         # {
