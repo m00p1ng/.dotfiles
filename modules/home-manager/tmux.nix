@@ -26,6 +26,12 @@ with lib; let
 
   interactiveProcessPattern = concatStringsSep "|" cfg.interactivePrograms;
 
+  cleanCmd = "#{s/^\\\\.(.+)-wrap.*$/\\\\1/:pane_current_command}";
+  isNvim = "#{==:${cleanCmd},nvim}";
+  isFish = "#{==:${cleanCmd},fish}";
+  pathFmt = "#{?#{==:#{pane_current_path},#{HOME}},~ (${cleanCmd}),#{b:pane_current_path}}";
+  renameFmt = "#{?#{||:${isNvim},${isFish}},${pathFmt},${cleanCmd}}";
+
   interactiveNavigatorConfig =
     if cfg.isInteractivePatch
     then
@@ -158,6 +164,7 @@ in {
           set -g set-titles         on
           set -g set-titles-string  "#T (tmux)"
           set -g automatic-rename on
+          set -g automatic-rename-format "${renameFmt}"
 
           # Status options
           set -g status               on
@@ -176,22 +183,5 @@ in {
         '';
     };
 
-    xdg.configFile."tmux/tmux.conf".text = mkBefore ''
-      run-shell ${config.xdg.configHome}/tmux/theme.sh
-    '';
-
-    xdg.configFile."tmux/theme.sh".text =
-      #sh
-      ''
-        set_automatic_rename_format() {
-          is_nvim="#{==:#{pane_current_command},nvim}"
-          is_fish="#{==:#{pane_current_command},fish}"
-          path_format="#{?#{==:#{pane_current_path},#{HOME}},~ (#{pane_current_command}),#{b:pane_current_path}}"
-
-          echo "#{?#{||:$is_nvim,$is_fish},$path_format,#{pane_current_command}}"
-        }
-
-        tmux set -g automatic-rename-format "$(set_automatic_rename_format)"
-      '';
   };
 }
