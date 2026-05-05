@@ -16,7 +16,7 @@ in {
       };
     };
 
-    xdg.configFile."lib/layout_uv.sh".text =
+    xdg.configFile."direnv/lib/layout_uv.sh".text =
       #sh
       ''
         layout_uv() {
