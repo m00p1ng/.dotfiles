@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     neovim
-    # tree-sitter
+    tree-sitter
 
     imagemagick
     ghostscript_headless

@@ -31,10 +31,6 @@
       enable = true;
     };
 
-    ghostty-config = {
-      enable = true;
-    };
-
     git = {
       enable = true;
     };
@@ -93,6 +89,19 @@
       enable = true;
     };
 
+    # AI
+    claude-code = {
+      enable = true;
+      my-plugins = {
+        rtk = true;
+        caveman = true;
+        wakatime = true;
+        statusline = {
+          enable = true;
+        };
+      };
+    };
+
     opencode = {
       enable = true;
     };
@@ -128,5 +137,6 @@
     wget
 
     github-copilot-cli
+    rtk
   ];
 }

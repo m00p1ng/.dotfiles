@@ -120,6 +120,7 @@ in {
           bind-key %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
           bind-key c   new-window -c "#{pane_current_path}"
           bind-key j   choose-tree -Z "join-pane -t %%"
+          bind-key S   new
 
           ${interactiveNavigatorConfig}
 

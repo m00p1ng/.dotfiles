@@ -199,5 +199,6 @@
     github-copilot-cli
     llama-cpp
     llmfit
+    rtk
   ];
 }

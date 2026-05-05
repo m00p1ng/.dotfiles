@@ -25,6 +25,7 @@ in {
       "coconutbattery"
       "raycast"
       "1password"
+      "1password-cli"
 
       "notion"
 
