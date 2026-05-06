@@ -21,6 +21,33 @@ in {
         ui = {
           theme = "catppuccin";
         };
+        shell_integration = {
+          channel_triggers= {
+            brew-install = [
+              "brew install"
+              "brew install --cask"
+            ];
+          };
+        };
+      };
+
+      channels = {
+        brew-install = {
+          metadata = {
+            name = "brew-install";
+            description = "A channel to install brew packages";
+            requirements = [ "brew" ];
+          };
+          source = {
+            command = [
+              "brew formulae"
+              "brew casks"
+            ];
+          };
+          preview = {
+            command = "HOMEBREW_COLOR=1 brew info '{}'";
+          };
+        };
       };
     };
 

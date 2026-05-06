@@ -35,6 +35,7 @@ in {
       "ghostty"
       "zed"
 
+      "chatgpt"
       "google-gemini"
     ];
   };
