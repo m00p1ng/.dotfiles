@@ -166,7 +166,8 @@ in {
           set -g automatic-rename on
           set -g automatic-rename-format "${renameFmt}"
 
-          # Status options
+          # Pane
+          set -g pane-border-format "#[fg=#{@thm_peach},bg=#{@thm_surface_0}] #{?#{@pinned_title},#{@pinned_title},#{pane_title}} #[default]"
           set -g status               on
           set -g status-interval      1
           set -g status-position      top
@@ -188,8 +189,8 @@ in {
       body =
         #sh
         ''
-          set -l current_status (tmux display-message -p '#{pane_border_status}')
-          if test "$current_status" = "bottom"
+          set -l current_status (tmux display-message -p '#{pane-border-status}')
+          if test "$current_status" = "" -o "$current_status" = "bottom"
             tmux set pane-border-status off
           else
             tmux set pane-border-status bottom
