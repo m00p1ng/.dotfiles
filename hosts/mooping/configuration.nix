@@ -45,8 +45,10 @@ in {
 
       "claude"
       "google-gemini"
+      "kimi"
       "lm-studio"
       "ollama-app"
+      "opencode-desktop"
     ];
 
     # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722

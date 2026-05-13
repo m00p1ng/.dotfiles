@@ -53,15 +53,7 @@ in {
             "playwright@claude-plugins-official" = true;
             "pyright-lsp@claude-plugins-official" = true;
             "typescript-lsp@claude-plugins-official" = false;
-            "vtsls-lsp@vtsls" = true;
-          };
-          extraKnownMarketplaces = {
-            vtsls = {
-              source = {
-                source = "directory";
-                path = "${config.home.homeDirectory}/.claude/plugins/marketplaces/vtsls";
-              };
-            };
+            "vtsls-lsp@mooping-official" = true;
           };
         };
       };
@@ -152,51 +144,6 @@ in {
             '';
         })
       ];
-    }
-
-    {
-      home.file = {
-        ".claude/plugins/marketplaces/vtsls/.claude-plugin/marketplace.json".source = jsonFormat.generate "marketplace.json" {
-          "$schema" = "https://anthropic.com/claude-code/marketplace.schema.json";
-          name = "vtsls";
-          description = "vtsls TypeScript language server for Claude Code";
-          owner = {
-            name = "local";
-          };
-          plugins = [
-            {
-              name = "vtsls-lsp";
-              description = "TypeScript/JavaScript language server using vtsls";
-              version = "1.0.0";
-              source = "./plugins/vtsls-lsp";
-              category = "development";
-              strict = false;
-              lspServers = {
-                typescript = {
-                  command = "vtsls";
-                  args = ["--stdio"];
-                  extensionToLanguage = {
-                    ".ts" = "typescript";
-                    ".tsx" = "typescriptreact";
-                    ".js" = "javascript";
-                    ".jsx" = "javascriptreact";
-                    ".mts" = "typescript";
-                    ".cts" = "typescript";
-                    ".mjs" = "javascript";
-                    ".cjs" = "javascript";
-                  };
-                };
-              };
-            }
-          ];
-        };
-
-        ".claude/plugins/marketplaces/vtsls/plugins/vtsls-lsp/plugin.json".source = jsonFormat.generate "plugin.json" {
-          name = "vtsls-lsp";
-          description = "TypeScript/JavaScript language server using vtsls";
-          author = {name = "local";};
-        };
-      };
     }
   ]);
 }

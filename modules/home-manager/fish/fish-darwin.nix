@@ -23,18 +23,22 @@ in {
         nix-diff = "nvd diff (command ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
       };
 
-      shellInit = ''
-        fish_add_path /run/current-system/sw/bin
+      shellInit =
+        #sh
+        ''
+          fish_add_path /run/current-system/sw/bin
+          fish_add_path /opt/homebrew/sbin
+          fish_add_path /opt/homebrew/bin
 
-        # Homebrew completions
-        if test -d (brew --prefix)"/share/fish/completions"
-          set -p fish_complete_path (brew --prefix)/share/fish/completions
-        end
+          # Homebrew completions
+          if test -d (brew --prefix)"/share/fish/completions"
+            set -p fish_complete_path (brew --prefix)/share/fish/completions
+          end
 
-        if test -d (brew --prefix)"/share/fish/vendor_completions.d"
-          set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
-        end
-      '';
+          if test -d (brew --prefix)"/share/fish/vendor_completions.d"
+            set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+          end
+        '';
 
       interactiveShellInit = ''
         complete -c darwin-apply -n "__fish_use_subcommand" -f -a "mooping work"
