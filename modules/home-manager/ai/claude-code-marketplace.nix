@@ -28,7 +28,7 @@ in {
 
     home.file = {
       "${marketplaceDir}/.claude-plugin/marketplace.json".source = jsonFormat.generate "marketplace.json" {
-        "$schema" = "https://anthropic.com/claude-code/marketplace.schema.json";
+        "$schema" = "https://json.schemastore.org/claude-code-marketplace.json";
         name = marketplaceName;
         description = "${marketplaceName} marketplace - local plugins for Claude Code";
         owner = {
@@ -59,12 +59,38 @@ in {
               };
             };
           }
+          {
+            name = "basedpyright-lsp";
+            description = "Python language server using basedpyright";
+            version = "1.0.0";
+            source = "./plugins/basedpyright-lsp";
+            category = "development";
+            strict = false;
+            lspServers = {
+              python = {
+                command = "basedpyright-langserver";
+                args = ["--stdio"];
+                extensionToLanguage = {
+                  ".py" = "python";
+                  ".pyi" = "python";
+                };
+              };
+            };
+          }
         ];
       };
 
       "${marketplaceDir}/plugins/vtsls-lsp/plugin.json".source = jsonFormat.generate "plugin.json" {
         name = "vtsls-lsp";
         description = "TypeScript/JavaScript language server using vtsls";
+        author = {
+          name = "local";
+        };
+      };
+
+      "${marketplaceDir}/plugins/basedpyright-lsp/plugin.json".source = jsonFormat.generate "basedpyright-plugin.json" {
+        name = "basedpyright-lsp";
+        description = "Python language server using basedpyright";
         author = {
           name = "local";
         };

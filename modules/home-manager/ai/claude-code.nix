@@ -48,11 +48,17 @@ in {
           enabledPlugins = {
             "code-review@claude-plugins-official" = true;
             "code-simplifier@claude-plugins-official" = true;
+            "context7@claude-plugins-official" = true;
+            "frontend-design@claude-plugins-official" = true;
             "github@claude-plugins-official" = true;
-            "lua-lsp@claude-plugins-official" = true;
             "playwright@claude-plugins-official" = true;
-            "pyright-lsp@claude-plugins-official" = true;
-            "typescript-lsp@claude-plugins-official" = false;
+            "skill-creator@claude-plugins-official" = true;
+
+            # lsp
+            "gopls-lsp@claude-plugins-official" = true;
+            "lua-lsp@claude-plugins-official" = true;
+            "ruby-lsp@claude-plugins-official" = true;
+            "basedpyright-lsp@mooping-official" = true;
             "vtsls-lsp@mooping-official" = true;
           };
         };
