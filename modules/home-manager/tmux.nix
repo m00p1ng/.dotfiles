@@ -127,6 +127,7 @@ in {
           bind-key c   new-window -c "#{pane_current_path}"
           bind-key j   choose-tree -Z "join-pane -t %%"
           bind-key S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
+          bind-key P   command-prompt -p "(rename-pane)" -I "#{pane_title}" "select-pane -T '%%'"
 
           ${interactiveNavigatorConfig}
 
@@ -168,6 +169,9 @@ in {
 
           # Pane
           set -g pane-border-format "#[fg=#{@thm_peach},bg=#{@thm_surface_0}] #{?#{@pinned_title},#{@pinned_title},#{pane_title}} #[default]"
+          # set-hook -g after-resize-pane \
+          #   'if-shell -F "#{window_zoomed_flag}" "set pane-border-status off" "set pane-border-status #{?#{@border_toggle},#{@border_toggle},top}"'
+
           set -g status               on
           set -g status-interval      1
           set -g status-position      top
@@ -185,15 +189,15 @@ in {
     };
 
     programs.fish.functions.tmux-pane-border = {
-      description = "Toggle tmux pane-border-status between bottom and off";
+      description = "Toggle tmux pane-border-status between top and off";
       body =
         #sh
         ''
           set -l current_status (tmux display-message -p '#{pane-border-status}')
-          if test "$current_status" = "" -o "$current_status" = "bottom"
+          if test "$current_status" = "" -o "$current_status" = "top"
             tmux set pane-border-status off
           else
-            tmux set pane-border-status bottom
+            tmux set pane-border-status top
           end
         '';
     };
