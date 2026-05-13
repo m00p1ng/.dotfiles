@@ -126,7 +126,7 @@ in {
           bind-key %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
           bind-key c   new-window -c "#{pane_current_path}"
           bind-key j   choose-tree -Z "join-pane -t %%"
-          bind-key S   new
+          bind-key S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
 
           ${interactiveNavigatorConfig}
 
@@ -183,5 +183,18 @@ in {
         '';
     };
 
+    programs.fish.functions.tmux-pane-border = {
+      description = "Toggle tmux pane-border-status between bottom and off";
+      body =
+        #sh
+        ''
+          set -l current_status (tmux display-message -p '#{pane_border_status}')
+          if test "$current_status" = "bottom"
+            tmux set pane-border-status off
+          else
+            tmux set pane-border-status bottom
+          end
+        '';
+    };
   };
 }
