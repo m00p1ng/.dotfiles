@@ -122,41 +122,41 @@ in {
           set -g activity-action  none
           set -g allow-passthrough on
 
-          bind-key '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
-          bind-key %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
-          bind-key c   new-window -c "#{pane_current_path}"
-          bind-key j   choose-tree -Z "join-pane -t %%"
-          bind-key S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
-          bind-key P   command-prompt -p "(rename-pane)" -I "#{pane_title}" "select-pane -T '%%'"
-          bind-key +   if-shell -F '#{||:#{==:#{pane-border-status},top},#{==:#{pane-border-status},}}' 'set pane-border-status off' 'set pane-border-status top'
+          bind-key -N "Split window vertically"   '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
+          bind-key -N "Split window horizontally" %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
+          bind-key -N "New window"                c   new-window -c "#{pane_current_path}"
+          bind-key -N "Join pane"                 j   choose-tree -Z "join-pane -t %%"
+          bind-key -N "New session"               S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
+          bind-key -N "Rename pane"               P   command-prompt -p "(rename-pane)" -I "#{pane_title}" "select-pane -T '%%'"
+          bind-key -N "Toggle pane border status" +   if-shell -F '#{||:#{==:#{pane-border-status},top},#{==:#{pane-border-status},}}' 'set pane-border-status off' 'set pane-border-status top'
 
           ${interactiveNavigatorConfig}
 
-          bind-key -n 'C-h' if-shell "$is_interactive" 'send-keys C-h'  'select-pane -L'
-          bind-key -n 'C-j' if-shell "$is_interactive" 'send-keys C-j'  'select-pane -D'
-          bind-key -n 'C-k' if-shell "$is_interactive" 'send-keys C-k'  'select-pane -U'
-          bind-key -n 'C-l' if-shell "$is_interactive" 'send-keys C-l'  'select-pane -R'
-          bind-key -n 'C-\' if-shell "$is_interactive" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
+          bind-key -n -N "Select pane left"         'C-h' if-shell "$is_interactive" 'send-keys C-h'  'select-pane -L'
+          bind-key -n -N "Select pane down"         'C-j' if-shell "$is_interactive" 'send-keys C-j'  'select-pane -D'
+          bind-key -n -N "Select pane up"           'C-k' if-shell "$is_interactive" 'send-keys C-k'  'select-pane -U'
+          bind-key -n -N "Select pane right"        'C-l' if-shell "$is_interactive" 'send-keys C-l'  'select-pane -R'
+          bind-key -n -N "Clear screen and history" 'C-\' if-shell "$is_interactive" 'send-keys C-\\' 'send-keys -R C-l; clear-history'
 
-          bind-key -r H resize-pane -L 5
-          bind-key -r J resize-pane -D 5
-          bind-key -r K resize-pane -U 5
-          bind-key -r L resize-pane -R 5
+          bind-key -r -N "Resize pane left"  H resize-pane -L 5
+          bind-key -r -N "Resize pane down"  J resize-pane -D 5
+          bind-key -r -N "Resize pane up"    K resize-pane -U 5
+          bind-key -r -N "Resize pane right" L resize-pane -R 5
 
           # NOTE: Don't map with `M-[` and `M-]`
-          bind-key -n 'M-{' swap-window -d -t-
-          bind-key -n 'M-}' swap-window -d -t+
-          bind-key -n 'M-l' switch-client -l
+          bind-key -n -N "Swap window left"      'M-{' swap-window -d -t-
+          bind-key -n -N "Swap window right"     'M-}' swap-window -d -t+
+          bind-key -n -N "Switch to last client" 'M-l' switch-client -l
 
-          bind-key -T copy-mode-vi 'C-h' select-pane -L
-          bind-key -T copy-mode-vi 'C-j' select-pane -D
-          bind-key -T copy-mode-vi 'C-k' select-pane -U
-          bind-key -T copy-mode-vi 'C-l' select-pane -R
+          bind-key -T copy-mode-vi -N "Select pane left"  'C-h' select-pane -L
+          bind-key -T copy-mode-vi -N "Select pane down"  'C-j' select-pane -D
+          bind-key -T copy-mode-vi -N "Select pane up"    'C-k' select-pane -U
+          bind-key -T copy-mode-vi -N "Select pane right" 'C-l' select-pane -R
 
-          bind-key -T copy-mode-vi v send -X begin-selection
-          bind-key -T copy-mode-vi V send -X select-line
-          bind-key -T copy-mode-vi y                 send -X copy-pipe-and-cancel 'pbcopy'
-          bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel 'pbcopy'
+          bind-key -T copy-mode-vi -N "Begin selection"        v send -X begin-selection
+          bind-key -T copy-mode-vi -N "Select line"            V send -X select-line
+          bind-key -T copy-mode-vi -N "Copy selection"         y                 send -X copy-pipe-and-cancel 'pbcopy'
+          bind-key -T copy-mode-vi -N "Copy selection on drag" MouseDragEnd1Pane send -X copy-pipe-and-cancel 'pbcopy'
 
           #############
           ##  Theme  ##
