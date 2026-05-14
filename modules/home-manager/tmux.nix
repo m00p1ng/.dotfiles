@@ -128,6 +128,7 @@ in {
           bind-key j   choose-tree -Z "join-pane -t %%"
           bind-key S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
           bind-key P   command-prompt -p "(rename-pane)" -I "#{pane_title}" "select-pane -T '%%'"
+          bind-key +   if-shell -F '#{||:#{==:#{pane-border-status},top},#{==:#{pane-border-status},}}' 'set pane-border-status off' 'set pane-border-status top'
 
           ${interactiveNavigatorConfig}
 
@@ -185,20 +186,6 @@ in {
           # catppuccin
           set -g copy-mode-match-style          "fg=#{@thm_fg},bg=#{@thm_surface_1}"
           set -g copy-mode-current-match-style  "fg=#{@thm_surface_1},bg=#{@thm_red}"
-        '';
-    };
-
-    programs.fish.functions.tmux-pane-border = {
-      description = "Toggle tmux pane-border-status between top and off";
-      body =
-        #sh
-        ''
-          set -l current_status (tmux display-message -p '#{pane-border-status}')
-          if test "$current_status" = "" -o "$current_status" = "top"
-            tmux set pane-border-status off
-          else
-            tmux set pane-border-status top
-          end
         '';
     };
   };
