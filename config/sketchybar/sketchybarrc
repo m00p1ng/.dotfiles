@@ -8,6 +8,9 @@ source "$CONFIG_DIR/features.sh"
 ITEM_DIR="$CONFIG_DIR/items"     # Directory where the items are configured
 PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
 
+CACHE_DIR="$HOME/.cache/sketchybar"
+mkdir -p "$CACHE_DIR"
+
 ICON_FONT="Menlo Nerd Font"
 LABEL_FONT="JetBrains Mono"
 PADDINGS=3 # All paddings use this value (icon, label, background)
@@ -69,6 +72,10 @@ source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/input.sh"
 source "$ITEM_DIR/volume.sh"
 
+if $ENABLED_NIXPKGS; then
+  source "$ITEM_DIR/nixpkgs.sh"
+fi
+
 if $ENABLED_CURRENCY; then
   source "$ITEM_DIR/currency.sh"
 fi
@@ -101,10 +108,12 @@ if $ENABLED_CPU; then
   )
 fi
 
+if $ENABLED_NIXPKGS; then
+  group+=(nixpkgs)
+fi
+
 if $ENABLED_CURRENCY; then
-  group+=(
-    currency
-  )
+  group+=(currency)
 fi
 
 group+=(

@@ -1,10 +1,11 @@
 #!/bin/bash
 
-CACHED_PATH=$HOME/.cache/exchange-api.json
+CACHE_DIR="$HOME/.cache/sketchybar"
+CACHED_PATH="$CACHE_DIR/exchange-api.json"
 EXCHANGE_API=https://open.er-api.com/v6/latest/USD
 
-call_exchange_api () {
-  curl $EXCHANGE_API > "$CACHED_PATH"
+call_exchange_api() {
+  curl $EXCHANGE_API >"$CACHED_PATH"
 }
 
 if [ ! -f "$CACHED_PATH" ]; then

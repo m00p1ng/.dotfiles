@@ -5,6 +5,7 @@ WIDGETS=(
   CURRENCY
   CPU
   MEETING
+  NIXPKGS
 )
 
 for widget in "${WIDGETS[@]}"; do

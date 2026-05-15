@@ -81,6 +81,7 @@ in {
       enable = true;
       widget = {
         currency = true;
+        nixpkgs = true;
       };
     };
 

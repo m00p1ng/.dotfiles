@@ -22,5 +22,5 @@ meeting=(
 # sketchybar --add item meeting.duration right \
 #            --set meeting.duration "${meeting_duration[@]}"
 
-sketchybar --add item meeting right \
-           --set meeting "${meeting[@]}"
+sketchybar --add item meeting left \
+  --set meeting "${meeting[@]}"
