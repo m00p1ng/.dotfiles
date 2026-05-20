@@ -43,6 +43,8 @@ in {
 
       "vlc"
 
+      "chatgpt"
+      "codex-app"
       "claude"
       "google-gemini"
       "kimi"

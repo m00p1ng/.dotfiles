@@ -136,7 +136,7 @@
     };
 
     gemini-cli = {
-      enable = true;
+      enable = false;
     };
 
     opencode = {
@@ -157,6 +157,10 @@
       #     };
       #   };
       # };
+    };
+
+    codex = {
+      enable = true;
     };
   };
 

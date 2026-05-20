@@ -46,13 +46,16 @@ in {
             command = "npx ccstatusline@latest";
           };
           enabledPlugins = {
+            "claude-md-management@claude-plugins-official" = true;
             "code-review@claude-plugins-official" = true;
             "code-simplifier@claude-plugins-official" = true;
             "context7@claude-plugins-official" = true;
+            "feature-dev@claude-plugins-official" = true;
             "frontend-design@claude-plugins-official" = true;
             "github@claude-plugins-official" = true;
             "playwright@claude-plugins-official" = true;
             "skill-creator@claude-plugins-official" = true;
+            "superpowers@claude-plugins-official" = true;
 
             # lsp
             "gopls-lsp@claude-plugins-official" = true;
