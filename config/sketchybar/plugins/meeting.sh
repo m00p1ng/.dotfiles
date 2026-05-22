@@ -4,7 +4,7 @@
 source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
 
-LIMIT_TITLE=30
+LIMIT_TITLE=50
 
 ICON="$CALENDAR"
 ICON_COLOR=$RED
@@ -32,7 +32,7 @@ parse_result() {
   done
   start_time="${array[2]}"
   # end_time="${array[4]}"
-  title="${array[*]:5:30}"
+  title="${array[*]:5:LIMIT_TITLE}"
 }
 
 calculate_times() {
