@@ -90,9 +90,9 @@
 
     ssh = {
       enable = true;
-      matchBlocks = {
+      settings = {
         "*" = {
-          identityFile = "~/.ssh/mooping-macbook";
+          IdentityFile = "~/.ssh/mooping-macbook";
         };
       };
     };

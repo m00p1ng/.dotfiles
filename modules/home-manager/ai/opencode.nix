@@ -22,10 +22,11 @@ in {
       my-settings = {
         "$schema" = "https://opencode.ai/config.json";
         lsp = {
-          typescript = {
-            disabled = true;
-          };
+          # typescript = {
+          #   disabled = false;
+          # };
           vtsls = {
+            disabled = true;
             command = ["vtsls" "--stdio"];
             extensions = [".ts" ".tsx" ".js" ".jsx" ".mjs" ".cjs" ".mts" ".cts"];
           };
@@ -42,12 +43,15 @@ in {
           };
         };
         autoupdate = false;
+        plugin = [
+          "opencode-wakatime"
+        ];
       };
       tui = {
         keybinds = {
           leader = "ctrl+o";
           input_visual_line_end = "none";
-          editor_open = "alt+e";
+          editor_open = "ctrl+g";
         };
       };
     };

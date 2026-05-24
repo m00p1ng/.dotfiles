@@ -9,7 +9,7 @@ with lib; let
   pythonEnv = cfg.package.withPackages (ps:
     with ps; [
       ipython
-      pipx
+      # pipx
       pynvim
     ]);
 in {

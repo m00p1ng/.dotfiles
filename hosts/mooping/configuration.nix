@@ -26,6 +26,7 @@ in {
       "coconutbattery"
       "raycast"
       "1password"
+      "puremac"
 
       "notion"
       "discord"
@@ -43,6 +44,7 @@ in {
 
       "vlc"
 
+      "antigravity"
       "chatgpt"
       "codex-app"
       "claude"
