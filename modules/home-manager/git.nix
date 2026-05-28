@@ -34,6 +34,7 @@ in {
         core = {
           editor = "nvim";
           ignorecase = false;
+          pager = "delta";
         };
         init = {
           defaultBranch = "main";
