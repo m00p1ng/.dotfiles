@@ -18,6 +18,10 @@ in {
 
   homebrew = {
     enable = true;
+    brews = [
+      "kimi-code"
+    ];
+
     casks = [
       "google-chrome"
       "firefox"
