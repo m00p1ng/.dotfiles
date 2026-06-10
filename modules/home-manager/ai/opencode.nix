@@ -27,24 +27,48 @@ in {
           # };
           vtsls = {
             disabled = true;
-            command = ["vtsls" "--stdio"];
-            extensions = [".ts" ".tsx" ".js" ".jsx" ".mjs" ".cjs" ".mts" ".cts"];
+            command = [
+              "vtsls"
+              "--stdio"
+            ];
+            extensions = [
+              ".ts"
+              ".tsx"
+              ".js"
+              ".jsx"
+              ".mjs"
+              ".cjs"
+              ".mts"
+              ".cts"
+            ];
           };
           pyright = {
             disabled = true;
           };
           basedpyright-langserver = {
-            command = ["basedpyright-langserver" "--stdio"];
-            extensions = [".py" ".pyi"];
+            command = [
+              "basedpyright-langserver"
+              "--stdio"
+            ];
+            extensions = [
+              ".py"
+              ".pyi"
+            ];
           };
           ruff = {
-            command = ["ruff" "server"];
-            extensions = [".py"];
+            command = [
+              "ruff"
+              "server"
+            ];
+            extensions = [
+              ".py"
+            ];
           };
         };
         autoupdate = false;
         plugin = [
           "opencode-wakatime"
+          "superpowers@git+https://github.com/obra/superpowers.git"
         ];
       };
       tui = {
