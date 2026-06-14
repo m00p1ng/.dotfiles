@@ -50,10 +50,10 @@ in {
       "vlc"
 
       # "antigravity"
-      "chatgpt"
+      # "chatgpt"
       # "codex-app"
       "claude"
-      "google-gemini"
+      # "google-gemini"
       "kimi"
       "lm-studio"
       "ollama-app"
