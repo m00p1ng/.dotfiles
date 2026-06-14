@@ -36,6 +36,7 @@ in {
       "discord"
       "sf-symbols"
       "grammarly-desktop"
+      "tolaria"
 
       # "postman"
       "bruno"
@@ -48,41 +49,42 @@ in {
 
       "vlc"
 
-      "antigravity"
+      # "antigravity"
       "chatgpt"
-      "codex-app"
+      # "codex-app"
       "claude"
       "google-gemini"
       "kimi"
       "lm-studio"
       "ollama-app"
-      "opencode-desktop"
+      # "opencode-desktop"
       "steipete/tap/codexbar"
     ];
 
     # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722
-    #
-    # masApps = {
-    #   "Xcode" = 497799835;
-    #   "1Password for Safari" = 1569813296;
-    #   "Grammarly for Safari" = 1462114288;
-    #
-    #   "Pages" = 361309726;
-    #   "Numbers" = 361304891;
-    #   "Keynote" = 361285480;
-    #
-    #   "PDF Expert" = 1055273043;
-    #   "Kindle" = 302584613;
-    #   "GoodLinks" = 1474335294;
-    #   "Bear" = 1091189122;
-    #
-    #   "LINE" = 539883307;
-    #   "Spark" = 1176895641;
-    #   "Fantastical" = 975937182;
-    #
-    #   "PiPifier" = 1160374471;
-    #   "Money Pro" = 972572731;
-    # };
+    masApps = {
+      "Xcode" = 497799835;
+      "1Password for Safari" = 1569813296;
+      "Grammarly for Safari" = 1462114288;
+
+      "Pages" = 361309726;
+      "Numbers" = 361304891;
+      "Keynote" = 361285480;
+
+      "PDF Expert" = 1055273043;
+      "Kindle" = 302584613;
+      "GoodLinks" = 1474335294;
+      "Bear" = 1091189122;
+
+      "LINE" = 539883307;
+      "Spark Desktop" = 6445813049;
+      # "Fantastical" = 975937182;
+
+      "PiPifier" = 1160374471;
+      "Money Pro" = 972572731;
+
+      "Draw Things" = 6444050820;
+    };
   };
 
   services = {
