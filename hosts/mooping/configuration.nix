@@ -20,6 +20,7 @@ in {
     enable = true;
     brews = [
       "kimi-code"
+      "mole"
     ];
 
     casks = [
@@ -58,7 +59,7 @@ in {
       "lm-studio"
       "ollama-app"
       # "opencode-desktop"
-      "steipete/tap/codexbar"
+      # "steipete/tap/codexbar"
     ];
 
     # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722

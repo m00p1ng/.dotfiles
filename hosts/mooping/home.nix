@@ -203,7 +203,7 @@
     wget
 
     github-copilot-cli
-    llama-cpp
+    # llama-cpp
     llmfit
     rtk
   ];
