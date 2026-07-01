@@ -13,13 +13,13 @@ with lib; let
   fzfUrlPlugin = {
     plugin = tmuxPlugins.mkTmuxPlugin {
       pluginName = "tmux-fzf-url";
-      version = "unstable-2025-04-08";
+      version = "unstable-2026-07-01";
       rtpFilePath = "fzf-url.tmux";
       src = pkgs.fetchFromGitHub {
         owner = "m00p1ng";
         repo = "tmux-fzf-url";
-        rev = "306c0701454edb173a79b7085b5b5af1a3451f59";
-        sha256 = "sha256-EO/JXWRgM/KH1b53LHTnAFY2ys/K4YpwNo93QIl9yEo=";
+        rev = "950b9578c017c0b8e523cec00532761fd6731cb2";
+        sha256 = "sha256-C1/YVCh2e37/0p+0QlaoHFSbeUa9Li73CXPiw53HOPQ=";
       };
     };
   };
