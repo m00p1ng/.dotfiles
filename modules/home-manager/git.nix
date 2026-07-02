@@ -77,6 +77,9 @@ in {
         rebase = {
           autoStash = true;
         };
+        rerere = {
+          enabled = true;
+        };
         include = {
           path = "${catppuccinDelta}/catppuccin.gitconfig";
         };
