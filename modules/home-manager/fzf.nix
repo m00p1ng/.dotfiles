@@ -10,9 +10,11 @@
       "--multi"
     ];
 
-    historyWidgetOptions = [
-      "--height=12"
-    ];
+    historyWidget = {
+      options = [
+        "--height=12"
+      ];
+    };
   };
 
   programs.tmux.interactivePrograms = ["fzf"];
