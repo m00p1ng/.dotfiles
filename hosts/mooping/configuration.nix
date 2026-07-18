@@ -19,7 +19,7 @@ in {
   homebrew = {
     enable = true;
     brews = [
-      "kimi-code"
+      # "kimi-code"
       "mole"
     ];
 
@@ -53,9 +53,9 @@ in {
       # "antigravity"
       # "chatgpt"
       # "codex-app"
-      "claude"
+      # "claude"
       # "google-gemini"
-      "kimi"
+      # "kimi"
       "lm-studio"
       "ollama-app"
       # "opencode-desktop"
