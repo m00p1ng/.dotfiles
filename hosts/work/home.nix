@@ -107,6 +107,10 @@
     opencode = {
       enable = true;
     };
+
+    pi-coding-agent = {
+      enable = true;
+    };
   };
 
   my-config = {
@@ -140,5 +144,6 @@
 
     github-copilot-cli
     rtk
+    hunk
   ];
 }

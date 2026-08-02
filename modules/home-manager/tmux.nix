@@ -187,6 +187,10 @@ in {
           # catppuccin
           set -g copy-mode-match-style          "fg=#{@thm_fg},bg=#{@thm_surface_1}"
           set -g copy-mode-current-match-style  "fg=#{@thm_surface_1},bg=#{@thm_red}"
+
+          # ref: https://www.reddit.com/r/tmux/comments/1urlmb9/command_mode_overlap_status_bar/
+          set -g message-style         "fg=#{@thm_green},bg=#{@thm_bg},fill=#{@thm_bg}"
+          set -g message-command-style "fg=#{@thm_green},bg=#{@thm_bg},fill=#{@thm_bg}"
         '';
     };
   };

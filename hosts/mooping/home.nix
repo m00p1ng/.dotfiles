@@ -164,6 +164,10 @@
     codex = {
       enable = true;
     };
+
+    pi-coding-agent = {
+      enable = true;
+    };
   };
 
   my-config = {
@@ -206,5 +210,6 @@
     # llama-cpp
     llmfit
     rtk
+    hunk
   ];
 }
