@@ -97,5 +97,7 @@ in {
     };
 
     programs.tmux.interactivePrograms = ["tv"];
+
+    programs.nix-search-tv.enableTelevisionIntegration = true;
   };
 }

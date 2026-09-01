@@ -67,6 +67,10 @@
       enable = true;
     };
 
+    nix-search-tv = {
+      enable = true;
+    };
+
     node = {
       enable = true;
     };
