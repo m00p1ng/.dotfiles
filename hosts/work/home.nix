@@ -108,6 +108,10 @@
       };
     };
 
+    codex = {
+      enable = true;
+    };
+
     opencode = {
       enable = true;
     };

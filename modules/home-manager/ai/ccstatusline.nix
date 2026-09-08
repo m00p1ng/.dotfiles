@@ -11,7 +11,7 @@ in {
     programs.claude-code = {
       my-plugins.statusline = {
         settings = {
-          version = 3;
+          version = 4;
           lines = [
             [
               {
@@ -117,6 +117,7 @@ in {
                 type = "git-branch";
                 color = "hex:E5C890";
                 rawValue = true;
+                maxWidth = 30;
               }
               {
                 id = "10224917-1ad4-4e9e-8f05-a760134ed5f7";
@@ -144,10 +145,12 @@ in {
               }
             ]
           ];
-          flexMode = "full-minus-40";
+          flexMode = "full-until-compact";
           compactThreshold = 60;
           colorLevel = 3;
+          defaultPaddingSide = "both";
           inheritSeparatorColors = false;
+          gitCacheTtlSeconds = 5;
           globalBold = false;
           minimalistMode = false;
           powerline = {
