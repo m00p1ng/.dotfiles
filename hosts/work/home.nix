@@ -112,6 +112,10 @@
       enable = true;
     };
 
+    github-copilot-cli = {
+      enable = true;
+    };
+
     opencode = {
       enable = true;
     };
@@ -150,7 +154,6 @@
     tree
     wget
 
-    github-copilot-cli
     rtk
     hunk
   ];

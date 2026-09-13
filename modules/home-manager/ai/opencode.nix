@@ -21,50 +21,6 @@ in {
     programs.opencode = {
       my-settings = {
         "$schema" = "https://opencode.ai/config.json";
-        lsp = {
-          # typescript = {
-          #   disabled = false;
-          # };
-          vtsls = {
-            disabled = true;
-            command = [
-              "vtsls"
-              "--stdio"
-            ];
-            extensions = [
-              ".ts"
-              ".tsx"
-              ".js"
-              ".jsx"
-              ".mjs"
-              ".cjs"
-              ".mts"
-              ".cts"
-            ];
-          };
-          pyright = {
-            disabled = true;
-          };
-          basedpyright-langserver = {
-            command = [
-              "basedpyright-langserver"
-              "--stdio"
-            ];
-            extensions = [
-              ".py"
-              ".pyi"
-            ];
-          };
-          ruff = {
-            command = [
-              "ruff"
-              "server"
-            ];
-            extensions = [
-              ".py"
-            ];
-          };
-        };
         autoupdate = false;
         plugin = [
           "opencode-wakatime"

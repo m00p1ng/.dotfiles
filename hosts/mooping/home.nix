@@ -210,7 +210,6 @@
     tree
     wget
 
-    github-copilot-cli
     # llama-cpp
     llmfit
     rtk

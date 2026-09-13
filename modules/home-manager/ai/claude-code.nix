@@ -63,7 +63,6 @@ in {
             "ruby-lsp@claude-plugins-official" = true;
             "typescript-lsp@claude-plugins-official" = true;
             "basedpyright-lsp@mooping-official" = true;
-            # "vtsls-lsp@mooping-official" = true;
           };
         };
       };
