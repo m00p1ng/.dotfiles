@@ -23,7 +23,8 @@ in {
 
       "flux-app"
       "coconutbattery"
-      "raycast"
+      # "raycast"
+      "vicinae"
       "1password"
       "1password-cli"
 
