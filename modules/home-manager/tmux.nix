@@ -122,11 +122,11 @@ in {
           set -g activity-action  none
           set -g allow-passthrough on
 
-          # Pi expects tmux to emit CSI-u extended keys. These are server
-          # options, so set them with -s to avoid inheriting tmux's xterm default.
-          set -s extended-keys        always
-          set -s extended-keys-format csi-u
-          set -as terminal-features 'xterm*:extkeys'
+          # Pi enables CSI-u extended keys only while it is running. Keeping
+          # these server options global breaks external-editor handoffs in Codex.
+          # set -s extended-keys        always
+          # set -s extended-keys-format csi-u
+          # set -as terminal-features 'xterm*:extkeys'
 
           bind-key -N "Split window vertically"   '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
           bind-key -N "Split window horizontally" %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
