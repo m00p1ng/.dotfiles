@@ -123,12 +123,6 @@ in {
           set -g allow-passthrough on
           set -g extended-keys     on
 
-          # Pi enables CSI-u extended keys only while it is running. Keeping
-          # these server options global breaks external-editor handoffs in Codex.
-          # set -s extended-keys        always
-          # set -s extended-keys-format csi-u
-          # set -as terminal-features 'xterm*:extkeys'
-
           bind-key -N "Split window vertically"   '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
           bind-key -N "Split window horizontally" %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'
           bind-key -N "New window"                c   new-window -c "#{pane_current_path}"

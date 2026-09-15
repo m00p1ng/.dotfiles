@@ -49,6 +49,8 @@ in {
               command pi $argv
               set -l pi_status $status
 
+              # Pi enables CSI-u extended keys only while it is running. Keeping
+              # these server options global breaks external-editor handoffs in Codex.
               tmux set-option -s extended-keys "$old_extended_keys"
               tmux set-option -s extended-keys-format "$old_extended_keys_format"
               tmux set-option -s terminal-features "$old_terminal_features"
