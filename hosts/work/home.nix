@@ -123,6 +123,10 @@
     pi-coding-agent = {
       enable = true;
     };
+
+    workmux = {
+      enable = true;
+    };
   };
 
   my-config = {

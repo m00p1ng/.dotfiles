@@ -21,6 +21,7 @@ in {
     brews = [
       # "kimi-code"
       "mole"
+      "raine/workmux/workmux"
     ];
 
     casks = [

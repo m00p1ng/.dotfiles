@@ -146,7 +146,7 @@
     };
 
     opencode = {
-      enable = true;
+      enable = false;
       # my-settings = {
       #   provider = {
       #     lmstudio = {
@@ -170,6 +170,10 @@
     };
 
     pi-coding-agent = {
+      enable = true;
+    };
+
+    workmux = {
       enable = true;
     };
   };
