@@ -121,6 +121,7 @@ in {
           set -g visual-activity  off
           set -g activity-action  none
           set -g allow-passthrough on
+          set -g extended-keys     on
 
           # Pi enables CSI-u extended keys only while it is running. Keeping
           # these server options global breaks external-editor handoffs in Codex.
