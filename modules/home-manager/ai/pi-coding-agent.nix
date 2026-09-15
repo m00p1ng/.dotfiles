@@ -26,6 +26,39 @@ in {
       };
     };
 
+    programs.fish = {
+      functions = {
+        pi = {
+          description = "Run Pi with tmux CSI-u extended keys enabled";
+          body =
+            #sh
+            ''
+              if not set -q TMUX
+                command pi $argv
+                return $status
+              end
+
+              set -l old_extended_keys (tmux show-options -s -v extended-keys)
+              set -l old_extended_keys_format (tmux show-options -s -v extended-keys-format)
+              set -l old_terminal_features (tmux show-options -s -v terminal-features)
+
+              tmux set-option -s extended-keys always
+              tmux set-option -s extended-keys-format csi-u
+              tmux set-option -s terminal-features "$old_terminal_features,xterm*:extkeys"
+
+              command pi $argv
+              set -l pi_status $status
+
+              tmux set-option -s extended-keys "$old_extended_keys"
+              tmux set-option -s extended-keys-format "$old_extended_keys_format"
+              tmux set-option -s terminal-features "$old_terminal_features"
+
+              return $pi_status
+            '';
+        };
+      };
+    };
+
     home.activation = mkIf (cfg.my-settings != {}) {
       piCodingAgentConfig =
         lib.hm.dag.entryAfter ["linkGeneration"]
