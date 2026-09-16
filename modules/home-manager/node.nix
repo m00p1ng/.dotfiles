@@ -20,17 +20,21 @@ in {
       home.packages = [cfg.package];
 
       programs.fish = {
-        shellInit = ''
-          # FNM configuration
-          ${cfg.package}/bin/fnm env --use-on-cd | source
+        shellInit =
+          #sh
+          ''
+            # FNM configuration
+            ${cfg.package}/bin/fnm env --use-on-cd | source
 
-          # Global npm path
-          fish_add_path ${config.home.homeDirectory}/.npm-global/node_modules/.bin
-        '';
-        interactiveShellInit = ''
-          # FNM configuration
-          ${cfg.package}/bin/fnm completions --shell fish | source
-        '';
+            # Global npm path
+            fish_add_path ${config.home.homeDirectory}/.npm-global/node_modules/.bin
+          '';
+        interactiveShellInit =
+          #sh
+          ''
+            # FNM configuration
+            ${cfg.package}/bin/fnm completions --shell fish | source
+          '';
       };
     }
   ]);

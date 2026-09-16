@@ -117,11 +117,11 @@
     };
 
     opencode = {
-      enable = true;
+      enable = false;
     };
 
     pi-coding-agent = {
-      enable = true;
+      enable = false;
     };
 
     workmux = {

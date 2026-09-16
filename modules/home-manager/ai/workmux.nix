@@ -22,6 +22,12 @@ in {
       shellAbbrs = {
         wm = "workmux";
       };
+      interactiveShellInit =
+        #sh
+        ''
+          # workmux configuration
+          workmux completions fish | source
+        '';
     };
   };
 }
