@@ -13,8 +13,10 @@ ICON_COLOR=$RED
 DRAWING=on
 
 # icalBuddy prints the event as two lines: "HH:MM - HH:MM" then an indented title.
+# end_time stays empty for multi-day events, whose end reads "...".
 parse_result() {
   start_time=$(echo "$1" | sed -n '1s/^\([0-9][0-9]:[0-9][0-9]\).*/\1/p')
+  end_time=$(echo "$1" | sed -n '1s/^[0-9][0-9]:[0-9][0-9] - \([0-9][0-9]:[0-9][0-9]\).*/\1/p')
   title=$(echo "$1" | sed -n '2s/^[[:space:]]*//p')
 }
 
@@ -23,6 +25,22 @@ minutes_until() {
   epoc_now=$(/bin/date +%s)
   epoc_target=$(/bin/date -j -f "%T" "${1:-00:00}:00" +%s)
   echo $(((epoc_target - epoc_now) / 60 + 1))
+}
+
+# 62 -> "(1h 2m)", 60 -> "(1h)", 2 -> "(2m)"
+format_duration() {
+  local total=$1 hours minutes res=""
+
+  ((total < 0)) && total=0
+  hours=$((total / 60))
+  minutes=$((total % 60))
+
+  ((hours > 0)) && res="${hours}h"
+  if ((minutes > 0)); then
+    res="${res:+$res }${minutes}m"
+  fi
+
+  echo "(${res:-0m})"
 }
 
 get_title() {
@@ -40,11 +58,17 @@ if [[ -z "$title" ]]; then
   ICON="$CALENDAR_FREE"
 else
   LABEL="$start_time $(get_title)"
-  if (($(minutes_until "$start_time") >= 1)); then
+  minutes_till_start=$(minutes_until "$start_time")
+
+  if ((minutes_till_start >= 1)); then
+    # Not started yet: count down to the start.
     ICON_COLOR=$BLUE
+    DURATION=$(format_duration "$minutes_till_start")
   else
+    # In progress: count down the time left, when we know the end.
     ICON="$CALENDAR_BUSY"
     ICON_COLOR=$ORANGE
+    [[ -n "$end_time" ]] && DURATION=$(format_duration "$(minutes_until "$end_time")")
   fi
 fi
 
@@ -55,4 +79,10 @@ meeting=(
   label="$LABEL"
 )
 
-sketchybar --set "$NAME" "${meeting[@]}"
+meeting_duration=(
+  drawing="$DRAWING"
+  label="$DURATION"
+)
+
+sketchybar --set "$NAME" "${meeting[@]}" \
+  --set "$NAME.duration" "${meeting_duration[@]}"

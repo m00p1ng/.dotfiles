@@ -11,17 +11,18 @@ meeting=(
   updates=on
 )
 
-# meeting_duration=(
-#   label.width=0
-#   label.y_offset=-1.5
-#   label.color="$WHITE"
-#   padding_right=10
-#   padding_left=0
-#   y_offset=1
-# )
-
-# sketchybar --add item meeting.duration right \
-#            --set meeting.duration "${meeting_duration[@]}"
+# Label is filled in by plugins/meeting.sh alongside the meeting item itself.
+meeting_duration=(
+  drawing=off
+  label.y_offset=-1.5
+  label.color="$WHITE"
+  padding_right=4
+  padding_left=0
+  y_offset=1
+  click_script="$PLUGIN_DIR/meeting_click.sh"
+)
 
 sketchybar --add item meeting left \
-  --set meeting "${meeting[@]}"
+  --set meeting "${meeting[@]}" \
+  --add item meeting.duration left \
+  --set meeting.duration "${meeting_duration[@]}"
