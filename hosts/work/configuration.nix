@@ -31,7 +31,7 @@ in {
       # "raycast"
       "vicinae"
       "1password"
-      "1password-cli"
+      # "1password-cli"
 
       "notion"
 
@@ -42,7 +42,7 @@ in {
       "zed"
 
       "chatgpt"
-      "google-gemini"
+      # "google-gemini"
     ];
   };
 
