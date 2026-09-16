@@ -3,6 +3,8 @@
 
 source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
+# PLUGIN_DIR is not exported to spawned scripts; only CONFIG_DIR is.
+source "$CONFIG_DIR/plugins/meeting_query.sh"
 
 LIMIT_TITLE=50
 
@@ -10,63 +12,18 @@ ICON="$CALENDAR"
 ICON_COLOR=$RED
 DRAWING=on
 
-get_next_meeting() {
-  icalBuddy \
-    --includeEventProps "title,datetime" \
-    --propertyOrder "datetime,title" \
-    --noCalendarNames \
-    --dateFormat "%A" \
-    --includeOnlyEventsFromNowOn \
-    --limitItems 1 \
-    --excludeAllDayEvents \
-    --includeCals "$SKETCHYBAR_WIDGET_MEETING_CALENDARS" \
-    --separateByDate \
-    --bullet "" \
-    eventsToday
-}
-
+# icalBuddy prints the event as two lines: "HH:MM - HH:MM" then an indented title.
 parse_result() {
-  local array=()
-  for line in $1; do
-    array+=("$line")
-  done
-  start_time="${array[2]}"
-  # end_time="${array[4]}"
-  title="${array[*]:5:LIMIT_TITLE}"
+  start_time=$(echo "$1" | sed -n '1s/^\([0-9][0-9]:[0-9][0-9]\).*/\1/p')
+  title=$(echo "$1" | sed -n '2s/^[[:space:]]*//p')
 }
 
-calculate_times() {
+minutes_until() {
+  local epoc_now epoc_target
   epoc_now=$(/bin/date +%s)
-
-  epoc_meeting=$(/bin/date -j -f "%T" "${start_time:-00:00}:00" +%s)
-  epoc_diff=$((epoc_meeting - epoc_now))
-  minutes_till_meeting=$((epoc_diff / 60 + 1))
-
-  # epoc_end_meeting=$(/bin/date -j -f "%T" "${end_time:-00:00}:00" +%s)
-  # epoc_end_diff=$((epoc_end_meeting - epoc_now))
-  # minutes_till_end_meeting=$((epoc_end_diff / 60 + 1))
+  epoc_target=$(/bin/date -j -f "%T" "${1:-00:00}:00" +%s)
+  echo $(((epoc_target - epoc_now) / 60 + 1))
 }
-
-# get_duration() {
-#   abs_mins=$((minutes_till_meeting > 0 ? minutes_till_meeting : minutes_till_end_meeting))
-#   hours=$((abs_mins / 60))
-#   minutes=$((abs_mins % 60))
-#
-#   res=""
-#   if [[ $hours -gt 0 ]]; then
-#     res="$res${hours}h"
-#   fi
-#
-#   if [[ $minutes -gt 0 ]]; then
-#     res="$res${minutes}m"
-#   fi
-#
-#   if [[ "$title" != "" ]] && [[ $minutes_till_end_meeting -ge 1 ]]; then
-#     res="$res left"
-#   fi
-#
-#   echo "($res)"
-# }
 
 get_title() {
   if [[ ${#title} -gt $LIMIT_TITLE ]]; then
@@ -76,22 +33,19 @@ get_title() {
   fi
 }
 
-parse_result "$(get_next_meeting)"
-calculate_times
+parse_result "$(meeting_query "title,datetime" "datetime,title")"
 
-if [[ "$title" != "" ]]; then
-  LABEL="$start_time $(get_title)"
-else
+if [[ -z "$title" ]]; then
   DRAWING=off
-fi
-
-if [[ "$title" == "" ]]; then
   ICON="$CALENDAR_FREE"
-elif [[ $minutes_till_meeting -ge 1 ]]; then
-  ICON_COLOR=$BLUE
 else
-  ICON="$CALENDAR_BUSY"
-  ICON_COLOR=$ORANGE
+  LABEL="$start_time $(get_title)"
+  if (($(minutes_until "$start_time") >= 1)); then
+    ICON_COLOR=$BLUE
+  else
+    ICON="$CALENDAR_BUSY"
+    ICON_COLOR=$ORANGE
+  fi
 fi
 
 meeting=(
@@ -101,10 +55,4 @@ meeting=(
   label="$LABEL"
 )
 
-# meeting_duration=(
-#   drawing="$DRAWING"
-#   label="$(get_duration)"
-# )
-
 sketchybar --set "$NAME" "${meeting[@]}"
-# sketchybar --set "$NAME.duration" "${meeting_duration[@]}"
