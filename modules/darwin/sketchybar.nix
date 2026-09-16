@@ -39,7 +39,7 @@ in {
       sketchybar.extraPackages = with pkgs; [
         jq
         git
-        icalBuddy
+        ical-guy
       ];
     };
 

@@ -12,12 +12,24 @@ ICON="$CALENDAR"
 ICON_COLOR=$RED
 DRAWING=on
 
-# icalBuddy prints the event as two lines: "HH:MM - HH:MM" then an indented title.
-# end_time stays empty for multi-day events, whose end reads "...".
+# ical-guy returns a JSON event with ISO 8601 timestamps.
 parse_result() {
-  start_time=$(echo "$1" | sed -n '1s/^\([0-9][0-9]:[0-9][0-9]\).*/\1/p')
-  end_time=$(echo "$1" | sed -n '1s/^[0-9][0-9]:[0-9][0-9] - \([0-9][0-9]:[0-9][0-9]\).*/\1/p')
-  title=$(echo "$1" | sed -n '2s/^[[:space:]]*//p')
+  title=$(jq -r '.title // ""' <<<"$1")
+  start_time=$(format_time "$(jq -r '.startDate // empty' <<<"$1")")
+  end_time=$(format_time "$(jq -r '.endDate // empty' <<<"$1")")
+}
+
+format_time() {
+  local datetime="$1" epoch
+
+  [[ -z "$datetime" ]] && return
+
+  # DateFormatter may include fractional seconds; BSD date does not accept them.
+  [[ "$datetime" == *.*Z ]] && datetime="${datetime%%.*}Z"
+
+  # EventKit emits UTC ISO 8601 timestamps. Parse in UTC, then format locally.
+  epoch=$(/bin/date -j -u -f "%Y-%m-%dT%H:%M:%SZ" "$datetime" +%s 2>/dev/null) || return
+  /bin/date -r "$epoch" +%H:%M
 }
 
 minutes_until() {
@@ -51,7 +63,7 @@ get_title() {
   fi
 }
 
-parse_result "$(meeting_query "title,datetime" "datetime,title")"
+parse_result "$(meeting_query)"
 
 if [[ -z "$title" ]]; then
   DRAWING=off

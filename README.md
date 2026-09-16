@@ -14,7 +14,7 @@ macOS system configuration managed with [Nix Flakes](https://nixos.wiki/wiki/Fla
 │   ├── darwin/      macOS system modules (core, preferences, yabai, sketchybar, skhd)
 │   └── home-manager/ Program modules (git, neovim, fish, tmux, vscode, ...)
 ├── override.nix     Host-overridable defaults (git user, editor config)
-└── pkgs/            Custom package derivations (icalBuddy)
+└── pkgs/            Custom package derivations
 ```
 
 ## Install
