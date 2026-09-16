@@ -92,6 +92,43 @@
     '';
 
   /**
+  * mkYamlMutableConfig
+  *
+  * Serializes a Nix value to JSON, converts it to YAML, and writes it to a
+  * destination `dest`, making the destination mutable (writable by the user).
+  *
+  * - If `dest` already exists, the new YAML is recursively merged over the
+  *   existing file using `yq`.
+  *
+  * Arguments:
+  *   value (required): Nix value to serialize as YAML.
+  *   dest  (required): Destination path for the YAML file.
+  *
+  * Returns:
+  *   Shell script string that performs the write operation and ensures dest is writable.
+  */
+  mkYamlMutableConfig = {
+    value,
+    dest,
+  }: let
+    escapedDest = lib.escapeShellArg dest;
+    resolvedText = builtins.toJSON value;
+  in
+    #sh
+    ''
+      mkdir -p "$(dirname ${escapedDest})"
+      [ -f ${escapedDest} ] && cp -f ${escapedDest} ${escapedDest}.bak
+      if [ -f ${escapedDest}.bak ]; then
+        ${lib.getExe pkgs.yq-go} eval-all -P 'select(fileIndex == 0) * select(fileIndex == 1)' ${escapedDest}.bak - > ${escapedDest} <<'__JSON__'
+      ${resolvedText}
+      __JSON__
+      else
+        printf '%s' '${resolvedText}' | ${lib.getExe pkgs.yq-go} -p=json -o=yaml -P '.' > ${escapedDest}
+      fi
+      chmod u+w ${escapedDest}
+    '';
+
+  /**
   * scanPaths
   *
   * Returns a list of all `.nix` files in `path` (non-recursive), excluding `default.nix`.
