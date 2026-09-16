@@ -6,6 +6,7 @@ meeting=(
   padding_left=4
   y_offset=1
   script="$PLUGIN_DIR/meeting.sh"
+  click_script="$PLUGIN_DIR/meeting_click.sh"
   update_freq=1
   updates=on
 )
