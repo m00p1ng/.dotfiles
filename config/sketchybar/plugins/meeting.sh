@@ -3,7 +3,6 @@
 
 source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
-# PLUGIN_DIR is not exported to spawned scripts; only CONFIG_DIR is.
 source "$CONFIG_DIR/plugins/meeting_query.sh"
 
 LIMIT_TITLE=50
