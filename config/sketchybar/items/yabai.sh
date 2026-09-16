@@ -6,7 +6,7 @@ yabai=(
   icon.padding_left=7
   label.drawing=off
   script="$PLUGIN_DIR/yabai.sh"
-  click_script="$PLUGIN_DIR/yabai_click.sh"
+  click_script="$PLUGIN_DIR/yabai.sh"
 )
 
 sketchybar -m --add item yabai left \
