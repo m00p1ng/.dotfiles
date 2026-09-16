@@ -32,6 +32,7 @@ in {
       "coconutbattery"
       # "raycast"
       "vicinae"
+      # "vorssaint"
       "1password"
       "puremac"
 
