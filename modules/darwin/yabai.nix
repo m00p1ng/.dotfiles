@@ -45,6 +45,7 @@
         yabai -m rule --add app="^Archive Utility$" manage=off
         yabai -m rule --add app="^Notification Center$" manage=off
         yabai -m rule --add app="^FaceTime$" manage=off
+        yabai -m rule --add app="^Device Hub$" manage=off
 
         yabai -m rule --add title="Preferences" manage=off
         yabai -m rule --add title="Open" manage=off
@@ -56,9 +57,6 @@
         yabai -m rule --add app="^VLC$" manage=off
         yabai -m rule --add app="^Movist$" manage=off
         yabai -m rule --add app="^Movist Pro$" manage=off
-        yabai -m rule --add app="^CleanMyMac$" manage=off
-        yabai -m rule --add app="^AlDente$" manage=off
-        yabai -m rule --add app="^Raycast$" manage=off
         yabai -m rule --add app="^Chromium$" manage=off
         yabai -m rule --add app="^Gemini$" manage=off
       '';
