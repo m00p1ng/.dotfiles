@@ -9,19 +9,69 @@ with lib; let
 
   cfg = config.programs.tmux;
 
-  # https://github.com/junegunn/tmux-fzf-url
-  fzfUrlPlugin = {
-    plugin = tmuxPlugins.mkTmuxPlugin {
-      pluginName = "tmux-fzf-url";
-      version = "unstable-2026-07-01";
-      rtpFilePath = "fzf-url.tmux";
-      src = pkgs.fetchFromGitHub {
-        owner = "m00p1ng";
-        repo = "tmux-fzf-url";
-        rev = "950b9578c017c0b8e523cec00532761fd6731cb2";
-        sha256 = "sha256-C1/YVCh2e37/0p+0QlaoHFSbeUa9Li73CXPiw53HOPQ=";
-      };
-    };
+  tmuxUrlPicker = pkgs.writeShellApplication {
+    name = "tmux-url-picker";
+    runtimeInputs = [
+      pkgs.coreutils
+      pkgs.gawk
+      pkgs.ripgrep
+      pkgs.television
+      pkgs.tmux
+    ];
+    text =
+      #bash
+      ''
+        header='Enter: Open URL / CTRL-Y: Copy to clipboard'
+
+        select_urls() {
+          mapfile -t urls < "$1"
+
+          for index in "''${!urls[@]}"; do
+            printf '%d: %s\n' "$(( index + 1 ))" "''${urls[index]}"
+          done \
+            | tv --no-sort --no-status-bar --input-header "$header" \
+            | while IFS= read -r selection; do
+                url="''${selection#*: }"
+                open "$url"
+              done
+        }
+
+        if [[ "''${1:-}" == select ]]; then
+          select_urls "$2"
+          exit 0
+        fi
+
+        urls_file="$(mktemp)"
+        trap 'rm -f "$urls_file"' EXIT
+
+        tmux capture-pane -J -p \
+          | rg --pcre2 --only-matching '(?:https?|file)://[-a-zA-Z0-9@:%_+.~#?&/=]+[-a-zA-Z0-9@%_+.~#?&/=!]+' \
+          | awk '{ urls[NR] = $0 } END { for (line_number = NR; line_number > 0; line_number--) print urls[line_number] }' \
+          | awk '!seen[$0]++' > "$urls_file"
+
+        mapfile -t urls < "$urls_file"
+        if (( ''${#urls[@]} == 0 )); then
+          tmux display-message "No URLs found"
+        elif (( ''${#urls[@]} == 1 )); then
+          open "''${urls[0]}"
+        else
+          # Television adds title and border padding around the input header.
+          popup_width=$(( ''${#header} + 12 ))
+          for url in "''${urls[@]}"; do
+            if (( ''${#url} > popup_width )); then
+              popup_width=''${#url}
+            fi
+          done
+          popup_width=$(( popup_width > 100 ? 100 : popup_width ))
+
+          # Television needs room for its input, results, and status panels.
+          # Keep a minimum height so it does not hide the input header.
+          popup_height=$(( ''${#urls[@]} + 7 ))
+          popup_height=$(( popup_height < 10 ? 10 : popup_height ))
+
+          tmux display-popup -E -w "$popup_width" -h "$popup_height" "$0 select $(printf '%q' "$urls_file")"
+        fi
+      '';
   };
 
   interactiveProcessPattern = concatStringsSep "|" cfg.interactivePrograms;
@@ -68,7 +118,6 @@ in {
 
       # Ref: https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/default.nix
       plugins = with tmuxPlugins; [
-        fzfUrlPlugin
         {
           # https://github.com/catppuccin/tmux
           plugin = catppuccin;
@@ -130,6 +179,7 @@ in {
           bind-key -N "New session"               S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
           bind-key -N "Rename pane"               P   command-prompt -p "(rename-pane)" -I "#{pane_title}" "select-pane -T '%%'"
           bind-key -N "Toggle pane border status" +   if-shell -F '#{||:#{==:#{pane-border-status},top},#{==:#{pane-border-status},}}' 'set pane-border-status off' 'set pane-border-status top'
+          bind-key -N "Open URL from current pane" u run-shell -b '${tmuxUrlPicker}/bin/tmux-url-picker'
 
           ${interactiveNavigatorConfig}
 

@@ -29,10 +29,6 @@
       enable = true;
     };
 
-    fzf = {
-      enable = true;
-    };
-
     gh = {
       enable = true;
     };

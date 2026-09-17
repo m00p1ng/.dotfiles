@@ -92,10 +92,6 @@ in {
       };
     };
 
-    programs.fzf = {
-      enableFishIntegration = false;
-    };
-
     programs.tmux.interactivePrograms = ["tv"];
 
     programs.nix-search-tv.enableTelevisionIntegration = true;
