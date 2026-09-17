@@ -15,6 +15,28 @@ ICON_FONT="Menlo Nerd Font"
 LABEL_FONT="JetBrains Mono"
 PADDINGS=3 # All paddings use this value (icon, label, background)
 
+# Width of the built-in display's notch, in points, or nothing when no display has
+# one. Items are put in the notch-adjacent "q" region only when there is a notch,
+# see items/meeting.sh.
+notch_width() {
+  osascript -l JavaScript -e '
+    ObjC.import("AppKit");
+    const screens = $.NSScreen.screens;
+    for (let i = 0; i < screens.count; i++) {
+      const s = screens.objectAtIndex(i);
+      if (s.safeAreaInsets.top > 0) {
+        const w = s.frame.size.width;
+        w - s.auxiliaryTopLeftArea.size.width - s.auxiliaryTopRightArea.size.width;
+        break;
+      }
+    }
+  ' 2>/dev/null
+}
+
+NOTCH_WIDTH=$(notch_width)
+NOTCH_WIDTH=${NOTCH_WIDTH%%.*}
+[[ "$NOTCH_WIDTH" =~ ^[0-9]+$ ]] || NOTCH_WIDTH=0
+
 # Setting up and starting the helper process
 if $ENABLED_CPU; then
   HELPER=git.felix.helper
@@ -36,6 +58,7 @@ bar=(
   padding_right=14
   padding_left=10
   topmost=window
+  notch_width="$NOTCH_WIDTH"
 )
 
 sketchybar --bar "${bar[@]}"
