@@ -25,22 +25,28 @@ PANEL_HEIGHT = 7
 MIN_POPUP_HEIGHT = 10
 
 
-def tmux(*args: str, **kwargs) -> subprocess.CompletedProcess:
-    return subprocess.run(["tmux", *args], **kwargs)
+def tmux(*args: str) -> None:
+    _ = subprocess.run(["tmux", *args], check=False)
 
 
 def pane_urls() -> list[str]:
-    pane = tmux("capture-pane", "-J", "-p", capture_output=True, text=True).stdout
+    result = subprocess.run(
+        ["tmux", "capture-pane", "-J", "-p"],
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    pane = result.stdout
     # Newest URLs first, keeping the first occurrence of each.
     return list(dict.fromkeys(reversed(URL_RE.findall(pane))))
 
 
 def open_url(url: str) -> None:
-    subprocess.run(["open", url])
+    _ = subprocess.run(["open", url], check=False)
 
 
 def copy_url(url: str) -> None:
-    subprocess.run(["pbcopy"], input=url, text=True)
+    _ = subprocess.run(["pbcopy"], check=False, input=url, text=True)
 
 
 def run_television(urls: list[str]) -> tuple[str, str | None]:
@@ -59,6 +65,7 @@ def run_television(urls: list[str]) -> tuple[str, str | None]:
         ],
         input=entries,
         # Television draws its interface on stderr, so only capture stdout.
+        check=False,
         stdout=subprocess.PIPE,
         text=True,
     )
@@ -121,7 +128,7 @@ def pick() -> None:
 
     with tempfile.TemporaryDirectory(prefix="tmux-url-picker-") as tmpdir:
         urls_file = Path(tmpdir) / "urls"
-        urls_file.write_text("\n".join(urls) + "\n")
+        _ = urls_file.write_text("\n".join(urls) + "\n")
         show_popup(urls, urls_file)
 
 
@@ -136,6 +143,6 @@ def main(argv: list[str]) -> int:
 
 if __name__ == "__main__":
     try:
-        sys.exit(main(sys.argv[1:]))
+        raise SystemExit(main(sys.argv[1:]))
     except KeyboardInterrupt:
-        sys.exit(130)
+        raise SystemExit(130)
