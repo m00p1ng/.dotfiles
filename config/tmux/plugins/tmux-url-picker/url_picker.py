@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """tmux URL picker — collect URLs from the current pane, then open or copy one."""
 
-import os
+from __future__ import annotations
+
 import re
-import shlex
 import subprocess
 import sys
 import tempfile
@@ -43,8 +43,8 @@ def copy_url(url: str) -> None:
     subprocess.run(["pbcopy"], input=url, text=True)
 
 
-def select(urls_file: Path) -> None:
-    urls = urls_file.read_text().splitlines()
+def run_television(urls: list[str]) -> tuple[str, str | None]:
+    """Return the key used to confirm the selection and the chosen URL."""
     entries = "".join(f"{index}: {url}\n" for index, url in enumerate(urls, 1))
 
     result = subprocess.run(
@@ -63,29 +63,39 @@ def select(urls_file: Path) -> None:
         text=True,
     )
 
-    lines = result.stdout.splitlines()
-    # --expect prefixes the output with the key used to confirm the selection.
-    key = lines.pop(0) if lines and not ENTRY_RE.match(lines[0]) else ""
-
-    for line in lines:
+    key = ""
+    url = None
+    for line in result.stdout.splitlines():
         match = ENTRY_RE.match(line)
-        if not match:
-            continue
-        url = match["url"]
-        if key == COPY_KEY:
-            copy_url(url)
+        if match:
+            url = match["url"]
         else:
-            open_url(url)
+            # --expect prefixes the output with the key used to confirm.
+            key = line
+    return key, url
 
 
-def show_popup(urls: list[str], urls_file: Path) -> None:
+def select(urls_file: Path) -> None:
+    key, url = run_television(urls_file.read_text().splitlines())
+    if url is None:
+        return
+    copy_url(url) if key == COPY_KEY else open_url(url)
+
+
+def popup_size(urls: list[str]) -> tuple[int, int]:
     width = min(
-        max(len(HEADER) + HEADER_PADDING, *(len(url) for url in urls)),
+        max(len(HEADER) + HEADER_PADDING, max(map(len, urls))),
         MAX_POPUP_WIDTH,
     )
     height = max(len(urls) + PANEL_HEIGHT, MIN_POPUP_HEIGHT)
+    return width, height
+
+
+def show_popup(urls: list[str], urls_file: Path) -> None:
+    width, height = popup_size(urls)
     script = Path(__file__).resolve()
 
+    # display-popup -E blocks until the popup exits, so urls_file stays alive.
     tmux(
         "display-popup",
         "-E",
@@ -93,7 +103,9 @@ def show_popup(urls: list[str], urls_file: Path) -> None:
         str(width),
         "-h",
         str(height),
-        f"{shlex.quote(str(script))} select {shlex.quote(str(urls_file))}",
+        str(script),
+        "select",
+        str(urls_file),
     )
 
 
@@ -107,19 +119,15 @@ def pick() -> None:
         open_url(urls[0])
         return
 
-    fd, name = tempfile.mkstemp(prefix="tmux-url-picker-")
-    urls_file = Path(name)
-    try:
-        with os.fdopen(fd, "w") as handle:
-            handle.write("\n".join(urls) + "\n")
+    with tempfile.TemporaryDirectory(prefix="tmux-url-picker-") as tmpdir:
+        urls_file = Path(tmpdir) / "urls"
+        urls_file.write_text("\n".join(urls) + "\n")
         show_popup(urls, urls_file)
-    finally:
-        urls_file.unlink(missing_ok=True)
 
 
-def main() -> int:
-    if sys.argv[1:2] == ["select"]:
-        select(Path(sys.argv[2]))
+def main(argv: list[str]) -> int:
+    if argv[:1] == ["select"]:
+        select(Path(argv[1]))
     else:
         pick()
 
@@ -128,6 +136,6 @@ def main() -> int:
 
 if __name__ == "__main__":
     try:
-        sys.exit(main())
+        sys.exit(main(sys.argv[1:]))
     except KeyboardInterrupt:
         sys.exit(130)
