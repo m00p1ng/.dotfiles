@@ -7,8 +7,6 @@
   imports = mylib.scanPathsRecursive ../../modules/home-manager;
 
   programs = {
-    man.generateCaches = false;
-
     bat = {
       enable = true;
     };
