@@ -30,6 +30,26 @@ in {
           info = "!onefetch";
           clear = "!git clean -fd && git reset --hard";
           remote-prune = "!git fetch --all --prune &&  git branch -v | grep '\\[gone\\]' | cut -d ' ' -f3 | xargs git branch -D";
+
+          # git town alias
+          append = "town append";
+          compress = "town compress";
+          continue = "town continue";
+          contribute = "town contribute";
+          delete = "town delete";
+          diff-parent = "town diff-parent";
+          down = "town down";
+          hack = "town hack";
+          observe = "town observe";
+          park = "town park";
+          prepend = "town prepend";
+          propose = "town propose";
+          rename = "town rename";
+          repo = "town repo";
+          set-parent = "town set-parent";
+          ship = "town ship";
+          sync = "town sync";
+          up = "town up";
         };
         core = {
           editor = "nvim";
@@ -134,10 +154,14 @@ in {
         gpo = "git push -u origin HEAD";
         gco = "git checkout";
       };
+      interactiveShellInit = ''
+        git-town completions fish | source
+      '';
     };
 
     home.packages = with pkgs; [
       onefetch
+      git-town
     ];
   };
 }
