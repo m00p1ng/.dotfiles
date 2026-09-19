@@ -49,12 +49,9 @@ in {
         template: '{{color .PodColor .PodName}} {{.Message}}{{"\n"}}'
       '';
 
-      programs.fish = {
-        interactiveShellInit = ''
-          # stern configuration
-          stern --completion fish | source
-        '';
-      };
+      xdg.configFile."fish/completions/stern.fish".source = pkgs.runCommand "stern.fish" {} ''
+        ${cfg.stern.package}/bin/stern --completion fish > $out
+      '';
     })
 
     (mkIf cfg.k9s.enable {

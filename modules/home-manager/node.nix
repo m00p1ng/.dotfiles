@@ -29,13 +29,11 @@ in {
             # Global npm path
             fish_add_path ${config.home.homeDirectory}/.npm-global/node_modules/.bin
           '';
-        interactiveShellInit =
-          #sh
-          ''
-            # FNM configuration
-            ${cfg.package}/bin/fnm completions --shell fish | source
-          '';
       };
+
+      xdg.configFile."fish/completions/fnm.fish".source = pkgs.runCommand "fnm.fish" {} ''
+        ${cfg.package}/bin/fnm completions --shell fish > $out
+      '';
     }
   ]);
 }

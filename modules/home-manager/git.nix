@@ -184,6 +184,10 @@ in {
       '';
     };
 
+    xdg.configFile."fish/completions/git-town.fish".source = pkgs.runCommand "git-town.fish" {} ''
+      ${pkgs.git-town}/bin/git-town completions fish > $out
+    '';
+
     home.packages = with pkgs; [
       onefetch
       git-town
