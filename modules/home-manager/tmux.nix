@@ -48,6 +48,14 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      sesh
+    ];
+
+    xdg.configFile."fish/completions/sesh.fish".source = pkgs.runCommand "sesh.fish" {} ''
+      ${pkgs.sesh}/bin/sesh completion fish > $out
+    '';
+
     programs.tmux = {
       baseIndex = 1;
       clock24 = true;
@@ -129,6 +137,7 @@ in {
           bind-key -N "New session"               S   command-prompt -p "New session name:" -I "" "new-session -s '%%'"
           bind-key -N "Rename pane"               P   command-prompt -p "(rename-pane)" -I "#{pane_title}" "select-pane -T '%%'"
           bind-key -N "Toggle pane border status" +   if-shell -F '#{||:#{==:#{pane-border-status},top},#{==:#{pane-border-status},}}' 'set pane-border-status off' 'set pane-border-status top'
+          bind-key -N "Open Sesh"                 T   display-popup -E -w 80% -h 70% -d '#{pane_current_path}' -T 'Sesh' tv sesh
 
           ${interactiveNavigatorConfig}
 

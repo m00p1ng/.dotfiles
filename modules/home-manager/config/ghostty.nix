@@ -88,6 +88,9 @@ in {
 
           # fix claude code new line
           "shift+enter=text:\\x1b\\r"
+
+          # sesh
+          "cmd+k=text:\\x02T"
         ];
       };
     };
