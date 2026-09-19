@@ -5,6 +5,12 @@ source "$CONFIG_DIR/icons.sh"
 source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/plugins/meeting_query.sh"
 
+# The pointer left the bar, so the popup is no longer wanted.
+if [[ "$SENDER" == "mouse.exited.global" ]]; then
+  sketchybar --set "$NAME" popup.drawing=off
+  exit 0
+fi
+
 LIMIT_TITLE=50
 
 ICON="$CALENDAR"
@@ -83,10 +89,14 @@ else
   fi
 fi
 
-meeting=(
+meeting_icon=(
   drawing="$DRAWING"
   icon="$ICON"
   icon.color="$ICON_COLOR"
+)
+
+meeting=(
+  drawing="$DRAWING"
   label="$LABEL"
 )
 
@@ -95,5 +105,6 @@ meeting_duration=(
   label="$DURATION"
 )
 
-sketchybar --set "$NAME" "${meeting[@]}" \
+sketchybar --set "$NAME.icon" "${meeting_icon[@]}" \
+  --set "$NAME" "${meeting[@]}" \
   --set "$NAME.duration" "${meeting_duration[@]}"

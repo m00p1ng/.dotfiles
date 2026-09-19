@@ -1,12 +1,11 @@
 #!/bin/bash
+# Toggles the meeting popup, rebuilding its rows right before it is shown.
 
-source "$CONFIG_DIR/plugins/meeting_query.sh"
+PARENT=meeting
 
-event="$(meeting_query)"
-url="$(jq -r '.meetingUrl // empty' <<<"$event")"
-
-if [[ -n "$url" ]]; then
-  open "$url"
+if [[ "$(sketchybar --query "$PARENT" | jq -r '.popup.drawing')" == "on" ]]; then
+  sketchybar --set "$PARENT" popup.drawing=off
 else
-  open -a Calendar
+  "$CONFIG_DIR/plugins/meeting_popup.sh"
+  sketchybar --set "$PARENT" popup.drawing=on
 fi

@@ -41,3 +41,7 @@ SLACK=󰒱
 CALENDAR=􀉉
 CALENDAR_FREE=􁻧
 CALENDAR_BUSY=􀧞
+
+# Disclosure triangles for collapsible popup sections
+CHEVRON_RIGHT=
+CHEVRON_DOWN=
