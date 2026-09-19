@@ -30,6 +30,7 @@ in {
           info = "!onefetch";
           clear = "!git clean -fd && git reset --hard";
           remote-prune = "!git fetch --all --prune &&  git branch -v | grep '\\[gone\\]' | cut -d ' ' -f3 | xargs git branch -D";
+          checkout = "!echo Please do not use `git checkout` use `git switch` instead";
 
           # git town alias
           append = "town append";
