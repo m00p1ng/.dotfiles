@@ -104,6 +104,30 @@ in {
         include = {
           path = "${catppuccinDelta}/catppuccin.gitconfig";
         };
+        git-town = {
+          main-branch = "main";
+          github-connector = "gh";
+          auto-sync = true;
+          detached = false;
+          ignore-uncommitted = true;
+          interactive = true;
+          new-branch-type = "feature";
+          order = "asc";
+          proposal-breadcrumb = "none";
+          proposal-breadcrumb-direction = "down";
+          push-branches = false;
+          push-hook = true;
+          share-new-branches = "no";
+          ship-delete-tracking-branch = true;
+          ship-strategy = "api";
+          stash = true;
+          sync-feature-strategy = "rebase";
+          sync-perennial-strategy = "rebase";
+          sync-prototype-strategy = "rebase";
+          sync-tags = true;
+          sync-upstream = true;
+          unknown-branch-type = "feature";
+        };
       };
     };
 
