@@ -20,11 +20,15 @@ DRAWING=on
 # ical-guy returns a JSON event with ISO 8601 timestamps.
 parse_result() {
   title=$(jq -r '.title // ""' <<<"$1")
-  start_time=$(format_time "$(jq -r '.startDate // empty' <<<"$1")")
-  end_time=$(format_time "$(jq -r '.endDate // empty' <<<"$1")")
+  start_datetime=$(jq -r '.startDate // empty' <<<"$1")
+  end_datetime=$(jq -r '.endDate // empty' <<<"$1")
+  start_time=$(format_time "$start_datetime")
+  end_time=$(format_time "$end_datetime")
+  start_epoch=$(parse_epoch "$start_datetime")
+  end_epoch=$(parse_epoch "$end_datetime")
 }
 
-format_time() {
+parse_epoch() {
   local datetime="$1" epoch
 
   [[ -z "$datetime" ]] && return
@@ -34,14 +38,26 @@ format_time() {
 
   # EventKit emits UTC ISO 8601 timestamps. Parse in UTC, then format locally.
   epoch=$(/bin/date -j -u -f "%Y-%m-%dT%H:%M:%SZ" "$datetime" +%s 2>/dev/null) || return
+  echo "$epoch"
+}
+
+format_time() {
+  local epoch
+
+  epoch=$(parse_epoch "$1") || return
   /bin/date -r "$epoch" +%H:%M
 }
 
 minutes_until() {
-  local epoc_now epoc_target
-  epoc_now=$(/bin/date +%s)
-  epoc_target=$(/bin/date -j -f "%T" "${1:-00:00}:00" +%s)
-  echo $(((epoc_target - epoc_now) / 60 + 1))
+  local target_epoch="$1" now_epoch delta
+  now_epoch=${2:-$(/bin/date +%s)}
+  delta=$((target_epoch - now_epoch))
+
+  if ((delta > 0)); then
+    echo $(((delta + 59) / 60))
+  else
+    echo $((-((-delta + 59) / 60)))
+  fi
 }
 
 # 62 -> "(1h 2m)", 60 -> "(1h)", 2 -> "(2m)"
@@ -75,7 +91,7 @@ if [[ -z "$title" ]]; then
   ICON="$CALENDAR_FREE"
 else
   LABEL="$start_time $(get_title)"
-  minutes_till_start=$(minutes_until "$start_time")
+  minutes_till_start=$(minutes_until "$start_epoch")
 
   if ((minutes_till_start >= 1)); then
     # Not started yet: count down to the start.
@@ -85,7 +101,7 @@ else
     # In progress: count down the time left, when we know the end.
     ICON="$CALENDAR_BUSY"
     ICON_COLOR=$ORANGE
-    [[ -n "$end_time" ]] && DURATION=$(format_duration "$(minutes_until "$end_time")")
+    [[ -n "$end_epoch" ]] && DURATION=$(format_duration "$(minutes_until "$end_epoch")")
   fi
 fi
 
