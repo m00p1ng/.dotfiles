@@ -14,11 +14,7 @@ in {
       currency = mkEnableOption "currency widget";
       cpu = mkEnableOption "cpu widget";
       nixpkgs = mkEnableOption "nixpkgs update widget";
-      volume = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Whether to enable the volume widget";
-      };
+      volume = mkEnableOption "Whether to enable the volume widget";
       meeting = {
         enable = mkEnableOption "meeting widget";
         calendars = mkOption {
@@ -50,6 +46,10 @@ in {
 
     launchd.user.agents.sketchybar = {
       serviceConfig.EnvironmentVariables = {
+        # The nix-darwin service starts SketchyBar directly, without a shell
+        # that supplies HOME. SketchyBar uses HOME to find Home Manager's
+        # ~/.config/sketchybar/sketchybarrc.
+        HOME = "/Users/${username}";
         SKETCHYBAR_WIDGET_SLACK = boolToString cfg.widget.slack;
         SKETCHYBAR_WIDGET_CURRENCY = boolToString cfg.widget.currency;
         SKETCHYBAR_WIDGET_CPU = boolToString cfg.widget.cpu;

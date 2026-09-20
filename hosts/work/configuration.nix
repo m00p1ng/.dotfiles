@@ -32,6 +32,7 @@ in {
       "vicinae"
       "1password"
       # "1password-cli"
+      "atoll"
 
       "notion"
 
@@ -54,6 +55,7 @@ in {
         meeting = {
           enable = true;
         };
+        volume = true;
       };
     };
 
