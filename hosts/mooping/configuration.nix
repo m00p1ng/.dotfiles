@@ -35,6 +35,7 @@ in {
       # "vorssaint"
       "1password"
       "puremac"
+      "atoll"
 
       "notion"
       "discord"

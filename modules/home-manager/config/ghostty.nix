@@ -91,6 +91,9 @@ in {
 
           # sesh
           "cmd+k=text:\\x02T"
+
+          # open popup
+          "cmd+p=text:\\x02A"
         ];
       };
     };
