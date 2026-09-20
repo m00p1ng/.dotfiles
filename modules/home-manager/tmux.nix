@@ -136,6 +136,7 @@ in {
           set -g activity-action  none
           set -g allow-passthrough on
           set -g extended-keys     on
+          set -g detach-on-destroy off
 
           bind-key -N "Split window vertically"   '"' if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -v -c "#{pane_current_path}"'
           bind-key -N "Split window horizontally" %   if-shell -F '#{window_zoomed_flag}' 'resize-pane -Z' 'split-window -h -c "#{pane_current_path}"'

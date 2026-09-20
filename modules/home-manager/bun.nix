@@ -9,7 +9,7 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     xdg.configFile."fish/completions/bun.fish".source = pkgs.runCommand "bun.fish" {} ''
-      ${cfg.package}/bin/bun completions fish > $out
+      SHELL=fish ${cfg.package}/bin/bun completions > $out
     '';
   };
 }

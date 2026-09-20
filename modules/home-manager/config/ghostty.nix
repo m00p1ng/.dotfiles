@@ -90,7 +90,7 @@ in {
           "shift+enter=text:\\x1b\\r"
 
           # sesh
-          "cmd+k=text:\\x02T"
+          "cmd+s=text:\\x02T"
 
           # open popup
           "cmd+p=text:\\x02A"
