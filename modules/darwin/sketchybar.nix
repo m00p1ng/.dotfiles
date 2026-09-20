@@ -14,6 +14,11 @@ in {
       currency = mkEnableOption "currency widget";
       cpu = mkEnableOption "cpu widget";
       nixpkgs = mkEnableOption "nixpkgs update widget";
+      volume = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether to enable the volume widget";
+      };
       meeting = {
         enable = mkEnableOption "meeting widget";
         calendars = mkOption {
@@ -51,6 +56,7 @@ in {
         SKETCHYBAR_WIDGET_MEETING = boolToString cfg.widget.meeting.enable;
         SKETCHYBAR_WIDGET_MEETING_CALENDARS = concatStringsSep "," cfg.widget.meeting.calendars;
         SKETCHYBAR_WIDGET_NIXPKGS = boolToString cfg.widget.nixpkgs;
+        SKETCHYBAR_WIDGET_VOLUME = boolToString cfg.widget.volume;
         SKETCHYBAR_BAR_HEIGHT = toString cfg.bar.height;
       };
     };

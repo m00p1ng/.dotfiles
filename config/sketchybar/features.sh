@@ -6,6 +6,7 @@ WIDGETS=(
   CPU
   MEETING
   NIXPKGS
+  VOLUME
 )
 
 for widget in "${WIDGETS[@]}"; do

@@ -92,7 +92,10 @@ source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/input.sh"
-source "$ITEM_DIR/volume.sh"
+
+if $ENABLED_VOLUME; then
+  source "$ITEM_DIR/volume.sh"
+fi
 
 if $ENABLED_NIXPKGS; then
   source "$ITEM_DIR/nixpkgs.sh"
@@ -139,12 +142,15 @@ if $ENABLED_CURRENCY; then
 fi
 
 group+=(
-  "Control Center,Sound"
   input
   wifi
   calendar
   time
 )
+
+if $ENABLED_VOLUME; then
+  group+=("Control Center,Sound")
+fi
 sketchybar --add bracket status "${group[@]}" \
   --set status "${status_bracket[@]}"
 
