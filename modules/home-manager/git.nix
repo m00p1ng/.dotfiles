@@ -179,9 +179,6 @@ in {
         gpo = "git push -u origin HEAD";
         gco = "git checkout";
       };
-      interactiveShellInit = ''
-        git-town completions fish | source
-      '';
     };
 
     xdg.configFile."fish/completions/git-town.fish".source = pkgs.runCommand "git-town.fish" {} ''

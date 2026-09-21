@@ -18,11 +18,13 @@ with lib; let
 
   interactiveProcessPattern = concatStringsSep "|" cfg.interactivePrograms;
 
-  cleanCmd = "#{s/^\\\\.(.+)-wrap.*$/\\\\1/:pane_current_command}";
-  isNvim = "#{==:${cleanCmd},nvim}";
-  isFish = "#{==:${cleanCmd},fish}";
-  pathFmt = "#{?#{==:#{pane_current_path},#{HOME}},~ (${cleanCmd}),#{b:pane_current_path}}";
-  renameFmt = "#{?#{||:${isNvim},${isFish}},${pathFmt},${cleanCmd}}";
+  # cleanCmd = "#{s/^\\\\.(.+)-wrap.*$/\\\\1/:pane_current_command}";
+  # isNvim = "#{==:${cleanCmd},nvim}";
+  # isFish = "#{==:${cleanCmd},fish}";
+  # pathFmt = "#{?#{==:#{pane_current_path},#{HOME}},~ (${cleanCmd}),#{b:pane_current_path}}";
+  # renameFmt = "#{?#{||:${isNvim},${isFish}},${pathFmt},${cleanCmd}}";
+
+  renameFmt = "#{s/^\\\\.(.+)-wrap.*$/\\\\1/:pane_current_command}";
 
   interactiveNavigatorConfig =
     if cfg.isInteractivePatch
