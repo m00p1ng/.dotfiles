@@ -82,9 +82,19 @@ in {
           };
           source = {
             command = [
-              "brew formulae"
-              "brew casks"
+              {
+                name = "Formulae";
+                run = "brew formulae";
+              }
+              {
+                name = "Casks";
+                run = "brew casks";
+              }
             ];
+            ansi = true;
+          };
+          ui = {
+            layout = "landscape";
           };
           preview = {
             command = "HOMEBREW_COLOR=1 brew info '{}'";
