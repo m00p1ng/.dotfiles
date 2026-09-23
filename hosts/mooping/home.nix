@@ -1,6 +1,7 @@
 {
   pkgs,
   mylib,
+  config,
   ...
 }: {
   home.stateVersion = "26.05";
@@ -117,8 +118,8 @@
     zoxide = {
       enable = true;
       excludeDirs = [
-        "\$HOME/Library/*"
-        "\$HOME/Downloads/*"
+        "${config.home.homeDirectory}/Library/*"
+        "${config.home.homeDirectory}/Downloads/*"
       ];
     };
 

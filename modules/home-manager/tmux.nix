@@ -50,9 +50,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      sesh
-    ];
+    programs.sesh = {
+      enable = true;
+      enableTmuxIntegration = false;
+      settings = {
+        blacklist = [
+          "^codex [a-z0-9]{11}$"
+          "^claude [a-z0-9]{11}$"
+        ];
+        session = [
+          {
+            name = "neovim config (nvim)";
+            path = "~/.config/nvim";
+            # startup_command = "nvim";
+            disable_startup_command = true;
+          }
+        ];
+      };
+    };
 
     xdg.configFile."fish/completions/sesh.fish".source = pkgs.runCommand "sesh.fish" {} ''
       ${pkgs.sesh}/bin/sesh completion fish > $out

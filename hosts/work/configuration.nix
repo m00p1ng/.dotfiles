@@ -21,6 +21,7 @@ in {
     brews = [
       "mole"
       "raine/workmux/workmux"
+      "codeburn"
     ];
 
     casks = [

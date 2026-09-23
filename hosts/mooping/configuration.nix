@@ -22,6 +22,7 @@ in {
       # "kimi-code"
       "mole"
       "raine/workmux/workmux"
+      "codeburn"
     ];
 
     casks = [
