@@ -65,6 +65,11 @@ in {
             # startup_command = "nvim";
             disable_startup_command = true;
           }
+          {
+            name = "dotfiles";
+            path = "~/.dotfiles";
+            disable_startup_command = true;
+          }
         ];
       };
     };
