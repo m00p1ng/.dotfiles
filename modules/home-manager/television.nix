@@ -31,9 +31,23 @@ in {
               "brew install"
               "brew install --cask"
             ];
-            alias = ["alias" "unalias"];
-            env = ["export" "unset"];
-            dirs = ["cd" "ls" "rmdir" "z"];
+            brew-packages = [
+              "brew uninstall"
+            ];
+            alias = [
+              "alias"
+              "unalias"
+            ];
+            env = [
+              "export"
+              "unset"
+            ];
+            dirs = [
+              "cd"
+              "ls"
+              "rmdir"
+              "z"
+            ];
             files = [
               "cat"
               "less"
@@ -55,9 +69,13 @@ in {
               "gzip"
               "gunzip"
               "xz"
+              "nvim"
             ];
-            "git-diff" = ["git add" "git restore"];
-            "git-branch" = [
+            git-diff = [
+              "git add"
+              "git restore"
+            ];
+            git-branch = [
               "git checkout"
               "git switch"
               "git branch"
@@ -66,9 +84,13 @@ in {
               "git pull"
               "git push"
             ];
-            "git-log" = ["git log" "git show"];
-            "docker-images" = ["docker run"];
-            "git-repos" = ["nvim" "code" "hx" "git clone"];
+            git-log = [
+              "git log"
+              "git show"
+            ];
+            docker-images = [
+              "docker run"
+            ];
           };
         };
       };
@@ -82,6 +104,10 @@ in {
           };
           source = {
             command = [
+              {
+                name = "All";
+                run = "{ brew formulae; brew casks; }";
+              }
               {
                 name = "Formulae";
                 run = "brew formulae";
