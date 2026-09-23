@@ -11,6 +11,7 @@ in {
   options.services.sketchybar = {
     widget = {
       slack = mkEnableOption "slack widget";
+      codeburn = mkEnableOption "Codeburn cost widget";
       currency = mkEnableOption "currency widget";
       cpu = mkEnableOption "cpu widget";
       nixpkgs = mkEnableOption "nixpkgs update widget";
@@ -45,12 +46,17 @@ in {
     };
 
     launchd.user.agents.sketchybar = {
+      # Extend nix-darwin's generated service PATH without replacing the
+      # SketchyBar and extra-package entries it supplies.
+      path = mkAfter [ "/opt/homebrew/bin" ];
+
       serviceConfig.EnvironmentVariables = {
         # The nix-darwin service starts SketchyBar directly, without a shell
         # that supplies HOME. SketchyBar uses HOME to find Home Manager's
         # ~/.config/sketchybar/sketchybarrc.
         HOME = "/Users/${username}";
         SKETCHYBAR_WIDGET_SLACK = boolToString cfg.widget.slack;
+        SKETCHYBAR_WIDGET_CODEBURN = boolToString cfg.widget.codeburn;
         SKETCHYBAR_WIDGET_CURRENCY = boolToString cfg.widget.currency;
         SKETCHYBAR_WIDGET_CPU = boolToString cfg.widget.cpu;
         SKETCHYBAR_WIDGET_MEETING = boolToString cfg.widget.meeting.enable;

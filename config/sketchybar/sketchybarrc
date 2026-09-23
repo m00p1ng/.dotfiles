@@ -105,6 +105,10 @@ if $ENABLED_CURRENCY; then
   source "$ITEM_DIR/currency.sh"
 fi
 
+if $ENABLED_CODEBURN; then
+  source "$ITEM_DIR/codeburn.sh"
+fi
+
 if $ENABLED_CPU; then
   source "$ITEM_DIR/cpu.sh"
 fi
@@ -139,6 +143,10 @@ fi
 
 if $ENABLED_CURRENCY; then
   group+=(currency)
+fi
+
+if $ENABLED_CODEBURN; then
+  group+=(codeburn)
 fi
 
 group+=(

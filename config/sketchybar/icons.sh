@@ -8,6 +8,7 @@ ACTIVITY=􀒓
 LOCK=􀒳
 BELL=􀋚
 BELL_DOT=􀝗
+FLAME=􀙭
 
 # Yabai Icons
 YABAI_STACK=􀏭
