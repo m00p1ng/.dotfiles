@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nix darwin wrapper — build and switch to a nix-darwin profile."""
+"""Nix darwin wrapper — build and switch to the nix-darwin profile in NIX_PROFILE."""
 
 import argparse
 import glob
@@ -9,30 +9,40 @@ import signal
 import subprocess
 import sys
 from pathlib import Path
+from types import FrameType
+from typing import NoReturn
 
 DOTFILES = Path.home() / ".dotfiles"
 
 
-def run(cmd: list[str], **kwargs) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, **kwargs)
+class Args(argparse.Namespace):
+    update: bool = False
 
 
-def git(*args: str, **kwargs) -> subprocess.CompletedProcess:
-    return run(["git", "-C", str(DOTFILES), *args], **kwargs)
+def run(
+    cmd: list[str],
+    *,
+    capture_output: bool = False,
+    check: bool = False,
+) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(cmd, capture_output=capture_output, check=check, text=True)
+
+
+def git(*args: str, capture_output: bool = False) -> subprocess.CompletedProcess[str]:
+    return run(["git", "-C", str(DOTFILES), *args], capture_output=capture_output)
 
 
 def setup() -> None:
-    git("update-index", "--no-skip-worktree", "override.nix")
-    git("add", "-A")
+    _ = git("update-index", "--no-skip-worktree", "override.nix")
+    _ = git("add", "-A")
     deleted = git(
         "ls-files",
         "--deleted",
         capture_output=True,
-        text=True,
     ).stdout.split()
     if deleted:
-        git("rm", "--", *deleted)
-    git(
+        _ = git("rm", "--", *deleted)
+    _ = git(
         "commit",
         "--no-verify",
         "--no-gpg-sign",
@@ -43,10 +53,10 @@ def setup() -> None:
 
 
 def cleanup() -> None:
-    log = git("log", "-n", "1", "--format=%s", capture_output=True, text=True).stdout
+    log = git("log", "-n", "1", "--format=%s", capture_output=True).stdout
     if "--wip--" in log:
-        git("reset", "HEAD~1", "--quiet")
-    git("update-index", "--skip-worktree", "override.nix")
+        _ = git("reset", "HEAD~1", "--quiet")
+    _ = git("update-index", "--skip-worktree", "override.nix")
 
 
 def show_diff(profile: str) -> None:
@@ -59,23 +69,31 @@ def show_diff(profile: str) -> None:
         glob.glob("/nix/var/nix/profiles/system-*-link"), key=version_key
     )[-2:]
     if len(profiles) == 2:
-        run(["nvd", "diff", *profiles])
+        _ = run(["nvd", "diff", *profiles])
+
+
+def on_term(_signum: int, _frame: FrameType | None) -> NoReturn:
+    sys.exit(128 + signal.SIGTERM)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "profile",
-        help="Configuration profile (e.g. mooping, work)",
-    )
-    parser.add_argument(
+    _ = parser.add_argument(
         "--update",
         action="store_true",
         help="Run nix flake update before rebuilding",
     )
-    args = parser.parse_args()
+    args = parser.parse_args(namespace=Args())
 
-    signal.signal(signal.SIGTERM, lambda *_: sys.exit(128 + signal.SIGTERM))
+    profile = os.environ.get("NIX_PROFILE", "")
+    if not profile:
+        print(
+            "NIX_PROFILE is not set (e.g. mooping, work)",
+            file=sys.stderr,
+        )
+        return 1
+
+    _ = signal.signal(signal.SIGTERM, on_term)
 
     orig_dir = Path.cwd()
     os.chdir(DOTFILES)
@@ -84,7 +102,7 @@ def main() -> int:
     try:
         if args.update:
             print("Updating flake...")
-            run(["nix", "flake", "update"], check=True)
+            _ = run(["nix", "flake", "update"], check=True)
 
         result = run(
             [
@@ -92,12 +110,12 @@ def main() -> int:
                 "darwin-rebuild",
                 "switch",
                 "--flake",
-                f"{DOTFILES}#{args.profile}",
+                f"{DOTFILES}#{profile}",
             ]
         )
 
         if result.returncode == 0:
-            show_diff(args.profile)
+            show_diff(profile)
 
         return result.returncode
 

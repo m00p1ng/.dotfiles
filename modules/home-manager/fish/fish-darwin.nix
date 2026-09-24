@@ -41,7 +41,7 @@ in {
         '';
 
       interactiveShellInit = ''
-        complete -c darwin-apply -n "__fish_use_subcommand" -f -a "mooping work"
+        complete -c darwin-apply -f -l update -d "Run nix flake update before rebuilding"
       '';
 
       functions = {
