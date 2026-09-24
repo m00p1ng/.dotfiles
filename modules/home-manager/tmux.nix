@@ -55,8 +55,8 @@ in {
       enableTmuxIntegration = false;
       settings = {
         blacklist = [
-          "^codex [a-z0-9]{11}$"
-          "^claude [a-z0-9]{11}$"
+          "^codex [a-z0-9]{10,}$"
+          "^claude [a-z0-9]{10,}$"
         ];
         session = [
           {
