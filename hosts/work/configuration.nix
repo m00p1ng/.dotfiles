@@ -19,7 +19,6 @@ in {
   homebrew = {
     enable = true;
     brews = [
-      "mole"
       "raine/workmux/workmux"
       "codeburn"
     ];

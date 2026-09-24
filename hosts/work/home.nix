@@ -144,8 +144,9 @@
     curl
     fd
     htop
-    httpie
     fastfetch
+    httpie
+    mole-cleaner
     numbat
     smartmontools
     pstree

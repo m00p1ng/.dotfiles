@@ -197,9 +197,10 @@
     curl
     fd
     # hey     # load test
+    fastfetch
     htop
     httpie
-    fastfetch
+    mole-cleaner
     numbat
     presenterm
     rsync

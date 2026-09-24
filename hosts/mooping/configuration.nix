@@ -20,7 +20,6 @@ in {
     enable = true;
     brews = [
       # "kimi-code"
-      "mole"
       "raine/workmux/workmux"
       "codeburn"
     ];
