@@ -54,6 +54,7 @@ in {
               "head"
               "tail"
               "vim"
+              "nvim"
               "nano"
               "bat"
               "cp"
@@ -83,6 +84,10 @@ in {
               "git rebase"
               "git pull"
               "git push"
+
+              # git town
+              "git town delete"
+              "git delete"
             ];
             git-log = [
               "git log"
