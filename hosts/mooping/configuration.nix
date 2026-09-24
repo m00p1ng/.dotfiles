@@ -98,6 +98,7 @@ in {
       enable = true;
       widget = {
         currency = true;
+        codeburn = true;
       };
     };
 

@@ -57,6 +57,7 @@ in {
           enable = true;
         };
         volume = true;
+        codeburn = true;
       };
     };
 

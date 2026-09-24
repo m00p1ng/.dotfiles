@@ -17,7 +17,7 @@ in {
     enable = mkEnableOption "python";
     package = mkOption {
       type = types.package;
-      default = pkgs.python313;
+      default = pkgs.python314;
       defaultText = literalExpression "pkgs.python312";
       example = literalExpression "pkgs.python3";
       description = ''
