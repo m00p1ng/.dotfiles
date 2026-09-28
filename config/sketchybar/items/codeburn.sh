@@ -2,7 +2,7 @@
 
 codeburn=(
   icon="$FLAME"
-  icon.color="$RED"
+  icon.color="$ORANGE"
   label.y_offset=-1.5
   padding_right=0
   padding_left=4
