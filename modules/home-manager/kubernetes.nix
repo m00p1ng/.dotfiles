@@ -27,6 +27,17 @@ in {
         default = pkgs.k9s;
       };
     };
+    argocd = {
+      enable = mkEnableOption "argocd";
+      package = mkOption {
+        type = types.package;
+        default = pkgs.argocd;
+      };
+      argonautPackage = mkOption {
+        type = types.package;
+        default = pkgs.argonaut;
+      };
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -52,6 +63,13 @@ in {
       xdg.configFile."fish/completions/stern.fish".source = pkgs.runCommand "stern.fish" {} ''
         ${cfg.stern.package}/bin/stern --completion fish > $out
       '';
+    })
+
+    (mkIf cfg.argocd.enable {
+      home.packages = [
+        cfg.argocd.package
+        cfg.argocd.argonautPackage
+      ];
     })
 
     (mkIf cfg.k9s.enable {
