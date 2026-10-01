@@ -9,8 +9,7 @@ with lib; let
   pythonEnv = cfg.package.withPackages (ps:
     with ps; [
       ipython
-      # pipx
-      pynvim
+      pipx
     ]);
 in {
   options.programs.python = {
@@ -18,7 +17,7 @@ in {
     package = mkOption {
       type = types.package;
       default = pkgs.python314;
-      defaultText = literalExpression "pkgs.python312";
+      defaultText = literalExpression "pkgs.python314";
       example = literalExpression "pkgs.python3";
       description = ''
         Version of python to install.
