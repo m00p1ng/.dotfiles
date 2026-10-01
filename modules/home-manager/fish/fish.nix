@@ -32,12 +32,15 @@ in {
           fish_add_path ~/.local/bin
         '';
 
+      binds = {
+        "alt-p".command = "history-token-search-backward";
+        "alt-n".command = "history-token-search-forward";
+        "ctrl-g".command = "edit_command_buffer";
+      };
+
       interactiveShellInit =
         #sh
         ''
-          bind \ep history-token-search-backward
-          bind \en history-token-search-forward
-
           fish_config theme choose mooping
         '';
 
