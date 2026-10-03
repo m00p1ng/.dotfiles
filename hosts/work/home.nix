@@ -103,7 +103,7 @@
     };
 
     codex = {
-      enable = true;
+      enable = false;
     };
 
     github-copilot-cli = {

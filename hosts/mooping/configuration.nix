@@ -22,6 +22,8 @@ in {
       # "kimi-code"
       "raine/workmux/workmux"
       "codeburn"
+
+      "yutat23/tap/lsoff"
     ];
 
     casks = [
@@ -40,7 +42,7 @@ in {
       "notion"
       "discord"
       "sf-symbols"
-      "grammarly-desktop"
+      # "grammarly-desktop"
       "tolaria"
 
       # "postman"
@@ -55,9 +57,9 @@ in {
       "vlc"
 
       # "antigravity"
-      # "chatgpt"
-      # "codex-app"
+      "chatgpt"
       # "claude"
+      "codex"
       # "google-gemini"
       # "kimi"
       "lm-studio"
@@ -66,11 +68,10 @@ in {
       # "steipete/tap/codexbar"
     ];
 
-    # NOTE: https://github.com/nix-darwin/nix-darwin/issues/1722
     masApps = {
       "Xcode" = 497799835;
       "1Password for Safari" = 1569813296;
-      "Grammarly for Safari" = 1462114288;
+      # "Grammarly for Safari" = 1462114288;
 
       "Pages" = 361309726;
       "Numbers" = 361304891;

@@ -161,7 +161,7 @@
     };
 
     codex = {
-      enable = true;
+      enable = false;
     };
 
     pi-coding-agent = {
@@ -197,6 +197,7 @@
     curl
     fd
     # hey     # load test
+    # oha
     fastfetch
     htop
     httpie

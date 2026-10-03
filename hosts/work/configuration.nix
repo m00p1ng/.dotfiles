@@ -21,6 +21,8 @@ in {
     brews = [
       "raine/workmux/workmux"
       "codeburn"
+
+      "yutat23/tap/lsoff"
     ];
 
     casks = [
@@ -42,6 +44,7 @@ in {
       "ghostty"
       "zed"
 
+      "codex"
       "chatgpt"
       # "google-gemini"
     ];
