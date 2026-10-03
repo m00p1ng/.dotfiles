@@ -59,6 +59,9 @@
       k9s = {
         enable = true;
       };
+      argocd = {
+        enable = true;
+      };
     };
 
     python = {
