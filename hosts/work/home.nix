@@ -94,7 +94,7 @@
 
     # AI
     claude-code = {
-      enable = true;
+      enable = false;
       my-plugins = {
         rtk = true;
         caveman = true;

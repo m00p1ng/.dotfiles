@@ -57,6 +57,7 @@ in {
         blacklist = [
           "^codex [a-z0-9]{10,}$"
           "^claude [a-z0-9]{10,}$"
+          "^copilot [a-z0-9]{10,}$"
         ];
         session = [
           {
